@@ -1,0 +1,263 @@
+﻿@model Abundance_Nk.Web.Areas.Admin.ViewModels.SupportViewModel
+
+@{
+    ViewBag.Title = "Name Correction";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+@if (TempData["Message"] != null)
+{
+    @Html.Partial("_Message", TempData["Message"])
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div style="font-size: x-large">Name Correction</div>
+            </div>
+            <div class="panel-body">
+
+                @using (Html.BeginForm("CorrectionAsync", "Support", new {area = "Admin"}, FormMethod.Post))
+                {
+                    <div class="row">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Student.MatricNumber, "Matriculation Number", new {@class = "control-label col-md-2"})
+                            <div class="col-md-6">
+                                @Html.TextBoxFor(model => model.Student.MatricNumber, new {@class = "form-control", @placeholder = "Enter Matric Number", @required = "required"})
+                                @Html.ValidationMessageFor(model => model.Student.MatricNumber, "", new {@class = "text-danger"})
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Submit" class="btn btn-success mr5" />
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+
+        @if (Model.Student == null)
+        {
+            return;
+        }
+         @if (Model.Role.Name == "Faculty Officer")
+         {
+             if (Model.Student != null && Model.Student.LastName != null || Model.Student.FirstName != null || Model.Student.OtherName != null)
+             {
+ <div class="panel panel-default">
+
+                        <div class="panel-body">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-10">
+                                <div class="row">
+                                </div>
+                                <div class="row">
+                                    <hr style="margin-top: 0" />
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.Student.LastName, new { @class = "control-label " })
+                                            @Html.TextBoxFor(model => model.Student.LastName, new { @class = "form-control",@disabled=true })
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.Student.FirstName, new { @class = "control-label" })
+                                            @Html.TextBoxFor(model => model.Student.FirstName, new { @class = "form-control", @disabled = true })
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.Student.OtherName, new { @class = "control-label" })
+                                            @Html.TextBoxFor(model => model.Student.OtherName, new { @class = "form-control", @disabled = true })
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.Programme.Name, new { @class = "control-label" })
+                                            @Html.DropDownListFor(model => model.Programme.Id, (IEnumerable<SelectListItem>)ViewBag.Programme, new { @class = "form-control", @disabled = true })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.Student.Email, new { @class = "control-label" })
+                                            @Html.TextBoxFor(model => model.Student.Email, new { @class = "form-control", @disabled = true })
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.Student.MobilePhone, new { @class = "control-label" })
+                                            @Html.TextBoxFor(model => model.Student.MobilePhone, new { @class = "form-control", @disabled = true })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.Department.Name, new { @class = "control-label" })
+                                            @Html.DropDownListFor(model => model.Department.Id, (IEnumerable<SelectListItem>)ViewBag.Department, new { @class = "form-control", @disabled = true })
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.Level.Name, new { @class = "control-label" })
+                                            @Html.DropDownListFor(model => model.Level.Id, (IEnumerable<SelectListItem>)ViewBag.Level, new { @class = "form-control", @disabled = true })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.Student.MatricNumber, new { @class = "control-label" })
+                                            @Html.TextBoxFor(model => model.Student.MatricNumber, new { @class = "form-control", @disabled = true })
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-1"></div>
+                    </div>
+                 }
+
+         }
+         else
+         {
+             if (Model.Student != null && Model.Student.LastName != null || Model.Student.FirstName != null || Model.Student.OtherName != null)
+             {
+                 Html.HiddenFor(model => model.Level.Id);
+                 using (Html.BeginForm("SaveName", "Support", new { area = "Admin" }, FormMethod.Post))
+                 {
+                    <div class="panel panel-default">
+
+                        <div class="panel-body">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-10">
+                                <div class="row">
+                                </div>
+
+                                @Html.HiddenFor(model => model.ApplicantJambDetail.Person.Id)
+                                <div class="row">
+                                    <hr style="margin-top: 0" />
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.Student.LastName, new { @class = "control-label " })
+                                            @Html.TextBoxFor(model => model.Student.LastName, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.Student.LastName, null, new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.Student.FirstName, new { @class = "control-label" })
+                                            @Html.TextBoxFor(model => model.Student.FirstName, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.Student.FirstName, null, new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.Student.OtherName, new { @class = "control-label" })
+                                            @Html.TextBoxFor(model => model.Student.OtherName, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.Student.OtherName, null, new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.Programme.Name, new { @class = "control-label" })
+                                            @Html.DropDownListFor(model => model.Programme.Id, (IEnumerable<SelectListItem>)ViewBag.Programme, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.Programme.Name, null, new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.Student.Email, new { @class = "control-label" })
+                                            @Html.TextBoxFor(model => model.Student.Email, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.Student.Email, null, new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.Student.MobilePhone, new { @class = "control-label" })
+                                            @Html.TextBoxFor(model => model.Student.MobilePhone, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.Student.MobilePhone, null, new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.Department.Name, new { @class = "control-label" })
+                                            @Html.DropDownListFor(model => model.Department.Id, (IEnumerable<SelectListItem>)ViewBag.Department, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.Department.Name, null, new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.Level.Name, new { @class = "control-label" })
+                                            @Html.DropDownListFor(model => model.Level.Id, (IEnumerable<SelectListItem>)ViewBag.Level, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.Level.Name, null, new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.Student.MatricNumber, new { @class = "control-label" })
+                                            @Html.TextBoxFor(model => model.Student.MatricNumber, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.Student.MatricNumber, null, new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-footer">
+                            <div class="row">
+                                <div class="col-md-1"></div>
+                                <div class="col-md-10 ">
+                                    <div class="form-group">
+                                        <div class="col-md-12">
+                                            <input class="btn btn-primary btn-lg mr5" type="submit" value="Update" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-1"></div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-1"></div>
+                    </div>
+                }
+            }
+         }
+        
+    </div>
+</div>

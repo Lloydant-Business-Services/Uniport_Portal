@@ -1,0 +1,350 @@
+﻿@model Abundance_Nk.Web.Areas.Admin.ViewModels.CourseViewModel
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<script src="~/Scripts/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="~/Scripts/file-upload/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="~/Scripts/file-upload/jquery-ui-1.9.2.min.js"></script>
+<script type="text/javascript" src="~/Scripts/file-upload/jquery.fileupload-ui.js"></script>
+<script type="text/javascript" src="~/Scripts/file-upload/jquery.fileupload.js"></script>
+<script type="text/javascript" src="~/Scripts/file-upload/jquery.iframe-transport.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery.print.js"></script>
+
+<script src="~/Scripts/DataTables-1.10.15/media/js/jquery.js"></script>
+
+<link href="~/Scripts/DataTables-1.10.15/media/css/jquery.dataTables.css" rel="stylesheet" />
+<script src="~/Scripts/DataTables-1.10.15/media/js/jquery.dataTables.js"></script>
+<link href="~/Scripts/DataTables-1.10.15/extensions/Buttons/css/buttons.dataTables.css" rel="stylesheet" />
+<script src="~/Scripts/DataTables-1.10.15/extensions/Buttons/js/dataTables.buttons.js"></script>
+<script src="~/Scripts/DataTables-1.10.15/extensions/Buttons/js/buttons.colVis.js"></script>
+<script src="~/Scripts/DataTables-1.10.15/extensions/Responsive/js/dataTables.responsive.js"></script>
+<script src="~/Scripts/DataTables-1.10.15/buttons.flash.min.js"></script>
+<script src="~/Scripts/DataTables-1.10.15/buttons.html5.min.js"></script>
+<script src="~/Scripts/DataTables-1.10.15/buttons.print.min.js"></script>
+<script src="~/Scripts/DataTables-1.10.15/jszip.min.js"></script>
+<script src="~/Scripts/DataTables-1.10.15/pdfmake.min.js"></script>
+<script src="~/Scripts/DataTables-1.10.15/vfs_fonts.js"></script>
+
+
+
+<script>
+    $(document).ready(function () {
+        $.extend($.fn.dataTable.defaults, {
+            responsive: false
+        });
+
+        $("#myTable").DataTable({
+            dom: 'Bfrtip',
+            ordering: true,
+            buttons: [
+                {
+                    extend: 'copy',
+                    exportOptions: {
+                        columns: ':visible',
+                        modifier: {
+                            orientation: 'landscape'
+                        }
+                    },
+                    orientation: 'landscape'
+
+
+                },
+                {
+                    extend: 'csv',
+                    exportOptions: {
+                        columns: ':visible',
+                        modifier: {
+                            orientation: 'landscape'
+                        }
+                    },
+                    orientation: 'landscape'
+
+                },
+                {
+                    extend: 'excel',
+                    exportOptions: {
+                        columns: ':visible',
+                        modifier: {
+                            orientation: 'landscape'
+                        }
+                    },
+                    orientation: 'landscape'
+
+
+                },
+                {
+                    extend: 'pdf',
+                    exportOptions: {
+                        columns: ':visible',
+                        header: true,
+                        modifier: {
+                            orientation: 'landscape'
+                        }
+
+
+
+                    },
+                    orientation: 'landscape'
+
+
+                },
+                {
+                    extend: 'print',
+                    exportOptions: {
+                        columns: ':visible',
+                        modifier: {
+                            orientation: 'landscape'
+                        }
+                    },
+                    orientation: 'landscape'
+
+
+                }, , 'colvis'
+            ]
+        });
+        $("#divDepartmentOption").hide();
+
+        //var level = $("#course_Level_Id").val();
+        //var DepartmentOption = $("#course_DepartmentOption_Id").val();
+
+        //if (level > 2 && DepartmentOption > 0) {
+        //    $("#divDepartmentOption").show();
+        //}
+
+        //Hide Department Option on Department change
+        //$("#course_Department_Id").change(function() {
+
+        //    $("#divDepartmentOption").hide();
+
+        //}); //Load Department Option
+        $("#course_Department_Id").change(function() {
+
+            var department = $("#course_Department_Id").val();
+
+            //var programme = "3";
+            var programme= $('#course_Programme_Id').val();
+            //if (level > 2) {
+            if (department > 0 && programme > 0) {
+                $("#course_DepartmentOption_Id").empty();
+
+
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("GetDepartmentOptionByDepartment")', // we are calling json method
+                    dataType: 'json',
+                    data: { id: department, programmeid: programme },
+                    success: function(departmentOptions) {
+
+                        if (departmentOptions == "" || departmentOptions == null || departmentOptions == undefined) {
+                            $("#divDepartmentOption").hide();
+                        } else {
+                            $("#course_DepartmentOption_Id").append('<option value="' + 0 + '"> -- Select -- </option>');
+                            $.each(departmentOptions, function(i, Option) {
+                                $("#course_DepartmentOption_Id").append('<option value="' + Option.Value + '">' + Option.Text + '</option>');
+                            });
+                            if (programme == 1 ||  programme > 2) {
+                                $("#divDepartmentOption").show();
+                            }
+
+                        }
+                    },
+                    error: function(ex) {
+                        alert('Failed to retrieve department Options.' + ex);
+                    }
+                });
+            }
+
+            //}
+        });
+    })
+    function DeleteCourse(id) {
+        var response = confirm("Are you sure You want to Deactivate Course?");
+        if (response) {
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("DeactivateCourse", "Courses")', // Calling json method
+                traditional: true,
+                data: { id },
+                success: function (result) {
+                    if (!result.isError && result.Message) {
+                        alert(result.Message);
+                        location.reload(true);
+                    }
+                },
+                error: function(ex) {
+                    alert('Failed to retrieve courses.' + ex);
+                }
+            });
+        }
+        else {
+            return false;
+        }
+    }
+        function ActivateCourse(id) {
+        var response = confirm("Are you sure You want to Activate Course?");
+        if (response) {
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("ActivateCourse", "Courses")', // Calling json method
+                traditional: true,
+                data: { id },
+                success: function (result) {
+                    if (!result.isError && result.Message) {
+                        alert(result.Message);
+                        location.reload(true);
+                    }
+                },
+                error: function(ex) {
+                    alert('Failed to retrieve courses.' + ex);
+                }
+            });
+        }
+        else {
+            return false;
+        }
+    }
+</script>
+
+<div class="panel panel-default">
+    <div class="panel-body">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+            <div class="row">
+                <div>
+                    @if (TempData["Message"] != null)
+                    {
+                        @Html.Partial("_Message", TempData["Message"])
+                    }
+                </div>
+            </div>
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                <div class="row">
+                    <h3>View Departmental Courses</h3>
+                    <hr style="margin-top: 0" />
+                    <div class="col-md-12">
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.course.Programme.Id, "Programme", new { @class = "control-label " })
+                                    @Html.DropDownListFor(model => model.course.Programme.Id, (IEnumerable<SelectListItem>)ViewBag.Programmes, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.course.Programme.Id, null, new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.course.Department.Id, "Course", new { @class = "control-label " })
+                                    @Html.DropDownListFor(model => model.course.Department.Id, (IEnumerable<SelectListItem>)ViewBag.Departments, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.course.Department.Id, null, new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.course.Level.Id, "Level", new { @class = "control-label" })
+                                    @Html.DropDownListFor(model => model.course.Level.Id, (IEnumerable<SelectListItem>)ViewBag.levels, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.course.Level.Id, null, new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div id="divDepartmentOption" class="form-group">
+                                    @Html.LabelFor(model => model.course.DepartmentOption.Id, "Course", new { @class = "control-label " })
+                                    @Html.DropDownListFor(model => model.course.DepartmentOption.Id, (IEnumerable<SelectListItem>)ViewBag.DepartmentOptionId, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.course.DepartmentOption.Id, null, new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-offset-8 col-md-10">
+                                <input type="submit" value="View" class="btn btn-default" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+            <br />
+
+            @if (Model != null && Model.Courses != null)
+            {
+                <table class="table table-bordered table-hover table-striped" id="myTable">
+                    <thead>
+                        <tr>
+                            <th>
+                                SN
+                            </th>
+                            <th>
+                                Course Code
+                            </th>
+                            <th>
+                                Course Title
+                            </th>
+                            <th>
+                                Level
+                            </th>
+                            <th>
+                                Semester
+                            </th>
+                            <th>
+                                Status
+                            </th>
+                            <th>
+                                Action
+                            </th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (int i = 0; i < Model.Courses.Count; i++)
+                        {
+                            int sn = i + 1;
+                        <tr>
+                            <td>
+                                @sn
+                            </td>
+                            <td>
+                                @Model.Courses[i].Code
+                            </td>
+                            <td>
+                                @Model.Courses[i].Name
+                            </td>
+                            <td>
+                                @Model.Courses[i].Level.Name
+                            </td>
+                            <td>
+                                @Model.Courses[i].Semester.Name
+                            </td>
+
+                            @if (Model.Courses[i].Activated == true)
+                            {
+                                <td>Active</td>
+                                <td><button class="btn btn-Secondary" onclick="DeleteCourse(@Model.Courses[i].Id)">De-Activate</button></td>
+
+                            }
+                            else
+                            {
+                                <td>Not Active</td>
+                                <td><button class="btn btn-primary" onclick="ActivateCourse(@Model.Courses[i].Id)">Activate</button></td>
+                            }
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+    </div>
+</div>
+
+<div class="col-md-1"></div>
+</div>

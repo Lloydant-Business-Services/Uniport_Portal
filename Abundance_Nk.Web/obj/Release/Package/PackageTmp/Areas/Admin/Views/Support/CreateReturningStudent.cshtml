@@ -1,0 +1,202 @@
+﻿@model Abundance_Nk.Web.Areas.Admin.ViewModels.SupportViewModel
+@{
+    ViewBag.Title = "Create Returning Student";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+<script src="~/Scripts/jquery-1.11.1.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+
+        $("#StudentLevel_Programme_Id").change(function() {
+            var programme = $("#StudentLevel_Programme_Id").val();
+
+            $("#StudentLevel_Department_Id").empty();
+            $("#StudentLevel_Level_Id").empty();
+
+            $.ajax({
+                type: 'GET',
+                url: '@Url.Action("GetDepartmentAndLevelByProgrammeId", "Support")',
+                dataType: 'json',
+                data: { id: programme },
+                success: function(data) {
+                    var levels = data.Levels;
+                    var departments = data.Departments;
+
+                    if (departments != "" && departments != null && departments != undefined) {
+                        $("#StudentLevel_Department_Id").append('<option value="' + 0 + '"> -- Select -- </option>');
+
+                        $.each(departments, function(i, department) {
+                            $("#StudentLevel_Department_Id").append('<option value="' + department.Id + '">' + department.Name + '</option>');
+                        });
+                    }
+
+                    if (levels != "" && levels != null && levels != undefined) {
+                        $("#StudentLevel_Level_Id").append('<option value="' + 0 + '"> -- Select -- </option>');
+
+                        $.each(levels, function(i, level) {
+                            $("#StudentLevel_Level_Id").append('<option value="' + level.Id + '">' + level.Name + '</option>');
+                        });
+                    }
+                },
+                error: function(ex) {
+                    alert('Failed to retrieve departments.' + ex.message);
+                }
+            });
+        });
+    })
+</script>
+
+@using (Html.BeginForm("CreateReturningStudentAsync", "Support", FormMethod.Post))
+{
+    <div class="panel panel-default">
+
+        <div class="panel-body">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+                <div class="row">
+                    <div>
+                        @if (TempData["Message"] != null)
+                        {
+                            @Html.Partial("_Message", TempData["Message"])
+                        }
+                    </div>
+                </div>
+
+                <div class="row">
+                    <h3>Choose Programme</h3>
+                    <hr style="margin-top: 0" />
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Session.Id, new {@class = "control-label "})
+                                    @Html.DropDownListFor(model => model.Session.Id, (IEnumerable<SelectListItem>) ViewBag.Sessions, new {@class = "form-control"})
+                                    @Html.ValidationMessageFor(model => model.Session.Id, null, new {@class = "text-danger"})
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.StudentLevel.Programme.Id, new {@class = "control-label "})
+                                    @Html.DropDownListFor(model => model.StudentLevel.Programme.Id, (IEnumerable<SelectListItem>) ViewBag.Programmes, new {@class = "form-control exist"})
+                                    @Html.ValidationMessageFor(model => model.StudentLevel.Programme.Id, null, new {@class = "text-danger"})
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.StudentLevel.Department.Id, "Course", new {@class = "control-label "})
+                                    @Html.DropDownListFor(model => model.StudentLevel.Department.Id, (IEnumerable<SelectListItem>) ViewBag.Departments, new {@class = "form-control"})
+                                    @Html.ValidationMessageFor(model => model.StudentLevel.Department.Id, null, new {@class = "text-danger"})
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div id="divDepartmentOption" class="form-group" style="display: none">
+                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <h3>Please enter other personal details</h3>
+                    <hr style="margin-top: 0" />
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Person.LastName, new {@class = "control-label "})
+                            @Html.TextBoxFor(model => model.Person.LastName, new {@class = "form-control"})
+                            @Html.ValidationMessageFor(model => model.Person.LastName, null, new {@class = "text-danger"})
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Person.FirstName, new {@class = "control-label"})
+                            @Html.TextBoxFor(model => model.Person.FirstName, new {@class = "form-control"})
+                            @Html.ValidationMessageFor(model => model.Person.FirstName, null, new {@class = "text-danger"})
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Person.OtherName, new {@class = "control-label"})
+                            @Html.TextBoxFor(model => model.Person.OtherName, new {@class = "form-control"})
+                            @Html.ValidationMessageFor(model => model.Person.OtherName, null, new {@class = "text-danger"})
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Student.MatricNumber, new {@class = "control-label"})
+                            @Html.TextBoxFor(model => model.Student.MatricNumber, new {@class = "form-control", required = "required"})
+                            @Html.ValidationMessageFor(model => model.Student.MatricNumber, null, new {@class = "text-danger"})
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Person.State.Id, new {@class = "control-label "})
+                            @Html.DropDownListFor(model => model.Person.State.Id, (IEnumerable<SelectListItem>) ViewBag.States, new {@class = "form-control"})
+                            @Html.ValidationMessageFor(model => model.Person.State.Id, null, new {@class = "text-danger"})
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Person.Email, new {@class = "control-label"})
+                            @Html.TextBoxFor(model => model.Person.Email, new {@class = "form-control"})
+                            @Html.ValidationMessageFor(model => model.Person.Email, null, new {@class = "text-danger"})
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Person.MobilePhone, new {@class = "control-label"})
+                            @Html.TextBoxFor(model => model.Person.MobilePhone, new {@class = "form-control"})
+                            @Html.ValidationMessageFor(model => model.Person.MobilePhone, null, new {@class = "text-danger"})
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.StudentLevel.Level.Id, new {@class = "control-label "})
+                            @Html.DropDownListFor(model => model.StudentLevel.Level.Id, (IEnumerable<SelectListItem>) ViewBag.Levels, new {@class = "form-control"})
+                            @Html.ValidationMessageFor(model => model.StudentLevel.Level.Id, null, new {@class = "text-danger"})
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel-footer">
+            <div class="row">
+                <div class="col-md-1"></div>
+                <div class="col-md-10 ">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <input class="btn btn-primary btn-lg mr5" type="submit" value="Create Student" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-1"></div>
+            </div>
+        </div>
+
+        <div class="col-md-1"></div>
+    </div>
+}

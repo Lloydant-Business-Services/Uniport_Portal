@@ -1,0 +1,7 @@
+﻿namespace Abundance_Nk.Model.Model
+{
+    public class Right : BasicSetup
+    {
+        public bool IsInRole { get; set; }
+    }
+}

@@ -1,0 +1,175 @@
+﻿@model Abundance_Nk.Web.Areas.Admin.ViewModels.PostjambResultSupportViewModel
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<script src="~/Scripts/DataTables-1.10.15/media/js/jquery.js"></script>
+<script src="~/Content/js/bootstrap.js"></script>
+
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $.extend($.fn.dataTable.defaults, {
+            responsive: true
+        });
+
+        $('#studentTable').DataTable({
+            dom: 'Bfrtip',
+            ordering: true,
+            buttons: [
+                {
+                    extend: 'copy',
+                    exportOptions: {
+                        columns: ':visible'
+                    }
+
+
+                },
+                {
+                    extend: 'csv',
+                    exportOptions: {
+                        columns: ':visible'
+                    }
+
+                },
+                {
+                    extend: 'excel',
+                    exportOptions: {
+                        columns: ':visible'
+                    }
+
+
+                },
+                {
+                    extend: 'pdf',
+                    exportOptions: {
+                        columns: ':visible'
+                    }
+
+
+                },
+                {
+                    extend: 'print',
+                    exportOptions: {
+                        columns: ':visible'
+                    }
+
+
+                },, 'colvis'
+            ]
+        });
+
+
+    });
+</script>
+
+<div class="panel panel-default">
+    <div class="panel-body">
+
+        <div class="col-md-12">
+            @if (TempData["Message"] != null)
+            {
+                @Html.Partial("_Message", TempData["Message"])
+            }
+            <div>
+                    <h4><p class="custom-text-black text-center ">Student Details</p></h4>
+                </div>
+            @using (Html.BeginForm("StudentDetails", "PostJamb", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+
+                <div class="panel panel-default ">
+                    <div class="panel-body ">
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Session.Id, new {@class = "control-label custom-text-black"})
+                                    @Html.DropDownListFor(model => model.Session.Id, (IEnumerable<SelectListItem>) ViewBag.SessionId, new {@class = "form-control"})
+                                    @Html.ValidationMessageFor(model => model.Session.Id, null, new {@class = "text-danger"})
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Programme.Id, new { @class = "control-label custom-text-black" })
+                                    @Html.DropDownListFor(model => model.Programme.Id, (IEnumerable<SelectListItem>)ViewBag.ProgrammeId, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Programme.Id, null, new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <br/>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <div class="col-sm-10">
+                                        <input class="btn btn-success mr5" type="submit" name="submit" id="submit" value="Submit"/>
+                                    </div>
+                                </div>
+                            </div>
+
+                           
+                        </div>
+
+
+                    </div>
+                </div>
+            }
+
+            <div class="row">
+                @if (Model == null || Model.StudentDetailList == null)
+                {
+                    return;
+                }
+
+                @if (Model != null && Model.StudentDetailList != null)
+                {
+                    <div class="col-md-12 table-responsive">
+
+                        <table class="table table-bordered table-hover table-striped" id="studentTable">
+                            <thead>
+                                <tr>
+                                    <th>SN</th>
+                                    <th>Name</th>
+                                    <th>Sex</th>
+                                    <th>Phone Number</th>
+                                    <th>Matric Number</th>
+                                    <th>Application Number</th>
+                                    <th>Programme</th>
+                                    <th>Department</th>
+                                    <th>Level</th>
+                                    <th>Sesion</th>
+                                </tr>
+                            </thead>
+                            <tbody style="color: black;">
+                                @for (int i = 0; i < Model.StudentDetailList.Count; i++)
+                                {
+                                    var SN = i + 1;
+                                    <tr>
+                                        <td>@SN</td>
+                                        <td>@Html.DisplayTextFor(m => m.StudentDetailList[i].FullName)</td>
+                                        <td>@Html.DisplayTextFor(m => m.StudentDetailList[i].Sex)</td>
+                                        <td>@Html.DisplayTextFor(m => m.StudentDetailList[i].PhoneNumber)</td>
+                                        <td>@Html.DisplayTextFor(m => m.StudentDetailList[i].MatricNumber)</td>
+                                        <td>@Html.DisplayTextFor(m => m.StudentDetailList[i].ApplicationForm)</td>
+                                        <td>@Html.DisplayTextFor(m => m.StudentDetailList[i].Program)</td>
+                                        <td>@Html.DisplayTextFor(m => m.StudentDetailList[i].Department)</td>
+                                        <td>@Html.DisplayTextFor(m => m.StudentDetailList[i].Level)</td>
+                                        <td>@Html.DisplayTextFor(m => m.StudentDetailList[i].Session)</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+
+                }
+
+            </div>
+        </div>
+
+    </div>
+</div>

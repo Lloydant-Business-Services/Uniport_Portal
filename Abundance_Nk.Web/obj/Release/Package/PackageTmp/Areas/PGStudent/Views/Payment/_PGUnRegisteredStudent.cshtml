@@ -1,0 +1,104 @@
+﻿
+@model Abundance_Nk.Web.Areas.PGStudent.ViewModels.PGPaymentViewModel
+
+
+<div class="row col-md-12">
+    <div>
+        @if (TempData["Message"] != null)
+        {
+            @Html.Partial("_Message", TempData["Message"])
+        }
+    </div>
+</div>
+
+<div class="card-body">
+    <h3 class="font-weight-normal mb-4">Choose Programme</h3>
+    <hr />
+    <div class="row">
+        <div class="col-md-6 col-sm-12 form-group">
+            @Html.LabelFor(model => model.Session.Id, new { @class = "control-label " })
+            @Html.DropDownListFor(model => model.Session.Id, (IEnumerable<SelectListItem>)ViewBag.Sessions, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Session.Id, null, new { @class = "text-danger" })
+        </div>
+
+        <div class="col-md-6 col-sm-12 form-group">
+            @Html.LabelFor(model => model.StudentLevel.Programme.Id, new { @class = "control-label " })
+            @Html.DropDownListFor(model => model.StudentLevel.Programme.Id, (IEnumerable<SelectListItem>)ViewBag.Programmes, new { @class = "form-control exist" })
+            @Html.ValidationMessageFor(model => model.StudentLevel.Programme.Id, null, new { @class = "text-danger" })
+        </div>
+
+        <div class="col-md-6 col-sm-12 form-group">
+            @Html.LabelFor(model => model.StudentLevel.Department.Id, "Course", new { @class = "control-label " })
+            @Html.DropDownListFor(model => model.StudentLevel.Department.Id, (IEnumerable<SelectListItem>)ViewBag.Departments, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.StudentLevel.Department.Id, null, new { @class = "text-danger" })
+        </div>
+
+        <div class="col-md-6 col-sm-12 form-group" id="divDepartmentOption" style="display: none">
+            @Html.LabelFor(model => model.StudentLevel.DepartmentOption.Id, "Course Option", new { @class = "control-label" })
+            @Html.DropDownListFor(model => model.StudentLevel.DepartmentOption.Id, (IEnumerable<SelectListItem>)ViewBag.DepartmentOptions, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.StudentLevel.DepartmentOption.Id, null, new { @class = "text-danger" })
+        </div>
+
+        <div class="col-md-12"><hr class="bg-info" /></div>
+
+        <div class="col-md-12">
+            <h3 class="font-weight-normal">Please enter other personal details</h3>
+        </div>
+        <div class="col-md-12"><hr /></div>
+
+        <div class="col-md-6 col-sm-12 form-group">
+            @Html.LabelFor(model => model.Person.LastName, new { @class = "control-label " })
+            @Html.TextBoxFor(model => model.Person.LastName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Person.LastName, null, new { @class = "text-danger" })
+        </div>
+
+        <div class="col-md-6 col-sm-12 form-group">
+            @Html.LabelFor(model => model.Person.FirstName, new { @class = "control-label" })
+            @Html.TextBoxFor(model => model.Person.FirstName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Person.FirstName, null, new { @class = "text-danger" })
+        </div>
+
+        <div class="col-md-6 col-sm-12 form-group">
+            @Html.LabelFor(model => model.Person.OtherName, new { @class = "control-label" })
+            @Html.TextBoxFor(model => model.Person.OtherName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Person.OtherName, null, new { @class = "text-danger" })
+        </div>
+
+        <div class="col-md-6 col-sm-12 form-group">
+            @Html.LabelFor(model => model.Student.MatricNumber, new { @class = "control-label" })
+            @Html.TextBoxFor(model => model.Student.MatricNumber, new { @class = "form-control", required = "required" })
+            @Html.ValidationMessageFor(model => model.Student.MatricNumber, null, new { @class = "text-danger" })
+        </div>
+
+        <div class="col-md-6 col-sm-12 form-group">
+            @Html.LabelFor(model => model.Person.State.Id, new { @class = "control-label " })
+            @Html.DropDownListFor(model => model.Person.State.Id, (IEnumerable<SelectListItem>)ViewBag.States, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Person.State.Id, null, new { @class = "text-danger" })
+        </div>
+
+        <div class="col-md-6 col-sm-12 form-group">
+            @Html.LabelFor(model => model.Person.Email, new { @class = "control-label" })
+            @Html.TextBoxFor(model => model.Person.Email, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Person.Email, null, new { @class = "text-danger" })
+        </div>
+
+        <div class="col-md-6 col-sm-12 form-group">
+            @Html.LabelFor(model => model.Person.MobilePhone, new { @class = "control-label" })
+            @Html.TextBoxFor(model => model.Person.MobilePhone, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Person.MobilePhone, null, new { @class = "text-danger" })
+        </div>
+
+        <div class="col-md-6 col-sm-12 form-group">
+            @Html.LabelFor(model => model.StudentLevel.Level.Id, new { @class = "control-label " })
+            @Html.DropDownListFor(model => model.StudentLevel.Level.Id, (IEnumerable<SelectListItem>)ViewBag.Levels, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.StudentLevel.Level.Id, null, new { @class = "text-danger" })
+        </div>
+
+        <div class="col-md-12 col-sm-12 form-group">
+            @Html.LabelFor(model => model.PaymentMode.Id, "Payment Option", new { @class = "control-label " })
+            @Html.DropDownListFor(model => model.PaymentMode.Id, (IEnumerable<SelectListItem>)ViewBag.PaymentModes, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.PaymentMode.Id, null, new { @class = "text-danger" })
+        </div>
+
+    </div>
+</div>

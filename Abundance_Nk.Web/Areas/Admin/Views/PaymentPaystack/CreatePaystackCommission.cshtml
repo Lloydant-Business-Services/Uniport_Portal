@@ -1,0 +1,84 @@
+﻿@model Abundance_Nk.Web.Areas.Admin.ViewModels.PaymentPaystackViewModel
+
+@{
+    ViewBag.Title = "Create PaystackCommission";
+}
+
+
+
+<div class="alert alert-success fade in nomargin">
+    <h3>@ViewBag.Title</h3>
+</div>
+
+@using (Html.BeginForm("CreatePaystackCommission","PaymentPaystack",new {area = "Admin"},FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true)
+
+        @if (TempData["Message"] != null)
+        {
+            @Html.Partial("_Message", TempData["Message"])
+        }
+        <div class="form-group">
+            @Html.LabelFor(model => model.PaymentPaystackCommission.Programme.Id, "Programme", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(f => f.PaymentPaystackCommission.Programme.Id, (IEnumerable<SelectListItem>)ViewBag.Programme, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.PaymentPaystackCommission.Programme.Name)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.PaymentPaystackCommission.FeeType.Id, "Fee Type", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(f => f.PaymentPaystackCommission.FeeType.Id, (IEnumerable<SelectListItem>)ViewBag.FeeType, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.PaymentPaystackCommission.FeeType.Name)
+            </div>
+        </div>
+
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.PaymentPaystackCommission.Fee.Id, "Fee", new {@class = "control-label col-md-2"})
+            <div class="col-md-10">
+                @Html.DropDownListFor(f => f.PaymentPaystackCommission.Fee.Id, (IEnumerable<SelectListItem>) ViewBag.Fee, new {@class = "form-control"})
+                @Html.ValidationMessageFor(model => model.PaymentPaystackCommission.Fee.Id)
+            </div>
+        </div>*@
+        <div class="form-group">
+            @Html.LabelFor(model => model.PaymentPaystackCommission.Amount, "Amount", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(f => f.PaymentPaystackCommission.Amount, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.PaymentPaystackCommission.Amount)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.PaymentPaystackCommission.AddOnFee, "Add On", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(f => f.PaymentPaystackCommission.AddOnFee, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.PaymentPaystackCommission.AddOnFee)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.PaymentPaystackCommission.Session.Id, "Session", new {@class = "control-label col-md-2"})
+            <div class="col-md-10">
+                @Html.DropDownListFor(f => f.PaymentPaystackCommission.Session.Id, (IEnumerable<SelectListItem>) ViewBag.Session, new {@class = "form-control"})
+                @Html.ValidationMessageFor(model => model.PaymentPaystackCommission.Session.Id)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.PaymentPaystackCommission.Activated, "Activated", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.CheckBoxFor(f => f.PaymentPaystackCommission.Activated)
+                @Html.ValidationMessageFor(model => model.PaymentPaystackCommission.Activated)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+
+

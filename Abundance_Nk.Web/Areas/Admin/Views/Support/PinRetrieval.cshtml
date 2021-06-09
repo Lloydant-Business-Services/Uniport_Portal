@@ -1,0 +1,141 @@
+@using Abundance_Nk.Model.Model
+@model Abundance_Nk.Web.Areas.Admin.ViewModels.SupportViewModel
+@{
+    ViewBag.Title = "PinRetrieval";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+
+}
+<br/>
+<br/>
+
+@using (Html.BeginForm("PinRetrieval", "Support", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <div class="panel panel-default">
+        <div class="panel-body">
+
+            <div class="col-md-12">
+
+                <div class="panel panel-default ">
+                    <div class="panel-body ">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <h4>Pin Retrieval</h4>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.ApplicationForm.Number, new { @class = "col-sm-2 control-label " })
+                            <div class="col-sm-10">
+                                @Html.TextBoxFor(model => model.ApplicationForm.Number, new { @class = "form-control", @placeholder = "Enter Application No" })
+                                @Html.ValidationMessageFor(model => model.ApplicationForm.Number, null, new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-10">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-2"></div>
+                            <div class="col-sm-10">
+                                <input class="btn btn-success mr5" type="submit" name="submit" id="submit" value="Search" />
+                                <div class="btn btn-default">
+                                    @Html.ActionLink("Back to Home", "Index", "Home", new { Area = "" }, null)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @if ((Model.EtranzactPins == null || Model.EtranzactPins.Count <= 0 ) && (Model.ScratchCards == null || Model.ScratchCards.Count <= 0))
+                {
+                    return;
+                }
+
+
+
+                @for (int i = 0; i < Model.EtranzactPins.Count; i++)
+                {
+
+
+                    <table class="table table-bordered he">
+                        <tr style="background-color: #4fa955">
+                            <th>
+                                Full Name
+                            </th>
+                            <th>
+                                Confirmation Number
+                            </th>
+                            <th>
+                                Transaction Amount
+                            </th>
+                            <th>
+                                Invoice Number
+                            </th>
+                        </tr>
+                        <tr>
+                            <td>
+                                @Model.ScratchCards[i].person.FullName
+                            </td>
+                            <td>
+
+                                @Model.EtranzactPins[i].ConfirmationNo
+
+
+                            </td>
+                            <td>
+                                @Model.EtranzactPins[i].TransactionAmount
+
+                            </td>
+                            <td>
+
+                                @Model.EtranzactPins[i].CustomerID
+
+
+                            </td>
+                        </tr>
+                    </table>
+                }
+                @if (Model.ScratchCards != null && Model.ScratchCards.Count > 0)
+                {
+                    <table class="table table-bordered he">
+                        <tr style="background-color: #4fa955">
+                            <th>
+                                Full Name
+                            </th>
+                            <th>
+                                Pin
+                            </th>
+                            <th>
+                                For
+                            </th>
+                        </tr>
+                        @foreach (ScratchCard scratchCard in Model.ScratchCards)
+                        {
+                        //@(String.Format("{0}( {1} ),  ", scratchCard.Pin, scratchCard.Batch.CardType.Name))
+
+                            <tr>
+
+                                <td>
+                                    @scratchCard.person.FullName
+                                </td>
+                                <td>
+                                    @scratchCard.Pin
+                                </td>
+                                <td>
+                                    @scratchCard.Batch.CardType.Name
+                                </td>
+                            </tr>
+                            
+                        }
+                        
+                    </table>
+                    
+                }
+            </div>
+        </div>
+    </div>
+}

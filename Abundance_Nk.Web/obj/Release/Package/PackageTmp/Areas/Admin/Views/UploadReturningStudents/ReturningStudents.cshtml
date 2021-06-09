@@ -1,0 +1,251 @@
+﻿@model Abundance_Nk.Web.Areas.Admin.ViewModels.UploadReturningStudentViewModel
+
+@{
+    ViewBag.Title = "ReturningStudents";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<script src="~/Scripts/DataTables-1.10.15/media/js/jquery.js"></script>
+<script src="~/Scripts/jquery-1.11.1.min.js"></script>
+
+<link href="~/Scripts/DataTables-1.10.15/media/css/jquery.dataTables.css" rel="stylesheet" />
+<script src="~/Scripts/DataTables-1.10.15/media/js/jquery.dataTables.js"></script>
+<link href="~/Scripts/DataTables-1.10.15/extensions/Buttons/css/buttons.dataTables.css" rel="stylesheet" />
+<script src="~/Scripts/DataTables-1.10.15/extensions/Buttons/js/dataTables.buttons.js"></script>
+<script src="~/Scripts/DataTables-1.10.15/extensions/Buttons/js/buttons.colVis.js"></script>
+<script src="~/Scripts/DataTables-1.10.15/extensions/Responsive/js/dataTables.responsive.js"></script>
+
+<script src="~/Scripts/DataTables-1.10.15/buttons.flash.min.js"></script>
+<script src="~/Scripts/DataTables-1.10.15/buttons.html5.min.js"></script>
+<script src="~/Scripts/DataTables-1.10.15/buttons.print.min.js"></script>
+<script src="~/Scripts/DataTables-1.10.15/jszip.min.js"></script>
+<script src="~/Scripts/DataTables-1.10.15/pdfmake.min.js"></script>
+<script src="~/Scripts/DataTables-1.10.15/vfs_fonts.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+
+        $.extend($.fn.dataTable.defaults, {
+            responsive: true
+        });
+
+        $('#myTable').DataTable({
+            dom: 'Bfrtip',
+            ordering: true,
+            buttons: [
+                {
+                    extend: 'copy',
+                    exportOptions: {
+                        columns: ':visible'
+                    }
+
+
+                },
+                {
+                    extend: 'csv',
+                    exportOptions: {
+                        columns: ':visible'
+                    }
+
+                },
+                {
+                    extend: 'excel',
+                    exportOptions: {
+                        columns: ':visible'
+                    }
+
+
+                },
+                {
+                    extend: 'pdf',
+                    exportOptions: {
+                        columns: ':visible'
+                    }
+
+
+                },
+                {
+                    extend: 'print',
+                    exportOptions: {
+                        columns: ':visible'
+                    }
+
+
+                }, , 'colvis'
+            ]
+        });
+
+        //Country Dropdown Selectedchange event
+        $("#Programme").change(function() {
+            $("#Department").empty();
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("GetDepartments", "UploadReturningStudents")', // Calling json method
+                dataType: 'json',
+                data: { id: $("#Programme").val() },
+                // Get Selected Country ID.
+                success: function(departments) {
+                    $("#Department").append('<option value="' + 0 + '"> -- Select -- </option>');
+                    $.each(departments, function(i, department) {
+                        $("#Department").append('<option value="' + department.Value + '">' +
+                            department.Text + '</option>');
+                    });
+                },
+                error: function(ex) {
+                    alert('Failed to retrieve departments.' + ex);
+                }
+            });
+            return false;
+        });
+    });
+</script>
+@if (TempData["Action"] != null)
+{
+    <div class="alert alert-dismissable alert-success">
+        @TempData["Action"].ToString()
+    </div>
+}
+@using (Html.BeginForm("ReturningStudents", "UploadReturningStudents", new {area = "admin"}, FormMethod.Post, new {enctype = "multipart/form-data"}))
+{
+    <br />
+    <div class="panel panel-default">
+        <div class="panel-heading"> Student List</div>
+        <div class="panel-body">
+            <div class="row">
+                <h3></h3>
+                <hr style="margin-top: 0" />
+                <div class="col-md-12">
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+
+                                @Html.LabelFor(model => model.Programme.Id, new { @class = "control-label " })
+                                @Html.DropDownListFor(model => model.Programme.Id, (IEnumerable<SelectListItem>)ViewBag.ProgrammeId, new { @class = "form-control", @id = "Programme" })
+                                @Html.ValidationMessageFor(model => model.Programme.Id, null, new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Department.Id, new { @class = "control-label " })
+                                @Html.DropDownListFor(model => model.Department.Id, (IEnumerable<SelectListItem>)ViewBag.DepartmentId, new { @class = "form-control", @id = "Department" })
+                                @Html.ValidationMessageFor(model => model.Department.Id, null, new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Level.Name, "Level", new { @class = "control-label " })
+                                @Html.DropDownListFor(model => model.Level.Id, (IEnumerable<SelectListItem>)ViewBag.LevelId, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Level.Id, null, new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+
+                                @Html.LabelFor(model => model.Session.Name, "Session", new { @class = "control-label " })
+                                @Html.DropDownListFor(model => model.Session.Id, (IEnumerable<SelectListItem>)ViewBag.SessionId, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Session.Id, null, new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                @Html.TextBoxFor(m => m.File, new { id = "file", type = "file", style = "color:transparent;", @class = "form-control custom-text-black" })
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+
+                                <input type="text" id="tbx-file-path" readonly="readonly" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group">
+                            <div class="col--2"></div>
+                            <div class="col-sm-10">
+                                <input class="btn btn-success mr5" type="submit" name="submit" id="submit" value="Upload Excel File" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                @*@if (Model == null || Model.ReturningStudentList == null)
+                {
+                    return;
+                }*@
+
+                @if (Model != null && Model.ReturningStudentList != null && Model.ReturningStudentList.Count() > 0)
+                {
+                    <table class="table table-bordered table-striped">
+                        <tr>
+                            <th>SURNAME</th>
+                            <th>FIRSTNAME</th>
+                            <th>OTHERNAMES</th>
+                            <th>MATRICULATION NUMBER</th>
+                            <th>SEX</th>
+                            <th>STATE</th>
+                            <th>LOCAL GOVERNMENT AREA</th>
+                        </tr>
+                        @for (int i = 0; i < Model.ReturningStudentList.Count(); i++)
+                        {
+                            <tr>
+                                <td>@Model.ReturningStudentList[i].Surname</td>
+                                <td>@Model.ReturningStudentList[i].Firstname</td>
+                                <td>@Model.ReturningStudentList[i].Othername</td>
+                                <td>@Model.ReturningStudentList[i].MatricNumber</td>
+                                <td>@Model.ReturningStudentList[i].Gender</td>
+                                <td>@Model.ReturningStudentList[i].State</td>
+                                <td>@Model.ReturningStudentList[i].LocalGovernmentArea</td>
+                            </tr>
+                        }
+                    </table>
+                    
+                    @Html.ActionLink("Save", "SaveUpload", "UploadReturningStudents", new { Area = "Admin" }, new { @class = "btn btn-success mr5" })
+                }
+            </div>
+
+            <div class="row table-responsive">
+                @if (Model != null && Model.UploadedStudents != null && Model.UploadedStudents.Count > 0)
+                {
+                    <table class="table table-bordered table-striped" id="myTable">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Matric Number</th>
+                                <th>Programme</th>
+                                <th>Department</th>
+                                <th>Level</th>
+                                <th>Session</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for (int i = 0; i < Model.UploadedStudents.Count(); i++)
+                            {
+                                <tr>
+                                    <td>@Model.UploadedStudents[i].Name</td>
+                                    <td>@Model.UploadedStudents[i].MatricNumber</td>
+                                    <td>@Model.UploadedStudents[i].Programme</td>
+                                    <td>@Model.UploadedStudents[i].Department</td>
+                                    <td>@Model.UploadedStudents[i].Level</td>
+                                    <td>@Model.UploadedStudents[i].Session</td>
+                                </tr>
+                            }
+                        </tbody>
+
+                    </table>
+                }
+            </div>
+
+        </div>
+    </div>
+}

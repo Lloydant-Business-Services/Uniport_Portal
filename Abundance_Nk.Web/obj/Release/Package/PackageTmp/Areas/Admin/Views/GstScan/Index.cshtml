@@ -1,0 +1,104 @@
+﻿@model Abundance_Nk.Web.Areas.Admin.ViewModels.GstViewModel
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+<script src="~/Scripts/jquery-1.11.1.min.js"></script>
+<div class="panel panel-default">
+    <div class="panel-body">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+            <div class="row">
+                <div>
+                    @if(TempData["Message"] != null)
+                    {
+                        @Html.Partial("_Message",TempData["Message"])
+                    }
+                </div>
+            </div>
+
+            @using(Html.BeginForm("Index","GstScan",FormMethod.Post,new { enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+                <div class="row">
+                    <h3>Scan GST</h3>
+                    <hr style="margin-top: 0" />
+                    <div class="col-md-12">
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Programme.Id,"Programme",new { @class = "control-label " })
+                                    @Html.DropDownListFor(model => model.Programme.Id,(IEnumerable<SelectListItem>)ViewBag.Programmes,new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Programme.Id,null,new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Department.Id,"Department",new { @class = "control-label " })
+                                    @Html.DropDownListFor(model => model.Department.Id,(IEnumerable<SelectListItem>)ViewBag.Departments,new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Department.Id,null,new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.GstScanAnswer.description,"Answer",new { @class = "control-label " })
+                                    @Html.DropDownListFor(model => model.GstScanAnswer.description,(IEnumerable<SelectListItem>)ViewBag.Answers,new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.GstScanAnswer.description,null,new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label ">File</label>
+                                    <input type="file" class="form-control" name="file" id="file2" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                           
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label ">Enter Course Code</label>
+                                    <input type="text" class="form-control" name="course_code" id="course_code" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-offset-8 col-md-10">
+                                <input type="submit" value="Upload" class="btn btn-primary" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+            
+            @if(Model.ScannedFile != null && !String.IsNullOrEmpty(Model.ScannedFile))
+            {
+                using(Html.BeginForm("Scan","GstScan",FormMethod.Post,new { enctype = "multipart/form-data" }))
+                {
+                    <div class="row">
+                        @Html.AntiForgeryToken()
+                        @Html.HiddenFor(model => model.Programme.Id)
+                        @Html.HiddenFor(model => model.GstScanAnswer.description)
+                        @Html.HiddenFor(model => model.Programme.Id)
+                        @Html.HiddenFor(model => model.Department.Id)
+                        @Html.HiddenFor(model => model.GstScan.Id)
+                        @Html.HiddenFor(model => model.ScannedFilePath)
+                        @Html.HiddenFor(model => model.ScannedFile)
+                        <div style="width:500px;height:500px;  border:solid 1px black; ">
+                            @Html.TextArea("content",@Model.ScannedFile,new { style = "height:100%;width:100%" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-8 col-md-10">
+                            <input type="submit" value="Score" class="btn btn-success" />
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</div>
+

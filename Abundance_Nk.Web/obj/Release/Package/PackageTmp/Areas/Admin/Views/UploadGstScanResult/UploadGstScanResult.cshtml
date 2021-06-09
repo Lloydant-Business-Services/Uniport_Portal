@@ -1,0 +1,258 @@
+﻿@model Abundance_Nk.Web.Areas.Admin.ViewModels.GstViewModel
+@{
+    ViewBag.Title = "Gst Result Upload";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+@section Scripts{
+    @Scripts.Render(("~/bundles/jquery"))
+
+    <link href="~/Content/sweetalert.css" rel="stylesheet" />
+    <script src="~/Scripts/sweetalert.min.js"></script>
+    <script src="~/Scripts/dataTables.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $(".Load").hide();
+
+            $("#gstResultTable").DataTable();
+        });
+
+        function showBusy() {
+            swal("Please!", "Kindly CrossCheck the excel details displayed before Upload", "warning");
+            $("#save").prop('disabled', 'disabled');
+            $(".Load").show();
+        }
+
+    </script>
+
+}
+<div class="alert alert-success fade in nomargin">
+    <h3 style="text-align: center">@ViewBag.Title</h3>
+
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-body">
+
+        <div class="col-md-12">
+            @if (TempData["Message"] != null)
+            {
+                @Html.Partial("_Message", TempData["Message"])
+            }
+            @using (Html.BeginForm("ViewUpload", "UploadGstScanResult", FormMethod.Get, new {enctype = "multipart/form-data"}))
+            {
+                <div class="row">
+                    <div class="col-md-10"></div>
+                    <div class="col-md-2">
+                        <button class="btn btn-success mr5" type="submit" name="submit" id="submit"><i class="fa fa-eye"> View Upload</i></button><span class="Load"><img src="~/Content/Images/loading4.gif" /></span>
+
+                    </div>
+                </div>
+            }
+
+            @using (Html.BeginForm("UploadGstScanResult", "UploadGstScanResult", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+
+                <div class="panel panel-default ">
+                    <div class="panel-body ">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <p class="custom-text-black"> Select the <b>Department</b>,<b>Semester</b>and the excel file to upload</p>
+                                <marquee>Please the execel file should be arranged in the following format:  SN,CourseCode,CourseTitle,Exam_Number/Matric_Number,Name,RawScore,CA,Total</marquee>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Department.Id,"Depaertment", new {@class = "control-label custom-text-black"})
+                                    @Html.DropDownListFor(model => model.Department.Id, (IEnumerable<SelectListItem>)ViewBag.DepartmentId, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Department.Id, null, new {@class = "text-danger"})
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.CurrentSession.Id, "Session", new { @class = "control-label custom-text-black" })
+                                    @Html.DropDownListFor(model => model.CurrentSession.Id, (IEnumerable<SelectListItem>)ViewBag.SessionId, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.CurrentSession.Id, null, new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Semester.Id,"Semester",new { @class = "control-label custom-text-black" })
+                                    @Html.DropDownListFor(model => model.Semester.Id, (IEnumerable<SelectListItem>)ViewBag.SemesterId, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Semester.Id, null, new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                        <div class="row">
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.ScannedFilePath, "Select File", new { @class = "col-md-2 control-label " })
+                                    <div><input type="file" title="Upload Gst Excel" id="file" name="file" class="form-control" /></div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <br/>
+                        <br/>
+                        <div class="form-group">
+                            <div class="col-sm-2"></div>
+                            <div class="col-sm-10">
+                                <button onclick="showBusy()" class="btn btn-success mr5" type="submit" name="submit" id="upload"><i class="fa fa-eject"> Upload</i></button><span class="Load"><img src="~/Content/Images/bx_loader.gif" /></span>
+                              
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            }
+
+        </div>
+
+        @if (Model == null || Model.GstScanList == null) { return; }
+
+        @if (Model != null && Model.GstScanList != null)
+        {
+            using (Html.BeginForm("SaveGstScanResult", "UploadGstScanResult", FormMethod.Post))
+            {
+
+                <div class="col-md-12 table-responsive">
+
+                    <table class="table table-bordered table-hover table-striped" id="gstResultTable">
+                        <thead>
+                        <tr>
+                            <th>
+                               SN
+                            </th>
+                            <th>
+                                Course Code
+                            </th>
+                            <th>
+                                Course Title
+                            </th>
+                            <th>
+                                Exam Number/Matric_Number
+                            </th>
+                            <th>
+                                Name
+                            </th>
+
+                            <th>
+                                Department
+                            </th>
+
+                            <th>
+                                Raw Score
+                            </th>
+                            <th>
+                                CA
+                            </th>
+                            <th>
+                                Total
+                            </th>
+                            <th>
+                                Semester Name
+                            </th>
+
+                        </tr>
+                        </thead>
+
+                        <tbody style="color:black;">
+
+                            @for (var itemIndex = 0; itemIndex < Model.GstScanList.Count; itemIndex++)
+                            {
+
+                                <tr>
+
+                                    <td>@Html.DisplayTextFor(m => m.GstScanList[itemIndex].SN)</td>
+                                    <td>@Html.DisplayTextFor(m => m.GstScanList[itemIndex].CourseCode)</td>
+                                    <td>@Html.DisplayTextFor(m => m.GstScanList[itemIndex].CourseTitle)</td>
+                                    @if (Model.GstScanList[itemIndex].MatricNumber != null)
+                                    {
+                                        <td>@Html.DisplayTextFor(m => m.GstScanList[itemIndex].MatricNumber)</td>
+                                    }
+                                    else
+                                    {
+                                        <td></td>
+                                    }
+                                    @if (Model.GstScanList[itemIndex].Name != null)
+                                    {
+                                        <td>@Html.DisplayTextFor(m => m.GstScanList[itemIndex].Name)</td>
+                                    }
+                                    else
+                                    {
+                                        <td></td>
+                                    }
+                                    @if (Model.GstScanList[itemIndex].DepartmentName != null)
+                                    {
+                                        <td>@Html.DisplayTextFor(m => m.GstScanList[itemIndex].DepartmentName)</td>
+                                    }
+                                    else
+                                    {
+                                        <td></td>
+                                    }
+                                    @if (Model.GstScanList[itemIndex].RawScore >= 0)
+                                    {
+                                        <td>@Html.DisplayTextFor(m => m.GstScanList[itemIndex].RawScore)</td>
+                                    }
+                                    else
+                                    {
+                                        <td></td>
+                                    }
+                                    @if (Model.GstScanList[itemIndex].Ca >= 0)
+                                    {
+                                        <td>@Html.DisplayTextFor(m => m.GstScanList[itemIndex].Ca)</td>
+                                    }
+                                    else
+                                    {
+                                        <td></td>
+                                    }
+                                    @if (Model.GstScanList[itemIndex].Total >= 0)
+                                    {
+                                        <td>@Html.DisplayTextFor(m => m.GstScanList[itemIndex].Total)</td>
+                                    }
+                                    else
+                                    {
+                                        <td></td>
+                                    }
+                                    <td>@Html.DisplayTextFor(m => m.GstScanList[itemIndex].SemesterName)</td>
+                                </tr>
+
+                            }
+
+                        </tbody>
+                    </table>
+
+                </div>
+                <br />
+                <div class="form-group">
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-10">
+                        <button  class="btn btn-success mr5" type="submit" name="submit" id="save"><i class="fa fa-eject"> Save Upload</i></button><span class="Load"><img src="~/Content/Images/bx_loader.gif" /></span>
+
+                    </div>
+                </div>
+
+            }
+        }
+
+    </div>
+</div>

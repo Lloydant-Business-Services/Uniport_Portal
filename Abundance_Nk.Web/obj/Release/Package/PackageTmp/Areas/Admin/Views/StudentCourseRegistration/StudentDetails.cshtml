@@ -1,0 +1,369 @@
+﻿@using Abundance_Nk.Web.Models
+@model Abundance_Nk.Web.Areas.Admin.ViewModels.StudentCourseRegistrationViewModel
+@{
+    ViewBag.Title = "StudentDetails";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+<script src="~/Scripts/jquery-1.11.1.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        HideEditables();
+        NonEditableStudentDetail();
+    })
+    function RemoveCourse(courseRegDetail) {
+        $("#loading").show();
+
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("RemoveCourse", "StudentCourseRegistration")', // Calling json method
+            dataType: 'json',
+            data: { id: courseRegDetail },
+            success: function (response) {
+                if (response != null && response.success) {
+                    alert(response.responseText);
+                    window.location.reload(true);
+                }
+                else {
+                    alert(response.responseText);
+                }
+            },
+            error: function (ex) {
+                alert('Operation failed!.' + ex);
+            }
+        });
+        return false;
+    }
+
+    function DeleteStudentLevel(studentLevelId) {
+        $("#loading").show();
+
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("DeleteStudentLevel", "StudentCourseRegistration")', // Calling json method
+            dataType: 'json',
+            data: { id: studentLevelId },
+            success: function (result) {
+                if (result == "Success") {
+                    alert('Record was Removed!');
+                    window.location.reload(true);
+                }
+            },
+            error: function (ex) {
+                alert('Operation Failed.' + ex);
+            }
+        });
+        return false;
+    }
+    function NonEditableStudentDetail() {
+        var roleName = $('#@Html.IdFor(m=>m.User.Role.Name)').val()
+        if (roleName != "hod" && roleName != "Dean") {
+            $('.deleteStdLevel2').show();
+            $('.deleteStdLevel').show();
+            $('.editStdLevel').show();
+            $('.editStdLevel2').show();
+            $('.addSecondSemesterCourse').show();
+            $('.addFirstSemesterCourse').show();
+            $('.editSession').show();
+            $('.editSession2').show();
+            $('.deleteStdRegDetail').show();
+            $('.deleteStdRegDetail2').show();
+            $('.editSession2').show();
+
+        }
+    }
+        function HideEditables() {
+            $('.deleteStdLevel2').hide();
+            $('.deleteStdLevel').hide();
+            $('.editStdLevel').hide();
+            $('.editStdLevel2').hide();
+            $('.addSecondSemesterCourse').hide();
+            $('.addFirstSemesterCourse').hide();
+            $('.editSession').hide();
+            $('.editSession2').hide();
+            $('.deleteStdRegDetail').hide();
+            $('.deleteStdRegDetail2').hide();
+            $('.editSession2').hide();
+        }
+
+        
+
+</script>
+
+@if(TempData["Message"] != null)
+{
+    @Html.Partial("_Message",(Abundance_Nk.Model.Model.Message)TempData["Message"])
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div style="font-size:x-large">View Student Details</div>
+            </div>
+            <div class="panel-body">
+                @using (Html.BeginForm("StudentDetails", "StudentCourseRegistration", new { area = "Admin" }, FormMethod.Post))
+                {
+                    <div class="row">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Student.MatricNumber, "Matric Number:", new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(model => model.Student.MatricNumber, new { @class = "form-control", @placeholder = "Enter Matric Number", @required = "required" })
+                                @Html.ValidationMessageFor(model => model.Student.MatricNumber, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Get Details" class="btn btn-success mr5" />
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@if (Model != null)
+{
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <div style="font-size: large">Student Details</div>
+        </div>
+        <div class="panel-body">
+            <div class="col-md-12">
+                <div>
+                    @Html.HiddenFor(model => model.User.Role.Name)
+                    <dl class="dl-horizontal">
+                        <dt>Matric Number: </dt>
+                        <dd>@Model.Student.MatricNumber.ToUpper()</dd>
+
+                        <dt>Name: </dt>
+                        <dd>@Model.Student.FullName.ToUpper()</dd>
+                        @if (Model.Student.Sex != null)
+                        {
+                            <dt>Sex: </dt>
+                            <dd>@Model.Student.Sex.Name</dd>
+                        }
+                        <dt>Mobile Phone: </dt>
+                        <dd>@Model.Student.MobilePhone</dd>
+
+                        <dt>Email Address: </dt>
+                        <dd>@Model.Student.Email</dd>
+
+                        @if (Model.Student.Nationality != null)
+                        {
+                            <dt>Nationality: </dt>
+                            <dd>@Model.Student.Nationality.Name.ToUpper()</dd>
+                        }
+                        @if (Model.Student.State != null)
+                        {
+                            <dt>State: </dt>
+                            <dd>@Model.Student.State.Name.ToUpper()</dd>
+                        }
+                        @if (Model.Student.HomeTown != null)
+                        {
+                            <dt>Home Town: </dt>
+                            <dd>@Model.Student.HomeTown.ToUpper()</dd>
+                        }
+                        @if (Model.Student.HomeAddress != null)
+                        {
+                            <dt>Home Address: </dt>
+                            <dd>@Model.Student.HomeAddress.ToUpper()</dd>
+                        }
+                        @if (Model.Student.SchoolContactAddress != null)
+                        {
+                            <dt>School Contact Address: </dt>
+                            <dd>@Model.Student.SchoolContactAddress.ToUpper()</dd>
+                        }
+
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div style="font-size: large">Student Level Details</div>
+                </div>
+                <div class="panel-body">
+
+                    <table class="col-md-12 table table-bordered table-hover table-responsive">
+                        <thead>
+                            <tr>
+                                <th>Programme</th>
+                                <th>Department</th>
+                                <th>Department Option</th>
+                                <th>Level</th>
+                                <th>Session</th>
+                                <th class="editStdLevel">Edit</th>
+                                <th class="deleteStdLevel"> Delete</th>
+                            </tr>
+                        </thead>
+                        @for (int i = 0; i < Model.StudentLevelList.Count; i++)
+                        {
+                            <tbody>
+                                <tr>
+                                    <td>@Model.StudentLevelList[i].Programme.Name</td>
+                                    <td>@Model.StudentLevelList[i].Department.Name</td>
+                                    @if (Model.StudentLevelList[i].DepartmentOption != null)
+                                    {
+                                        <td>@Model.StudentLevelList[i].DepartmentOption.Name</td>
+                                    }
+                                    else
+                                    {
+                                        <td>No Option</td>
+                                    }
+
+                                    <td>@Model.StudentLevelList[i].Level.Name</td>
+                                    <td>@Model.StudentLevelList[i].Session.Name</td>
+                                    <td class="editStdLevel2">
+                                        @if (Model.User != null && Model.User.Role != null && Model.User.Role.Id != 22)
+                                        {
+                                            @Html.ActionLink("Edit", "EditStudentLevel", new { Controller = "StudentCourseRegistration", Area = "Admin", sid = Model.StudentLevelList[i].Id }, new { @class = "btn btn-success mr5" })
+                                        }
+
+                                    </td>
+                                    <td class="deleteStdLevel2">
+                                        @if (Model.User != null && Model.User.Role != null && Model.User.Role.Id != 22)
+                                        {
+                                            <button class="btn btn-success mr5" onclick="DeleteStudentLevel(@Model.StudentLevelList[i].Id)">Delete</button>
+                                        }
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        }
+                    </table>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div style="font-size: large">Student Payment Details</div>
+                </div>
+                <div class="panel-body">
+
+                    <table class="col-md-12 table table-bordered table-hover table-responsive">
+                        <thead>
+                            <tr>
+                                <th>Payment Date</th>
+                                <th>Amount</th>
+                                <th>Invoice Number</th>
+                                <th>Confirmation Number</th>
+                                <th>Fee Type</th>
+                                <th>Session</th>
+                                <th class="editSession">Edit</th>
+                            </tr>
+                        </thead>
+                        @for (int i = 0; i < Model.Payments.Count; i++)
+                        {
+                            <tbody>
+                                <tr>
+                                    <td>@Model.Payments[i].DatePaid.ToLongDateString()</td>
+                                    <td>@Model.Payments[i].Amount</td>
+                                    <td>@Model.Payments[i].InvoiceNumber</td>
+                                    <td>@Model.Payments[i].ConfirmationNumber</td>
+                                    <td>@Model.Payments[i].FeeType.Name</td>
+                                    <td>@Model.Payments[i].Session.Name</td>
+                                    <td class="editSession2">
+                                        @if (Model.User != null && Model.User.Role != null && Model.User.Role.Id != 22)
+                                        {
+                                            @Html.ActionLink("Edit", "EditPayment", new { Controller = "Support", Area = "Admin", pmid = @Model.Payments[i].Id }, new { @class = "btn btn-success" })
+                                        }
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        }
+                    </table>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div style="font-size: large">Student Course Registration Details</div>
+                </div>
+                <div class="panel-body">
+
+                    @for (int i = 0; i < Model.CourseRegistrations.Count; i++)
+                    {
+                        <table class="col-md-12 table table-bordered table-hover table-responsive">
+                            <thead>
+                                <tr>
+                                    <th>Level</th>
+                                    <th>Session</th>
+                                    <th>Course Semester</th>
+                                    <th>Course Code</th>
+                                    <th>Course Name</th>
+                                    <th>Course Unit</th>
+                                    <th>Course Mode</th>
+                                    <th>Test Score</th>
+                                    <th>Exam Score</th>
+                                    <th>Special Case</th>
+                                    <th class="deleteStdRegDetail">Delete</th>
+                                </tr>
+                            </thead>
+                            @for (int j = 0; j < Model.CourseRegistrations[i].Details.Count; j++)
+                            {
+                                <tbody>
+                                    <tr>
+                                        <td>@Model.CourseRegistrations[i].Level.Name</td>
+                                        <td>@Model.CourseRegistrations[i].Session.Name</td>
+                                        <td>@Model.CourseRegistrations[i].Details[j].Semester.Name</td>
+                                        <td>@Model.CourseRegistrations[i].Details[j].Course.Code</td>
+                                        <td>@Model.CourseRegistrations[i].Details[j].Course.Name</td>
+                                        <td>@Model.CourseRegistrations[i].Details[j].CourseUnit</td>
+                                        <td>@Model.CourseRegistrations[i].Details[j].Mode.Name</td>
+                                        <td>@Model.CourseRegistrations[i].Details[j].TestScore.ToString()</td>
+                                        <td>@Model.CourseRegistrations[i].Details[j].ExamScore.ToString()</td>
+                                        <td>@Model.CourseRegistrations[i].Details[j].SpecialCase</td>
+
+                                        <td class="deleteStdRegDetail2">
+                                            @if (Model.User != null && Model.User.Role != null && Model.User.Role.Id != 22)
+                                            {
+                                                <button class="btn btn-success mr5" onclick="RemoveCourse(@Model.CourseRegistrations[i].Details[j].Id)">Remove Course</button>
+                                            }
+
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            }
+                        </table>
+                        <br />
+                        if (Model.User != null && Model.User.Role != null && Model.User.Role.Id != 22)
+                        {
+                            <div class="col-md-12">
+                                @Html.ActionLink("Add A Course First Semester", "AddExtraCourse", new { Controller = "StudentCourseRegistration", Area = "Admin", studentId = Utility.Encrypt(@Model.CourseRegistrations.FirstOrDefault().Student.Id.ToString()), semesterId = Utility.Encrypt("1"), sessionId = Utility.Encrypt(@Model.CourseRegistrations[i].Session.Id.ToString()) }, new { @class = "btn btn-success addFirstSemesterCourse" })
+                                @Html.ActionLink("Add A Course Second Semester", "AddExtraCourse", new { Controller = "StudentCourseRegistration", Area = "Admin", studentId = Utility.Encrypt(@Model.CourseRegistrations.FirstOrDefault().Student.Id.ToString()), semesterId = Utility.Encrypt("2"), sessionId = Utility.Encrypt(@Model.CourseRegistrations[i].Session.Id.ToString()) }, new { @class = "btn btn-success addSecondSemesterCourse" })
+
+
+                            </div>
+                        }
+
+                    }
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+}

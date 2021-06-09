@@ -1,0 +1,77 @@
+﻿
+@model Abundance_Nk.Web.Areas.PGApplicant.ViewModels.PGViewModel
+
+@{
+//Layout = null;
+}
+@Html.HiddenFor(model => model.PreviousEducation.Id)
+<div class="panel panel-default p-4">
+    <div class="col-md-12">
+        <div class="panel-heading">
+            <div style="font-size: x-large">Tertiary Education</div>
+        </div>
+
+
+        <div class="panel-body">
+            <!--Enable filling of previous Tertiary academic records-->
+            <div class="table-responsive">
+                <table id="tertiaryTable" class="table table-condensed" style="background-color: whitesmoke">
+                    <thead>
+                        <tr>
+                            <th>
+                                Institution Name
+                            </th>
+                            <th>
+                                Course Of Study
+                            </th>
+                            <th>
+                                Qualification
+                            </th>
+                            <th>
+                                Class of Degree
+                            </th>
+                            <th>
+                                Admission Year
+                            </th>
+                            <th>
+                                Graduation Year
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        @for (int i = 0; i < Model.ApplicantPreviousEducations.Count; i++)
+                        {
+                            <tr>
+                                <td>
+
+                                    @Html.DisplayFor(model => model.ApplicantPreviousEducations[i].SchoolName)
+                                </td>
+                                <td>
+
+                                    @Html.DisplayFor(model => model.ApplicantPreviousEducations[i].Course)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => model.ApplicantPreviousEducations[i].Qualification.ShortName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => model.ApplicantPreviousEducations[i].ResultGrade.LevelOfPass)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => model.ApplicantPreviousEducations[i].StartDate.Year)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => model.ApplicantPreviousEducations[i].EndDate.Year)
+                                </td>
+
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+</div>
+
+            </div>
+
+        </div>
+    </div>

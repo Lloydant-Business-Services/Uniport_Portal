@@ -1,0 +1,57 @@
+﻿@using Abundance_Nk.Model.Model
+@using Abundance_Nk.Web.Models
+@model Abundance_Nk.Web.Areas.Applicant.ViewModels.PostJambViewModel
+
+<h3>Next of Kin Details</h3>
+
+<div class="row">
+    <div class="well">
+        <div class="form-group ">
+            @Html.LabelFor(model => model.Sponsor.Name,new { @class = "control-label col-sm-3" })
+            <div class="col-sm-9" style="font-weight: bold">
+                @Html.TextBoxFor(model => model.Sponsor.Name,new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Sponsor.Name)
+            </div>
+        </div>
+
+        <div class="form-group ">
+            @Html.LabelFor(model => model.Sponsor.ContactAddress,new { @class = "control-label col-sm-3" })
+            <div class="col-sm-9" style="font-weight: bold">
+                @Html.TextBoxFor(model => model.Sponsor.ContactAddress,new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Sponsor.ContactAddress)
+            </div>
+        </div>
+
+        <div class="form-group ">
+            @Html.LabelFor(model => model.Sponsor.Relationship.Id,new { @class = "control-label col-sm-3" })
+            <div class="col-sm-9" style="font-weight: bold">
+                @Html.DropDownListFor(model => model.Sponsor.Relationship.Id,(IEnumerable<SelectListItem>)ViewBag.RelationshipId,new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Sponsor.Relationship.Id)
+            </div>
+        </div>
+
+        <div class="form-group ">
+            @Html.LabelFor(model => model.Sponsor.MobilePhone,new { @class = "control-label col-sm-3" })
+            <div class="col-sm-9" style="font-weight: bold">
+                @Html.TextBoxFor(model => model.Sponsor.MobilePhone,new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Sponsor.MobilePhone)
+            </div>
+        </div>
+
+        <div class="form-group ">
+            <div class="col-sm-3 "></div>
+            <div class="col-sm-9 ">
+                <div class="form-inline">
+                    <div class="form-group">
+                        <button class="btn btn-primary btn-metro mr5" type="button" value="Next">Next</button>
+                    </div>
+
+                    <div class="form-group margin-bottom-0">
+                        <div style="display: none">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

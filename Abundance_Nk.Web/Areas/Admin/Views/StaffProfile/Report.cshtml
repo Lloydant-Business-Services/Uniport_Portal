@@ -1,0 +1,147 @@
+﻿@model Abundance_Nk.Web.Areas.Admin.ViewModels.StaffDataViewModel
+@{
+    ViewBag.Title = "View Class List";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+@if (TempData["Message"] != null)
+{
+    @Html.Partial("_Message", (Abundance_Nk.Model.Model.Message)TempData["Message"])
+}
+
+<script src="~/Scripts/jquery-1.11.1.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $('#myTable').DataTable({
+            dom: 'Bfrtip',
+            ordering: true,
+            buttons: [
+                {
+                    extend: 'copy',
+                    exportOptions: {
+                        columns: ':visible'
+                    }
+
+
+                },
+                {
+                    extend: 'csv',
+                    exportOptions: {
+                        columns: ':visible'
+                    }
+
+                },
+                {
+                    extend: 'excel',
+                    exportOptions: {
+                        columns: ':visible'
+                    }
+
+
+                },
+                {
+                    extend: 'pdf',
+                    exportOptions: {
+                        columns: ':visible'
+                    }
+
+
+                },
+                {
+                    extend: 'print',
+                    exportOptions: {
+                        columns: ':visible'
+                    }
+
+
+                }, , 'colvis'
+            ]
+        });
+
+    })
+     
+      
+</script>
+
+@using (Html.BeginForm("Report", "StaffProfile", new { area = "Admin" }, FormMethod.Post))
+{
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title"><i class="fa fa-fw fa-download"></i>Staff Details Report</h3>
+        </div>
+        <div class="panel-body">
+
+      
+
+            
+            <div class="form-group">
+                @Html.LabelFor(model => model.Staff.Department.Id, "Department", new { @class = "col-sm-2 control-label " })
+                <div class="col-sm-10">
+                    @Html.DropDownListFor(model => model.Staff.Department.Id, (IEnumerable<SelectListItem>)ViewBag.Department, new { @class = "form-control", @id = "Department", @required = "required" })
+                    @Html.ValidationMessageFor(model => model.Staff.Department.Id, null, new { @class = "text-danger" })
+                </div>
+
+            </div>
+          
+
+            <div class="form-group">
+                <div class="col-sm-2"></div>
+                <div class="col-sm-10">
+                    <input class="btn btn-success mr5 " type="submit" name="submit" id="submit" value="Get Report" />
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+}
+
+@if (Model != null && Model.StaffList != null && Model.StaffList.Count > 0)
+{
+    <div class="col-md-12">
+
+        <table id="myTable" class="table table-bordered table-hover table-striped">
+            <thead>
+                <tr>
+                    <th>Full Name</th>
+                    <th>Designation</th>
+                    <th>Department</th>
+                    <th>Sex</th>
+                    <th>State of Origin</th>
+                    <th>Local Government Area</th>
+                    <th>Phone</th>
+                    <th>Email</th>
+                    <th>Date Of Present Appointment</th>
+                    <th>Date Of Retirement</th>
+                    <th>Grade Level</th>
+                </tr>
+            </thead>
+            <tbody style="color: black;">
+                @for (int itemIndex = 0; itemIndex < Model.StaffList.Count; itemIndex++)
+                {
+                <tr>
+                    <td>@Html.DisplayTextFor(m => m.StaffList[itemIndex].Person.FullName)</td>
+                    <td>@Html.DisplayTextFor(m => m.StaffList[itemIndex].Designation.Name)</td>
+                    <td>@Html.DisplayTextFor(m => m.StaffList[itemIndex].Department.Name)</td>
+                    <td>@Html.DisplayTextFor(m => m.StaffList[itemIndex].Person.Sex.Name)</td>
+                    <td>@Html.DisplayTextFor(m => m.StaffList[itemIndex].Person.State.Name)</td>
+                    <td>@Html.DisplayTextFor(m => m.StaffList[itemIndex].Person.LocalGovernment.Name)</td>
+                    <td>@Html.DisplayTextFor(m => m.StaffList[itemIndex].Person.MobilePhone)</td>
+                    <td>@Html.DisplayTextFor(m => m.StaffList[itemIndex].Person.Email)</td>
+                    <td>@Html.DisplayTextFor(m => m.StaffList[itemIndex].DateOfPresentAppointment.ToString())</td>
+                    <td>@Html.DisplayTextFor(m => m.StaffList[itemIndex].DateOfRetirement)</td>
+                    <td>@Html.DisplayTextFor(m => m.StaffList[itemIndex].GradeLevel.Name)</td>
+
+
+
+
+
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+
+

@@ -1,0 +1,51 @@
+﻿@model Abundance_Nk.Web.Areas.Applicant.ViewModels.AdmissionViewModel
+<h5 class="mt-2">GENERATE SCHOOL FEES INVOICE</h5>
+<hr />
+<div class="container p-0 ml-0">
+    <div class="col-md-12 row p-0 ml-0">
+        <div class="form-group col-md-4 p-0 ml-0">
+            @Html.LabelFor(model => model.AcceptanceReceiptNumber, new { @class = "pl-0 ml-0 col-sm-12" })
+            <div class="col-sm-6 pl-0 ml-0" style="font-weight: bold">
+                @Html.DisplayFor(model => model.AcceptanceReceiptNumber, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group col-md-12 p-0 ml-0">
+            @Html.LabelFor(model => model.PaymentMode.Id, "Payment Option", new { @class = "pl-0 ml-0 col-sm-12" })
+            <div class="col-sm-12 pl-0 ml-0" style="font-weight:bold">
+                @Html.DropDownListFor(model => model.PaymentMode.Id, (IEnumerable<SelectListItem>)ViewBag.PaymentModes, new { @class = "form-control", required = "required" })
+                @Html.ValidationMessageFor(model => model.PaymentMode.Id, null, new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+
+        <div class="form-group col-md-12 p-0 ml-0">
+
+
+            <div class="form-inline">
+                <div class="form-group">
+                    <button class="btn btn-warning  mr5" type="button" name="btnGenerateSchoolFeesInvoice" id="btnGenerateSchoolFeesInvoice">Generate Invoice</button>
+                </div>
+
+                <div class="form-group margin-bottom-0">
+                    <div id="divProcessingSchoolFeesInvoice" style="display: none">
+                        <img src="@Url.Content("~/Content/Images/bx_loader.gif")" />
+                        <span>Processing ...</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="form-inline">
+        <div class="form-group  margin-bottom-0 divSchoolFeesInvoice" style="display: none">
+            <a id="aSchoolFeesInvoiceNumber" href="#" target="_blank" class="btn btn-primary btn-lg">Print Invoice</a>
+        </div>
+    </div>
+
+    <br />
+    <div id="divGenerateSchoolFeesInvoice"></div>
+</div>
+

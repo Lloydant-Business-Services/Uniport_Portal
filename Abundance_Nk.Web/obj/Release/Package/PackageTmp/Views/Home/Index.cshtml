@@ -1,0 +1,204 @@
+﻿@model Abundance_Nk.Web.Models.LoginViewModel
+@{
+    ViewBag.Title = "Portal Home";
+    Layout = "~/Views/Shared/_IndexPageLayout.cshtml";
+}
+
+<script type="text/javascript" src="~/Scripts/js/plugins/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="~/Scripts/js/plugins/jquery/jquery-ui.min.js"></script>
+
+<style>
+    .Design1 {
+        min-height: 279px;
+    }
+
+   .btn-warning {
+       font-weight:500;
+   }
+</style>
+
+<div class="container-fluid pl-5 pr-5">
+    <div class="row mt-5" style="min-height: 510px;">
+
+        @*<div class="col-md-8 col-sm-12 hidden-md-down">
+            <div class="col-md-6">
+                <div class="card shadow p-4">
+                    <div class="card-body">
+                        <h5>Students Portal</h5>
+                        <div class="separator separator-primary"></div>
+                        “Preparing to succeed in an era of global
+                        uncertainty requires developing your intellect,
+                        building your character, and learning pratical
+                        capabilities”.
+                    </div>
+                </div>
+            </div>
+        </div>*@
+        @if (!Request.IsAuthenticated)
+        {
+            <div class="col-lg-5 col-md-8 col-sm-12 " id="pablo1">
+
+
+                <div class="card bg-primary-opacity p-4">
+                    <h5 class="text-white" style="font-size:19px">WELCOME TO THE UNIVERSITY OF PORT-HARCOURT</h5>
+                    <hr />
+                    @*<div class="separator01 separator-primary"></div>*@
+                    @using (Html.BeginForm("Login", "Account", new {Area = "Security", ReturnUrl = ViewBag.ReturnUrl}, FormMethod.Post))
+                    {
+                        <h4 class="text-white" style="font-size:16px">Pursuit of academic excellence, advancement of knowledge and community service through quality teaching , life-long learning, social inclusion, strengthening civil society and policy-relevant research that addresses the challenges of contemporary society</h4>
+                        <small class="text-white">– Our Mission</small>
+                        @*@Html.AntiForgeryToken()
+                        <div class="form-group">
+                            <div class="col-md-12 p-0">
+                                @Html.LabelFor(model => model.UserName, new {@class = "control-label text-white"})
+                                @Html.TextBoxFor(m => m.UserName, new {@class = "form-control", placeholder = "2016/1111111", required = "required", type = "text"})
+                                @Html.ValidationMessageFor(m => m.UserName)
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-12 p-0">
+                                @Html.LabelFor(model => model.Password, new {@class = "control-label text-white"})
+                                @Html.PasswordFor(m => m.Password, new {@class = "form-control", placeholder = "*******", type = "password", required = "required"})
+                                @Html.ValidationMessageFor(m => m.Password)
+                            </div>
+                        </div>
+                        <div class="form-group pl-1 mt-5">
+                            <button class="btn btn-warning btn-block font-weight-bolder" type="submit">LOGIN</button>
+                        </div>*@
+                    }
+                </div>
+
+
+            </div>
+        }
+    </div>
+</div>
+@*<div class="container-fluid Design1 m-0">
+</div>*@
+<div class="container pt-5 pb-1">
+    <div class="row statement mb-5">
+        <div class="col-md-6 col-lg-4 text-center">
+            <div class="card student1">
+                <div class="blu-tp p-4">
+                    <a href="#" class="Toplink">
+                        @*<img src="~/Content/assets/img/prospectiveStu.svg" class="mb-4" alt="prospective student" height="60px" />*@
+                        <h5 class="text-white">PROSPECTIVE STUDENT</h5>
+                    </a>
+                    <div class="card-block p-0 text-white" style="min-height:100px;">
+                        To Apply for a programme,
+                        generate an invoice and take
+                        to any of the designated
+                        banks for payment
+                    </div>
+                    @Html.ActionLink("APPLICATION FORMS", "PostJambFormInvoiceGeneration", "Form", new { Area = "Applicant" }, new { @class = "btn btn-warning btn-block" })
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4 text-center">
+            <div class="card student2">
+                <div class="blu-tp p-4">
+                    <a href="#" class="Toplink">
+                        @*<img src="~/Content/assets/img/newStudent.svg" class="mb-4" alt="New student" height="60px" />*@
+                        <h5 class="text-white">NEW STUDENT</h5>
+                    </a>
+                    <div class="card-block p-0 text-white" style="min-height:100px;">
+                        To check your admission
+                        status, Pay acceptance
+                        fees &amp; school fees or
+                        register your courses,
+                        click link below
+                    </div>
+                    <a href="#" class="btn btn-warning btn-block">NEW STUDENT GUIDE</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4 text-center">
+            <div class="card student3">
+                <div class="blu-tp p-4">
+                    <a href="#" class="Toplink">
+                        @*<img src="~/Content/assets/img/returningStu.svg" class="mb-4" alt="returning student" height="60px" />*@
+                        <h5 class="text-white">RETURNING STUDENT</h5>
+                    </a>
+                    <div class="card-block p-0 text-white" style="min-height:100px;">
+                        Returning students can
+                        generate fees invoice,
+                        print receipts e.t.c
+                    </div>
+                    @Html.ActionLink("RETURNING STUDENT", "Index", "Payment", new { Area = "Student" }, new { @class = "btn btn-warning btn-block" })
+
+
+                </div>
+                
+            </div>
+        </div>
+
+
+        @*<div class="col-md-6 col-lg-3 text-center">
+
+            <div class="card student4">
+                <div class="blu-tp p-4">
+                    <a href="#" class="Toplink">
+                        <img src="~/Content/assets/img/semesterResu.svg" class="mb-4" alt="SEMESTER RESULTS" height="60px" />
+                        <h5 class="text-white">SEMESTER RESULTS</h5>
+                    </a>
+                    <div class="card-block p-0 text-left text-white" style="min-height:100px;">
+                        To check Semester results
+                        status, please use the
+                        button below.
+                    </div>
+                    @Html.ActionLink("CHECK SEMESTER RESULT", "Check", "Result", new { Area = "Student" }, new { @class = "btn btn-warning btn-block" })
+                </div>
+            </div>
+        </div>*@
+    </div>
+</div>
+
+
+<div class="container-fluid pt-5 pb-5 Design2">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-7 col-sm-12 pt-1 text-center">
+                <span class="font-1 text-center"><b>ARE YOU EXPERIENCING ANY DIFFICULTIES OR ISSUES?</b></span><br />
+                <b>CALL:</b> 07088391544 or 090838920222<br />
+                <b>EMAIL SUPPORT:</b> support@uniport.edu.ng
+            </div>
+        </div>
+    </div>
+</div>
+
+@*<div class="container-fluid blueBg">
+    <div class="row bg-primary-opacity">
+
+        <div class="col-md-4 col-sm-12 text-white  pt-5 pb-4">
+            <h5>EMPLOYEE EXTERNAL LINKS</h5>
+            <div class="separator separator-primary"></div>
+            <ul>
+                <li>Administrative Guide</li>
+                <li>Faculty &amp; Staff Help center</li>
+                <li>Services</li>
+            </ul>
+        </div>
+
+        <div class="col-md-4 col-sm-12 text-white  pt-5 pb-4">
+            <h5>ACADEMIC EXTERNAL LINKS </h5>
+            <div class="separator separator-primary"></div>
+            <ul>
+                <li>Explore Courses </li>
+                <li>Student services center</li>
+                <li>Explore Degrees</li>
+            </ul>
+        </div>
+
+        <div class="col-md-4 col-sm-12 bg-warning  p-5">
+            <h5 class="mb-0">ABIA STATE  UNIVERSITY</h5>
+            <sub>UTURU</sub>
+            <br /><br />
+            <h6>BRIEF HISTORY</h6>
+            As a foremost state University in Nigeria founded in 1981, Abia State University has maintained its leadership within and beyond the Eastern heartlands of Nigeria.
+         
+        </div>
+    </div>
+</div>*@
+

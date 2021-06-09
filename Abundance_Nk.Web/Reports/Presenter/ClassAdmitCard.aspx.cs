@@ -1,0 +1,293 @@
+﻿using Abundance_Nk.Business;
+using Abundance_Nk.Model.Model;
+using Abundance_Nk.Web.Models;
+using Ionic.Zip;
+using Microsoft.Reporting.WebForms;
+using System;
+using System.Collections.Generic;
+using System.Configuration;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+namespace Abundance_Nk.Web.Reports.Presenter
+{
+    public partial class ClassAdmitCard : System.Web.UI.Page
+    {
+        private List<Department> departments;
+
+        public Session SelectedSession
+        {
+            get
+            {
+                return new Session { Id = Convert.ToInt32(ddlSession.SelectedValue), Name = ddlSession.SelectedItem.Text };
+            }
+            set { ddlSession.SelectedValue = value.Id.ToString(); }
+        }
+
+        public Programme SelectedProgramme
+        {
+            get
+            {
+                return new Programme
+                {
+                    Id = Convert.ToInt32(ddlProgramme.SelectedValue),
+                    Name = ddlProgramme.SelectedItem.Text
+                };
+            }
+            set { ddlProgramme.SelectedValue = value.Id.ToString(); }
+        }
+
+        public Department SelectedDepartment
+        {
+            get
+            {
+                return new Department
+                {
+                    Id = Convert.ToInt32(ddlDepartment.SelectedValue),
+                    Name = ddlDepartment.SelectedItem.Text
+                };
+            }
+            set { ddlDepartment.SelectedValue = value.Id.ToString(); }
+        }
+
+        public Level SelectedLevel
+        {
+            get { return new Level { Id = Convert.ToInt32(ddlLevel.SelectedValue), Name = ddlLevel.SelectedItem.Text }; }
+            set { ddlLevel.SelectedValue = value.Id.ToString(); }
+        }
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                lblMessage.Text = "";
+
+                if (!IsPostBack)
+                {
+                    Utility.BindDropdownItem(ddlSession, Utility.GetAllSessions(), Utility.ID, Utility.NAME);
+
+                    Utility.BindDropdownItem(ddlProgramme, Utility.GetAllProgrammes(), Utility.ID, Utility.NAME);
+
+                    Utility.BindDropdownItem(ddlLevel, Utility.GetAllLevels(), Utility.ID, Utility.NAME);
+
+                    ddlDepartment.Visible = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                lblMessage.Text = ex.Message + ex.InnerException.Message;
+            }
+        }
+
+        private bool InvalidUserInput()
+        {
+            try
+            {
+                if (SelectedSession == null || SelectedSession.Id <= 0 || SelectedDepartment == null ||
+                    SelectedDepartment.Id <= 0 || SelectedProgramme == null || SelectedProgramme.Id <= 0 ||
+                    SelectedLevel == null || SelectedLevel.Id <= 0)
+                {
+                    return true;
+                }
+
+                return false;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        protected void ddlProgramme_SelectedIndexChanged1(object sender, EventArgs e)
+        {
+            var programme = new Programme { Id = Convert.ToInt32(ddlProgramme.SelectedValue) };
+            var departmentLogic = new DepartmentLogic();
+            departments = departmentLogic.GetBy(programme);
+            Utility.BindDropdownItem(ddlDepartment, departments, Utility.ID, Utility.NAME);
+            ddlDepartment.Visible = true;
+        }
+
+        private void DisplayReportBy(Session session, Programme programme, Department department, Level level)
+        {
+            try
+            {
+                var paymentLogic = new PaymentLogic();
+                List<Model.Model.ClassAdmitCard> Cards = paymentLogic.GetClassAdmitCard(department, programme,level,session);
+
+                string bind_dsCards = "dsCard";
+                string reportPath = @"Reports\PaymentReports\ClassAdmitCard2.rdlc";
+
+                if (Cards != null && Cards.Count > 0)
+                {
+                    string appRoot = ConfigurationManager.AppSettings["AppRoot"];
+
+                    foreach (Model.Model.ClassAdmitCard photocard in Cards)
+                    {
+                        if (!string.IsNullOrWhiteSpace(photocard.passport_url))
+                        {
+                            photocard.passport_url = appRoot + photocard.passport_url;
+                        }
+                        else
+                        {
+                            photocard.passport_url = appRoot + Utility.DEFAULT_AVATAR;
+                        }
+                    }
+                }
+
+                ReportViewer1.Reset();
+                ReportViewer1.LocalReport.DisplayName = "Applicant Photo Card";
+                ReportViewer1.LocalReport.ReportPath = reportPath;
+                ReportViewer1.LocalReport.EnableExternalImages = true;
+
+                if (Cards != null)
+                {
+                    ReportViewer1.ProcessingMode = ProcessingMode.Local;
+                    ReportViewer1.LocalReport.DataSources.Add(new ReportDataSource(bind_dsCards.Trim(), Cards));
+                    ReportViewer1.LocalReport.Refresh();
+                }
+            }
+            catch (Exception ex)
+            {
+                lblMessage.Text = ex.Message + ex.InnerException.Message;
+                ;
+            }
+        }
+
+        protected void Display_Button_Click1(object sender, EventArgs e)
+        {
+            try
+            {
+                if (InvalidUserInput())
+                {
+                    lblMessage.Text = "All fields must be selected";
+                    return;
+                }
+
+                DisplayReportBy(SelectedSession, SelectedProgramme, SelectedDepartment, SelectedLevel);
+            }
+            catch (Exception ex)
+            {
+                lblMessage.Text = ex.Message + ex.InnerException.Message;
+                ;
+            }
+        }
+
+        private async Task DownloadBulk()
+        {
+            try
+            {
+               
+                if (SelectedProgramme == null || SelectedProgramme.Id <= 0 || SelectedLevel == null || SelectedLevel.Id <= 0)
+                {
+                    lblMessage.Text = "All fields must be selected";
+                    return;
+                }
+
+                string downloadPath = "~/Content/temp" + DateTime.Now.Hour + DateTime.Now.Minute + DateTime.Now.Second + DateTime.Now.Millisecond;
+
+                if (Directory.Exists(Server.MapPath(downloadPath)))
+                {
+                    Directory.Delete(Server.MapPath(downloadPath), true);
+                }
+                else
+                {
+                    DirectoryInfo folder = Directory.CreateDirectory(Server.MapPath(downloadPath));
+                    int filesInFolder = folder.GetFiles().Count();
+                    if (filesInFolder > 0)
+                    {
+                        //complete the code
+                    }
+                }
+
+
+                List<Abundance_Nk.Model.Model.Department> departmentList = Utility.GetAllDepartments();
+                foreach (Department department in departmentList)
+                {
+                    var paymentLogic = new PaymentLogic();
+                    List<Model.Model.ClassAdmitCard> Cards = await paymentLogic.GetClassAdmitCardAsync(department, SelectedProgramme, SelectedLevel,SelectedSession);
+
+                    Warning[] warnings;
+                    string[] streamIds;
+                    string mimeType = string.Empty;
+                    string encoding = string.Empty;
+                    string extension = string.Empty;
+
+
+                    string bind_dsCards = "dsCard";
+                    string reportPath = @"Reports\PaymentReports\ClassAdmitCard2.rdlc";
+                    ////string reportPath = @"Reports\PaymentReports\ClassAdmitRegistered.rdlc"; 
+
+                    ReportViewer rptViewer = new ReportViewer();
+                    rptViewer.Visible = false;
+                    rptViewer.Reset();
+                    rptViewer.LocalReport.DisplayName = "Class Amit Card";
+
+                    if (Cards != null && Cards.Count > 0)
+                    {
+                        string appRoot = ConfigurationManager.AppSettings["AppRoot"];
+
+                        foreach (Model.Model.ClassAdmitCard photocard in Cards)
+                        {
+                            if (!string.IsNullOrWhiteSpace(photocard.passport_url))
+                            {
+                                photocard.passport_url = appRoot + photocard.passport_url;
+                            }
+                            else
+                            {
+                                photocard.passport_url = appRoot + Utility.DEFAULT_AVATAR;
+                            }
+                        }
+
+                       
+                        rptViewer.Reset();
+                        rptViewer.LocalReport.DisplayName = "Applicant Photo Card";
+                        rptViewer.LocalReport.ReportPath = reportPath;
+                        rptViewer.LocalReport.EnableExternalImages = true;
+                        rptViewer.ProcessingMode = ProcessingMode.Local;
+                        rptViewer.LocalReport.DataSources.Add(new ReportDataSource(bind_dsCards.Trim(), Cards));
+                        rptViewer.LocalReport.Refresh();
+                       
+
+
+                        byte[] bytes = rptViewer.LocalReport.Render("PDF", null, out mimeType, out encoding, out extension, out streamIds, out warnings);
+
+                        string path = Server.MapPath(downloadPath);
+                        string savelocation = Path.Combine(path, department.Name.Replace('/', '_') + ".pdf");
+                        File.WriteAllBytes(savelocation, bytes);
+                    }
+                }
+                using (ZipFile zip = new ZipFile())
+                {
+                    string file = Server.MapPath(downloadPath);
+                    zip.AddDirectory(file, "");
+                    string zipFileName = SelectedProgramme.Name.Replace('/', '_')+ "_" + SelectedLevel.Name.Replace('/', '_');
+                    zip.Save(file + zipFileName + ".zip");
+                    string export = downloadPath + zipFileName + ".zip";
+
+                    Response.Redirect(export, false);
+                    return;
+                }
+            }
+            catch (Exception ex)
+            {
+                lblMessage.Text = ex.Message;
+            }
+        }
+
+        protected async void Button1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+               await DownloadBulk();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+    }
+}

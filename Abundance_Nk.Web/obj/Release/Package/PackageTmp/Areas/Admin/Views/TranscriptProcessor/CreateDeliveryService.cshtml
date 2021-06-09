@@ -1,0 +1,63 @@
+﻿@model Abundance_Nk.Web.Areas.Admin.ViewModels.TranscriptProcessorViewModel
+
+@{
+    ViewBag.Title = "Create Delivery Service";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+
+@using (Html.BeginForm("CreateDeliveryService", "TranscriptProcessor", new { area = "admin" }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <br />
+
+    <div class="panel panel-default">
+        @if (TempData["Message"] != null)
+        {
+            @Html.Partial("_Message", (Abundance_Nk.Model.Model.Message)TempData["Message"])
+        }
+
+        <div class="panel-body">
+            <h2 style="font-weight: 300; text-align: center">Create Delivery Service</h2>
+            <hr />
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-6 mt-5">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.DeliveryService.Name, "Name", new { @class = "control-label " })
+                                @Html.TextBoxFor(model => model.DeliveryService.Name, new { @class = "form-control", required = true, @placeholder = "E.g DHL" })
+                                @Html.ValidationMessageFor(model => model.DeliveryService.Name, null, new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-md-6 mt-5">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.DeliveryService.Description, "Description", new { @class = "control-label " })
+                                @Html.TextBoxFor(model => model.DeliveryService.Description, new { @class = "form-control",})
+                                @Html.ValidationMessageFor(model => model.DeliveryService.Description, null, new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-md-6" style="margin-top: 20px">
+                            <div class="form-group">
+                                @Html.CheckBoxFor(model => model.DeliveryService.Activated, new { @class = "", required = true,})
+                                @Html.LabelFor(model => model.DeliveryService.Activated, "Activate", new { @class = "control-label " })
+                                @Html.ValidationMessageFor(model => model.DeliveryService.Activated, null, new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="row">
+                        <div class="form-group">
+                            <div class="col--2"></div>
+                            <div class="col-sm-10">
+                                <input class="btn btn-success mr5" type="submit" name="submit" value="Create" />
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+}

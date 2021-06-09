@@ -1,0 +1,328 @@
+﻿@model Abundance_Nk.Web.Areas.Admin.ViewModels.GstViewModel
+@{
+    ViewBag.Title = "View Upload";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+@section Scripts{
+    @Scripts.Render(("~/bundles/jquery"))
+
+    <link href="~/Content/sweetalert.css" rel="stylesheet" />
+    <script src="~/Scripts/sweetalert.min.js"></script>
+    <script src="~/Scripts/dataTables.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $(".Load").hide();
+
+            $("#gstResultTable").DataTable();
+
+            var checkId = $("#resultId").val();
+            if (checkId != null) {
+                $("#editModal").modal('show');
+            }
+
+            
+        });
+
+       
+
+        $("#semId").change(function () {
+
+            $("#courseId").empty();
+
+         
+            var semester = $("#semId").val();
+            var department = $("#departmentId").val();
+
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("GetCourseCodeByDepartment")', // we are calling json method
+                dataType: 'json',
+                data: { id: department, semesterId: semester },
+                success: function (courseCodes) {
+                    $("#courseId").append('<option value="' + 0 + '"> -- Select -- </option>');
+
+                    $.each(courseCodes, function (i, department) {
+                        $("#courseId").append('<option value="' + department.Value + '">' + department.Text + '</option>');
+                    });
+                },
+                error: function (ex) {
+                    alert('Failed to retrieve course Codes.' + ex);
+                }
+            });
+        });
+        function showBusy() {
+
+            $(".Load").show();
+        }
+
+    </script>
+
+}
+
+<div class="panel panel-default">
+    <div class="panel-body">
+
+        <div class="col-md-12">
+            @if (TempData["Message"] != null)
+            {
+                @Html.Partial("_Message", TempData["Message"])
+            }
+            @using (Html.BeginForm("ViewUpload", "UploadGstScanResult", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+
+                <div class="panel panel-default ">
+                    <div class="panel-body ">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <p class="custom-text-black">
+                                    Select the <b>Department</b>,<b>Semester</b>and <b>Course Code to view Uploaded file</b>
+                                </p>
+
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Department.Id, "Depaertment", new {@class = "control-label custom-text-black"})
+                                    @Html.DropDownListFor(model => model.Department.Id, (IEnumerable<SelectListItem>) ViewBag.DepartmentId, new {@class = "form-control", Id = "departmentId"})
+                                    @Html.ValidationMessageFor(model => model.Department.Id, null, new {@class = "text-danger"})
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.CurrentSession.Id, "Session", new { @class = "control-label custom-text-black" })
+                                    @Html.DropDownListFor(model => model.CurrentSession.Id, (IEnumerable<SelectListItem>)ViewBag.SessionId, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.CurrentSession.Id, null, new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Semester.Id, "Semester", new {@class = "control-label custom-text-black"})
+                                    @Html.DropDownListFor(model => model.Semester.Id, (IEnumerable<SelectListItem>) ViewBag.SemesterId, new {@class = "form-control", Id = "semId"})
+                                    @Html.ValidationMessageFor(model => model.Semester.Id, null, new {@class = "text-danger"})
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Course.Id, "Course Code", new {@class = "control-label custom-text-black"})
+                                    @Html.DropDownListFor(model => model.Course.Id, (IEnumerable<SelectListItem>) ViewBag.CourseCode, new {@class = "form-control", Id = "courseId"})
+                                    @Html.ValidationMessageFor(model => model.Course.Id, null, new {@class = "text-danger"})
+                                </div>
+                            </div>
+                        </div>
+
+                        <br/>
+                        <br/>
+                        <div class="form-group">
+                            <div class="col-sm-2"></div>
+                            <div class="col-sm-10">
+                                <button onclick="showBusy()" class="btn btn-success mr5" type="submit" name="submit" id="submit"><i class="fa fa-eye"> View </i></button><span class="Load"><img src="~/Content/Images/loading4.gif" /></span>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            }
+
+        </div>
+        @if (Model == null || Model.GstScanList == null)
+        {
+            return;
+        }
+
+        @if (Model != null && Model.GstScanList != null)
+        {
+
+
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+
+            <div class="col-md-12 table-responsive">
+
+                <table class="table table-bordered table-hover table-striped" id="gstResultTable">
+                    <thead>
+                    <tr>
+                        <th>
+                            SN
+                        </th>
+                        <th>
+                            Course Code
+                        </th>
+                        <th>
+                            Course Title
+                        </th>
+                        <th>
+                            Exam Number/Matric_Number
+                        </th>
+                        <th>
+                            Name
+                        </th>
+
+                        <th>
+                            Department
+                        </th>
+
+                        <th>
+                            Raw Score
+                        </th>
+                        <th>
+                            CA
+                        </th>
+                        <th>
+                            Total
+                        </th>
+                        <th>
+                            Semester Name
+                        </th>
+                        <th>
+                            
+                        </th>
+                    </tr>
+                    </thead>
+
+                    <tbody style="color: black;">
+                       
+                        
+
+                        @for (var itemIndex = 0; itemIndex < Model.GstScanList.Count; itemIndex++)
+                        {
+                            int SN = itemIndex + 1;
+                            <tr>
+                               
+                                <td>@SN</td>
+                                <td>@Html.DisplayTextFor(m => m.GstScanList[itemIndex].CourseCode)</td>
+                                <td>@Html.DisplayTextFor(m => m.GstScanList[itemIndex].CourseTitle)</td>
+                                @if (Model.GstScanList[itemIndex].MatricNumber != null)
+                                {
+                                    <td>@Html.DisplayTextFor(m => m.GstScanList[itemIndex].MatricNumber)</td>
+                                }
+                                else
+                                {
+                                    <td></td>
+                                }
+                                @if (Model.GstScanList[itemIndex].Name != null)
+                                {
+                                    <td>@Html.DisplayTextFor(m => m.GstScanList[itemIndex].Name)</td>
+                                }
+                                else
+                                {
+                                    <td></td>
+                                }
+                                @if (Model.GstScanList[itemIndex].DepartmentName != null)
+                                {
+                                    <td>@Html.DisplayTextFor(m => m.GstScanList[itemIndex].DepartmentName)</td>
+                                }
+                                else
+                                {
+                                    <td></td>
+                                }
+                                @if (Model.GstScanList[itemIndex].RawScore >= 0)
+                                {
+                                    <td>@Html.DisplayTextFor(m => m.GstScanList[itemIndex].RawScore)</td>
+                                }
+                                else
+                                {
+                                    <td></td>
+                                }
+                                @if (Model.GstScanList[itemIndex].Ca >= 0)
+                                {
+                                    <td>@Html.DisplayTextFor(m => m.GstScanList[itemIndex].Ca)</td>
+                                }
+                                else
+                                {
+                                    <td></td>
+                                }
+                                @if (Model.GstScanList[itemIndex].Total >= 0)
+                                {
+                                    <td>@Html.DisplayTextFor(m => m.GstScanList[itemIndex].Total)</td>
+                                }
+                                else
+                                {
+                                    <td></td>
+                                }
+                                <td>@Html.DisplayTextFor(m => m.GstScanList[itemIndex].SemesterName)</td>
+                                <td class="fa fa-edit">@Html.ActionLink("Edit", "EditGstScanResult", new { area = "Admin", resultId = Model.GstScanList[itemIndex].Id })</td>
+                            </tr>
+
+                        }
+
+
+                    </tbody>
+                </table>
+            </div>
+        }
+
+    </div>
+</div>
+
+@if( Model == null || Model.GstScan == null )
+{
+    return;
+}
+@if (Model != null && Model.GstScan != null)
+{
+
+
+    <div class="modal fade" role="dialog" id="editModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Edit Gst Scanned Result </h4>
+
+                    <span class="Load"><img src="~/Content/Images/bx_loader.gif" /></span>
+                </div>
+                @using (Html.BeginForm("SaveEditedGstResult", "UploadGstScanResult", FormMethod.Post, new {enctype = "multipart/form-data"}))
+                {
+                    <div class="modal-body">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.GstScan.Name, "Name", new {@class = "control-label"})
+                            @Html.TextBoxFor(model => model.GstScan.Name, new {@class = "form-control", id = "idEdit"})
+                            @Html.ValidationMessageFor(model => model.GstScan.Name)
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.GstScan.MatricNumber, "Matric Number", new {@class = "control-label"})
+                            @Html.TextBoxFor(model => model.GstScan.MatricNumber, new {@class = "form-control", id = "idEdit"})
+                            @Html.ValidationMessageFor(model => model.GstScan.MatricNumber)
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.GstScan.RawScore, "Raw Score", new {@class = "control-label"})
+                            @Html.TextBoxFor(model => model.GstScan.RawScore, new {@class = "form-control", id = "idEdit"})
+                            @Html.ValidationMessageFor(model => model.GstScan.RawScore)
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.GstScan.Total, "Total", new {@class = "control-label"})
+                            @Html.TextBoxFor(model => model.GstScan.Total, new {@class = "form-control", id = "idEdit"})
+                            @Html.ValidationMessageFor(model => model.GstScan.Total)
+                        </div>
+                    </div>
+                    <div class="modal-footer form-group">
+                        <button onclick="showBusy()" class="btn btn-success mr5" type="submit" name="submit" id="submit"><i class="fa fa-file"> Save </i></button><span class="Load"><img src="~/Content/Images/loading4.gif" /></span>
+
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+
+                }
+            </div>
+
+        </div>
+
+    </div>
+
+}

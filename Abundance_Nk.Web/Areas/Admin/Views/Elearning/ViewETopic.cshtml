@@ -1,0 +1,366 @@
+﻿@using Abundance_Nk.Web.Models
+@model Abundance_Nk.Web.Areas.Admin.ViewModels.ELearningViewModel
+@{
+    ViewBag.Title = "ViewETopic";
+}
+<script src="~/Scripts/jquery-1.11.1.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#myTable').DataTable({
+            dom: 'Bfrtip',
+            ordering: true,
+            retrieve: true,
+            buttons: [
+                {
+                    extend: 'copy',
+                    exportOptions: {
+                        columns: ':visible'
+                    }
+                },
+                {
+                    extend: 'csv',
+                    exportOptions: {
+                        columns: ':visible'
+                    }
+                },
+                {
+                    extend: 'excel',
+                    exportOptions: {
+                        columns: ':visible'
+                    }
+                },
+                {
+                    extend: 'pdf',
+                    exportOptions: {
+                        columns: ':visible'
+                    }
+                },
+                {
+                    extend: 'print',
+                    exportOptions: {
+                        columns: ':visible'
+                    }
+                }, , 'colvis'
+            ]
+        });
+        //Session Drop down Selected change event
+        $("#Session").change(function () {
+            if ($("#Department").val() > 0 && $("#Level").val() > 0 && $("#Semester").val() > 0) {
+                populateCourses();
+            }
+
+            $("#Semester").empty();
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("GetSemester", "StaffCourseAllocation")', // Calling json method
+                dataType: 'json',
+                data: { id: $("#Session").val() },
+                // Get Selected Country ID.
+                success: function(semesters) {
+                    $("#Semester").append('<option value="' + 0 + '">' +
+                        '-- Select Semester --' + '</option>');
+                    $.each(semesters, function(i, semester) {
+                        $("#Semester").append('<option value="' + semester.Value + '">' +
+                            semester.Text + '</option>');
+                    });
+                },
+                error: function(ex) {
+                    alert('Failed to retrieve semesters.' + ex);
+                }
+            });
+            return false;
+        });
+        $('#btnEdit').on('click', function () {
+
+            var topic = $('#topic').val();
+            var desc = $('#description').val();
+            var active = false;
+            var cTypeId = $('#@Html.IdFor(m=>m.eCourse.EContentType.Id)').val();
+            if ($('#active').is(':checked', true)) {
+                active = true;
+            }
+            if (topic != null && topic != '' && topic != undefined, cTypeId>0) {
+                             $.ajax({
+                type: 'POST',
+                url: '@Url.Action("SaveEditEContentType", "Elearning")', // Calling json method
+                dataType: 'json',
+                data: { cTypeId: cTypeId, topic: topic, desc: desc, active: active },
+                success: function (result) {
+                    if (!result.IsError) {
+                        $('#editeModal').modal('hide');
+                        var courseId = result.CourseId;
+                        var url = '/Admin/Elearning/GetTopics?cid=' + courseId;
+                        window.location.href = url;
+                        alert(result.Message);
+                    }
+                    else {
+                        $('#editeModal').modal('hide');
+                        alert(result.Message);
+                    }
+                },
+                error: function(ex) {
+                    alert('Failed to retrieve semesters.' + ex);
+                }
+            });
+            }
+        })
+
+    });
+    function editECourseType(e) {
+        var cTypeId = e;
+        if (cTypeId > 0) {
+             $.ajax({
+                type: 'POST',
+                url: '@Url.Action("EditEContentType", "Elearning")', // Calling json method
+                dataType: 'json',
+                data: { cTypeId: cTypeId },
+                success: function (result) {
+                    if (!result.IsError) {
+                        $('#@Html.IdFor(m=>m.eCourse.EContentType.Id)').val(result.EContentType.Id)
+                        $('#topic').val(result.EContentType.Name)
+                        $('#description').val(result.EContentType.Description)
+                        var active = result.EContentType.Active;
+                        if (active = true) {
+                            $('#active').prop('checked',true)
+                        }
+                        $('#editeModal').modal('show');
+                    }
+                    else {
+                        $('#editeModal').modal('hide');
+                    }
+                },
+                error: function(ex) {
+                    alert('Failed to retrieve semesters.' + ex);
+                }
+            });
+        }
+    }
+    function deleteECourseType(e) {
+        var getClicked = confirm("Are you Sure you want to Delete This Record completely?");
+        if (getClicked == true) {
+            var cTypeId = e;
+        if (cTypeId > 0) {
+             $.ajax({
+                type: 'POST',
+                url: '@Url.Action("ArchiveETopic", "Elearning")', // Calling json method
+                dataType: 'json',
+                data: { cTypeId: cTypeId },
+                success: function (result) {
+                    if (!result.IsError) {
+                        $('#editeModal').modal('hide');
+                        var courseId = result.CourseId;
+                        var url = '/Admin/Elearning/GetTopics?cid=' + courseId;
+                        window.location.href = url;
+                        alert(result.Message);
+                    }
+                    else {
+                        $('#editeModal').modal('hide');
+                    }
+                },
+                error: function(ex) {
+                    alert('Failed to retrieve semesters.' + ex);
+                }
+            });
+        }
+        }
+        else {
+            return false;
+        }
+    }
+</script>
+@if (TempData["Message"] != null)
+{
+    @Html.Partial("_Message", TempData["Message"])
+}
+@using (Html.BeginForm("ViewETopic", "Elearning", new { area = "Admin" }, FormMethod.Post))
+{
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title"><i class="fa fa-fw fa-download"></i>View E-Learning Topics</h3>
+        </div>
+        <div class="panel-body">
+            <div class="form-group">
+                @Html.LabelFor(model => model.Session.Name, "Session", new { @class = "col-sm-2 control-label " })
+                <div class="col-sm-10">
+                    @Html.DropDownListFor(model => model.Session.Id, (IEnumerable<SelectListItem>)ViewBag.Session, new { @class = "form-control", @id = "Session" })
+                    @Html.ValidationMessageFor(model => model.Session.Id, null, new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Semester.Name, "Semester", new { @class = "col-sm-2 control-label " })
+                <div class="col-sm-10">
+                    @Html.DropDownListFor(model => model.Semester.Id, (IEnumerable<SelectListItem>)ViewBag.Semester, new { @class = "form-control", @id = "Semester" })
+                    @Html.ValidationMessageFor(model => model.Semester.Id, null, new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Level.Name, "Level", new { @class = "col-sm-2 control-label " })
+                <div class="col-sm-10">
+                    @Html.DropDownListFor(model => model.Level.Id, (IEnumerable<SelectListItem>)ViewBag.Level, new { @class = "form-control", @id = "Level", requiredt = true })
+                    @Html.ValidationMessageFor(model => model.Level.Id, null, new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2"></div>
+                <div class="col-sm-10">
+                    <input class="btn btn-primary mr5 " type="submit" name="submit" id="submit" value="View" />
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<br />
+@if (Model.CourseAllocations != null && Model.CourseAllocations.Count() > 0)
+{
+    <div class="panel panel-danger">
+        <div class="panel-body">
+            <table id="myTable" class="table-bordered table-hover table-striped table-responsive table">
+                <thead>
+                    <tr>
+                        <th>
+                            Course Code
+                        </th>
+                        <th>
+                            Course Name
+                        </th>
+                        <th>
+                            Programme
+                        </th>
+                        <th>
+                            Department
+                        </th>
+                        <th>
+                            Action
+                        </th>
+
+                    </tr>
+                </thead>
+                
+                <tbody>
+                    @for (int i = 0; i < Model.CourseAllocations.Count(); i++)
+                {
+                        <tr>
+                            <td>
+                                @Model.CourseAllocations[i].Course.Code
+                            </td>
+                            <td>
+                                @Model.CourseAllocations[i].Course.Name
+                            </td>
+                            <td>
+                                @Model.CourseAllocations[i].Programme.Name
+                            </td>
+                            <td>
+                                @Model.CourseAllocations[i].Department.Name
+                            </td>
+                            <td>
+                                @Html.ActionLink("View Topics", "GetTopics", "Elearning", new { Area = "Admin", cid = Utility.Encrypt(Model.CourseAllocations[i].Course.Id.ToString()) }, new { @class = "btn btn-primary " })
+
+                            </td>
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+}
+<br />
+@if (Model.EContentTypes != null && Model.EContentTypes.Count() > 0)
+{
+    <div class="panel panel-danger">
+        <div class="panel-body">
+            <table id="myTable" class="table-bordered table-hover table-striped table-responsive table">
+                <thead>
+                    <tr>
+                        <th>
+                            Course Code
+                        </th>
+                        <th>
+                            Course Name
+                        </th>
+                        <th>
+                            Topic
+                        </th>
+                        <th>
+                            Description
+                        </th>
+                        <th>
+                            Edit
+                        </th>
+                        <th>
+                            Delete
+                        </th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @for (int i = 0; i < Model.EContentTypes.Count(); i++)
+                {
+                        <tr>
+                            <td>
+                                @Model.EContentTypes[i].Course.Code
+                            </td>
+                            <td>
+                                @Model.EContentTypes[i].Course.Name
+                            </td>
+                            <td>
+                                @Model.EContentTypes[i].Name
+                            </td>
+                            <td>
+                                @Model.EContentTypes[i].Description
+                            </td>
+                            <td>
+                                <button class = "btn btn-primary" onclick="editECourseType(@Model.EContentTypes[i].Id)">Edit</button>
+                                
+
+                            </td>
+                            <td>
+                                <button class="btn btn-primary" onclick="deleteECourseType(@Model.EContentTypes[i].Id)">Delete</button>
+
+                            </td>
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+}
+<div class="modal fade" role="dialog" id="editeModal">
+
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" style="float:right">&times;</button>
+                <h4 class="modal-title">Edit Course Topic</h4>
+            </div>
+            <div class="modal-body">
+                @Html.HiddenFor(model=>model.eCourse.EContentType.Id)
+                <div class="form-group">
+                    @Html.LabelFor(model => model.eContentType.Name, "Topic", new { @class = "control-label" })
+                    @Html.TextBoxFor(model => model.eContentType.Name, new { @class = "form-control", require = true, Id = "topic", placeholder = "Use of English" })
+                    @Html.ValidationMessageFor(model => model.eContentType.Name)
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.eContentType.Description, "Description", new { @class = "control-label" })
+                    @Html.TextBoxFor(model => model.eContentType.Description, new { @class = "form-control", require = true, Id = "description", placeholder = "Introduction To English" })
+                    @Html.ValidationMessageFor(model => model.eContentType.Description)
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.eContentType.Active, "Activate", new { @class = "control-label" })
+                    @Html.CheckBoxFor(model => model.eContentType.Active, new { require = true, Id = "active" })
+                    @Html.ValidationMessageFor(model => model.eContentType.Active)
+                </div>
+
+            </div>
+            <div class="modal-footer form-group">
+                <span style="display: none" class="Load"><img src="~/Content/Images/bx_loader.gif" /></span>
+                <button type="submit" id="btnEdit" class="btn btn-success">Save</button>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

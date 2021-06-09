@@ -1,0 +1,15 @@
+<div>
+	<table cellspacing="0" rules="all" border="1" style="border-collapse:collapse;">
+		<tr style="color:White;background-color:DarkBlue;">
+			<th scope="col">SN</th><th scope="col">MatricNo</th><th scope="col">Fullname</th><th scope="col">Department</th><th scope="col">CA</th><th scope="col">CourseCode</th><th scope="col">Exam</th>
+		</tr><tr>
+			<td>1</td><td>12/86867</td><td>EMODI CHIDINMA </td><td>Medical Laboratory Science </td><td>22.00</td><td>HAE 512   </td><td>49.00</td>
+		</tr><tr>
+			<td>2</td><td>12/86873</td><td>OKPAN MARTHA ANAGA</td><td>Medical Laboratory Science </td><td>24.00</td><td>HAE 512   </td><td>36.00</td>
+		</tr><tr>
+			<td>3</td><td>12/86878</td><td>EFFE PROMISE AMARACHI</td><td>Medical Laboratory Science </td><td>23.00</td><td>HAE 512   </td><td>47.00</td>
+		</tr><tr>
+			<td>4</td><td>13/91725</td><td>ENYINNAH FELICITY CHIMDINMA</td><td>Medical Laboratory Science </td><td>24.00</td><td>HAE 512   </td><td>47.00</td>
+		</tr>
+	</table>
+</div>

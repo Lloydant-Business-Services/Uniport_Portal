@@ -1,0 +1,266 @@
+﻿@using Abundance_Nk.Web.Models
+@model Abundance_Nk.Web.Areas.Admin.ViewModels.StaffCourseAllocationViewModel
+@{
+    ViewBag.Title = "StaffCourseAllocation";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+@if (TempData["Message"] != null)
+{
+    @Html.Partial("_Message", TempData["Message"])
+}
+
+<script src="~/Scripts/jquery-1.11.1.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+
+        //Session Drop down Selected change event
+        $("#Session").change(function() {
+
+            $("#Semester").empty();
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("GetSemester", "StaffCourseAllocation")', // Calling json method
+                dataType: 'json',
+                data: { id: $("#Session").val() },
+                // Get Selected Country ID.
+                success: function(semesters) {
+                    $("#Semester").append('<option value="' + 0 + '">' +
+                        '-- Select Semester --' + '</option>');
+                    $.each(semesters, function(i, semester) {
+                        $("#Semester").append('<option value="' + semester.Value + '">' +
+                            semester.Text + '</option>');
+                    });
+                },
+                error: function(ex) {
+                    alert('Failed to retrieve semesters.' + ex);
+                }
+            });
+            return false;
+        });
+    });
+</script>
+<div class="container">
+  
+
+    @using(Html.BeginForm("AllocateCourseByDepartment","Deans",new { area = "Admin" },FormMethod.Post))
+    {
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"><i class="fa fa-fw fa-toggle-left"></i>Manage Department Results</h3>
+            </div>
+            <div class="panel-body">
+                @Html.HiddenFor(model => model.Staff.Id)
+                @Html.HiddenFor(model => model.Staff.Department.Id)
+                @Html.HiddenFor(model => model.Staff.Department.Name)
+                @Html.HiddenFor(model => model.Staff.Department.Faculty.Id)
+                @Html.HiddenFor(model => model.Staff.isHead)
+                @Html.HiddenFor(model => model.Staff.isManagement)
+                <div class="form-group">
+                    @Html.LabelFor(model => model.CourseAllocation.Session.Name, "Session", new { @class = "col-sm-2 control-label " })
+                    <div class="col-sm-10">
+                        @Html.DropDownListFor(model => model.CourseAllocation.Session.Id, (IEnumerable<SelectListItem>)ViewBag.Session, new { @class = "form-control", @id = "Session", @required = "required" })
+                        @Html.ValidationMessageFor(model => model.CourseAllocation.Session.Id, null, new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.CourseAllocation.Semester.Name, "Semester", new { @class = "col-sm-2 control-label " })
+                    <div class="col-sm-10">
+                        @Html.DropDownListFor(model => model.CourseAllocation.Semester.Id, (IEnumerable<SelectListItem>)ViewBag.Semester, new { @class = "form-control", @id = "Semester", @required = "required" })
+                        @Html.ValidationMessageFor(model => model.CourseAllocation.Semester.Id, null, new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.CourseAllocation.Programme.Name, "Programme", new { @class = "col-sm-2 control-label " })
+                    <div class="col-sm-10">
+                        @Html.DropDownListFor(model => model.CourseAllocation.Programme.Id, (IEnumerable<SelectListItem>)ViewBag.Programme, new { @class = "form-control", @id = "Programme", @required = "required" })
+                        @Html.ValidationMessageFor(model => model.CourseAllocation.Programme.Id, null, new { @class = "text-danger" })
+                    </div>
+                </div>
+                @if (Model.Staff.isHead && !(bool)Model.Staff.isManagement)
+                {
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.CourseAllocation.Department.Name, "Department", new { @class = "col-sm-2 control-label " })
+                        <div class="col-sm-10">
+                            @Html.HiddenFor(model => model.CourseAllocation.Department.Id)
+                            @Html.DropDownListFor(model => model.CourseAllocation.Department.Id, (IEnumerable<SelectListItem>)ViewBag.Department, new { @class = "form-control", @id = "Department", @disabled = "disabled" })
+                            @Html.ValidationMessageFor(model => model.CourseAllocation.Department.Id, null, new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    if (Model.CourseAllocation.DepartmentOption != null)
+                    {
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.CourseAllocation.DepartmentOption.Name, "Department Option", new { @class = "col-sm-2 control-label " })
+                            <div class="col-sm-10">
+                                @Html.DropDownListFor(model => model.CourseAllocation.DepartmentOption.Id, (IEnumerable<SelectListItem>)ViewBag.DepartmentOption, new { @class = "form-control", @id = "DepartmentOption" })
+                                @Html.ValidationMessageFor(model => model.CourseAllocation.DepartmentOption.Id, null, new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    }
+                }
+                else if (Model.Staff.isHead && (bool)Model.Staff.isManagement)
+                {
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.CourseAllocation.Department.Name, "Department", new { @class = "col-sm-2 control-label " })
+                        <div class="col-sm-10">
+                            @Html.DropDownListFor(model => model.CourseAllocation.Department.Id, (IEnumerable<SelectListItem>)ViewBag.Department, new { @class = "form-control", @id = "Department", @required = "required" })
+                            @Html.ValidationMessageFor(model => model.CourseAllocation.Department.Id, null, new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    if (ViewBag.DepartmentOption != null && ViewBag.DepartmentOption.Count>0)
+                    {
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.CourseAllocation.DepartmentOption.Name, "Department Option", new { @class = "col-sm-2 control-label " })
+                            <div class="col-sm-10">
+                                @Html.DropDownListFor(model => model.CourseAllocation.DepartmentOption.Id, (IEnumerable<SelectListItem>)ViewBag.DepartmentOption, new { @class = "form-control", @id = "DepartmentOption" })
+                                @Html.ValidationMessageFor(model => model.CourseAllocation.DepartmentOption.Id, null, new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    }
+
+                }
+                <div class="form-group">
+                    @Html.LabelFor(model => model.CourseAllocation.Level.Name, "Level", new { @class = "col-sm-2 control-label " })
+                    <div class="col-sm-10">
+                        @Html.DropDownListFor(model => model.CourseAllocation.Level.Id, (IEnumerable<SelectListItem>)ViewBag.Level, new { @class = "form-control", @id = "Level", @required = "required" })
+                        @Html.ValidationMessageFor(model => model.CourseAllocation.Level.Id, null, new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-10">
+                        <input class="btn btn-success mr5 " type="submit" name="submit" id="submit" value="View Course Allocation" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+    @if(Model != null)
+    {
+        if(Model.Staff != null)
+        {
+            if((bool)Model.Staff.isManagement)
+            {
+
+                <div class="row">
+                   
+                    @if(Model.CourseAllocationList != null)
+                    {
+                        <!-- Table -->
+                        <table class="table table-responsive">
+
+                            <thead>
+                                <tr>
+                                    <th>Code</th>
+                                    <th>Course Title</th>
+                                    <th>Course Lecturer</th>
+                                    <th>View Attendance Sheet</th>
+                                    <th>View Result Sheet</th>
+                                </tr>
+                            </thead>
+                            <tbody style="color: black;">
+                                @for(int i = 0;i < Model.CourseAllocationList.Count;i++)
+                                {
+                                <tr>
+                                    @Html.HiddenFor(model => model.Staff.Id)
+                                    @Html.HiddenFor(model => model.Staff.Department.Id)
+                                    @Html.HiddenFor(model => model.Staff.Department.Name)
+                                    @Html.HiddenFor(model => model.Staff.Department.Faculty.Id)
+                                    @Html.HiddenFor(model => model.Staff.isHead)
+                                    @Html.HiddenFor(model => model.Staff.isManagement)
+                                    @Html.HiddenFor(model => model.CourseAllocationList[i].Session.Id)
+                                    @Html.HiddenFor(model => model.CourseAllocationList[i].Id)
+                                    @Html.HiddenFor(model => model.CourseAllocationList[i].Department.Id)
+                                    @if (@Model.CourseAllocationList[i].DepartmentOption != null && @Model.CourseAllocationList[i].DepartmentOption.Id > 0)
+                                    {
+                                        @Html.HiddenFor(model => model.CourseAllocationList[i].DepartmentOption.Id)
+                                    }
+                                    @Html.HiddenFor(model => model.CourseAllocationList[i].Level.Id)
+                                    @Html.HiddenFor(model => model.CourseAllocationList[i].Semester.Id)
+                                    @Html.HiddenFor(model => model.CourseAllocationList[i].Programme.Id)
+                                    @Html.HiddenFor(model => model.CourseAllocationList[i].Course.Id)
+                                    <td>@Html.TextBoxFor(model => model.CourseAllocationList[i].Course.Code, new { @class = "form-control olevel", @disabled = "disbaled" })</td>
+                                    <td>@Html.TextBoxFor(model => model.CourseAllocationList[i].Course.Name, new { @class = "form-control olevel", @disabled = "disbaled" })</td>
+                                    <td>@Html.TextBoxFor(model => model.CourseAllocationList[i].User.Username, new { @class = "form-control", @disabled = "disbaled" })</td>
+                                    <td>@Html.ActionLink("View", "AttendanceSheet", new { Controller = "Deans", Area = "Admin", Level = Utility.Encrypt(@Model.CourseAllocationList[i].Course.Level.Id.ToString()), Semester = Utility.Encrypt(@Model.CourseAllocationList[i].Course.Semester.Id.ToString()), programme = Utility.Encrypt(@Model.CourseAllocationList[i].Course.Programme.Id.ToString()), department = Utility.Encrypt(@Model.CourseAllocationList[i].Course.Department.Id.ToString()), session = Utility.Encrypt(@Model.CourseAllocationList[i].Session.Id.ToString()), course = Utility.Encrypt(@Model.CourseAllocationList[i].Course.Id.ToString()) }, new { @class = "btn btn-success" })</td>
+                                    <td>@Html.ActionLink("View", "AttendanceSheet", new { Controller = "Deans", Area = "Admin", Level = Utility.Encrypt(@Model.CourseAllocationList[i].Course.Level.Id.ToString()), Semester = Utility.Encrypt(@Model.CourseAllocationList[i].Course.Semester.Id.ToString()), programme = Utility.Encrypt(@Model.CourseAllocationList[i].Course.Programme.Id.ToString()), department = Utility.Encrypt(@Model.CourseAllocationList[i].Course.Department.Id.ToString()), session = Utility.Encrypt(@Model.CourseAllocationList[i].Session.Id.ToString()), course = Utility.Encrypt(@Model.CourseAllocationList[i].Course.Id.ToString()) }, new { @class = "btn btn-success" })</td>
+
+
+                                </tr>
+                                }
+                            </tbody>
+                        </table>
+                    }
+                </div>
+
+            }
+            else if(Model.Staff.isHead)
+            {
+                using(Html.BeginForm("SavedAllocateCourseByDepartment","Deans",FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="row">
+                        
+                        @if(Model.CourseAllocationList != null)
+                        {
+                            <!-- Table -->
+                            <table class="table table-responsive">
+
+                                <thead>
+                                    <tr>
+                                        <th>Code</th>
+                                        <th>Course Title</th>
+                                        <th>Course Lecturer</th>
+                                        <th>View Attendance Sheet</th>
+                                        <th>View Result Sheet</th>
+                                    </tr>
+                                </thead>
+                                <tbody style="color: black;">
+                                    @for(int i = 0;i < Model.CourseAllocationList.Count;i++)
+                                    {
+                                    <tr>
+                                        @Html.HiddenFor(model => model.Staff.Id)
+                                        @Html.HiddenFor(model => model.Staff.Department.Id)
+                                        @Html.HiddenFor(model => model.Staff.Department.Name)
+                                        @Html.HiddenFor(model => model.Staff.Department.Faculty.Id)
+                                        @Html.HiddenFor(model => model.Staff.isHead)
+                                        @Html.HiddenFor(model => model.Staff.isManagement)
+                                        @Html.HiddenFor(model => model.CourseAllocationList[i].Session.Id)
+                                        @Html.HiddenFor(model => model.CourseAllocationList[i].Id)
+                                        @Html.HiddenFor(model => model.CourseAllocationList[i].Department.Id)
+                                        @if (@Model.CourseAllocationList[i].DepartmentOption != null && @Model.CourseAllocationList[i].DepartmentOption.Id > 0)
+                                        {
+                                            @Html.HiddenFor(model => model.CourseAllocationList[i].DepartmentOption.Id)
+                                        }
+                                        @Html.HiddenFor(model => model.CourseAllocationList[i].Level.Id)
+                                        @Html.HiddenFor(model => model.CourseAllocationList[i].Semester.Id)
+                                        @Html.HiddenFor(model => model.CourseAllocationList[i].Programme.Id)
+                                        @Html.HiddenFor(model => model.CourseAllocationList[i].Course.Id)
+                                        <td>@Html.DisplayFor(model => model.CourseAllocationList[i].Course.Code, new { @class = "form-control olevel" })</td>
+                                        <td>@Html.DisplayFor(model => model.CourseAllocationList[i].Course.Name, new { @class = "form-control olevel" })</td>
+                                        <td>@Html.DropDownListFor(model => model.CourseAllocationList[i].User.Id, (IEnumerable<SelectListItem>)ViewData["lecturer" + i], new { @class = "form-control", @id = "User", @required = "required" })</td>
+                                        <td>@Html.ActionLink("View", "AttendanceSheet", new { Controller = "Deans", Area = "Admin", Level = Utility.Encrypt(@Model.CourseAllocationList[i].Course.Level.Id.ToString()), Semester = Utility.Encrypt(@Model.CourseAllocationList[i].Course.Semester.Id.ToString()), programme = Utility.Encrypt(@Model.CourseAllocationList[i].Course.Programme.Id.ToString()), department = Utility.Encrypt(@Model.CourseAllocationList[i].Course.Department.Id.ToString()), session = Utility.Encrypt(@Model.CourseAllocationList[i].Session.Id.ToString()), course = Utility.Encrypt(@Model.CourseAllocationList[i].Course.Id.ToString()) }, new { @class = "btn btn-success" })</td>
+                                        <td>@Html.ActionLink("View Result", "ResultSheet", new { Controller = "Deans", Area = "Admin", Level = Utility.Encrypt(@Model.CourseAllocationList[i].Course.Level.Id.ToString()), Semester = Utility.Encrypt(@Model.CourseAllocationList[i].Course.Semester.Id.ToString()), programme = Utility.Encrypt(@Model.CourseAllocationList[i].Course.Programme.Id.ToString()), department = Utility.Encrypt(@Model.CourseAllocationList[i].Course.Department.Id.ToString()), session = Utility.Encrypt(@Model.CourseAllocationList[i].Session.Id.ToString()), course = Utility.Encrypt(@Model.CourseAllocationList[i].Course.Id.ToString()) }, new { @class = "btn btn-success" })</td>
+
+                                    </tr>
+                                    }
+                                </tbody>
+                            </table>
+                            <div class="form-group">
+                                <div class="col-md-offset-8 col-md-10">
+                                    <input type="submit" value="Save Changes" class="btn btn-primary" />
+                                </div>
+                            </div>
+                        }
+                    </div>
+
+                  
+                }
+            }
+        }
+
+    }
+
+</div>

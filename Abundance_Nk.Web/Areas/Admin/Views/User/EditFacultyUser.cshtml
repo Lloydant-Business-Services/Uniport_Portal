@@ -1,0 +1,53 @@
+﻿@model Abundance_Nk.Web.Areas.Admin.ViewModels.UserViewModel
+@{
+    ViewBag.Title = "Edit Faculty";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="col-md-12">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+        @if (TempData["Message"] != null)
+        {
+            @Html.Partial("_Message", TempData["Message"])
+        }
+
+        @using (Html.BeginForm("EditFacultyUser", "User", FormMethod.Post))
+        {
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4><i class="fa fa-fw fa-edit"></i> Edit User Faculty</h4>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.User.Username, "Enter Username: ", new { @class = "control-label " })
+                                @Html.TextBoxFor(model => model.User.Username, new { @class = "form-control", @required = "required" })
+                                @Html.ValidationMessageFor(model => model.User.Username, null, new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Faculty.Id, "Faculty", new { @class = "control-label" })
+                                @Html.DropDownListFor(model => model.Faculty.Id, (IEnumerable<SelectListItem>)ViewBag.Faculty, new { @class = "form-control", @required = "required" })
+                                @Html.ValidationMessageFor(model => model.Faculty.Id, null, new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <input class="btn btn-success btn-sm mr5" type="submit" name="submit" id="submit" value="Edit" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    <div class="col-md-1"></div>
+
+</div>
+

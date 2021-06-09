@@ -1,0 +1,244 @@
+﻿@using Abundance_Nk.Web.Models
+@model Abundance_Nk.Web.Areas.Applicant.ViewModels.TranscriptViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+<div class="col-md-12 card p-5">
+<div class="row">
+    <div class="col-md-12">
+        <h2>
+            TRANSCRIPT
+            <span class="badge badge-warning">STATUS</span>
+        </h2>
+    </div>
+    <hr/>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+    <h3 class="panel-title"></h3>
+</div>
+<div class="panel-body">
+<div class="col-md-1"></div>
+<div class="col-md-12">
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-group margin-bottom-3">
+            <div class="col-md-12">
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="form-group margin-bottom-3">
+            <div class="col-md-4">
+            </div>
+            <img src="@Url.Content('~' + Model.transcriptRequest.student.ImageFileUrl)" alt="" style="max-height: 150px"/>
+        </div>
+    </div>
+
+
+    <div class="col-md-6">
+        <div class="form-group margin-bottom-3">
+            <div class="col-md-12">
+                @Html.LabelFor(model => model.transcriptRequest.student.LastName, new {@class = "control-label "})
+            </div>
+            <div class="col-md-12 text-bold">
+                @Html.TextBoxFor(model => model.transcriptRequest.student.LastName, new {@class = "form-control", disabled = true})
+
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="form-group margin-bottom-3">
+            <div class="col-md-12">
+                @Html.LabelFor(model => model.transcriptRequest.student.FirstName, new {@class = "control-label "})
+            </div>
+            <div class="col-md-12 text-bold">
+                @Html.TextBoxFor(model => model.transcriptRequest.student.FirstName, new {@class = "form-control", disabled = true})
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="form-group margin-bottom-3">
+            <div class="col-md-12">
+                @Html.LabelFor(model => model.transcriptRequest.student.OtherName, new {@class = "control-label "})
+            </div>
+            <div class="col-md-12 text-bold">
+                @Html.TextBoxFor(model => model.transcriptRequest.student.OtherName, new {@class = "form-control ", disabled = true})
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="form-group margin-bottom-3">
+            <div class="col-md-12">
+                @Html.LabelFor(model => model.transcriptRequest.student.MatricNumber, new {@class = "control-label "})
+            </div>
+            <div class="col-md-12 text-bold">
+                @Html.TextBoxFor(model => model.transcriptRequest.student.MatricNumber, new {@class = "form-control ", disabled = true})
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="form-group margin-bottom-3">
+            <div class="col-md-12">
+                @Html.LabelFor(model => model.transcriptRequest.DateRequested, new {@class = "control-label "})
+            </div>
+            <div class="col-md-12 text-bold">
+                @Html.TextBoxFor(model => model.transcriptRequest.DateRequested, new {@class = "form-control ", disabled = true})
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="form-group margin-bottom-3">
+            <div class="col-md-12">
+                @Html.LabelFor(model => model.transcriptRequest.DestinationAddress, new {@class = "control-label "})
+            </div>
+            <div class="col-md-12 text-bold">
+                @Html.TextBoxFor(model => model.transcriptRequest.DestinationAddress, new {@class = "form-control ", disabled = true})
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="form-group margin-bottom-3">
+            <div class="col-md-12">
+                @Html.LabelFor(model => model.transcriptRequest.DestinationState, new {@class = "control-label "})
+            </div>
+            <div class="col-md-12 text-bold">
+                @Html.TextBoxFor(model => model.transcriptRequest.DestinationState.Name, new {@class = "form-control", disabled = true})
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="form-group margin-bottom-3">
+            <div class="col-md-12">
+                @Html.LabelFor(model => model.transcriptRequest.DestinationCountry.CountryName, new {@class = "control-label "})
+            </div>
+            <div class="col-md-12 text-bold">
+                @Html.TextBoxFor(model => model.transcriptRequest.DestinationCountry.CountryName, new {@class = "form-control", disabled = true})
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="form-group margin-bottom-3">
+            <div class="col-md-12">
+                @Html.LabelFor(model => model.transcriptRequest.transcriptClearanceStatus.TranscriptClearanceStatusName, new {@class = "control-label "})
+            </div>
+            <div class="col-md-12 text-bold">
+                @Html.TextBoxFor(model => model.transcriptRequest.transcriptClearanceStatus.TranscriptClearanceStatusName, new {@class = "form-control ", disabled = true})
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="form-group margin-bottom-3">
+            <div class="col-md-12">
+                @Html.LabelFor(model => model.transcriptRequest.transcriptStatus.TranscriptStatusName, new {@class = "control-label "})
+            </div>
+            <div class="col-md-12 text-bold">
+                @Html.TextBoxFor(model => model.transcriptRequest.transcriptStatus.TranscriptStatusName, new {@class = "form-control", disabled = true})
+            </div>
+        </div>
+    </div>
+</div>
+
+@if (Model.transcriptRequest.transcriptStatus.TranscriptStatusId <= 3)
+{
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group margin-bottom-3">
+                <div class="col-md-12">
+
+                    <img src="@Url.Content("~/Content/Images/download.jpg")" alt="" height="70px"/>
+              
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group margin-bottom-3">
+
+                <div class="col-md-12 text-bold">
+                    @Html.ActionLink("Make Payment >> Click to continue", "ProcessPayment", "Transcript", new {tid = Model.transcriptRequest.Id, fid = Model.transcriptRequest.payment.FeeType.Id}, new {@class = "btn btn-primary btn-lg btn-block", target = "_blank"})
+                </div>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <div class="row">
+        <div class="col-md-4 text-bold">
+            <p></p>
+        </div>
+        <div class="col-md-4 text-bold">
+            <p></p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 text-bold">
+            <p></p>
+        </div>
+        <div class="col-md-4 text-bold">
+            <p></p>
+        </div>
+    </div>
+
+    @*<div class="row">*@
+        @*<div class="col-md-12 p-5 text-bold">
+            <p>Transcript Request Status</p>
+        </div>*@
+        <div class="col-md-12 p-5">
+            <p>Transcript Request Status</p>
+                @if (Model.transcriptRequest.transcriptStatus.TranscriptStatusId==4)
+                {
+                    <div style="background-color:navy; font:bolder; text-align:center"><h3 style="color:white">Processing ...</h3></div>
+                }
+                @if (Model.transcriptRequest.transcriptStatus.TranscriptStatusId == 5)
+                {
+                    <div style="background-color:navy; font:bolder; text-align:center"><h3 style="color:white">Dispatched</h3></div>
+                }
+            @*<div class="progress">
+                @if (Model.transcriptRequest.transcriptStatus.TranscriptStatusId == 3)
+                {
+                    <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                    </div>
+                }
+                else if (Model.transcriptRequest.transcriptStatus.TranscriptStatusId == 4)
+                {
+                    <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100" style="width: 65%">
+                    </div>
+                }
+                else if (Model.transcriptRequest.transcriptStatus.TranscriptStatusId == 5)
+                {
+                    <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" style="width: 85%">
+                    </div>
+                }
+                else if (Model.transcriptRequest.transcriptStatus.TranscriptStatusId == 6)
+                {
+                    <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                    </div>
+                }
+            </div>*@
+        </div>
+    @*</div>*@
+    @*<div>
+        @Html.ActionLink("Regenerate Invoice", "Invoice", "Credential", new {area = "Common", pmid = Utility.Encrypt(Model.transcriptRequest.payment.Id.ToString())}, new {@class = "btn btn-primary btn-lg", target = "_blank"})
+    </div>*@
+}
+</div>
+</div>
+<div class="col-md-1"></div>
+</div>
+</div>
+</div>

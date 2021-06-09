@@ -1,0 +1,69 @@
+﻿@model Abundance_Nk.Web.Areas.Applicant.ViewModels.PostUtmeResultViewModel
+
+@{
+    ViewBag.Title = "Purcahse Card";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="~/Scripts/jquery-1.11.1.min.js"></script>
+<script>
+    alert("Note that if you pay using your atm card or bank account, you are to use your invoice number as the pin when checking your result!")
+</script>
+
+<br />
+
+<div class="container">
+    <div class="col-md-12 card p-5">
+        <div class="row">
+            <div class="col-md-12">
+                <h3 class="mb-1">Purchase PUTME Card</h3><hr/>
+            </div>
+        </div>
+        @using (Html.BeginForm("PurchaseCard", "Screening", new { Area = "Applicant" }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+        {
+            @Html.AntiForgeryToken()
+            @*<h5>Please enter your <b>Application Form Number</b> and Etranzact <b>PIN</b> below to check your Application Status.</h5>*@
+            <div>Please enter your <b>Jamb Number</b> below to generate your invoice.</div>
+      
+
+          
+                
+            <div id="Name">
+                <div class="form-group col-md-12 pl-0 ml-0">
+                    @Html.LabelFor(m => m.ApplicantJambDetail.JambRegistrationNumber, "Jamb Number", new { @class = "col-md-12  pl-0 ml-0" })
+                           
+                    @Html.TextBoxFor(m => m.ApplicantJambDetail.JambRegistrationNumber, new { @class = "form-control ", required = "required" })
+                    @Html.ValidationMessageFor(m => m.ApplicantJambDetail.JambRegistrationNumber, null, new { @class = "text-danger" })
+                           
+                </div>
+                <div class="form-group col-md-12  pl-0 ml-0">
+
+                    <input type="submit" value="Continue" class="btn btn-primary " />
+
+                </div>
+            </div>
+            <div class="text-danger">
+                <p>Note that if you pay using your atm card or bank account, you are to use your invoice number as the pin when checking your result!</p>
+                  
+            </div>
+            
+
+          
+            <div class="col-md-12  pl-0 ml-0">
+                @if (TempData["Message"] != null)
+                {
+                    @Html.Partial("_Message", (Abundance_Nk.Model.Model.Message)TempData["Message"])
+                }
+            
+            </div>
+        }
+
+    </div>
+</div>
+
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

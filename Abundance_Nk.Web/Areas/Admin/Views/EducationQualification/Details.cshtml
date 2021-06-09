@@ -1,0 +1,35 @@
+﻿@model Abundance_Nk.Model.Entity.EDUCATIONAL_QUALIFICATION
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>EDUCATIONAL_QUALIFICATION</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Educational_Qualification_Abbreviation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Educational_Qualification_Abbreviation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Educational_Qualification_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Educational_Qualification_Name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Educational_Qualification_Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

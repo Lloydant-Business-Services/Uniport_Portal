@@ -1,0 +1,127 @@
+﻿@model Abundance_Nk.Web.Areas.PGApplicant.ViewModels.PGViewModel
+
+@{
+    ViewBag.Title = "PG Application Confirmation";
+}
+
+<script src="~/Scripts/jquery-1.11.1.min.js"></script>
+<script src="~/Scripts/sweetalert.min.js"></script>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        swal({
+            title: "Attention!",
+            text: "If you made payment using your card, kindly use your invoice number as pin",
+            type: "warning",
+            timer: 10000
+
+        });
+        var selectedProgramme = $("#Programme_Id").val();
+        if (selectedProgramme == 1 || selectedProgramme == 2) {
+            $("#divJambNo").show();
+        } else {
+            $("#divJambNo").hide();
+        }
+        $("#Programme_Id").change(function () {
+            var programme = $("#Programme_Id").val();
+            if (programme == 3) {
+                $("#divJambNo").hide();
+            } else {
+                $("#divJambNo").show();
+            }
+
+            $("#AppliedCourse_Department_Id").empty();
+
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("GetDepartmentByProgrammeId")', //calling json method
+                dataType: 'json',
+                data: { id: programme },
+                success: function (departments) {
+                    $("#AppliedCourse_Department_Id").append('<option value="' + 0 + '"> -- Select -- </option>');
+
+                    $.each(departments, function (i, department) {
+                        $("#AppliedCourse_Department_Id").append('<option value="' + department.Value + '">' + department.Text + '</option>');
+                    });
+                },
+                error: function (ex) {
+                    alert('Failed to retrieve departments.' + ex);
+                }
+            });
+        });
+        $('#rdNoRadio').click(function () {
+            if ($(this).is(':checked')) {
+                $('#divProgramme').hide();
+                $('#divOrderNo').show();
+            }
+        });
+
+        $('#rdYesRadio').click(function () {
+            if ($(this).is(':checked')) {
+                $('#divOrderNo').hide();
+                $('#divProgramme').show();
+            }
+        });
+    })
+</script>
+
+
+<div class="container">
+
+    <div class="col-md-12 card p-5">
+
+        @using (Html.BeginForm("PostGraduateApplication", "Form", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+
+            <div class="row">
+
+                <div class="col-md-12">
+
+                    <h3 style="color: #b78825">Post Graduate Application Form Confirmation</h3>
+
+                    <div class="panel panel-default">
+
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-md-6">
+
+                                    <div class="well" style="margin-bottom: 15px">
+                                        <blockquote>
+                                            <p>
+                                                Kindly enter your Confirmation Order Number in the space provided at the right hand side, and click the Next Button to fill your Application Form. Please endeavour to print your Acknowledgment Slip and Exam Slip after the submission of your form.
+                                            </p>
+                                        </blockquote>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div>
+                                        @if (TempData["Message"] != null)
+                                        {
+                                            @Html.Partial("_Message", TempData["Message"])
+                                        }
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label style="font-size: 10pt" class=" custom-text-white"> Please enter your Confirmation Order Number / Invoice Number</label>
+                                        @Html.TextBoxFor(model => model.ConfirmationOrderNumber, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.ConfirmationOrderNumber, null, new { @class = "text-danger" })
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel-footer ">
+                        <button class="btn btn-primary pull-right" type="submit" name="submit" id="submit" value="Next"> Submit</button>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+

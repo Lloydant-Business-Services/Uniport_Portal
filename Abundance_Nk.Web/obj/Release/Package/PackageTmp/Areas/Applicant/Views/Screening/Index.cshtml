@@ -1,0 +1,138 @@
+﻿@model Abundance_Nk.Web.Areas.Applicant.ViewModels.PostUtmeResultViewModel
+
+@{
+    ViewBag.Title = "Status Checking";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="~/Scripts/jquery-1.11.1.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        if ($("#Programme").val() > 0) {
+            $("#Name").show();
+        } else {
+            $("#Name").hide();
+        }
+
+        $("#Programme").change(function () {
+            if ($("#Programme").val() > 0) {
+                $("#Name").show();
+            } else {
+                $("#Name").hide();
+            }
+
+        })
+    })
+</script>
+
+
+<br />
+
+<div class="container">
+    <div class="col-md-12 card p-5">
+        <div class="row">
+            <div class="col-md-12">
+                <h3>PUTME Result Status Checking</h3>
+            </div><hr />
+        </div>
+        @using (Html.BeginForm("Index", "Screening", new { Area = "Applicant" }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+        {
+            @Html.AntiForgeryToken()
+            @*<h5>Please enter your <b>Application Form Number</b> and Etranzact <b>PIN</b> below to check your Application Status.</h5>*@
+            <div>Please Select <b>programme</b> and enter your <b>name</b> below to check your PUTME Result.</div>
+
+
+            <div class="panel panel-default mt-3">
+                <div class="row">
+
+                    <div class="form-group col-md-6 pl-0">
+                        @Html.LabelFor(model => model.Programme.Id, "Programme", new { @class = "col-md-12 control-label" })
+                        <div class="col-md-12">
+                            @Html.DropDownListFor(model => model.Programme.Id, (IEnumerable<SelectListItem>)ViewBag.ProgrammeId, new { @class = "form-control", required = "required", @id = "Programme" })
+                            @Html.ValidationMessageFor(model => model.Programme.Id)
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-6 pl-0">
+                        @Html.LabelFor(model => model.ApplicationFormSetting.Id, "Exam", new { @class = "col-md-12 control-label" })
+                        <div class="col-md-12">
+                            @Html.DropDownListFor(model => model.ApplicationFormSetting.Id, (IEnumerable<SelectListItem>)ViewBag.ExamId, new { @class = "form-control", required = "required", @id = "Programme" })
+                            @Html.ValidationMessageFor(model => model.ApplicationFormSetting.Id)
+                        </div>
+                    </div>
+
+                    <div style="display: none" id="Name" class="col-md-6 pl-0">
+                        <div class=" form-group col-md-12 pl-0">
+                            @Html.LabelFor(m => m.Name, "Name", new { @class = "col-md-12 control-label" })
+                            <div class="col-md-12">
+                                @Html.TextBoxFor(m => m.Name, new { @class = "form-control", required = "required" })
+                                @Html.ValidationMessageFor(m => m.Name, null, new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-12 pl-3">
+
+                            <input type="submit" value="Continue" class="btn btn-primary" />
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    @if (TempData["Message"] != null)
+                    {
+                        @Html.Partial("_Message", (Abundance_Nk.Model.Model.Message)TempData["Message"])
+                    }
+                </div>
+            </div>
+        }
+
+        @if (Model.Results != null && Model.Results.Count > 0)
+        {
+            using (Html.BeginForm("CheckByName", "Screening", new { Area = "Applicant" }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {
+                <hr />
+                @Html.HiddenFor(model => model.ApplicationFormSetting.Id)
+                <h5>Please Select your name from the drop-down list and enter Application Form pin then click check to continue.</h5>
+                <div class="panel panel-default">
+                    <div class="row">
+
+                        <div cclass="form-group col-md-6 pl-0">
+                            @Html.LabelFor(model => model.Name, "Names", new { @class = "col-md-12 control-label" })
+                            <div class="col-md-12">
+                                @Html.DropDownListFor(model => model.Result.Id, (IEnumerable<SelectListItem>)ViewBag.ResultListId, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Result.Id)
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-6 pl-0">
+                            @Html.LabelFor(model => model.PinNumber, "Application Form Pin", new { @class = "col-md-12 control-label" })
+                            <div class="col-md-12">
+                                @Html.TextBoxFor(model => model.PinNumber, new { @class = "form-control", @placeholder = "Enter Application Form Pins", @type="password" })
+
+                            </div>
+                        </div>
+                        <br />
+
+                        <div class="form-group col-md-6 pl-0">
+                            <div class="col-md-offset-3 col-md-9">
+                                <input type="submit" value="Check" class="btn btn-primary" />
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            }
+        }
+
+    </div>
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

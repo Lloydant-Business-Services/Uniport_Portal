@@ -1,0 +1,898 @@
+﻿@model Abundance_Nk.Web.Areas.Admin.ViewModels.BursaryPaymentViewModel
+@{
+
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    ViewBag.Title = "Payment Report";
+}
+<style>
+    .step {
+        color: blue;
+        font-size: 11pt;
+    }
+</style>
+<link href="~/Content/SmartWizard/smart_wizard.css" rel="stylesheet" />
+<link href="~/Content/SmartWizard/smart_wizard_theme_arrows.css" rel="stylesheet" />
+<link href="~/Content/SmartWizard/smart_wizard_theme_dots.css" rel="stylesheet" />
+<link href="~/Scripts/DataTables-1.10.15/extensions/Buttons/css/buttons.dataTables.css" rel="stylesheet" />
+@*@section Scripts{
+    @Scripts.Render(("~/bundles/jquery"))*@
+<script src="~/Scripts/DataTables-1.10.15/media/js/jquery.js"></script>
+<script src="~/Scripts/jquery.smartWizard.min.js"></script>
+<script src="~/Scripts/dataTables.js"></script>
+<script src="~/Content/js/bootstrap.js"></script>
+<script src="~/Scripts/DataTables-1.10.15/extensions/Buttons/js/dataTables.buttons.js"></script>
+<script src="~/Scripts/DataTables-1.10.15/extensions/Buttons/js/buttons.colVis.js"></script>
+<script src="~/Scripts/DataTables-1.10.15/extensions/Responsive/js/dataTables.responsive.js"></script>
+<script src="~/Scripts/DataTables-1.10.15/buttons.flash.min.js"></script>
+<script src="~/Scripts/DataTables-1.10.15/buttons.html5.min.js"></script>
+<script src="~/Scripts/DataTables-1.10.15/buttons.print.min.js"></script>
+<script src="~/Scripts/DataTables-1.10.15/jszip.min.js"></script>
+<script src="~/Scripts/DataTables-1.10.15/pdfmake.min.js"></script>
+<script src="~/Scripts/DataTables-1.10.15/vfs_fonts.js"></script>
+<script type="text/javascript">
+    var jQueryVesrsion_1_11_1 = $.noConflict(true);
+
+    var definedDataTable2,definedDataTable3,definedDataTable4,definedDataTable5,definedDataTable6,definedDataTable7;
+    var paymnetReportList = [];
+    var feeType,feeTypeName, mode, modeName, prog, progName,dept,deptName,dateFrom, dateTo,sortOption;
+
+    jQueryVesrsion_1_11_1(document).ready(function () {
+
+        var definedDataTable;
+        var payStackSortOption;
+        var eTrazactSortOption;
+       
+        $('#gifLoad').hide();
+        var stepToGoTo;
+
+        jQueryVesrsion_1_11_1('#smartwizard').smartWizard({
+            selected: 0,
+            theme: 'arrows',
+            transitionEffect: 'fade',
+            transitionSpeed: '400',
+            toolbarPosition: 'bottom',
+            showStepURLhash: false,
+            autoAdjustHeight: false,
+            hideButtonsOnDisabled: true
+        });
+
+        jQueryVesrsion_1_11_1("#smartwizard").on("showStep", function (e, anchorObject, stepNumber, stepDirection, stepPosition) {
+            //alert("You are on step " + stepNumber + " now" + stepPosition);
+            if (stepPosition === 'first') {
+                $("#prev-btn").addClass('disabled');
+                $('.sw-btn-next').prop('disabled', false);
+
+            } else if (stepPosition === 'final') {
+                $("#next-btn").addClass('disabled');
+            } else if (stepPosition === "middle") {
+
+            } else {
+                $("#prev-btn").removeClass('disabled');
+                $("#next-btn").removeClass('disabled');
+            }
+
+            stepToGoTo = stepPosition;
+        });
+        jQueryVesrsion_1_11_1("#prev-btn").on("click", function () {
+            // Navigate previous
+
+            $('#smartwizard').smartWizard("prev");
+            return true;
+        });
+
+        jQueryVesrsion_1_11_1('.sw-btn-next').on("click", function () {
+            // Navigate next
+            $('#gifLoad').show();
+            $('.sw-btn-next').prop('disabled', true);
+             dateFrom = $('#dateFrom').val();
+             dateTo = $('#dateTo').val();
+            if ($('#PayStackSortOption').is(':checked')) {
+                payStackSortOption = true;
+            } else if ($('#ETrazactSortOption').is(':checked')) {
+                eTrazactSortOption = true;
+            }
+
+            if (payStackSortOption != null || eTrazactSortOption != null) {
+
+                if (payStackSortOption == true) {
+                    sortOption = 2;
+                } else if (eTrazactSortOption == true) {
+                    sortOption = 1;
+                }
+
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("GetPaymentSummary", "BursaryPaymentReport", new { area = "Admin" })",
+                    dataType: "json",
+                    data: { sortOption: sortOption, dateFromString: dateFrom, dateToString: dateTo },
+                    beforeSend: function () {
+                        $("#gifLoad").show();
+                    },
+                    complete: function () {
+                        $("#gifLoad").hide();
+                    },
+                    success: function (result) {
+
+                        if (result[0].IsError == false) {
+                            $('#headerId').html(' ');
+                            if (definedDataTable != undefined) {
+                                definedDataTable.destroy();
+                            }
+                            $('#myTable tbody > tr').remove();
+
+                            for (var i = 0; i < result.length; i++) {
+
+                                $("#tableBody").append('<tr><td><a onclick="showModeSummary(' + result[i].FeeTypeId + ')">' + result[i].FeeTypeName + '</a></td>' +
+                                                    '<td>' + result[i].TotalCount + '</td><td>&#8358; ' + result[i].TotalAmount + '</td></tr>');
+                            }
+                           
+                            definedDataTable = jQueryVesrsion_1_11_1('#myTable').DataTable({
+                                dom: 'Bfrtip',
+                                ordering: true,
+                                retrieve: true,
+                                buttons: [
+                                    {
+                                        extend: 'copy',
+                                        exportOptions: {
+                                            columns: ':visible'
+                                        }
+                                    },
+                                    {
+                                        extend: 'csv',
+                                        exportOptions: {
+                                            columns: ':visible'
+                                        }
+                                    },
+                                    {
+                                        extend: 'excel',
+                                        exportOptions: {
+                                            columns: ':visible'
+                                        }
+                                    },
+                                    {
+                                        extend: 'pdf',
+                                        exportOptions: {
+                                            columns: ':visible'
+                                        }
+                                    },
+                                    {
+                                        extend: 'print',
+                                        exportOptions: {
+                                            columns: ':visible'
+                                        }
+                                    }, , 'colvis'
+                                ]
+                            });
+                            $("#tableBody").append('<tr><td>' + '<b>Total</b>' + '</td>' + '<td>' + result[0].OverallCount + '</td>' + '<td><b>&#8358; ' + result[0].OverallAmount + '</b></td></tr>');
+
+                            $('#headerId').text('Transaction Listing From' + " " + dateFrom + " " + 'through' + " " + " " + dateTo);
+
+                        } else {
+                            alert(result[0].ErrorMessage);
+                            $('#gifLoad').hide();
+                        }
+
+
+                    },
+                    error: function (ex) {
+                        alert('Operation Failed.' + ex);
+                        $('#gifLoad').hide();
+                    },
+                    traditional: true
+                });
+            }
+
+        });
+
+        jQueryVesrsion_1_11_1("#theme_selector").on("change", function () {
+            // Change theme
+            jQueryVesrsion_1_11_1('#smartwizard').smartWizard("theme", $(this).val());
+            return true;
+        });
+
+        // Set selected theme on page refresh
+        jQueryVesrsion_1_11_1("#theme_selector").change();
+
+
+        $('#PayStackSortOption').on('click', function () {
+            if ($('#ETrazactSortOption').is(':checked')) {
+                $('#ETrazactSortOption').prop('checked', false);
+                $('.sw-btn-next').prop('disabled', false);
+            }
+        });
+        $('#ETrazactSortOption').on('click', function () {
+            if ($('#PayStackSortOption').is(':checked')) {
+                $('#PayStackSortOption').prop('checked', false);
+                $('.sw-btn-next').prop('disabled', false);
+            }
+        });
+
+    });
+
+   
+    function showModeSummary(feeTypeIdVal) {
+
+        jQueryVesrsion_1_11_1('#smartwizard').smartWizard("next");
+
+        if (!dateFrom || !dateTo ) {
+            alert("Kindly select date-range before proceeding.");
+            return;
+        }
+
+        if (!sortOption || !feeTypeIdVal) {
+            alert("Validation failure.");
+            return;
+        }
+
+        feeType = feeTypeIdVal;
+
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("GetBreakdownByMode", "BursaryPaymentReport")',
+            traditional: true,
+            data: { sortOption: sortOption, dateFromString: dateFrom, dateToString: dateTo, feeTypeId: feeTypeIdVal },
+            beforeSend: function () {
+                $("#gifLoad").show();
+            },
+            complete: function () {
+                $("#gifLoad").hide();
+            },
+            success: function (result) {
+                if (result[0] && result[0].IsError === false) {
+
+                    feeTypeName = result[0].FeeTypeName;
+
+                    if (definedDataTable3 != undefined) {
+                        definedDataTable3.destroy();
+                    }
+                    $('#table3Body').html(' ');
+                    $('#headerId1').text(' ');
+
+                    for (var i = 0; i < result.length; i++) {
+
+                        $("#table3Body").append('<tr><td><a onclick="showProgSummary(' + result[i].PaymentModeId + ')">' + result[i].PaymentModeName + '</a></td>' +
+                                                '<td>' + result[i].TotalCount + '</td><td>&#8358; ' + result[i].TotalAmount + '</td></tr>');
+                    }
+                    
+                    $('#headerId1').text('Transaction Listing From' + " " + dateFrom + " " + 'through' + " " + " " + dateTo + " " + feeTypeName);
+                    definedDataTable3 = $('#myTable3').DataTable({
+                        dom: 'Bfrtip',
+
+                        ordering: true,
+                        buttons: [
+                            {
+                                extend: 'copy',
+                                exportOptions: {
+                                    columns: ':visible'
+                                }
+
+
+                            },
+                            {
+                                extend: 'csv',
+                                exportOptions: {
+                                    columns: ':visible'
+                                }
+
+
+                            },
+                            {
+                                extend: 'excel',
+                                exportOptions: {
+                                    columns: ':visible'
+                                }
+
+
+                            },
+                            {
+                                extend: 'pdf',
+                                exportOptions: {
+                                    columns: ':visible'
+                                }
+
+
+                            },
+                            {
+                                extend: 'print',
+                                exportOptions: {
+                                    columns: ':visible'
+                                }
+
+
+                            }, , 'colvis'
+                        ]
+                    });
+                    $("#table3Body").append('<tr><td>' + '<b>Total</b>' + '</td>' + '<td>' + result[0].OverallCount + '</td>' + '<td><b>&#8358; ' + result[0].OverallAmount + '</b></td></tr>');
+
+
+                } else {
+                    alert(result.Message);
+                }
+            },
+            error: function (ex) {
+                alert('Operation Failed.' + ex);
+            }
+        });
+    }
+
+    function showProgSummary(paymentModeIdVal) {
+
+        jQueryVesrsion_1_11_1('#smartwizard').smartWizard("next");
+        if (!dateFrom || !dateTo) {
+            alert("Kindly select date-range before proceeding.");
+            return;
+        }
+
+        if (!sortOption || !feeType || !paymentModeIdVal) {
+            alert("Validation failure.");
+            return;
+        }
+        mode = paymentModeIdVal;
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("GetBreakdownByProgramme", "BursaryPaymentReport")',
+            traditional: true,
+            data: { sortOption: sortOption, dateFromString: dateFrom, dateToString: dateTo, feeTypeId: feeType, paymentModeId: paymentModeIdVal },
+            beforeSend: function () {
+                $("#gifLoad").show();
+            },
+            complete: function () {
+                $("#gifLoad").hide();
+            },
+            success: function (result) {
+                if (result[0] && result[0].IsError === false) {
+
+                    modeName = result[0].PaymentModeName;
+
+                    if (definedDataTable4 != undefined) {
+                        definedDataTable4.destroy();
+                    }
+                    $('#table4Body').html(' ');
+                    $('#headerId2').text(' ');
+
+                    for (var i = 0; i < result.length; i++) {
+                        $("#table4Body").append('<tr><td><a onclick="showDeptSummary(' + result[i].ProgrammeId + ')">' + result[i].ProgrammeName + '</a></td>' +
+                                                '<td>' + result[i].TotalCount + '</td><td>&#8358; ' + result[i].TotalAmount + '</td></tr>');
+                    }
+                   
+                    definedDataTable4 = $('#myTable4').DataTable({
+                        dom: 'Bfrtip',
+
+                        ordering: true,
+                        buttons: [
+                            {
+                                extend: 'copy',
+                                exportOptions: {
+                                    columns: ':visible'
+                                }
+
+
+                            },
+                            {
+                                extend: 'csv',
+                                exportOptions: {
+                                    columns: ':visible'
+                                }
+
+
+                            },
+                            {
+                                extend: 'excel',
+                                exportOptions: {
+                                    columns: ':visible'
+                                }
+
+
+                            },
+                            {
+                                extend: 'pdf',
+                                exportOptions: {
+                                    columns: ':visible'
+                                }
+
+
+                            },
+                            {
+                                extend: 'print',
+                                exportOptions: {
+                                    columns: ':visible'
+                                }
+
+
+                            }, , 'colvis'
+                        ]
+                    });
+                    $("#table4Body").append('<tr><td>' + '<b>Total</b>' + '</td>' + '<td>' + result[0].OverallCount + '</td>' + '<td><b>&#8358; ' + result[0].OverallAmount + '</b></td></tr>');
+
+                    $("#headerId2").text("Transaction Listing From " + " "  + dateFrom + " through " + " "  + dateTo + " " + feeTypeName + " " + modeName);
+
+
+                } else {
+                    alert(result.Message);
+                }
+            },
+            error: function (ex) {
+                alert('Operation Failed.' + ex);
+            }
+        });
+    }
+
+    function showDeptSummary(programmeIdVal) {
+
+        jQueryVesrsion_1_11_1('#smartwizard').smartWizard("next");
+          prog = programmeIdVal;
+        if (!dateFrom || !dateTo ) {
+            alert("Kindly select date-range and session before proceeding.");
+            return;
+        }
+
+        if (!sortOption || !feeType || !mode || !programmeIdVal) {
+            alert("Validation failure.");
+            return;
+        }
+
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("GetBreakdownByDepartment", "BursaryPaymentReport")',
+            traditional: true,
+            data: { sortOption: sortOption, dateFromString: dateFrom, dateToString: dateTo, feeTypeId: feeType, paymentModeId: mode, programmeId: programmeIdVal },
+            beforeSend: function () {
+                $("#gifLoad").show();
+            },
+            complete: function () {
+                $("#gifLoad").hide();
+            },
+            success: function (result) {
+                if (result[0] && result[0].IsError === false) {
+
+                    var tempReportData = result[result.length - 1];
+                    paymnetReportList = tempReportData.PaymentSummary;
+                    progName = result[0].ProgrammeName;
+
+                    if (definedDataTable5 != undefined) {
+                        definedDataTable5.destroy();
+                    }
+                    $('#table5Body').html(' ');
+                    $('#headerId3').text(' ');
+
+                    for (var i = 0; i < result.length; i++) {
+                        
+                        $("#table5Body").append('<tr><td><a onclick="showSchFeeSummary(' + result[i].DepartmentId + ')">' + result[i].DepartmentName + '</a></td>' +
+                                                '<td>' + result[i].TotalCount + '</td><td>&#8358; ' + result[i].TotalAmount + '</td></tr>');
+                    }
+                   
+                    definedDataTable5 = $('#myTable5').DataTable({
+                        dom: 'Bfrtip',
+
+                        ordering: true,
+                        buttons: [
+                            {
+                                extend: 'copy',
+                                exportOptions: {
+                                    columns: ':visible'
+                                }
+
+
+                            },
+                            {
+                                extend: 'csv',
+                                exportOptions: {
+                                    columns: ':visible'
+                                }
+
+
+                            },
+                            {
+                                extend: 'excel',
+                                exportOptions: {
+                                    columns: ':visible'
+                                }
+
+
+                            },
+                            {
+                                extend: 'pdf',
+                                exportOptions: {
+                                    columns: ':visible'
+                                }
+
+
+                            },
+                            {
+                                extend: 'print',
+                                exportOptions: {
+                                    columns: ':visible'
+                                }
+
+
+                            }, , 'colvis'
+                        ]
+                    });
+                    $("#table5Body").append('<tr><td>' + '<b>Total</b>' + '</td>' + '<td>' + result[0].OverallCount + '</td>' + '<td><b>&#8358; ' + result[0].OverallAmount + '</b></td></tr>');
+
+                    $("#headerId3").text("Transaction Listing From " + " " + dateFrom + " through " + " " + dateTo + " " + feeTypeName + " " + modeName + " " + progName + "Report");
+
+
+                } else {
+                    alert(result.Message);
+                }
+            },
+            error: function (ex) {
+                alert('Operation Failed.' + ex);
+            }
+        });
+    }
+    function showSchFeeSummary(departmentValId) {
+
+        jQueryVesrsion_1_11_1('#smartwizard').smartWizard("next");
+        dept = departmentValId;
+        if (!dateFrom || !dateTo ) {
+            alert("Kindly select date-range and session before proceeding.");
+            return;
+        }
+
+        if (!sortOption || !feeType || !mode || !prog || !departmentValId || !paymnetReportList) {
+            alert("Validation failure.");
+            return;
+        }
+
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("GetPaymentSchoolFeeDetails", "BursaryPaymentReport")',
+            traditional: true,
+            data: { sortOption: sortOption, dateFromString: dateFrom, dateToString: dateTo, feeTypeId: feeType, paymentModeId: mode, programmeId: prog, departmentId: departmentValId,reportData : paymnetReportList },
+            beforeSend: function () {
+                $("#gifLoad").show();
+            },
+            complete: function () {
+                $("#gifLoad").hide();
+            },
+            success: function (result) {
+                if (result[0] && result[0].IsError === false) {
+
+                    if (definedDataTable6 != undefined) {
+                        definedDataTable6.destroy();
+                    }
+                    $('#table6Body').html(' ');
+                    $('#headerId4').text(' ');
+
+                    for (var i = 0; i < result.length; i++) {
+
+                        $("#table6Body").append('<tr><td><a onclick="showBreakdown(' + result[i].DepartmentId + ')">' + result[i].FeeName + '</a></td>' +
+                            '<td>' + result[i].TotalCount + '</td><td>&#8358 ' + result[i].FeeAmount + '</td><td>&#8358 ' + result[i].TotalFeeAmount + '</td></tr>');
+                    }
+                    definedDataTable6 = $('#myTable6').DataTable({
+                        dom: 'Bfrtip',
+
+                        ordering: true,
+                        buttons: [
+                            {
+                                extend: 'copy',
+                                exportOptions: {
+                                    columns: ':visible'
+                                }
+
+
+                            },
+                            {
+                                extend: 'csv',
+                                exportOptions: {
+                                    columns: ':visible'
+                                }
+
+
+                            },
+                            {
+                                extend: 'excel',
+                                exportOptions: {
+                                    columns: ':visible'
+                                }
+
+
+                            },
+                            {
+                                extend: 'pdf',
+                                exportOptions: {
+                                    columns: ':visible'
+                                }
+
+
+                            },
+                            {
+                                extend: 'print',
+                                exportOptions: {
+                                    columns: ':visible'
+                                }
+
+
+                            }, , 'colvis'
+                        ]
+                    });
+
+                    $("#headerId4").text("Fees Detail Breakdown from  " + " " + dateFrom + " through " + " " + dateTo);
+
+                } else {
+                    alert(result.Message);
+                }
+            },
+            error: function (ex) {
+                alert('Operation Failed.' + ex);
+            }
+        });
+    }
+    function showBreakdown(departmentValId) {
+
+        jQueryVesrsion_1_11_1('#smartwizard').smartWizard("next");
+        if (!dateFrom || !dateTo ) {
+            alert("Kindly select date-range and session before proceeding.");
+            return;
+        }
+
+        if (!sortOption || !feeType || !mode || !prog || !departmentValId) {
+            alert("Validation failure.");
+            return;
+        }
+
+        dept = departmentValId;
+
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("GetPaymentBreakdown", "BursaryPaymentReport")',
+            traditional: true,
+            data: { sortOption: sortOption, dateFromString: dateFrom, dateToString: dateTo, feeTypeId: feeType, paymentModeId: mode, programmeId: prog, departmentId: departmentValId },
+            beforeSend: function () {
+                $("#gifLoad").show();
+            },
+            complete: function () {
+                $("#gifLoad").hide();
+            },
+            success: function (result) {
+                if (result[0] != undefined && result[0].IsError === false) {
+
+                    deptName = result[0].DepartmentName;
+
+                    if (definedDataTable7 != undefined) {
+                        definedDataTable7.destroy();
+                    }
+                    $('#table7Body').html(' ');
+                    $('#headerId').text(' ');
+
+                    for (var i = 0; i < result.length; i++) {
+
+                        $("#table7Body").append('<tr><td>' + result[i].TransactionDate + '</td>' + '<td>' + result[i].MatricNumber + '</td>' + '<td>' + result[i].Name + '</td>' +
+                            '<td>' + result[i].Level + '</td>' + '<td>' + result[i].DepartmentName + '</td>' + '<td>' + result[i].Faculty + '</td>' + '<td>' + result[i].ProgrammeName + '</td>' +
+                            '<td>' + result[i].Session + '</td>' + '<td>' + result[i].InvoiceNumber + '</td>' + '<td>' + result[i].ConfirmationNumber + '</td><td>&#8358; ' + result[i].Amount + '</td></tr>');
+                    }
+
+                    $("#headerId5").text(result[0].FeeTypeName + " Transaction Listing From " + " " + dateFrom + " through " + " " + dateTo + " " + feeTypeName + " " + modeName + " " + progName + " " + deptName);
+
+                    definedDataTable7 = $('#myTable7').DataTable({
+                        dom: 'Bfrtip',
+                        ordering: true,
+                        buttons: [
+                            {
+                                extend: 'copy',
+                                exportOptions: {
+                                    columns: ':visible'
+                                }
+
+
+                            },
+                            {
+                                extend: 'csv',
+                                exportOptions: {
+                                    columns: ':visible'
+                                }
+
+
+                            },
+                            {
+                                extend: 'excel',
+                                exportOptions: {
+                                    columns: ':visible'
+                                }
+
+
+                            },
+                            {
+                                extend: 'pdf',
+                                exportOptions: {
+                                    columns: ':visible'
+                                }
+
+
+                            },
+                            {
+                                extend: 'print',
+                                exportOptions: {
+                                    columns: ':visible'
+                                }
+
+
+                            }, , 'colvis'
+                        ]
+                    });
+
+                    
+
+                } else {
+                    alert(result.Message);
+                }
+            },
+            error: function (ex) {
+                alert('Operation Failed.' + ex);
+                console.Log(ex);
+            }
+        });
+    }
+
+</script>
+@*}*@
+
+<div class="row" style="padding-left: 15px; min-height: 100%;">
+    <div>
+        @if (TempData["Message"] != null)
+        {
+            @Html.Partial("_Message", TempData["Message"])
+        }
+    </div>
+    <h2>Bursary Report</h2>
+    <div class="panel">
+        <div class="row">
+            <div class="col-md-12 ">
+                <div id="smartwizard">
+                    <ul>
+                        <li><a href="#step-1">Date Range<br /><small>Select Date Range </small></a></li>
+                        <li><a href="#step-2">Collections<br/><small>Collection Count </small></a></li>
+                        <li><a href="#step-3">Collections By Installment<br /><small>Collection Count By Installment </small></a></li>
+                        <li><a href="#step-4">Collections By Programme<br /><small>Collection Count By Programme </small></a></li>
+                        <li><a href="#step-5">Collections By Department<br/><small>Collection Count By Department  </small></a></li>
+                        <li><a href="#step-6">Collection Break Down<br/><small>Collection Details </small></a></li>
+                        <li><a href="#step-7">Collection Details<br /><small>Collection Break Down Details  </small></a></li>
+
+                    </ul>
+                    <div class="tab-content">
+                        <div id="step-1" class="tab-pane">
+                            <div class="panel-body">
+                                <div class="col-md-12">
+                                    <div class="row">
+                                        <div class="col-md-3 form-group">
+                                            <div class="custom-control custom-radio">
+                                                @Html.LabelFor(model => model.ETrazactSortOption, "E-Transact", new { @class = "control-label", id = "sort1" }) &nbsp; &nbsp; &nbsp;
+                                                @Html.CheckBoxFor(model => model.ETrazactSortOption, new { Checked = "checked" })
+                                            </div>
+                                        </div>
+                                        @*<div class="col-md-3  form-group">
+                                            <div class="custom-control custom-radio">
+                                                @Html.LabelFor(model => model.PayStackSortOption, "Paystack (Card Payment)", new { @class = "control-label", id = "sort2" })&nbsp; &nbsp; &nbsp;
+                                                @Html.CheckBoxFor(model => model.PayStackSortOption)
+                                            </div>
+                                        </div>*@
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            @Html.LabelFor(model => model.DateFrom, "Date From", new { @class = "control-label custom-text-black" })
+                                            @Html.TextBoxFor(model => model.DateFrom, new { @class = "form-control", placeholder = "From", type = "date", id = "dateFrom" })
+                                        </div>
+                                        <div class="col-md-3">
+                                            @Html.LabelFor(model => model.DateTo, "Date To", new { @class = "control-label custom-text-black" })
+                                            @Html.TextBoxFor(model => model.DateTo, new { @class = "form-control", placeholder = "To", type = "date", id = "dateTo" })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="step-2" class="tab-pane">
+                            <div class="row">
+                                <h3 class="border-bottom border-gray pb-2" id="headerId"></h3>
+                                <table class="table table-bordered table-hover table-striped" id="myTable">
+                                    <thead>
+                                    <tr>
+                                        <th>Collection Type</th>
+                                        <th>Total Count</th>
+                                        <th>Total Amount</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="tableBody"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div id="step-3" class="tab-pane">
+                            <div class="row">
+                                <h3 class="border-bottom border-gray pb-2" id="headerId1"></h3>
+                                <table class="table table-bordered table-hover table-striped table-responsive" id="myTable3">
+                                    <thead>
+                                    <tr>
+                                        <th>Payment Mode</th>
+                                        <th>Total Count</th>
+                                        <th>Total Amount</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="table3Body"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div id="step-4" class="tab-pane">
+                            <div class="row">
+                                <h3 class="border-bottom border-gray pb-2" id="headerId2"></h3>
+                                <table class="table table-bordered table-hover table-striped table-responsive" id="myTable4">
+                                    <thead>
+                                    <tr>
+                                        <th>Programme</th>
+                                        <th>Total Count</th>
+                                        <th>Total Amount</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="table4Body"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div id="step-5" class="tab-pane">
+                            <div class="row">
+                                <h3 class="border-bottom border-gray pb-2" id="headerId3"></h3>
+                                <table class="table table-bordered table-hover table-striped table-responsive" id="myTable5">
+                                    <thead>
+                                    <tr>
+                                        <th>Department</th>
+                                        <th>Total Count</th>
+                                        <th>Total Amount</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="table5Body"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div id="step-6" class="tab-pane">
+                            <div class="row">
+                                <h3 class="border-bottom border-gray pb-2" id="headerId4"></h3>
+                                <table class="table table-bordered table-hover table-striped table-responsive" id="myTable6">
+                                    <thead>
+                                    <tr>
+                                        <th>Fee Detail</th>
+                                        <th>Total Count</th>
+                                        <th>Amount</th>
+                                        <th>Total Amount</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="table6Body"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div id="step-7" class="tab-pane">
+                            <div class="row">
+                                <h3 class="border-bottom border-gray pb-2" id="headerId5"></h3>
+                                <table class="table table-bordered table-hover table-striped table-responsive" id="myTable7">
+                                    <thead>
+                                    <tr>
+                                        <th>Transaction Date</th>
+                                        <th>Matric Number</th>
+                                        <th>Name</th>
+                                        <th>Level</th>
+                                        <th>Department</th>
+                                        <th>Faculty</th>
+                                        <th>Programme</th>
+                                        <th>Session</th>
+                                        <th>Invoice Number</th>
+                                        <th>Confirmation Number</th>
+                                        <th>Amount</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="table7Body"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="row" style="display: none; position: fixed; top: 50%; left: 50%" id="gifLoad">
+                <img src="~/Content/Images/bx_loader.gif" />
+            </div>
+        </div>
+    </div>
+</div>
+@*<style>
+        .page-content {
+            height: auto;
+        }
+    </style>*@

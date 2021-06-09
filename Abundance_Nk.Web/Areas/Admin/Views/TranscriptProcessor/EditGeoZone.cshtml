@@ -1,0 +1,65 @@
+﻿@model Abundance_Nk.Model.Model.GeoZone
+@{
+    ViewBag.Title = "Edit Geo Zone";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+
+@using (Html.BeginForm("EditGeoZone", "TranscriptProcessor", new { area = "admin" }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <br />
+
+    <div class="panel panel-default">
+        @if (TempData["Message"] != null)
+        {
+            @Html.Partial("_Message", (Abundance_Nk.Model.Model.Message)TempData["Message"])
+        }
+        <div class="panel-body">
+            <h2 style="font-weight: 300; text-align: center">Edit GeoZone </h2>
+            <hr />
+            <div class="row">
+                <div class="col-md-12">
+                    @Html.HiddenFor(model => model.Id)
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+
+                                @Html.LabelFor(model => model.Name, "Name", new { @class = "control-label " })
+                                @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Name, null, new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+
+                                @Html.LabelFor(model => model.Description, "Description", new { @class = "control-label " })
+                                @Html.TextBoxFor(model => model.Description, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Description, null, new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-md-6" style="margin-top:20px">
+                            <div class="form-group">
+                                @Html.CheckBoxFor(model => model.Activated, new { @class = "" })
+                                @Html.LabelFor(model => model.Activated, "Activated", new { @class = "control-label " })
+                                @Html.ValidationMessageFor(model => model.Activated, null, new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="form-group">
+                            <div class="col--2"></div>
+                            <div class="col-sm-10">
+                                <input class="btn btn-success mr5" type="submit" name="submit" value="Save" />
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+}
+

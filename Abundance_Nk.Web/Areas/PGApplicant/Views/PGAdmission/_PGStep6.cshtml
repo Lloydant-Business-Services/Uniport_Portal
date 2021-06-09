@@ -1,0 +1,32 @@
+﻿
+@model Abundance_Nk.Web.Areas.Applicant.ViewModels.AdmissionViewModel
+
+<h3 class="mb-1">FILL BIODATA FORM</h3>
+<hr />
+<div class="container pl-0 ml-0">
+    <div class="col-md-12 pl-0 ml-0">
+
+        <div class="form-group pl-0 ml-0">
+
+            <div class="col-sm-12 pl-0 ml-0 ">
+                <div class="form-inline">
+                    <div class="form-group pl-0 ml-0">
+                        @Html.ActionLink("Fill Student Form", "Form", "Information", new { Area = "PGStudent", fid = Model.ApplicationForm.Id, pid = Model.AppliedCourse.Programme.Id }, new { @class = "btn btn-warning mr-2 ", target = "_blank", id = "alCourseRegistration" })
+
+                        <button class="btn btn-primary" type="button" name="btnStudentFormNext" id="btnStudentFormNext" />Student Form
+                    </div>
+
+                    <div class="form-group margin-bottom-0">
+                        <div id="divProcessingSchoolFeesInvoice" style="display: none">
+                            <img src="@Url.Content("~/Content/Images/bx_loader.gif")" />
+                            <span>Processing ...</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br />
+    <div id="divGenerateSchoolFeesInvoice"></div>
+</div>

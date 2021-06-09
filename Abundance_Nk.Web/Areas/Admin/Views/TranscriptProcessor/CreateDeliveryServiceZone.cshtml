@@ -1,0 +1,100 @@
+﻿@model Abundance_Nk.Web.Areas.Admin.ViewModels.TranscriptProcessorViewModel
+
+@{
+    ViewBag.Title = "Create Delivery Service";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+
+@using (Html.BeginForm("CreateDeliveryServiceZone", "TranscriptProcessor", new { area = "admin" }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <br />
+
+    <div class="panel panel-default">
+        @if (TempData["Message"] != null)
+        {
+            @Html.Partial("_Message", (Abundance_Nk.Model.Model.Message)TempData["Message"])
+        }
+
+        <div class="panel-body">
+            <h2 style="font-weight: 300; text-align: center">Create Delivery Service Zone</h2>
+            <hr/>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-6 mt-5">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.DeliveryServiceZone.DeliveryService.Id, "Delivery Service", new {@class = "control-label"})
+                                @Html.DropDownListFor(model => model.DeliveryServiceZone.DeliveryService.Id, (IEnumerable<SelectListItem>) ViewBag.DeliveryServiceId, new {@class = "form-control", id = "sessionCreate"})
+                                @Html.ValidationMessageFor(model => model.DeliveryServiceZone.DeliveryService.Id)
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 mt-5">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.DeliveryServiceZone.Country.Id, "Country", new { @class = "control-label" })
+                                @Html.DropDownListFor(model => model.DeliveryServiceZone.Country.Id, (IEnumerable<SelectListItem>)ViewBag.CountryId, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.DeliveryServiceZone.Country.Id)
+                            </div>
+                        </div>
+                        <div class="col-md-6 mt-5">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.DeliveryServiceZone.GeoZone.Id, "Geo Zone", new { @class = "control-label" })
+                                @Html.DropDownListFor(model => model.DeliveryServiceZone.GeoZone.Id, (IEnumerable<SelectListItem>)ViewBag.GeoZoneId, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.DeliveryServiceZone.GeoZone.Id)
+                            </div>
+                        </div>
+                        <div class="col-md-6 mt-5">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.DeliveryServiceZone.FeeType.Id, "FeeType", new {@class = "control-label"})
+                                @Html.DropDownListFor(model => model.DeliveryServiceZone.FeeType.Id, (IEnumerable<SelectListItem>)ViewBag.FeeId, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.DeliveryServiceZone.FeeType.Id)
+                            </div>
+                        </div>
+                        <div class="col-md-6 mt-5">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.DeliveryServiceZone.DeliveryServiceAmount, "Delivery Amount", new {@class = "control-label"})
+                                @Html.TextBoxFor(model => model.DeliveryServiceZone.DeliveryServiceAmount, new {@class = "form-control"})
+                                @Html.ValidationMessageFor(model => model.DeliveryServiceZone.DeliveryServiceAmount)
+                            </div>
+                        </div>
+                        <div class="col-md-6 mt-5">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.DeliveryServiceZone.LLoydantAmount, "LLoydant Amount", new {@class = "control-label"})
+                                @Html.TextBoxFor(model => model.DeliveryServiceZone.LLoydantAmount, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.DeliveryServiceZone.LLoydantAmount)
+                            </div>
+                        </div>
+                        <div class="col-md-6 mt-5">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.DeliveryServiceZone.SchoolAmount, "School Amount", new { @class = "control-label" })
+                                @Html.TextBoxFor(model => model.DeliveryServiceZone.SchoolAmount, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.DeliveryServiceZone.SchoolAmount)
+                            </div>
+                        </div>
+
+                        <div class="col-md-6" style="margin-top: 20px">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.DeliveryServiceZone.Activated, "Activated", new { @class = "control-label" })
+                                @Html.CheckBoxFor(model => model.DeliveryServiceZone.Activated, new {@class = ""})
+                                @Html.ValidationMessageFor(model => model.DeliveryServiceZone.Activated)
+                            </div>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="row">
+                        <div class="form-group">
+                            <div class="col--2"></div>
+                            <div class="col-sm-10">
+                                <input class="btn btn-success mr5" type="submit" name="submit" value="Create" />
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+}

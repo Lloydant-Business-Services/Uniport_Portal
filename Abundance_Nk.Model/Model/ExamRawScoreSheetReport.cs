@@ -1,0 +1,34 @@
+﻿namespace Abundance_Nk.Model.Model
+{
+    public class ExamRawScoreSheetReport
+    {
+        public string MatricNumber { get; set; }
+        public string Fullname { get; set; }
+        public string Department { get; set; }
+        public string Faculty { get; set; }
+        public string Semester { get; set; }
+        public string Session { get; set; }
+        public string Programme { get; set; }
+        public int CourseUnit { get; set; }
+        public string CourseCode { get; set; }
+        public string CourseTitle { get; set; }
+        public string Remark { get; set; }
+        public double QU1 { get; set; }
+        public double QU2 { get; set; }
+        public double QU3 { get; set; }
+        public double QU4 { get; set; }
+        public double QU5 { get; set; }
+        public double QU6 { get; set; }
+        public double QU7 { get; set; }
+        public double QU8 { get; set; }
+        public double QU9 { get; set; }
+        public double T_EX { get; set; }
+        public double T_CA { get; set; }
+        public double EX_CA { get; set; }
+        public double SuccessRate { get; set; }
+        public string Date { get; set; }
+        public string Level { get; set; }
+        public string Identifier { get; set; }
+        public int PassedStudentCount { get; set; }
+    }
+}

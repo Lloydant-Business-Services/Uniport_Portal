@@ -1,0 +1,185 @@
+﻿@model Abundance_Nk.Web.Areas.Admin.ViewModels.HostelViewModel
+@{
+    ViewBag.Title = "Hostel Allocation";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<script src="~/Scripts/jquery-3.1.1.js"></script>
+<script src="~/Scripts/jquery-3.1.1.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $('#myTable').DataTable({
+            dom: 'Bfrtip',
+            ordering: true,
+            retrieve: true,
+            buttons: [
+                {
+                    extend: 'copy',
+                    exportOptions: {
+                        columns: ':visible'
+                    }
+                },
+                {
+                    extend: 'csv',
+                    exportOptions: {
+                        columns: ':visible'
+                    }
+                },
+                {
+                    extend: 'excel',
+                    exportOptions: {
+                        columns: ':visible'
+                    }
+                },
+                {
+                    extend: 'pdf',
+                    exportOptions: {
+                        columns: ':visible'
+                    }
+                },
+                {
+                    extend: 'print',
+                    exportOptions: {
+                        columns: ':visible'
+                    }
+                }, , 'colvis'
+            ]
+        });
+    })
+</script>
+
+<div>
+    @if (TempData["Message"] != null)
+    {
+        @Html.Partial("_Message", (Abundance_Nk.Model.Model.Message)TempData["Message"])
+    }
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h4 class="panel-title">Hostel Allocation</h4>
+    </div>
+    <div class="panel-body">
+
+        @using (Html.BeginForm("HostelAllocationReport", "HostelAllocation", new { Area = "Admin" }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+        {
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    @Html.ValidationSummary(true)
+
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.HostelAllocation.Hostel.Name, "Hostel", new { @class = "col-md-3 control-label" })
+                        <div class="col-md-9">
+                            @Html.DropDownListFor(m => m.HostelAllocation.Hostel.Id, (IEnumerable<SelectListItem>)ViewBag.HostelId, new { @class = "form-control", @required = "required" })
+                            @Html.ValidationMessageFor(m => m.HostelAllocation.Hostel.Id, null, new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.HostelAllocation.Session.Id, "Session", new { @class = "col-md-3 control-label" })
+                        <div class="col-md-9">
+                            @Html.DropDownListFor(m => m.HostelAllocation.Session.Id, (IEnumerable<SelectListItem>)ViewBag.SessionId, new { @class = "form-control", @required = "required" })
+                            @Html.ValidationMessageFor(m => m.HostelAllocation.Session.Id, null, new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="col-md-offset-3 col-md-9">
+                            <input type="submit" value="Submit" class="btn btn-success" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+
+    <br />
+    <div class="panel-body">
+        <div class="col-md-12">
+
+
+            @if (Model.HostelAllocations != null && Model.HostelAllocations.Count > 0)
+            {
+                <div class="panel panel-danger">
+                    <div class="panel-body">
+
+                        <table class="table-bordered table-hover table-striped table-responsive table" id="myTable">
+                            <thead>
+                                <tr>
+
+                                    <th>
+                                        Series/Floor
+                                    </th>
+                                    <th>
+                                        Room
+                                    </th>
+                                    <th>
+                                        Bed Space
+                                    </th>
+                                    <th>
+                                        Occupant
+                                    </th>
+                                    <th>
+                                        Matric No
+                                    </th>
+                                    <th>
+                                        Session
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @for (int i = 0; i < Model.HostelAllocations.Count; i++)
+                                {
+                                    <tr>
+
+
+                                        <td>
+                                            @Model.HostelAllocations[i].Series.Name
+                                        </td>
+                                        <td>
+                                            @Model.HostelAllocations[i].Room.Number
+                                        </td>
+                                        <td>
+                                            @Model.HostelAllocations[i].Corner.Name
+                                        </td>
+                                        @if (Model.HostelAllocations[i].Occupied)
+                                        {
+                                            <td>
+                                                @Model.HostelAllocations[i].Person.FullName
+                                            </td>
+                                            <td>
+                                                @Model.HostelAllocations[i].Student.MatricNumber
+                                            </td>
+
+                                        }
+                                        else
+                                        {
+                                            <td>
+                                                -
+                                            </td>
+                                            <td>
+                                                -
+                                            </td>
+
+                                        }
+                                        <td>
+                                            @Model.HostelAllocations[i].Session.Name
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+
+                        </table>
+
+                    </div>
+                </div>
+
+            }
+
+        </div>
+    </div>
+
+</div>

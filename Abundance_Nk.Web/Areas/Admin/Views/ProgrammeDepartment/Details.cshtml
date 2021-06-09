@@ -1,0 +1,35 @@
+﻿@model Abundance_Nk.Model.Entity.PROGRAMME_DEPARTMENT
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>PROGRAMME_DEPARTMENT</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DEPARTMENT.Department_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DEPARTMENT.Department_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PROGRAMME.Programme_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PROGRAMME.Programme_Name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Programme_Department_Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

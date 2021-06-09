@@ -1,0 +1,33 @@
+﻿
+@{
+    ViewBag.Title = "PaymentReport";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<script src="~/Scripts/jquery.min.js"></script>
+<script src="~/Scripts/responsive-tabs.js"></script>
+
+<script type="text/javascript">
+    function resizeIframe(obj) {
+        obj.style.height = obj.contentWindow.document.body.scrollHeight + 'px';
+    }
+</script>
+
+<br/>
+<br/>
+
+<div style="color: black">
+    <h3>
+        All Payment Report 2016/2017 Session
+    </h3>
+</div>
+
+<div class="alert alert-dismissible alert-success">
+    <p>
+        <b> Payment Report</b> Shows Payment details for student in 2016/2017 Session.
+    </p>
+</div>
+
+<iframe src="~/Reports/Presenter/PaymentReportGeneral.aspx" style="width: 100%;" frameborder="0" scrolling="no" id="iframe" onload=' javascript:resizeIframe(this); '></iframe>
+
+<br />

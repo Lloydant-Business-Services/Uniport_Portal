@@ -1,0 +1,76 @@
+﻿@model Abundance_Nk.Web.Areas.Applicant.ViewModels.TranscriptViewModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="col-md-12 card p-5">
+
+            <div>
+                @if (TempData["Message"] != null)
+                {
+                    @Html.Partial("_Message", TempData["Message"])
+                }
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading panel-dark-head">
+                    <h4>Transcript Requests</h4>
+                </div>
+                <div class="panel-body">
+                    <div class="col-md-12">
+
+                        <table class="table table-bordered table-hover table-striped">
+                            <tr>
+                                <th>Name</th>
+                                <th>Reg. NO</th>
+                                <th>Date Requested</th>
+                                <th>Dest. Address</th>
+                                <th>Dest. State</th>
+                                <th>Dest. Country</th>
+                                <th>Invoice Generated ?</th>
+                                <th>Request Type</th>
+                                <th></th>
+                            </tr>
+
+                            @for (int i = 0; i < @Model.TranscriptRequests.Count; i++)
+                            {
+                                <tr>
+                                    <td>@Model.TranscriptRequests[i].student.FullName</td>
+                                    <td>@Model.TranscriptRequests[i].student.MatricNumber</td>
+                                    <td>@Model.TranscriptRequests[i].DateRequested</td>
+                                    <td>@Model.TranscriptRequests[i].DestinationAddress</td>
+                                    <td>@Model.TranscriptRequests[i].DestinationState.Name</td>
+                                    <td>@Model.TranscriptRequests[i].DestinationCountry.CountryName</td>
+                                    @if (Model.TranscriptRequests[i].payment != null)
+                                    {
+                                        <td> Yes </td>
+                                        <td>@Model.TranscriptRequests[i].payment.FeeType.Name</td>
+                                    }
+                                    else
+                                    {
+                                        <td> No </td>
+                                    }
+                                    @if (Model.TranscriptRequests[i].payment != null)
+                                    {
+                                        <td>@Html.ActionLink("Continue", "TranscriptPayment", new { tid = @Model.TranscriptRequests[i].Id }, new { @class = "btn btn-success" })</td>
+                                    }
+                                    else
+                                    {
+                                        <td>@Html.ActionLink("Make Payment", "TranscriptPayment", new { tid = @Model.TranscriptRequests[i].Id }, new { @class = "btn btn-success" })</td>
+                                    }
+
+                                </tr>
+                            }
+                        </table>
+
+                        <br />
+                        <div class="col-md-12">
+                            @Html.ActionLink("Make Request", "Request", new { sid = @Model.TranscriptRequests.FirstOrDefault().student.Id }, new { @class = "btn btn-success" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>

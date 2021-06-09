@@ -1,0 +1,78 @@
+﻿@model Abundance_Nk.Web.Areas.Applicant.ViewModels.PostJambViewModel
+<br />
+
+<h3>Previous Education</h3>
+@Html.HiddenFor(model => model.PreviousEducation.Id)
+<div class="row">
+    <div class="well">
+        <div class="form-group ">
+            @Html.LabelFor(model => model.PreviousEducation.SchoolName,new { @class = "control-label col-sm-3" })
+            <div class="col-sm-9" style="font-weight: bold">
+                @Html.TextBoxFor(model => model.PreviousEducation.SchoolName,new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.PreviousEducation.SchoolName)
+            </div>
+        </div>
+
+        <div class="form-group ">
+            @Html.LabelFor(model => model.PreviousEducation.Course,new { @class = "control-label col-sm-3" })
+            <div class="col-sm-9" style="font-weight: bold">
+                @Html.TextBoxFor(model => model.PreviousEducation.Course,new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.PreviousEducation.Course)
+            </div>
+        </div>
+
+        <div class="form-group ">
+            @Html.LabelFor(model => model.PreviousEducation.Id,"Start Date",new { @class = "control-label col-sm-3" })
+            <div class="col-sm-9" style="font-weight: bold">
+                @Html.DropDownListFor(model => model.PreviousEducation.StartYear.Id,(IEnumerable<SelectListItem>)ViewBag.PreviousEducationStartYearId,new { @class = "form-control" })
+                @Html.DropDownListFor(model => model.PreviousEducation.StartMonth.Id,(IEnumerable<SelectListItem>)ViewBag.PreviousEducationStartMonthId,new { @class = "form-control" })
+                @Html.DropDownListFor(model => model.PreviousEducation.StartDay.Id,(IEnumerable<SelectListItem>)ViewBag.PreviousEducationStartDayId,new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group ">
+            @Html.LabelFor(model => model.Sponsor.MobilePhone,"End Date",new { @class = "control-label col-sm-3" })
+            <div class="col-sm-9" style="font-weight: bold">
+                @Html.DropDownListFor(model => model.PreviousEducation.EndYear.Id,(IEnumerable<SelectListItem>)ViewBag.PreviousEducationEndYearId,new { @class = "form-control" })
+                @Html.DropDownListFor(model => model.PreviousEducation.EndMonth.Id,(IEnumerable<SelectListItem>)ViewBag.PreviousEducationEndMonthId,new { @class = "form-control" })
+                @Html.DropDownListFor(model => model.PreviousEducation.EndDay.Id,(IEnumerable<SelectListItem>)ViewBag.PreviousEducationEndDayId,new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group ">
+            @Html.LabelFor(model => model.PreviousEducation.Qualification.Id,new { @class = "control-label col-sm-3" })
+            <div class="col-sm-9" style="font-weight: bold">
+                @Html.DropDownListFor(model => model.PreviousEducation.Qualification.Id,(IEnumerable<SelectListItem>)ViewBag.QualificationId,new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.PreviousEducation.Qualification.Id)  </div>
+        </div>
+
+        <div class="form-group ">
+            @Html.LabelFor(model => model.PreviousEducation.ResultGrade.Id,new { @class = "control-label col-sm-3" })
+            <div class="col-sm-9" style="font-weight: bold">
+                @Html.DropDownListFor(model => model.PreviousEducation.ResultGrade.Id,(IEnumerable<SelectListItem>)ViewBag.ResultGradeId,new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.PreviousEducation.ResultGrade.Id)  </div>
+        </div>
+
+        <div class="form-group ">
+            @Html.LabelFor(model => model.PreviousEducation.ITDuration.Id,"Work Experience",new { @class = "control-label col-sm-3" })
+            <div class="col-sm-9" style="font-weight: bold">
+                @Html.DropDownListFor(model => model.PreviousEducation.ITDuration.Id,(IEnumerable<SelectListItem>)ViewBag.ITDurationId,new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.PreviousEducation.ITDuration.Id)    </div>
+        </div>
+        <div class="form-group ">
+            <div class="col-sm-3 "></div>
+            <div class="col-sm-9 ">
+                <div class="form-inline">
+                    <div class="form-group">
+                        <button class="btn btn-primary btn-metro mr5" type="button" value="Next">Next</button>
+                    </div>
+
+                    <div class="form-group margin-bottom-0">
+                        <div style="display: none">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

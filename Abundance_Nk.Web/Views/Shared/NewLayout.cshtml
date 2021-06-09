@@ -1,0 +1,210 @@
+﻿<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="~/Content/putme/css/bootstrap.min.css">
+    <!-- Now-ui-kit CSS -->
+    <link rel="stylesheet" href="~/Content/putme/css/now-ui-kit.css">
+
+    <link href="~/Content/sweetalert.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.11.1.min.js"></script>
+
+    <!-- Include the above in your HEAD tag -->
+    <title>ABSU PORTAL</title>
+    
+
+</head>
+
+<body>
+<nav class="navbar navbar-expand-lg bg-primary">
+    <div class="container">
+        <div class="navbar-translate">
+            <a class="navbar-brand bg-warning p-1" href="#pablo" style="position:absolute; top:-5px;">
+                <img src="~/Content/putme/img/logo1.png" alt="abiastateunivertsity" height="65">
+            </a>
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-bar bar1"></span>
+                <span class="navbar-toggler-bar bar2"></span>
+                <span class="navbar-toggler-bar bar3"></span>
+            </button>
+
+
+        </div>
+
+        <div class="collapse navbar-collapse justify-content-end" id="navigation">
+            <ul class="navbar-nav">
+                <li class="nav-item dropdown">
+                    <a class="dropdown-toggle nav-link" data-toggle="dropdown" href="#" aria-expanded="false">
+                       Applicant
+                        <span class="caret"></span>
+                    </a>
+
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink1">
+                        <li>@Html.ActionLink("Generate Invoice", "PostJambFormInvoiceGeneration", "Form", new { Area = "Applicant" }, new { @class = "dropdown-item"})</li>
+                        <li>@Html.ActionLink("Fill Application Form", "PostJambProgramme", "Form", new { Area = "Applicant" },  new { @class = "dropdown-item"})</li>
+                        <li class="divider"></li>
+                        <li>@Html.ActionLink("Check PUTME Result", "Index", "Screening", new { Area = "Applicant" }, new { @class = "dropdown-item" })</li>
+                        <li class="divider"></li>
+                      
+                        <li>@Html.ActionLink("Check Admission Status", "CheckStatus", "Admission", new { Area = "Applicant" }, new { @class = "dropdown-item" })</li>
+                        <li class="divider"></li>
+                        <li>@Html.ActionLink("Request For Hostel Allocation", "CreateHostelRequest", "Hostel", new { Area = "Student" }, new { @class = "dropdown-item" })</li>
+                        <li>@Html.ActionLink("Hostel Allocation Status", "HostelAllocationStatus", "Hostel", new { Area = "Student" }, new { @class = "dropdown-item" })</li>
+                            
+                    </ul>
+                </li>
+
+
+                <li class="nav-item dropdown">
+                    <a class="dropdown-toggle nav-link" data-toggle="dropdown" href="#" aria-expanded="false">  Returning Students 
+                      
+                    </a>
+
+                    
+                </li>
+
+
+                <li class="nav-item dropdown">
+                    <a class="dropdown-toggle nav-link" data-toggle="dropdown" href="#" aria-expanded="false"> Remedial Studies
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink1">
+                        <li>@Html.ActionLink("Generate Invoice", "Index", "Payment", new { Area = "Student" }, new { @class = "dropdown-item" })</li>
+                    </ul>
+                </li>
+
+
+                <li class="nav-item dropdown">
+                    <a class="dropdown-toggle nav-link" data-toggle="dropdown" href="#" aria-expanded="false">Post Graduate School
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                        <li>@Html.ActionLink("Generate Application Form Invoice", "PostJambFormInvoiceGeneration", "Form", new { Area = "Applicant" }, new { @class = "dropdown-item" })</li>
+                        <li>@Html.ActionLink("Fill Application Form", "Index", "PostGraduateForm", new { Area = "Applicant" }, new { @class = "dropdown-item" })</li>
+                        <li>@Html.ActionLink("Generate Invoice", "Index", "Payment", new { Area = "Student" }, new { @class = "dropdown-item" })</li>
+
+                        <li class="divider"></li>
+                        <li>@Html.ActionLink("Check Admission Status", "CheckStatus", "Admission", new { Area = "Applicant" }, new { @class = "dropdown-item" })</li>
+
+                        <li class="divider"></li>
+                        <li>@Html.ActionLink("Old Fees", "OldFees", "Payment", new { Area = "Student" }, new { @class = "dropdown-item" })</li>
+                        <li>@Html.ActionLink("Print Receipt", "PrintReceipt", "Registration", new { Area = "Student" }, new { @class = "dropdown-item" })</li>
+
+
+                    </ul>
+                </li>
+
+
+                <li class="dropdown nav-item">
+                    <a class="dropdown-toggle nav-link" data-toggle="dropdown" href="#">Graduate
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                        <li>@Html.ActionLink("Apply for Transcript", "Index", "Transcript", new { Area = "Applicant" }, new { @class = "dropdown-item" })</li>
+                        <li>@Html.ActionLink("Generate Transcript Receipt", "PayForTranscript", "Transcript", new { Area = "Applicant" }, new { @class = "dropdown-item" })</li>
+                               
+
+                    </ul>
+                </li>
+
+
+
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Login</a>
+                </li>
+               
+            </ul>
+        </div>
+    </div>
+</nav>
+    
+    <div class="container-fluid">
+        <div class="container">
+            @RenderBody()
+        </div>
+    </div>
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="~/Content/putme/js/jquery.3.2.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+<script src="~/Content/putme/js/bootstrap.min.js"></script>
+<script src="~/Scripts/sweetalert.min.js"></script>
+<!-- Start of Smartsupp Live Chat script -->
+<script type="text/javascript">
+
+
+    var _smartsupp = _smartsupp || {};
+    _smartsupp.key = "8d8c5c64fa82b02ea860a7f80d5a93c351259935";
+
+    //
+    _smartsupp.cookieDomain = '.abiastateuniversity.edu.ng';
+    _smartsupp.requireLogin = true;
+    // disable email
+    _smartsupp.loginEmailControl = false;
+    // append checkbox control to confirm something
+    _smartsupp.loginControls = [
+        {
+            xtype: 'textinput',
+            name: 'number',
+            label: 'Phone',
+            required: true
+        }, {
+            xtype: 'textinput',
+            name: 'identifier',
+            label: 'Application / Matric No',
+            required: true
+        }
+    ];
+
+    window.smartsupp || (function(d) {
+        var s, c, o = smartsupp = function() { o._.push(arguments); };
+        o._ = [];
+        s = d.getElementsByTagName('script')[0];
+        c = d.createElement('script');
+        c.type = 'text/javascript';
+        c.charset = 'utf-8';
+        c.async = true;
+        c.src = '//www.smartsuppchat.com/loader.js';
+        s.parentNode.insertBefore(c, s);
+    })(document);
+
+
+</script>
+<!-- End of Smartsupp Live Chat script -->
+<script>
+    // customize banner & logo
+    smartsupp('banner:set', 'bubble');
+    //smartsupp('chat:avatar', '/assets/images/demo-logo-1.png');
+
+    // customize texts
+    smartsupp('chat:translate', {
+        online: {
+            title: 'Support',
+            infoTitle: 'LLOYDANT'
+        },
+        offline: {
+            title: 'OFFLINE'
+        }
+    });
+
+    // customize colors
+    smartsupp('theme:colors', {
+        primary: '#b78825',
+        banner: '#999999',
+        primaryText: '#ffffff'
+    });
+</script>
+
+</body>
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+@RenderSection("scripts", false)
+</html>

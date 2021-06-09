@@ -1,0 +1,654 @@
+﻿@model Abundance_Nk.Web.Areas.Admin.ViewModels.StaffDataViewModel
+@{
+
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+@section Scripts {
+
+    @*<link href="~/Content/bootstrap-datepicker.css" rel="stylesheet" />
+        <script src="~/Scripts/bootstrap-datepicker.js"></script>
+        <link href="~/Content/jquery-ui-1.10.3.css" rel="stylesheet" />
+
+        <script type="text/javascript" src="~/Scripts/file-upload/jquery-1.9.1.min.js"></script>
+        <script src="~/Scripts/file-upload/jquery-ui-1.9.2.min.js"></script>
+        <script type="text/javascript" src="~/Scripts/file-upload/jquery.fileupload-ui.js"></script>
+        <script type="text/javascript" src="~/Scripts/file-upload/jquery.fileupload.js"></script>
+        <script type="text/javascript" src="~/Scripts/file-upload/jquery.iframe-transport.js"></script>*@
+    <script type="text/javascript" src="~/Scripts/file-upload/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/file-upload/jquery-ui-1.9.2.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/file-upload/jquery.fileupload-ui.js"></script>
+    <script type="text/javascript" src="~/Scripts/file-upload/jquery.fileupload.js"></script>
+    <script type="text/javascript" src="~/Scripts/file-upload/jquery.iframe-transport.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery.print.js"></script>
+
+    <script type="text/javascript">
+        var jqXHRData;
+    $(document).ready(function () {
+        $(".Load").hide();
+
+        $('.date').datepicker({
+            dateFormat: "mm/dd/yy",
+            showOtherMonths: true,
+            selectOtherMonths: true,
+            autoclose: true,
+            changeMonth: true,
+            changeYear: true,
+            yearRange: "-100:+0"
+        });
+        var src = $('#passport').attr('src');
+        if (src == undefined) {
+            $('#passport').attr('src', '/Content/Images/default_avatar.png');
+        }
+        var id = $("#@Html.IdFor(m => m.Staff.Id)").val();
+
+
+
+        initSimpleFileUpload();
+        $("#hl-start-upload").on('click', function () {
+            if (jqXHRData) {
+                jqXHRData.submit();
+            }
+            return false;
+        });
+        $("#fu-my-simple-upload").on('change', function() {
+			$("#tbx-file-path").val(this.files[0].name);
+		});
+
+		function initSimpleFileUpload() {
+			'use strict';
+
+			$('#fu-my-simple-upload').fileupload({
+				url: '@Url.Content("~/Admin/StaffProfile/UploadFile")',
+              	
+                dataType: 'json',
+
+				add: function(e, data) {
+					jqXHRData = data
+				},
+				send: function(e) {
+					$('#fileUploadProgress').show();
+				},
+				done: function(event, data) {
+					if (data.result.isUploaded) {
+						//alert("success");
+					} else {
+						$("#tbx-file-path").val("");
+						alert(data.result.message);
+					}
+
+					//alert(data.result.imageUrl);
+					//var imageUrl = data.result.imageUrl;
+
+
+					$('#passport').attr('src', data.result.imageUrl);
+					$('#fileUploadProgress').hide();
+				},
+				fail: function(event, data) {
+					if (data.files[0].error) {
+						alert(data.files[0].error);
+					}
+				}
+			});
+		}
+
+    });
+
+
+		
+    $("#Staff_State_Id").change(function () {
+        $("#Staff_LocalGovernment_Id").empty();
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("GetLocalGovernmentsByState")', //we are calling json method
+            dataType: 'json',
+            data: { id: $("#Staff_State_Id").val() },
+            success: function (lgas) {
+                $("#Staff_LocalGovernment_Id").append('<option value="' + 0 + '">-- Select --</option>');
+
+                $.each(lgas, function (i, lga) {
+                    $("#Staff_LocalGovernment_Id").append('<option value="' + lga.Value + '">' + lga.Text + '</option>');
+                });
+            },
+            error: function (ex) {
+                alert('Failed to retrieve lgas.' + ex);
+            }
+        });
+
+        return false;
+    });
+
+    function saveBioData() {
+        var valueArray = populateBioDataRecord();
+        var myJson = JSON.stringify(valueArray);
+
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("SavePersonalDetails")',
+            dataType: 'json',
+            data: { myRecordArray: myJson },
+            beforeSend: function () {
+                $(".Load").show();
+                $("#loading").show();
+                $("#preLoading").hide();
+            },
+            complete: function () {
+                $(".Load").hide();
+                $("#loading").hide();
+                $("#preLoading").show();
+            },
+            success: function (result) {
+                if (result.IsError === false) {
+
+                    $("#@Html.IdFor(m => m.Staff.Id)").val(result.Id);
+
+                    alert(result.Message);
+
+                } else {
+                    alert(result.Message);
+                }
+            },
+            error: function (ex) {
+                alert('Save operation failed.' + ex);
+            }
+        });
+    }
+
+        function saveEmploymentDetails() {
+
+            var valueArray = populateBioDataRecord();
+            var myJson = JSON.stringify(valueArray);
+
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("SaveEmploymentInformation")',
+                dataType: 'json',
+                data: { myRecordArray: myJson },
+                beforeSend: function () {
+                    $(".Load").show();
+                },
+                complete: function () {
+                    $(".Load").hide();
+                },
+                success: function (result) {
+                    if (result.IsError === false) {
+
+                        $("#@Html.IdFor(m => m.Staff.Id)").val(result.Id);
+                        //$("#Staff_Id").val(result.Id);
+
+                        alert(result.Message);
+
+                    } else {
+                        alert(result.Message);
+                    }
+                },
+                error: function (ex) {
+                    alert('Save operation failed.' + ex);
+                }
+            });
+        }
+
+        function populateBioDataRecord() {
+            var valueArray = {
+                "FirstName": $("#Staff_FirstName").val(),
+                "LastName": $("#Staff_LastName").val(),
+                "OtherName": $("#Staff_OtherName").val(),
+                "SexId": $("#Staff_Sex_Id").val(),
+                "MobilePhone": $("#Staff_MobilePhone").val(),
+                "Email": $("#Staff_Email").val(),
+                "ContactAddress": $("#Staff_ContactAddress").val(),
+                "DOBString": $("#Staff_DateOfBirth").val(),
+                "StateId": $("#Staff_State_Id").val(),
+                "LGAId": $("#Staff_LocalGovernment_Id").val(),
+                "ReligionId": $("#Staff_Religion_Id").val(),
+                "MaritalStatusId": $("#Staff_MaritalStatus_Id").val(),
+                "StaffTypeId": $("#Staff_Type_Id").val(),
+                "GenotypeId": $("#Staff_Genotype_Id").val(),
+                "BloodGroupId": $("#Staff_BloodGroup_Id").val(),
+                "Id": $("#Staff_Id").val(),
+                "DepartmentId": $("#EmployeeDetail_Department_Id").val(),
+                "DateOfPresentAppointment": $("#EmployeeDetail_DateOfPresentAppointment").val(),
+                "StaffNumber": $("#EmployeeDetail_StaffNumber").val(),
+                "DesignationId": $("#EmployeeDetail_Designation_Id").val(),
+                "GradeLevelId": $("#EmployeeDetail_GradeLevel_Id").val(),
+                "UnitId": $("#EmployeeDetail_Unit_Id").val(),
+                "DateOfPreviousAppointment": $("#EmployeeDetail_DateOfPreviousApointment").val(),
+                "DateOfRetirement": $("#EmployeeDetail_DateOfRetirement").val(),
+                "InstitutionAttended": $("#StaffQualification_InstitutionAttended").val(),
+                "EducationalQualificationId": $("#StaffQualification_EducationalQualification_Id").val(),
+                "StaffResultGradeId": $("#StaffQualification_StaffResultGrade_Id").val(),
+                "FromDate": $("#StaffQualification_FromDateStr").val(),
+                "ToDate": $("#StaffQualification_ToDateStr").val(),
+                "CertificateNumber": $("#StaffQualification_CertificateNumber").val(),
+                "SignatureFileUrl": $("#Staff_SignatureFileUrl").val()
+        }
+
+            return valueArray;
+        }
+
+        function saveQualificationDetails() {
+            var valueArray = populateBioDataRecord();
+            var myJson = JSON.stringify(valueArray);
+
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("SaveQualificationInformation")',
+                dataType: 'json',
+                data: { myRecordArray: myJson },
+                beforeSend: function () {
+                    $(".Load").show();
+                },
+                complete: function () {
+                    $(".Load").hide();
+                },
+                success: function (result) {
+                    if (result.IsError === false) {
+
+                        $("#@Html.IdFor(m => m.Staff.Id)").val(result.Id);
+                        //$("#Staff_Id").val(result.Id);
+
+                        alert(result.Message);
+
+                    } else {
+                        alert(result.Message);
+                    }
+                },
+                error: function (ex) {
+                    alert('Save operation failed.' + ex);
+                }
+            });
+        }
+    </script>
+
+}
+
+<br />
+<div>
+    @if (TempData["Message"] != null)
+    {
+        @Html.Partial("_Message", TempData["Message"])
+    }
+</div>
+
+<div class="col-md-12">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+        <h3>Staff Profile</h3>
+        <hr />
+        <div class="panel panel-default">
+            <div class="panel-body">
+
+                <div class="container">
+             
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a data-toggle="tab" href="#bio">Bio-Data</a></li>
+                        <li><a data-toggle="tab" href="#employment">Employment Details</a></li>
+                        <li><a data-toggle="tab" href="#qualification">Qualification Details</a></li>
+                    </ul>
+
+                    <div class="tab-content">
+                        <div id="bio" class="tab-pane fade in active">
+                            <h3>Staff Bio-Data</h3>
+                            @Html.HiddenFor(model => model.Person.Id)
+
+                            <hr />
+                            <div style="display: none" class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Staff.Id, "ID:", new { @class = "control-label" })
+                                        @Html.TextBoxFor(model => model.Staff.Id, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.Staff.Id)
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Staff.Person.LastName, "LastName:", new { @class = "control-label" })
+                                        @Html.TextBoxFor(model => model.Staff.Person.LastName, new { @class = "form-control", @id = "Staff_LastName" })
+                                        @Html.ValidationMessageFor(model => model.Staff.Person.LastName)
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Staff.Person.FirstName, "FirstName:", new { @class = "control-label" })
+                                        @Html.TextBoxFor(model => model.Staff.Person.FirstName, new { @class = "form-control", @id = "Staff_FirstName" })
+                                        @Html.ValidationMessageFor(model => model.Staff.Person.FirstName)
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Staff.Person.OtherName, "OtherNames:", new { @class = "control-label" })
+                                        @Html.TextBoxFor(model => model.Staff.Person.OtherName, new { @class = "form-control", @id = "Staff_OtherName" })
+                                        @Html.ValidationMessageFor(model => model.Staff.Person.OtherName)
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Staff.Person.Sex.Id, "Sex:", new { @class = "control-label" })
+                                        @Html.DropDownListFor(model => model.Staff.Person.Sex.Id, (IEnumerable<SelectListItem>)ViewBag.Sex, new { @class = "form-control", @id = "Staff_Sex_Id" })
+                                        @Html.ValidationMessageFor(model => model.Staff.Person.Sex.Id)
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Staff.Person.MobilePhone, "Phone Number:", new { @class = "control-label" })
+                                        @Html.TextBoxFor(model => model.Staff.Person.MobilePhone, new { @class = "form-control", @id = "Staff_MobilePhone" })
+                                        @Html.ValidationMessageFor(model => model.Staff.Person.MobilePhone)
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Staff.Person.Email, "Email:", new { @class = "control-label" })
+                                        @Html.TextBoxFor(model => model.Staff.Person.Email, new { @class = "form-control", @id = "Staff_Email" })
+                                        @Html.ValidationMessageFor(model => model.Staff.Person.Email)
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Staff.Person.ContactAddress, "Address:", new { @class = "control-label" })
+                                        @Html.TextBoxFor(model => model.Staff.Person.ContactAddress, new { @class = "form-control", @id = "Staff_ContactAddress" })
+                                        @Html.ValidationMessageFor(model => model.Staff.Person.ContactAddress)
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Staff.Person.DateOfBirth, "DateOfBirth:", new { @class = "control-label" })
+                                        @Html.TextBoxFor(model => model.Staff.Person.DateOfBirth, new { @class = "form-control date", @id = "Staff_DateOfBirth" })
+                                        @Html.ValidationMessageFor(model => model.Staff.Person.DateOfBirth)
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Staff.Person.State.Id, "State:", new { @class = "control-label" })
+                                        @Html.DropDownListFor(model => model.Staff.Person.State.Id, (IEnumerable<SelectListItem>)ViewBag.State, new { @class = "form-control", @id = "Staff_State_Id" })
+                                        @Html.ValidationMessageFor(model => model.Staff.Person.State.Id)
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Staff.Person.LocalGovernment.Id, "Local Government Area:", new { @class = "control-label" })
+                                        @Html.DropDownListFor(model => model.Staff.Person.LocalGovernment.Id, (IEnumerable<SelectListItem>)ViewBag.LGA, new { @class = "form-control", @id = "Staff_LocalGovernment_Id" })
+                                        @Html.ValidationMessageFor(model => model.Staff.Person.LocalGovernment.Id)
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Staff.Person.Religion.Id, "Religion:", new { @class = "control-label" })
+                                        @Html.DropDownListFor(model => model.Staff.Person.Religion.Id, (IEnumerable<SelectListItem>)ViewBag.Religion, new { @class = "form-control", @id = "Staff_Religion_Id" })
+                                        @Html.ValidationMessageFor(model => model.Staff.Person.Religion.Id)
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Staff.MaritalStatus.Id, "Marital Status:", new { @class = "control-label" })
+                                        @Html.DropDownListFor(model => model.Staff.MaritalStatus.Id, (IEnumerable<SelectListItem>)ViewBag.MaritalStatus, new { @class = "form-control", @id = "Staff_MaritalStatus_Id" })
+                                        @Html.ValidationMessageFor(model => model.Staff.MaritalStatus.Id)
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Staff.Type.Id, "Staff Type:", new { @class = "control-label" })
+                                        @Html.DropDownListFor(model => model.Staff.Type.Id, (IEnumerable<SelectListItem>)ViewBag.StaffType, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.Staff.Type.Id)
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Staff.Genotype.Id, "Genotype:", new { @class = "control-label" })
+                                        @Html.DropDownListFor(model => model.Staff.Genotype.Id, (IEnumerable<SelectListItem>)ViewBag.Genotype, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.Staff.Genotype.Id)
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                               <div class="col-md-6">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Staff.BloodGroup.Id, "BloodGroup:", new { @class = "control-label" })
+                                        @Html.DropDownListFor(model => model.Staff.BloodGroup.Id, (IEnumerable<SelectListItem>)ViewBag.BloodGroup, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.Staff.BloodGroup.Id)
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Staff.ProfileDescription, "Other Information:", new { @class = "control-label" })
+                                        @Html.TextBoxFor(model => model.Staff.ProfileDescription, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.Staff.ProfileDescription)
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <div class="col-md-12 padding-bottom-3">
+
+
+                                            <img id="passport" src="@Url.Content('~' + Model.Staff.Person.SignatureFileUrl)" alt="" style="max-width:150px" />
+                                        </div>
+                                    </div>
+
+                                    <div class="row padding-bottom-5">
+                                        <div class="col-md-6 ">
+                                            @Html.HiddenFor(model => model.Staff.Person.SignatureFileUrl, new { id = "hfPassportUrl", name = "hfPassportUrl" })
+                                            <input type="text" id="tbx-file-path" readonly="readonly" />
+                                        </div>
+                                        <div class="col-md-6">
+                                            @Html.TextBoxFor(m => m.MyFile, new { id = "fu-my-simple-upload", type = "file", style = "color:transparent;" })
+                                        </div>
+                                    </div>
+
+                                    <div class="row padding-bottom-10">
+                                        <div class="col-md-12">
+                                            <input class="btn btn-default btn-metro" type="button" name="hl-start-upload" id="hl-start-upload" value="Upload Signature" />
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div id="fileUploadProgress" style="display:none">
+                                                <img src="@Url.Content("~/Content/Images/bx_loader.gif")" />
+                                                <span>Uploading ...</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                @*<div class="col-md-6">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Staff.SignatureFileUrl, "Staff Signature:", new { @class = "control-label" })
+                    @Html.TextBoxFor(model => model.Staff.SignatureFileUrl, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Staff.SignatureFileUrl)
+                </div>
+            </div>*@
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <button type="button" id="btnSaveBioData" class="btn btn-primary" onclick="saveBioData()">
+                                            <span id="preLoading">Save</span>
+                                            <span style="display: none;" id="loading"><img class="loading" src="~/Content/images/loading.svg" width="20" height="20"></span>
+                                        </button> &nbsp;
+                                        @*<span style="display: none" class="Load"><img src="~/Content/Images/bx_loader.gif" /></span>*@
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div id="employment" class="tab-pane fade">
+                            <h3>Employment Information</h3>
+                            <hr />
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.EmployeeDetail.DateOfPresentAppointment, "Employment Date:", new { @class = "control-label" })
+                                        @Html.TextBoxFor(model => model.EmployeeDetail.DateOfPresentAppointment, new { @class = "form-control date" })
+                                        @Html.ValidationMessageFor(model => model.EmployeeDetail.DateOfPresentAppointment)
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.EmployeeDetail.Department.Name, "Department:", new { @class = "control-label" })
+                                        @Html.DropDownListFor(model => model.EmployeeDetail.Department.Id, (IEnumerable<SelectListItem>)ViewBag.Department, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.EmployeeDetail.Department.Id)
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.EmployeeDetail.StaffNumber, "Staff Number:", new { @class = "control-label" })
+                                        @Html.TextBoxFor(model => model.EmployeeDetail.StaffNumber, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.EmployeeDetail.StaffNumber)
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.EmployeeDetail.Designation.Id, "Designation:", new { @class = "control-label" })
+                                        @Html.DropDownListFor(model => model.EmployeeDetail.Designation.Id, (IEnumerable<SelectListItem>)ViewBag.Designation, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.EmployeeDetail.Designation.Id)
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.EmployeeDetail.GradeLevel.Id, "Level:", new { @class = "control-label" })
+                                        @Html.DropDownListFor(model => model.EmployeeDetail.GradeLevel.Id, (IEnumerable<SelectListItem>)ViewBag.GradeLevel, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.EmployeeDetail.GradeLevel.Id)
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.EmployeeDetail.Unit.Id, "Unit:", new { @class = "control-label" })
+                                        @Html.DropDownListFor(model => model.EmployeeDetail.Unit.Id, (IEnumerable<SelectListItem>)ViewBag.Unit, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.EmployeeDetail.Unit.Id)
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.EmployeeDetail.DateOfPreviousApointment, "Date Of Previous Appointment:", new { @class = "control-label" })
+                                        @Html.TextBoxFor(model => model.EmployeeDetail.DateOfPreviousApointment, new { @class = "form-control date" })
+                                        @Html.ValidationMessageFor(model => model.EmployeeDetail.DateOfPreviousApointment)
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.EmployeeDetail.DateOfRetirement, "Date Of Retirement:", new { @class = "control-label" })
+                                        @Html.TextBoxFor(model => model.EmployeeDetail.DateOfRetirement, new { @class = "form-control date" })
+                                        @Html.ValidationMessageFor(model => model.EmployeeDetail.DateOfRetirement)
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <button type="button" id="btnSaveStudentDetail" class="btn btn-primary" onclick="saveEmploymentDetails()">Save</button> &nbsp;
+                                        <span style="display: none" class="Load"><img src="~/Content/Images/bx_loader.gif" /></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div id="qualification" class="tab-pane fade">
+                            <h3>Qualification Information</h3>
+                            <hr />
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.StaffQualification.InstitutionAttended, "Institution Attended:", new { @class = "control-label" })
+                                        @Html.TextBoxFor(model => model.StaffQualification.InstitutionAttended, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.StaffQualification.InstitutionAttended)
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.StaffQualification.EducationalQualification.Name, "Educational Qualification:", new { @class = "control-label" })
+                                        @Html.DropDownListFor(model => model.StaffQualification.EducationalQualification.Id, (IEnumerable<SelectListItem>)ViewBag.EducationalQualification, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.StaffQualification.EducationalQualification.Id)
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.StaffQualification.StaffResultGrade.Grade, "Grade:", new { @class = "control-label" })
+                                        @Html.DropDownListFor(model => model.StaffQualification.StaffResultGrade.Id, (IEnumerable<SelectListItem>)ViewBag.StaffResultGrade, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.StaffQualification.StaffResultGrade.Id)
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.StaffQualification.CertificateNumber, "Certificate Number:", new { @class = "control-label" })
+                                        @Html.TextBoxFor(model => model.StaffQualification.CertificateNumber, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.StaffQualification.CertificateNumber)
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.StaffQualification.FromDateStr, "From:", new { @class = "control-label" })
+                                        @Html.TextBoxFor(model => model.StaffQualification.FromDateStr, new { @class = "form-control date" })
+                                        @Html.ValidationMessageFor(model => model.StaffQualification.FromDateStr)
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.StaffQualification.ToDateStr, "To:", new { @class = "control-label" })
+                                        @Html.TextBoxFor(model => model.StaffQualification.ToDateStr, new { @class = "form-control date" })
+                                        @Html.ValidationMessageFor(model => model.StaffQualification.ToDateStr)
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <button type="button" id="btnSponsorDetail" class="btn btn-primary" onclick="saveQualificationDetails()">Save</button> &nbsp;
+                                        <span style="display: none" class="Load"><img src="~/Content/Images/bx_loader.gif" /></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+    <div class="col-md-1"></div>
+</div>

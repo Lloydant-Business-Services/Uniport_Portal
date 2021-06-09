@@ -1,0 +1,231 @@
+﻿@model Abundance_Nk.Web.Areas.Admin.ViewModels.CourseViewModel
+@{
+    ViewBag.Title = "Upload Courses By Excel Sheet";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<script src="~/Scripts/DataTables-1.10.15/media/js/jquery.js"></script>
+
+<div class="row">
+    <div class="col-xs-12">
+        @if (TempData["Message"] != null)
+        {
+            @Html.Partial("_Message", (Abundance_Nk.Model.Model.Message)TempData["Message"])
+        }
+        <br />
+        @using (Html.BeginForm("UploadCoursesByExcelSheet", "Courses", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+
+            <div class="panel panel-default" style="background:#fff;">
+                <div class="panel-body">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <h5 class="text-center"
+                                style="padding: 10px 5px;background:whitesmoke;border-radius: 20% !important;">
+                                UPLOAD COURSE BY EXCEL SHEET
+                            </h5>
+                        </div>
+                    </div>
+                    <div class="row" style="padding:10px 15px;">
+                        <div class="col-xs-12 col-sm-6">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.programme.Id, "Select Programme", new { @class = "control-label custom-text-black" })
+                                @Html.DropDownListFor(model => model.programme.Id, (IEnumerable<SelectListItem>)ViewBag.ProgrammeSL, new { @class = "form-control", id = "programme-list", required = true })
+                                @Html.ValidationMessageFor(model => model.programme.Id, null, new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Department.Id, "Select Department", new { @class = "control-label custom-text-black" })
+                                <select name="Department.Id" id="department-list" class="form-control" disabled></select>
+                                @Html.ValidationMessageFor(model => model.Department.Id, null, new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="col-xs-12 col-sm-6">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.level.Id, "Select Level", new { @class = "control-label custom-text-black" })
+                                @Html.DropDownListFor(model => model.level.Id, (IEnumerable<SelectListItem>)ViewBag.LevelSL, new { @class = "form-control", id = "level-list", required = true })
+                                @Html.ValidationMessageFor(model => model.level.Id, null, new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="col-xs-12 col-sm-6">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.CourseType.Id, "Select Course Type", new { @class = "control-label custom-text-black" })
+                                @Html.DropDownListFor(model => model.CourseType.Id, (IEnumerable<SelectListItem>)ViewBag.CourseTypeSL, new { @class = "form-control", id = "course-type-list", required = true })
+                                @Html.ValidationMessageFor(model => model.CourseType.Id, null, new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="col-xs-12 col-sm-6">
+                            <div class="form-group" style="padding-top:5px;">
+                                <input type="file" name="CourseExcelFile" id="course-excel-file" accept=".xlsb,.xls,.xlsx,.xlsm" required />
+                            </div>
+                        </div>
+
+                        <div class="col-xs-12 col-sm-6" style="padding-top: 20px">
+                            <input class="btn btn-success btn-block" disabled type="submit" name="submit" id="submit-btn" value="Submit" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+            <div class="panel panel-default" id="preview-excelsheet" style="display:none;">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <h5 class="text-center"
+                            id="excel-sheet-header-name"
+                            style="padding: 10px 5px;background:whitesmoke;border-radius: 20% !important;">
+                        </h5>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div id="dvExcel"></div>
+                </div>
+            </div>
+
+    </div>
+</div>
+
+<script src="~/Content/js/xlsx.js"></script>
+
+<script type="text/javascript">
+    const ProcessExcel = (data, fileName) => {
+        //Read the Excel File data.
+        let workbook = XLSX.read(data, {
+            type: 'binary'
+        });
+
+        //Fetch the name of First Sheet.
+        let firstSheet = workbook.SheetNames[0];
+
+        //Read all rows from First Sheet into an JSON array.
+        let excelRows = XLSX.utils.sheet_to_json(workbook.Sheets[firstSheet]);
+        let containerDiv = document.getElementById("preview-excelsheet");
+        containerDiv.style.display = "none";
+        console.log(fileName);
+        document.getElementById("excel-sheet-header-name").innerHTML = `PREVIEW OF ${fileName?.toUpperCase()}`;
+
+        //Create a HTML Table element.
+        let table = document.createElement("table");
+        table.setAttribute("class", "table table-striped");
+        table.setAttribute("style", "width: 100%;");
+        table.border = "1";
+
+        //Add the header row.
+        let row = table.insertRow(-1);
+
+        const rows = excelRows[0];
+        //Add the header cells.
+        for (const key of Object.keys(rows)) {
+            let headerCell = document.createElement("TH");
+            headerCell.innerHTML = key;
+            row.appendChild(headerCell);
+        }
+
+        for (let i = 0; i < excelRows.length; i++) {
+            //Add the data row.
+            let row = table.insertRow(-1);
+
+            for (let [key, value] of Object.entries(excelRows[i])) {
+                //Add the data cells.
+                let cell = row.insertCell(-1);
+                cell.innerHTML = value;
+            }
+
+            containerDiv.style.display = "block";
+        }
+
+        let dvExcel = document.getElementById("dvExcel");
+        dvExcel.innerHTML = "";
+        dvExcel.appendChild(table);
+    };
+
+    document.querySelector("#course-excel-file").addEventListener("change", (e) => {
+        let fileUpload = e.target.files[0];
+        console.log({ fileUpload });
+
+        //Validate whether File is valid Excel file.
+        let regex = /^([a-zA-Z0-9\s_\\.\-:])+(.xls|.xlsx)$/;
+        if (regex.test(fileUpload.name?.toLowerCase())) {
+            if (typeof (FileReader) != "undefined") {
+                let reader = new FileReader();
+
+                //For Browsers other than IE.
+                if (reader.readAsBinaryString) {
+                    reader.onload = (e) => {
+                        ProcessExcel(e.target.result, fileUpload.name);
+                    };
+                    reader.readAsBinaryString(fileUpload);
+                } else {
+                    //For IE Browser.
+                    reader.onload = (e) => {
+                        let data = "";
+                        let bytes = new Uint8Array(e.target.result);
+                        for (let i = 0; i < bytes.byteLength; i++) {
+                            data += String.fromCharCode(bytes[i]);
+                        }
+                        ProcessExcel(data, fileUpload.name);
+                    };
+                    reader.readAsArrayBuffer(fileUpload);
+                }
+            } else {
+                alert("This browser does not support HTML5.");
+            }
+        } else {
+            alert("Please upload a valid Excel file.");
+        }
+    });
+
+    $("#programme-list, #department-list, #level-list, #course-type-list, #course-excel-file").on("change", (e) => {
+        e.preventDefault();
+
+        const programmeValue = $("#programme-list").val();
+        const departmentValue = $("#department-list").val();
+        const levelValue = $("#level-list").val();
+        const courseTypeValue = $("#course-type-list").val();
+        const submitBtn = $("#submit-btn");
+        const fileBtn = $("#course-excel-file");
+        submitBtn.attr("disabled", true);
+
+        if ((programmeValue && programmeValue > 0)
+            && (departmentValue && departmentValue > 0)
+            && (levelValue && levelValue > 0)
+            && (courseTypeValue && courseTypeValue > 0)
+            && fileBtn[0].files.length > 0) {
+            submitBtn.removeAttr("disabled");
+        }
+    });
+
+    $("#programme-list").on("change", (e) => {
+        const programmeId = e.target.value;
+
+        if (programmeId) {
+            $.ajax({
+                url: "@Url.Action("SetDepartmentList", "PostGraduateForm", new { Area = "PGApplicant" })",
+                data: { programmeId },
+                type: "POST",
+                success: (data) => {
+                    const departmentSelectList = $("#department-list");
+                    departmentSelectList.empty();
+                    departmentSelectList.attr("disabled", true);
+
+                    if (data.DepartmentSL.length > 0) {
+                        departmentSelectList.removeAttr("disabled");
+                        $.each(data.DepartmentSL, function (i, department) {
+                            departmentSelectList.append(`<option value="${department.Value}">${department.Text}</option>`);
+                        });
+                    }
+                },
+                error: (error) => {
+                    console.log(error);
+                }
+            });
+        }
+    });
+</script>

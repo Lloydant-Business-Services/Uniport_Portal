@@ -1,0 +1,220 @@
+﻿@model Abundance_Nk.Web.Areas.Admin.ViewModels.UploadAdmissionViewModel
+@{
+    ViewBag.Title = "Admission List View Criteria";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<script src="~/Scripts/DataTables-1.10.15/media/js/jquery.js"></script>
+<script src="~/Content/js/bootstrap.js"></script>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $('.datepicker').bootstrapMaterialDatePicker({
+            format: 'dddd DD MMMM YYYY',
+            clearButton: true,
+            weekStart: 1,
+            time: false
+        });
+
+        //Programme Drop down Selected-change event
+        $("#Programme").change(function () {
+
+            $("#Department").empty();
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("GetDepartments", "StudentCourseRegistration")', // Calling json method
+                dataType: 'json',
+                data: { id: $("#Programme").val() },
+                // Get Selected Country ID.
+                success: function (departments) {
+                    $("#Department").append('<option value="' + 0 + '">' +
+                        '-- Select Department --' + '</option>');
+                    $.each(departments, function (i, department) {
+                        $("#Department").append('<option value="' + department.Value + '">' +
+                            department.Text + '</option>');
+                    });
+                },
+                error: function (ex) {
+                    alert('Failed to retrieve departments.' + ex);
+                }
+            });
+            return false;
+        });
+
+        $.extend($.fn.dataTable.defaults, {
+            responsive: true
+        });
+
+        $('#applicantTable').DataTable({
+            dom: 'Bfrtip',
+            ordering: true,
+            buttons: [
+                {
+                    extend: 'copy',
+                    exportOptions: {
+                        columns: ':visible'
+                    }
+
+
+                },
+                {
+                    extend: 'csv',
+                    exportOptions: {
+                        columns: ':visible'
+                    }
+
+                },
+                {
+                    extend: 'excel',
+                    exportOptions: {
+                        columns: ':visible'
+                    }
+
+
+                },
+                {
+                    extend: 'pdf',
+                    exportOptions: {
+                        columns: ':visible'
+                    }
+
+
+                },
+                {
+                    extend: 'print',
+                    exportOptions: {
+                        columns: ':visible'
+                    }
+
+
+                }, , 'colvis'
+            ]
+        });
+
+    });
+</script>
+
+<div class="col-md-12">
+    <div class="col-md-1"></div>
+    <div class="col-md-12">
+
+        <div>
+            @if (TempData["Message"] != null)
+            {
+                @Html.Partial("_Message", (Abundance_Nk.Model.Model.Message)TempData["Message"])
+            }
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading panel-dark-head">
+                <h4>Admission List</h4>
+            </div>
+            <div class="panel-body">
+                <div class="col-md-12">
+
+                    @using (Html.BeginForm("AdmissionList", "UploadAdmission", FormMethod.Post))
+                    {
+                        <div class="row">
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.CurrentSession.Name, "Session", new {@class = "control-label col-sm-2"})
+                                <div class="col-sm-10">
+                                    @Html.DropDownListFor(model => model.CurrentSession.Id, (IEnumerable<SelectListItem>)ViewBag.Session, new { @class = "form-control", @required = "required" })
+                                    @Html.ValidationMessageFor(model => model.CurrentSession.Id, null, new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Programme.Name, "Programme", new { @class = "col-sm-2 control-label " })
+                                <div class="col-sm-10">
+                                    @Html.DropDownListFor(model => model.Programme.Id, (IEnumerable<SelectListItem>)ViewBag.Programme, new { @class = "form-control", @id = "Programme", @required = "required" })
+                                    @Html.ValidationMessageFor(model => model.Programme.Id, null, new { @class = "text-danger" })
+                                </div>
+
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Department.Name, "Department", new { @class = "col-sm-2 control-label " })
+                                <div class="col-sm-10">
+                                    @Html.DropDownListFor(model => model.Department.Id, (IEnumerable<SelectListItem>)ViewBag.Department, new { @class = "form-control", @id = "Department", @required = "required" })
+                                    @Html.ValidationMessageFor(model => model.Department.Id, null, new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Department.Name, "Date", new { @class = "col-sm-2 control-label " })
+                                <div class="col-sm-10">
+                                    @Html.TextBoxFor(model => model.DateFrom, new { @class = "datepicker", @placeholder = "From:", @required = "required"  })
+                                    @Html.TextBoxFor(model => model.DateTo, new { @class = "datepicker", @placeholder = "To:", @required = "required"  })
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-md-offset-2">
+                                    <input class="btn btn-success mr5" type="submit" name="submit" id="submit" value="View" />
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                    @if (Model == null || Model.AdmissionModelList == null)
+                    {
+                        return;
+                    }
+
+                    @if (Model != null && Model.AdmissionModelList != null)
+                    {
+                        <div class="col-md-12 table-responsive">
+
+                            <table class="table table-bordered table-hover table-striped" id="applicantTable">
+                                <thead>
+                                    <tr>
+                                        <th>SN</th>
+                                        <th>Name</th>
+                                        <th>Exam Number</th>
+                                        <th>Application Number</th>
+                                        <th>Jamb Number</th>
+                                        <th>Programme</th>
+                                        <th>Department</th>
+                                        <th>Admission Type</th>
+                                        <th>Session</th>
+                                        <th>Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody style="color: black;">
+                                    @for (int i = 0; i < Model.AdmissionModelList.Count; i++)
+                                    {
+                                        var SN = i + 1;
+                                        <tr>
+                                            <td>@SN</td>
+                                            <td>@Html.DisplayTextFor(m => m.AdmissionModelList[i].FullName)</td>
+                                            <td>@Html.DisplayTextFor(m => m.AdmissionModelList[i].ExamNumber)</td>
+                                            <td>@Html.DisplayTextFor(m => m.AdmissionModelList[i].ApplicationNumber)</td>
+                                            <td>@Html.DisplayTextFor(m => m.AdmissionModelList[i].JambNumber)</td>
+                                            <td>@Html.DisplayTextFor(m => m.AdmissionModelList[i].Programme)</td>
+                                            <td>@Html.DisplayTextFor(m => m.AdmissionModelList[i].Department)</td>
+                                            <td>@Html.DisplayTextFor(m => m.AdmissionModelList[i].AdmissionListType)</td>
+                                            <td>@Html.DisplayTextFor(m => m.AdmissionModelList[i].SessionName)</td>
+                                            <td>@Html.DisplayTextFor(m => m.AdmissionModelList[i].DateUploaded)</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+
+                    }
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="col-md-1"> </div>
+</div>

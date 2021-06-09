@@ -1,0 +1,450 @@
+﻿using Abundance_Nk.Business;
+using Abundance_Nk.Model.Model;
+using Abundance_Nk.Web.Models;
+using Abundance_Nk.Web.Models.Intefaces;
+using Microsoft.Reporting.WebForms;
+using System;
+using System.Collections.Generic;
+using System.Web.UI;
+
+namespace Abundance_Nk.Web.Reports.Presenter.Result
+{
+    public partial class MasterSheet :Page,IReport
+    {
+        public SessionSemester SelectedSession
+        {
+            get
+            {
+                return new SessionSemester
+                {
+                    Id = Convert.ToInt32(ddlSession.SelectedValue),
+                    Name = ddlSession.SelectedItem.Text
+                };
+            }
+            set { ddlSession.SelectedValue = value.Id.ToString(); }
+        }
+
+        public Level Level
+        {
+            get { return new Level { Id = Convert.ToInt32(ddlLevel.SelectedValue),Name = ddlLevel.SelectedItem.Text }; }
+            set { ddlLevel.SelectedValue = value.Id.ToString(); }
+        }
+
+        public Programme Programme
+        {
+            get
+            {
+                return new Programme
+                {
+                    Id = Convert.ToInt32(ddlProgramme.SelectedValue),
+                    Name = ddlProgramme.SelectedItem.Text
+                };
+            }
+            set { ddlProgramme.SelectedValue = value.Id.ToString(); }
+        }
+
+        public Department Department
+        {
+            get
+            {
+                return new Department
+                {
+                    Id = Convert.ToInt32(ddlDepartment.SelectedValue),
+                    Name = ddlDepartment.SelectedItem.Text
+                };
+            }
+            set { ddlDepartment.SelectedValue = value.Id.ToString(); }
+        }
+
+        public int Type
+        {
+            get { return Convert.ToInt32(rblSortOption.SelectedValue); }
+            set { rblSortOption.SelectedValue = value.ToString(); }
+        }
+
+        public string Message
+        {
+            get { return lblMessage.Text; }
+            set { lblMessage.Text = value; }
+        }
+
+        public ReportViewer Viewer
+        {
+            get { return rv; }
+            set { rv = value; }
+        }
+
+        public int ReportType
+        {
+            get { throw new NotImplementedException(); }
+        }
+
+        protected void Page_Load(object sender,EventArgs e)
+        {
+            try
+            {
+                Message = "";
+
+                if(!IsPostBack)
+                {
+                    rblSortOption.SelectedIndex = 0;
+                    ddlDepartment.Visible = false;
+                    PopulateAllDropDown();
+                }
+            }
+            catch(Exception ex)
+            {
+                lblMessage.Text = ex.Message;
+            }
+        }
+
+        private void DisplayReportBy(SessionSemester session,Level level,Programme programme,Department department,
+            int type)
+        {
+            try
+            {
+                var resultLogic = new StudentResultLogic();
+                List<Model.Model.Result> resultList = resultLogic.GetMaterSheetDetailsBy(session,level,programme,
+                    department);
+
+                string reportPath = "";
+                string bind_ds = "dsMasterSheet";
+                if(type == 1)
+                {
+                    reportPath = @"Reports\Result\MasterGradeSheet.rdlc";
+                }
+                else
+                {
+                     reportPath = @"Reports\Result\MasterGradeSheet.rdlc";
+                }
+
+                rv.Reset();
+                rv.LocalReport.DisplayName = "Student Master Sheet";
+                rv.LocalReport.ReportPath = reportPath;
+                rv.LocalReport.EnableExternalImages = true;
+
+                string programmeName = programme.Id > 2 ? "Undergraduate" : "PostGraduate";
+                var programmeParam = new ReportParameter("Programme",programmeName);
+                var departmentParam = new ReportParameter("Department",department.Name);
+                var sessionSemesterParam = new ReportParameter("SessionSemester",session.Name);
+                ReportParameter[] reportParams = { departmentParam,programmeParam,sessionSemesterParam };
+                rv.LocalReport.SetParameters(reportParams);
+
+                if(resultList != null)
+                {
+                    rv.ProcessingMode = ProcessingMode.Local;
+                    rv.LocalReport.DataSources.Add(new ReportDataSource(bind_ds.Trim(),resultList));
+                    rv.LocalReport.Refresh();
+                }
+            }
+            catch(Exception ex)
+            {
+                lblMessage.Text = ex.Message;
+            }
+        }
+
+        private void PopulateAllDropDown()
+        {
+            try
+            {
+                Utility.BindDropdownItem(ddlSession,Utility.GetAllSessionSemesters(),Utility.ID,Utility.NAME);
+                Utility.BindDropdownItem(ddlLevel,Utility.GetAllLevels(),Utility.ID,Utility.NAME);
+                Utility.BindDropdownItem(ddlProgramme,Utility.GetAllProgrammes(),Utility.ID,Utility.NAME);
+            }
+            catch(Exception ex)
+            {
+                lblMessage.Text = ex.Message;
+            }
+        }
+
+        private bool InvalidUserInput()
+        {
+            try
+            {
+                if(SelectedSession == null || SelectedSession.Id <= 0)
+                {
+                    lblMessage.Text = "Please select Session";
+                    return true;
+                }
+                if(Programme == null || Programme.Id <= 0)
+                {
+                    lblMessage.Text = "Please select Programme";
+                    return true;
+                }
+                if(Department == null || Department.Id <= 0)
+                {
+                    lblMessage.Text = "Please select Department";
+                    return true;
+                }
+
+                return false;
+            }
+            catch(Exception)
+            {
+                throw;
+            }
+        }
+
+        protected void btnDisplayReport_Click(object sender,EventArgs e)
+        {
+            try
+            {
+                if(InvalidUserInput())
+                {
+                    return;
+                }
+
+                //SortOption sortOption = Option == 2 ? SortOption.ExamNo : Option == 3 ? SortOption.ApplicationNo : SortOption.Name;
+                DisplayReportBy(SelectedSession,Level,Programme,Department,Type);
+            }
+            catch(Exception ex)
+            {
+                lblMessage.Text = ex.Message;
+            }
+        }
+
+        protected void ddlProgramme_SelectedIndexChanged(object sender,EventArgs e)
+        {
+            try
+            {
+                if(Programme != null && Programme.Id > 0)
+                {
+                    PopulateDepartmentDropdownByProgramme(Programme);
+                }
+                else
+                {
+                    ddlDepartment.Visible = false;
+                }
+            }
+            catch(Exception ex)
+            {
+                lblMessage.Text = ex.Message;
+            }
+        }
+
+        private void PopulateDepartmentDropdownByProgramme(Programme programme)
+        {
+            try
+            {
+                List<Department> departments = Utility.GetDepartmentByProgramme(programme);
+                if(departments != null && departments.Count > 0)
+                {
+                    Utility.BindDropdownItem(ddlDepartment,Utility.GetDepartmentByProgramme(programme),Utility.ID,
+                        Utility.NAME);
+                    ddlDepartment.Visible = true;
+                }
+            }
+            catch(Exception ex)
+            {
+                lblMessage.Text = ex.Message;
+            }
+        }
+
+        //public string Message
+        //{
+        //    get { return lblMessage.Text; }
+        //    set { lblMessage.Text = value; }
+        //}
+
+        //public ReportViewer Viewer
+        //{
+        //    get { return rv; }
+        //    set { rv = value; }
+        //}
+
+        //public int ReportType
+        //{
+        //    get { throw new NotImplementedException(); }
+        //}
+        //protected void Page_Load(object sender, EventArgs e)
+        //{
+        //    try
+        //    {
+        //        Message = "";
+
+        //        if (!IsPostBack)
+        //        {
+        //            rblSortOption.SelectedIndex = 0;
+        //            ddlDepartment.Visible = false;
+        //            PopulateAllDropDown();
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        lblMessage.Text = ex.Message;
+        //    }
+        //}
+
+        //public SessionSemester SelectedSession
+        //{
+        //    get { return new SessionSemester() { Id = Convert.ToInt32(ddlSession.SelectedValue), Name = ddlSession.SelectedItem.Text }; }
+        //    set { ddlSession.SelectedValue = value.Id.ToString(); }
+        //}
+
+        //public Level Level
+        //{
+        //    get { return new Level() { Id = Convert.ToInt32(ddlLevel.SelectedValue), Name = ddlLevel.SelectedItem.Text }; }
+        //    set { ddlLevel.SelectedValue = value.Id.ToString(); }
+        //}
+
+        //public Programme Programme
+        //{
+        //    get { return new Programme() { Id = Convert.ToInt32(ddlProgramme.SelectedValue), Name = ddlProgramme.SelectedItem.Text }; }
+        //    set { ddlProgramme.SelectedValue = value.Id.ToString(); }
+        //}
+
+        //public Department Department
+        //{
+        //    get { return new Department() { Id = Convert.ToInt32(ddlDepartment.SelectedValue), Name = ddlDepartment.SelectedItem.Text }; }
+        //    set { ddlDepartment.SelectedValue = value.Id.ToString(); }
+        //}
+
+        //public int Option
+        //{
+        //    get { return Convert.ToInt32(rblSortOption.SelectedValue); }
+        //    set { rblSortOption.SelectedValue = value.ToString(); }
+        //}
+
+        //private void DisplayReportBy(SessionSemester session, Level level, Programme programme, Department department, SortOption sortOption)
+        //{
+        //    try
+        //    {
+        //        StudentResultLogic resultLogic = new StudentResultLogic();
+        //        List<Model.Model.Result> results = resultLogic.GetMaterSheetBy(session, level, programme, department);
+
+        //        string bind_ds = "dsMasterSheet";
+        //        string reportPath = @"Reports\Result\MasterSheet.rdlc";
+
+        //        //if (results != null && results.Count > 0)
+        //        //{
+        //        //    string appRoot = ConfigurationManager.AppSettings["AppRoot"];
+
+        //        //    foreach (PhotoCard photocard in results)
+        //        //    {
+        //        //        if (!string.IsNullOrWhiteSpace(photocard.PassportUrl))
+        //        //        {
+        //        //            photocard.PassportUrl = appRoot + photocard.PassportUrl;
+        //        //        }
+        //        //        else
+        //        //        {
+        //        //            photocard.PassportUrl = appRoot + Utility.DEFAULT_AVATAR;
+        //        //        }
+        //        //    }
+        //        //}
+
+        //        rv.Reset();
+        //        rv.LocalReport.DisplayName = "Student Master Sheet";
+        //        rv.LocalReport.ReportPath = reportPath;
+        //        rv.LocalReport.EnableExternalImages = true;
+
+        //        if (results != null)
+        //        {
+        //            rv.ProcessingMode = ProcessingMode.Local;
+        //            rv.LocalReport.DataSources.Add(new ReportDataSource(bind_ds.Trim(), results));
+        //            rv.LocalReport.Refresh();
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        lblMessage.Text = ex.Message;
+        //    }
+        //}
+
+        //private void PopulateAllDropDown()
+        //{
+        //    try
+        //    {
+        //        Utility.BindDropdownItem(ddlSession, Utility.GetAllSessionSemesters(), Utility.ID, Utility.NAME);
+        //        Utility.BindDropdownItem(ddlLevel, Utility.GetAllLevels(), Utility.ID, Utility.NAME);
+        //        Utility.BindDropdownItem(ddlProgramme, Utility.GetAllProgrammes(), Utility.ID, Utility.NAME);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        lblMessage.Text = ex.Message;
+        //    }
+        //}
+
+        //private bool InvalidUserInput()
+        //{
+        //    try
+        //    {
+        //        if (SelectedSession == null || SelectedSession.Id <= 0)
+        //        {
+        //            lblMessage.Text = "Please select Session";
+        //            return true;
+        //        }
+        //        else if (Programme == null || Programme.Id <= 0)
+        //        {
+        //            lblMessage.Text = "Please select Programme";
+        //            return true;
+        //        }
+        //        else if (Department == null || Department.Id <= 0)
+        //        {
+        //            lblMessage.Text = "Please select Department";
+        //            return true;
+        //        }
+
+        //        return false;
+        //    }
+        //    catch (Exception)
+        //    {
+        //        throw;
+        //    }
+        //}
+
+        //protected void btnDisplayReport_Click(object sender, EventArgs e)
+        //{
+        //    try
+        //    {
+        //        if (InvalidUserInput())
+        //        {
+        //            return;
+        //        }
+
+        //        SortOption sortOption = Option == 2 ? SortOption.ExamNo : Option == 3 ? SortOption.ApplicationNo : SortOption.Name;
+        //        DisplayReportBy(SelectedSession, Level, Programme, Department, sortOption);
+        //        //SessionSemester session, Level level, Programme programme, Department department, SortOption sortOption
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        lblMessage.Text = ex.Message;
+        //    }
+        //}
+
+        //protected void ddlProgramme_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    try
+        //    {
+        //        if (Programme != null && Programme.Id > 0)
+        //        {
+        //            PopulateDepartmentDropdownByProgramme(Programme);
+        //        }
+        //        else
+        //        {
+        //            ddlDepartment.Visible = false;
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        lblMessage.Text = ex.Message;
+        //    }
+        //}
+
+        //private void PopulateDepartmentDropdownByProgramme(Programme programme)
+        //{
+        //    try
+        //    {
+        //        List<Department> departments = Utility.GetDepartmentByProgramme(programme);
+        //        if (departments != null && departments.Count > 0)
+        //        {
+        //            Utility.BindDropdownItem(ddlDepartment, Utility.GetDepartmentByProgramme(programme), Utility.ID, Utility.NAME);
+        //            ddlDepartment.Visible = true;
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        lblMessage.Text = ex.Message;
+        //    }
+        //}
+    }
+}

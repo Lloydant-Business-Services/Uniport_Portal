@@ -1,0 +1,42 @@
+﻿@model Abundance_Nk.Web.Areas.Applicant.ViewModels.PostJAMBFormPaymentViewModel
+@{
+    ViewBag.Title = "Bank Payment";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+<br/>
+<br/>
+<br/>
+<br/>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jquery")
+
+    <script type="text/javascript">
+
+        $(document).ready(function() {
+            $("#myForm").submit();
+        });
+    </script>
+    }
+
+@if (TempData["Message"] != null)
+{
+    @Html.Partial("_Message", (Abundance_Nk.Model.Model.Message)TempData["Message"])
+}
+
+<div>
+    <img src="~/Content/Images/loading.gif" />
+</div>
+
+<form method='POST' action='https://www.etranzact.net/bankIT/' id="myForm">
+    <input type="hidden" name="TERMINAL_ID" value="@Model.BankItRequest.TerminalId">
+    <input type="hidden" name="TRANSACTION_ID" value="@Model.BankItRequest.TransactionId">
+    <input type="hidden" name="AMOUNT" value="@Model.BankItRequest.Amount">
+    <input type="hidden" name="DESCRIPTION" value="@Model.BankItRequest.Description">
+    <input type="hidden" name="RESPONSE_URL" value="@Model.BankItRequest.ResponseUrl">
+    <input type="hidden" name="NOTIFICATION_URL" value="@Model.BankItRequest.NotificationUrl">
+    <input type="hidden" name="CHECKSUM" value="@Model.BankItRequest.Checksum">
+    <input type="hidden" name="LOGO_URL" value="http://portal.abiastateuniversity.edu.ng/Content/Images/school_logo1.png">
+    @*<input class="btn btn-primary btn-lg mr5" type="submit" name="submit" id="submit" value="Submit" />*@
+</form>

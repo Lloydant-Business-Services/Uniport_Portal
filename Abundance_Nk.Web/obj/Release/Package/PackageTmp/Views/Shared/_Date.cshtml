@@ -1,0 +1,54 @@
+﻿@using Abundance_Nk.Model.Model
+@model DateTime
+
+@{
+
+    var january = new Value {Id = 1, Name = "January"};
+    var february = new Value {Id = 1, Name = "February"};
+    var march = new Value {Id = 1, Name = "March"};
+    var april = new Value {Id = 1, Name = "April"};
+    var may = new Value {Id = 1, Name = "May"};
+    var june = new Value {Id = 1, Name = "June"};
+    var july = new Value {Id = 1, Name = "July"};
+    var august = new Value {Id = 1, Name = "August"};
+    var september = new Value {Id = 1, Name = "September"};
+    var october = new Value {Id = 1, Name = "October"};
+    var november = new Value {Id = 1, Name = "November"};
+    var december = new Value {Id = 1, Name = "December"};
+
+    var months = new List<Value>
+    {
+        january, february, march, april, may, june, july, august, september, october, november, december
+    };
+
+    var monthList = new List<SelectListItem>();
+    var list = new SelectListItem();
+    list.Value = "";
+    list.Text = "";
+    monthList.Add(list);
+
+    foreach (Value month in months)
+    {
+        var selectList = new SelectListItem();
+        selectList.Value = month.Id.ToString();
+        selectList.Text = month.Name;
+        monthList.Add(selectList);
+    }
+}
+
+<div class="form-inline">
+    <div class="form-group">
+        @Html.DropDownListFor(m => m.Month, (IEnumerable<SelectListItem>) ViewBag.MonthId, new {@class = "form-control"})
+    </div>
+
+    <div class="form-group">
+        @Html.DropDownListFor(m => m.Day, (IEnumerable<SelectListItem>) ViewBag.DayId, new {@class = "form-control"})
+    </div>
+
+   
+
+    <div class="form-group">
+        @Html.DropDownListFor(m => m.Year, (IEnumerable<SelectListItem>) ViewBag.YearId, new {@class = "form-control"})
+    </div>
+
+</div>

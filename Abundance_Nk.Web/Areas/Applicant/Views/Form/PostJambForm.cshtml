@@ -1,0 +1,2031 @@
+﻿@using Abundance_Nk.Web.Models
+@model Abundance_Nk.Web.Areas.Applicant.ViewModels.PostJambViewModel
+
+@{
+    ViewBag.Title = "Post JAMB Invoice";
+}
+
+
+<script src="~/Scripts/jquery-1.11.1.min.js"></script>
+<link href="~/Scripts/DropZone/dropzone.css" rel="stylesheet" />
+<script src="~/Scripts/DropZone/dropzone.js"></script>
+<div>
+
+    <script type="text/javascript">
+
+        var personId;
+        var formNumber;
+        var personImageUrl;
+        var hasPassport;
+        $(document).ready(function () {
+
+            formNumber = $("#ApplicationForm_Number").val();
+            hasPassport = $("#HasJambPassport").val();
+            $('#loading').hide();
+
+            if (formNumber != null) {
+                $('#submitBtn').show();
+            }
+            if (hasPassport>0) {
+                $('#submitBtn').show();
+            }
+            
+            var navListItems = $('ul.setup-panel li a'),
+                allWells = $('.setup-content');
+            allWells.hide();
+
+            navListItems.click(function (e) {
+                e.preventDefault();
+                var $target = $($(this).attr('href')),
+                    $item = $(this).closest('li'),
+                    $clickId = $target[0].id;
+                var programmeId = $("#@Html.IdFor(m => m.AppliedCourse.Programme.Id)").val();
+
+                if ($clickId == "step-2") {
+
+                    var d = new Date();
+                    var sexId = $("#Person_Sex_Id").val();
+                    var dob = $("#Person_DayOfBirth_Id").val();
+                    var yob = $("#Person_YearOfBirth_Id").val();
+                    if (d.getFullYear() - yob < 15) {
+                        alert("You must be atleast 15years od to apply!");
+                    }
+                    var mob = $("#Person_MonthOfBirth_Id").val();
+                    var stateId = $("#Person_State_Id").val();
+                    var lgaId = $("#Person_LocalGovernment_Id").val();
+                    var homeTown = $("#Person_HomeTown").val();
+                    var mobilePhone = $("#Person_MobilePhone").val();
+                    var email = $("#Person_Email").val();
+                    var religionId = $("#Person_Religion_Id").val();
+                    var homeAddress = $("#Person_HomeAddress").val();
+                    var abilityId = $("#Applicant_Ability_Id").val();
+                    var otherAbility = $("#Applicant_OtherAbility").val();
+                    var extraCurricullarActivities = $("#Applicant_ExtraCurricullarActivities").val();
+                    personId = $("#Person_Id").val();
+
+                    if (sexId && dob && stateId && lgaId && homeTown && mobilePhone && religionId && homeAddress && abilityId && extraCurricullarActivities && yob && mob && (d.getFullYear() - yob >= 15)) {
+
+                        if (!$item.hasClass('disabled')) {
+                            navListItems.closest('li').removeClass('active');
+                            $item.addClass('active');
+                            allWells.hide();
+                            $target.show();
+                        }
+                    } else if ($clickId == "step-1") {
+
+                        if (!$item.hasClass('disabled')) {
+                            navListItems.closest('li').removeClass('active');
+                            $item.addClass('active');
+                            allWells.hide();
+                            $target.show();
+                        }
+                        else {
+
+                            alert("Please fill all the fields!");
+                        }
+                    }
+
+                } else if ($clickId == "step-3" && (programmeId != 7 && programmeId != 3 && programmeId != 15 && programmeId != 16)) {
+
+                    var jambnumber = $('#ApplicantJambDetail_JambRegistrationNumber').val();
+                    var jambscore = $('#ApplicantJambDetail_JambScore').val();
+                    var firstSubject = $('#ApplicantJambDetail_Subject1_Id').val();
+                    var secondSubject = $('#ApplicantJambDetail_Subject2_Id').val();
+                    var thirdsubject = $('#ApplicantJambDetail_Subject3_Id').val();
+                    var fourthSubject = $('#ApplicantJambDetail_Subject4_Id').val();
+                    var institutionChoiceId = $('#ApplicantJambDetail_InstitutionChoice_Id').val();
+                    var courseVal = $('#PreviousEducation_Course').val();
+                    var qualificationIdVal = $('#PreviousEducation_Qualification_Id').val();
+                    var resultGradeIdVal = $('#PreviousEducation_ResultGrade_Id').val();
+                    var itDurationIdVal = $('#PreviousEducation_ITDuration_Id').val();
+                    var previousSchoolIdVal = $('#PreviousEducation_SchoolName').val();
+                    var itStartDateVal = $('#PreviousEducation_ITStartDate').val();
+                    var selectedEndMonth = $("#PreviousEducation_EndMonth_Id").val(),
+                           selectedEndYear = $("#PreviousEducation_EndYear_Id").val(),
+                           selectedEndDay = $("#PreviousEducation_EndDay_Id").val(),
+                           selectedStartMonth = $("#PreviousEducation_StartMonth_Id").val(),
+                           selectedStartYear = $("#PreviousEducation_StartYear_Id").val(),
+                           selectedStartDay = $("#PreviousEducation_StartDay_Id").val();
+                    var personid = personId;
+                    var formSetting = parseInt($('#ApplicationFormSetting_Id').val());
+                    var supplementaryDepartmentId = $('#SupplementaryCourse_Department_Id').val();;
+                    var putmeScore = parseInt($('#SupplementaryCourse_Putme_Score').val());
+                    var putmeAverage = parseInt($('#SupplementaryCourse_Average_Score').val());
+                    //if (jambnumber.startsWith("89")) {
+                    if (jambnumber.startsWith("2")) {
+                        if (programmeId == 2 || programmeId == 5 || programmeId == 6) {
+        
+                            if (selectedEndMonth && selectedEndYear && selectedEndDay && selectedStartMonth && selectedStartYear && selectedStartDay && courseVal && institutionChoiceId
+                                && qualificationIdVal && resultGradeIdVal && itDurationIdVal) {
+
+                                if (!$item.hasClass('disabled')) {
+                                    navListItems.closest('li').removeClass('active');
+                                    $item.addClass('active');
+                                    allWells.hide();
+                                    $target.show();
+                                }
+                            }
+                        } else {
+                            if (jambnumber && institutionChoiceId && personid && courseVal && resultGradeIdVal && qualificationIdVal && (formSetting != 18 && formSetting != 22)) {
+
+                                if (!$item.hasClass('disabled')) {
+                                    navListItems.closest('li').removeClass('active');
+                                    $item.addClass('active');
+                                    allWells.hide();
+                                    $target.show();
+                                }
+                            }
+                            else if (supplementaryDepartmentId && putmeScore > 0  && jambnumber && institutionChoiceId && personid  && formSetting == 20) {
+
+                                if (!$item.hasClass('disabled')) {
+                                    navListItems.closest('li').removeClass('active');
+                                    $item.addClass('active');
+                                    allWells.hide();
+                                    $target.show();
+                                }
+                            }
+                            else if (jambnumber && institutionChoiceId && personid && courseVal && resultGradeIdVal && qualificationIdVal && personid && (formSetting == 18 || formSetting == 22)) {
+
+                                if (!$item.hasClass('disabled')) {
+                                    navListItems.closest('li').removeClass('active');
+                                    $item.addClass('active');
+                                    allWells.hide();
+                                    $target.show();
+                                }
+                            }
+                            else if (jambnumber && jambscore && firstSubject && secondSubject && thirdsubject && fourthSubject && institutionChoiceId && personid && programmeId == 1 && formSetting == 19 && supplementaryDepartmentId && putmeScore > 0 ) {
+
+                                if (!$item.hasClass('disabled')) {
+                                    navListItems.closest('li').removeClass('active');
+                                    $item.addClass('active');
+                                    allWells.hide();
+                                    $target.show();
+                                }
+                            }
+                            else if (jambnumber && jambscore && firstSubject && secondSubject && thirdsubject && fourthSubject && institutionChoiceId && personid && programmeId == 1 && (formSetting == 17 || formSetting == 21 || formSetting == 1) ) {
+
+                                if (!$item.hasClass('disabled')) {
+                                    navListItems.closest('li').removeClass('active');
+                                    $item.addClass('active');
+                                    allWells.hide();
+                                    $target.show();
+                                }
+                            }
+                            else {
+
+                                alert("Please fill all the fields!");
+                            }
+                        }
+
+                    }
+                    else {
+                        if (jambnumber && jambscore && firstSubject && secondSubject && thirdsubject && fourthSubject && institutionChoiceId && personid && programmeId == 1 && formSetting != 19) {
+
+                            if (!$item.hasClass('disabled')) {
+                                navListItems.closest('li').removeClass('active');
+                                $item.addClass('active');
+                                allWells.hide();
+                                $target.show();
+                            }
+                            else {
+
+                                alert("Please fill all the fields!");
+                            }
+                        } else if (jambnumber && jambscore && firstSubject && secondSubject && thirdsubject && fourthSubject && institutionChoiceId && personid && programmeId == 1 && formSetting == 19 && supplementaryDepartmentId && putmeScore > 0 && putmeAverage > 0) {
+
+                            if (!$item.hasClass('disabled')) {
+                                navListItems.closest('li').removeClass('active');
+                                $item.addClass('active');
+                                allWells.hide();
+                                $target.show();
+                            }
+                            else {
+
+                                alert("Please fill all the fields!");
+                            }
+                        }
+                        else if (courseVal && starDateVal && endDateVal && qualificationIdVal && resultGradeIdVal && itDurationIdVal && previousSchoolIdVal && itStartDateVal && itEndDateVal && programmeId == 2 && programmeId == 5 && programmeId == 6) {
+
+                            if (!$item.hasClass('disabled')) {
+                                navListItems.closest('li').removeClass('active');
+                                $item.addClass('active');
+                                allWells.hide();
+                                $target.show();
+                            }
+                            else {
+
+                                alert("Please fill all the fields!");
+                            }
+                        }
+
+                    }
+
+                } else if (programmeId == 7 || programmeId == 3 || programmeId == 15 || programmeId == 16 ) {
+
+                    if (!$item.hasClass('disabled')) {
+                        navListItems.closest('li').removeClass('active');
+                        $item.addClass('active');
+                        allWells.hide();
+                        $target.show();
+                        personId = $("#Person_Id").val();
+                    }
+                }
+                else if ($clickId == "step-1") {
+
+                    if (!$item.hasClass('disabled')) {
+                        navListItems.closest('li').removeClass('active');
+                        $item.addClass('active');
+                        allWells.hide();
+                        $target.show();
+                    }
+                } else if ($clickId == "step-4") {
+
+                    var firstSittingOLevelResultDetailArray = populateFirstSittingResultDetail();
+                    var secondSittingOLevelResultDetailArray = populateSecondSittingResultDetail();
+                    if (firstSittingOLevelResultDetailArray.lenght > 0 || secondSittingOLevelResultDetailArray.length > 0) {
+                        if (!$item.hasClass('disabled')) {
+                            navListItems.closest('li').removeClass('active');
+                            $item.addClass('active');
+                            allWells.hide();
+                            $target.show();
+                        }
+                        else {
+
+                            alert("Please fill all the fields!");
+                        }
+                    }
+                } else {
+
+                    alert("Please fill all the fields!");
+                }
+            });
+
+            $('ul.setup-panel li.active a').trigger('click');
+
+            // Disabling clicks //
+
+            $('#activate-step-1').on('click', function (e) {
+                $('ul.setup-panel li:eq(2)').removeClass('disabled');
+                $('ul.setup-panel li a[href="#step-1"]').trigger('click');
+
+            });
+
+            $('#activate-step-2').on('click', function (e) {
+                var programme = $("#@Html.IdFor(m => m.AppliedCourse.Programme.Id)").val();
+                if (programme == 7 || programme == 3 || programme == 15 || programme == 16) {
+                    $('ul.setup-panel li:eq(2)').removeClass('disabled');
+                    $('ul.setup-panel li a[href="#step-3"]').trigger('click');
+                } else {
+                    $('ul.setup-panel li:eq(1)').removeClass('disabled');
+                    $('ul.setup-panel li a[href="#step-2"]').trigger('click');
+                }
+
+
+            });
+
+            $('#activate-step-3').on('click', function (e) {
+                $('ul.setup-panel li:eq(2)').removeClass('disabled');
+                $('ul.setup-panel li a[href="#step-3"]').trigger('click');
+
+            });
+
+            $('#activate-step-4').on('click', function (e) {
+                $('ul.setup-panel li:eq(3)').removeClass('disabled');
+                $('ul.setup-panel li a[href="#step-4"]').trigger('click');
+
+            });
+
+            $('#previous-step-3').on('click', function (e) {
+
+                var programme = $("#@Html.IdFor(m => m.AppliedCourse.Programme.Id)").val();
+                if (programme == 7 || programme == 3) {
+                    $('ul.setup-panel li:eq(1)').removeClass('disabled');
+                    $('ul.setup-panel li a[href="#step-1"]').trigger('click');
+                } else {
+                    $('ul.setup-panel li:eq(2)').removeClass('disabled');
+                    $('ul.setup-panel li a[href="#step-2"]').trigger('click');
+                }
+
+            });
+
+            $('#previous-step-4').on('click', function (e) {
+                $('ul.setup-panel li:eq(3)').removeClass('disabled');
+                $('ul.setup-panel li a[href="#step-3"]').trigger('click');
+
+            });
+
+
+            var src = $('#Person_ImageFileUrl').attr('src');
+            if (src == undefined) {
+                $('#Person_ImageFileUrl').attr('src', '/Content/Images/default_avatar.png');
+            }
+
+            $("#Person_State_Id").change(function () {
+                $("#Person_LocalGovernment_Id").empty();
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("GetLocalGovernmentsByState")', //we are calling json method
+                    dataType: 'json',
+                    data: { id: $("#Person_State_Id").val() },
+                    success: function (lgas) {
+                        $("#Person_LocalGovernment_Id").append('<option value="' + 0 + '">-- Select --</option>');
+
+                        $.each(lgas, function (i, lga) {
+                            $("#Person_LocalGovernment_Id").append('<option value="' + lga.Value + '">' + lga.Text + '</option>');
+                        });
+                    },
+                    error: function (ex) {
+                        alert('Failed to retrieve lgas.' + ex);
+                    }
+                });
+
+                return false;
+            });
+            $("#Person_MonthOfBirth_Id").change(function () {
+                $("#Person_DayOfBirth_Id").empty();
+                var selectedMonth = $("#Person_MonthOfBirth_Id").val();
+                var selectedYear = $("#Person_YearOfBirth_Id").val();
+
+                if (selectedYear == '') {
+                    alert('Please select Year of Birth!');
+                    return;
+                }
+
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("GetDayOfBirthBy")', // we are calling json method
+                    dataType: 'json',
+                    data: { monthId: selectedMonth, yearId: selectedYear },
+                    success: function (days) {
+                        $("#Person_DayOfBirth_Id").append('<option value="' + 0 + '">--DD--</option>');
+
+                        $.each(days, function (i, day) {
+                            $("#Person_DayOfBirth_Id").append('<option value="' + day.Value + '">' + day.Text + '</option>');
+                        });
+                    },
+
+                    beforeSend: function () {
+                        $('#spDob').show();
+                    },
+                    complete: function () {
+                        $('#spDob').hide();
+                    },
+
+                    error: function (ex) {
+                        if (selectedMonth == '') {
+                            return;
+                        } else {
+                            alert('Failed to retrieve days.' + ex);
+                        }
+                    }
+                });
+
+                return false;
+            });
+            $("#PreviousEducation_StartMonth_Id").change(function () {
+                $("#PreviousEducation_StartDay_Id").empty();
+                var selectedMonth = $("#PreviousEducation_StartMonth_Id").val();
+                var selectedYear = $("#PreviousEducation_StartYear_Id").val();
+
+                if (selectedYear == '') {
+                    alert('Please select Start Year!');
+                    return;
+                }
+
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("GetDayOfBirthBy", "Form")', //We are calling json method
+                    dataType: 'json',
+                    data: { monthId: selectedMonth, yearId: selectedYear },
+                    beforeSend: function () {
+                        $('#spSDate').show();
+                    },
+                    complete: function () {
+                        $('#spSDate').hide();
+                    },
+
+                    success: function (days) {
+                        $("#PreviousEducation_StartDay_Id").append('<option value="' + 0 + '">--DD--</option>');
+
+                        $.each(days, function (i, day) {
+                            $("#PreviousEducation_StartDay_Id").append('<option value="' + day.Value + '">' + day.Text + '</option>');
+                        });
+                    },
+                    error: function (ex) {
+                        if (selectedMonth == '') {
+                            return;
+                        } else {
+                            alert('Failed to retrieve days.' + ex);
+                        }
+                    }
+                });
+
+                return false;
+            });
+
+            $("#PreviousEducation_EndMonth_Id").change(function () {
+                $("#PreviousEducation_EndDay_Id").empty();
+                var selectedMonth = $("#PreviousEducation_EndMonth_Id").val();
+                var selectedYear = $("#PreviousEducation_EndYear_Id").val();
+
+                if (selectedYear == '') {
+                    alert('Please select End Year!');
+                    return;
+                }
+
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("GetDayOfBirthBy", "Form")', // we are calling json method
+                    dataType: 'json',
+                    data: { monthId: selectedMonth, yearId: selectedYear },
+                    beforeSend: function () {
+                        $('#spEDate').show();
+                    },
+                    complete: function () {
+                        $('#spEDate').hide();
+                    },
+                    success: function (days) {
+                        $("#PreviousEducation_EndDay_Id").append('<option value="' + 0 + '">--DD--</option>');
+
+                        $.each(days, function (i, day) {
+                            $("#PreviousEducation_EndDay_Id").append('<option value="' + day.Value + '">' + day.Text + '</option>');
+                        });
+                    },
+                    error: function (ex) {
+                        if (selectedMonth == '') {
+                            return;
+                        } else {
+                            alert('Failed to retrieve days.' + ex);
+                        }
+                    }
+                });
+
+                return false;
+            });
+            initSimpleFileUploadForCredential();
+            $("#cr-start-upload").on('click', function () {
+                if (jqXHRData) {
+                    jqXHRData.submit();
+                }
+                return false;
+            });
+
+            $("#cu-credential-simple-upload").on('change', function () {
+                $("#crx-file-path").val(this.files[0].name);
+            });
+
+            function initSimpleFileUploadForCredential() {
+                'use strict';
+
+                $('#cu-credential-simple-upload').fileupload({
+                    url: '@Url.Content("~/Applicant/Form/UploadCredentialFile")',
+                    dataType: 'json',
+
+                    add: function (e, data) {
+                        jqXHRData = data;
+                    },
+                    send: function (e) {
+                        $('#fileUploadProgress2').show();
+                    },
+                    done: function (event, data) {
+                        if (data.result.isUploaded) {
+                            //alert("success");
+                        } else {
+                            $("#crx-file-path").val("");
+                            alert(data.result.message);
+                        }
+
+                        $('#scannedCredential').attr('src', data.result.imageUrl);
+                        $('#fileUploadProgress2').hide();
+                    },
+                    fail: function (event, data) {
+                        if (data.files[0].error) {
+                            alert(data.files[0].error);
+                        }
+                    }
+                });
+            }
+
+            checkPhoneNumbers();
+
+            $("#Sponsor_MobilePhone").on("change", function () {
+                checkPhoneNumbers();
+            });
+
+            $("#Person_MobilePhone").on("change", function () {
+                checkPhoneNumbers();
+            });
+        });
+
+        (function ($) {
+
+            // Browser supports HTML5 multiple file?
+            var multipleSupport = typeof $('<input/>')[0].multiple !== 'undefined',
+                isIE = /msie/i.test(navigator.userAgent);
+
+            $.fn.customFile = function () {
+
+                return this.each(function () {
+
+                    var $file = $(this).addClass('custom-file-upload-hidden'), // the original file input
+                        $wrap = $('<div class="file-upload-wrapper">'),
+                        $input = $('<input type="text" class="file-upload-input" />'),
+                        // Button that will be used in non-IE browsers
+                        $button = $('<button type="button" class="file-upload-button">Select a File</button>'),
+                        // Hack for IE
+                        $label = $('<label class="file-upload-button" for="' + $file[0].id + '">Select a File</label>');
+
+                    // Hide by shifting to the left so we
+                    // can still trigger events
+                    $file.css({
+                        position: 'absolute',
+                        left: '-9999px'
+                    });
+
+                    $wrap.insertAfter($file)
+                        .append($file, $input, (isIE ? $label : $button));
+
+                    // Prevent focus
+                    $file.attr('tabIndex', -1);
+                    $button.attr('tabIndex', -1);
+
+                    $button.click(function () {
+                        $file.focus().click(); // Open dialog
+                    });
+
+                    $file.change(function () {
+
+                        var files = [], fileArr, filename;
+
+                        // If multiple is supported then extract
+                        // all filenames from the file array
+                        if (multipleSupport) {
+                            fileArr = $file[0].files;
+                            for (var i = 0, len = fileArr.length; i < len; i++) {
+                                files.push(fileArr[i].name);
+                            }
+                            filename = files.join(', ');
+
+                            // If not supported then just take the value
+                            // and remove the path to just show the filename
+                        } else {
+                            filename = $file.val().split('\\').pop();
+                        }
+
+                        $input.val(filename) // Set the value
+                            .attr('title', filename) // Show filename in title tootlip
+                            .focus(); // Regain focus
+
+                    });
+
+                    $input.on({
+                        blur: function () { $file.trigger('blur'); },
+                        keydown: function (e) {
+                            if (e.which === 13) { // Enter
+                                if (!isIE) { $file.trigger('click'); }
+                            } else if (e.which === 8 || e.which === 46) { // Backspace & Del
+                                // On some browsers the value is read-only
+                                // with this trick we remove the old input and add
+                                // a clean clone with all the original events attached
+                                $file.replaceWith($file = $file.clone(true));
+                                $file.trigger('change');
+                                $input.val('');
+                            } else if (e.which === 9) { // TAB
+                                return;
+                            } else { // All other keys
+                                return false;
+                            }
+                        }
+                    });
+
+                });
+
+            };
+
+            // Old browser fallback
+            if (!multipleSupport) {
+                $(document).on('change', 'input.customfile', function () {
+
+                    var $this = $(this),
+                        // Create a unique ID so we
+                        // can attach the label to the input
+                        uniqId = 'customfile_' + (new Date()).getTime(),
+                        $wrap = $this.parent(),
+
+                        // Filter empty input
+                        $inputs = $wrap.siblings().find('.file-upload-input')
+                            .filter(function () { return !this.value }),
+
+                        $file = $('<input type="file" id="' + uniqId + '" name="' + $this.attr('name') + '"/>');
+
+                    setTimeout(function () {
+                        // Add a new input
+                        if ($this.val()) {
+                            if (!$inputs.length) {
+                                $wrap.after($file);
+                                $file.customFile();
+                            }
+                            // Remove and reorganize inputs
+                        } else {
+                            $inputs.parent().remove();
+                            $wrap.appendTo($wrap.parent());
+                            $wrap.find('input').focus();
+                        }
+                    }, 1);
+
+                });
+            }
+
+        }(jQuery));
+        $('input[type=file]').customFile();
+
+        function populateFirstSittingResultDetail() {
+            var firstSittingOLevelResultDetailArray = [];
+            var array = $('#firstSittingTable tr:gt(0)').map(function () {
+                return {
+                    SubjectId: $(this.cells[0]).find("select").val(),
+                    SubjectName: "",
+                    GradeId: $(this.cells[1]).find("select").val(),
+                    GradeName: ""
+                };
+            });
+
+            for (var i = 0; i < array.length; i++) {
+                var myArray = { "SubjectId": array[i].SubjectId, "SubjectName": array[i].SubjectName, "GradeId": array[i].GradeId, "GradeName": array[i].GradeName };
+                firstSittingOLevelResultDetailArray.push(myArray);
+            }
+
+            return firstSittingOLevelResultDetailArray;
+        }
+
+        function checkPhoneNumbers() {
+            if ($("#Sponsor_MobilePhone").val() != undefined || $("#Sponsor_MobilePhone").val() != "" || $("#Person_MobilePhone").val() != undefined || $("#Person_MobilePhone").val() != "") {
+                if ($("#Person_MobilePhone").val() == $("#Sponsor_MobilePhone").val()) {
+                    $("#submit").attr("disabled", "disabled");
+                    alert("Your phone number and the next of kin phone number cannot be the same.");
+                } else {
+                    $("#submit").attr("disabled", false);
+                }
+            }
+        }
+        function populateSecondSittingResultDetail() {
+            var secondSittingOLevelResultDetailArray = [];
+            var array2 = $('#secondSittingTable tr:gt(0)').map(function () {
+                return {
+                    SubjectId: $(this.cells[0]).find("select").val(),
+                    SubjectName: "",
+                    GradeId: $(this.cells[1]).find("select").val(),
+                    GradeName: ""
+                };
+            });
+
+            for (var i = 0; i < array2.length; i++) {
+                var myArray = { "SubjectId": array2[i].SubjectId, "SubjectName": array2[i].SubjectName, "GradeId": array2[i].GradeId, "GradeName": array2[i].GradeName };
+                secondSittingOLevelResultDetailArray.push(myArray);
+            }
+
+            return secondSittingOLevelResultDetailArray;
+        }
+        function showLoading() {
+            $('#loading').show();
+        }
+    </script>
+    @if (TempData["Message"] != null)
+    {
+        @Html.Partial("_Message", TempData["Message"])
+    }
+</div>
+<div class="container">
+    <div class="row pt-4">
+        <div class="col-md-8 pl-0 pr-0">
+            <div class="card">
+
+                <div class="container">
+                    <div class="row form-group">
+                        <div class="col-xs-12 pl-3 pt-3">
+                            <ul class="nav nav-tabs setup-panel">
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="#step-1">BIO DATA </a>
+                                </li>
+                                <li class="nav-item disabled">
+                                    <a class="nav-link" href="#step-2">UTME DETAILS </a>
+                                </li>
+                                <li class="nav-item disabled">
+                                    <a class="nav-link" href="#step-3">O/LEVEL DETAILS </a>
+                                </li>
+                                <li class="nav-item disabled">
+                                    <a class="nav-link" href="#step-4">OTHER DETAILS </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    @using (Html.BeginForm("PostJambForm", "Form", FormMethod.Post, new { id = "frmPostJAMB", enctype = "multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true)
+
+                        <div class="row setup-content pr-4 pl-4 pb-4 pt-0" id="step-1">
+                            <div class="col-xs-12">
+                                <div>
+                                    @if (Model.ApplicationForm != null && Model.ApplicationForm.Id > 0)
+                                    {
+                                        @Html.HiddenFor(model => model.ApplicationForm.Id)
+                                        @Html.HiddenFor(model => model.ApplicationForm.Number)
+                                        @Html.HiddenFor(model => model.ApplicationForm.ExamNumber)
+                                        @Html.HiddenFor(model => model.ApplicationForm.Rejected)
+                                        @Html.HiddenFor(model => model.ApplicationForm.RejectReason)
+                                    }
+
+                                    @Html.HiddenFor(model => model.Session.Id)
+                                    @Html.HiddenFor(model => model.Session.Name)
+
+                                    @Html.HiddenFor(model => model.ApplicationFormSetting.Id)
+                                    @Html.HiddenFor(model => model.ApplicationFormSetting.PaymentMode.Id)
+                                    @Html.HiddenFor(model => model.ApplicationFormSetting.PaymentType.Id)
+                                    @Html.HiddenFor(model => model.ApplicationFormSetting.PersonType.Id)
+                                    @Html.HiddenFor(model => model.ApplicationFormSetting.Session.Id)
+                                    @Html.HiddenFor(model => model.ApplicationFormSetting.ExamDate)
+                                    @Html.HiddenFor(model => model.ApplicationFormSetting.ExamVenue)
+                                    @Html.HiddenFor(model => model.ApplicationFormSetting.ExamTime)
+
+                                    @Html.HiddenFor(model => model.ApplicationProgrammeFee.FeeType.Id)
+                                    @Html.HiddenFor(model => model.ApplicationProgrammeFee.Id)
+
+                                    @Html.HiddenFor(model => model.Programme.Id, new { Id = "programmeId" })
+                                    @Html.HiddenFor(model => model.Programme.Name)
+                                    @Html.HiddenFor(model => model.Programme.ShortName)
+
+                                    @Html.HiddenFor(model => model.AppliedCourse.Programme.Id)
+                                    @Html.HiddenFor(model => model.AppliedCourse.Programme.Name)
+                                    @Html.HiddenFor(model => model.AppliedCourse.Department.Id)
+                                    @Html.HiddenFor(model => model.AppliedCourse.Department.Name)
+                                    @Html.HiddenFor(model => model.AppliedCourse.Department.Code)
+                                    @Html.HiddenFor(model => model.Person.Id)
+                                    @Html.HiddenFor(model => model.Payment.Id)
+                                    @Html.HiddenFor(model => model.remitaPyament.payment.Id)
+
+                                    @Html.HiddenFor(model => model.Person.DateEntered)
+                                    @Html.HiddenFor(model => model.Person.FullName)
+                                    @Html.HiddenFor(model => model.PassportUrl, new { Id = "passportImageId" })
+
+                                    @Html.HiddenFor(model => model.ApplicationAlreadyExist)
+                                    @Html.HiddenFor(model => model.HasJambPassport)
+                                    <div class="col-md-12">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <h4>Bio Data</h4>
+                                            </div>
+                                            <div class="col-md-6 form-group">
+                                                @Html.LabelFor(model => model.Person.LastName)
+                                                @Html.TextBoxFor(model => model.Person.LastName, new { @class = "form-control text-uppercase", @readonly = "readonly" })
+                                                @Html.ValidationMessageFor(model => model.Person.LastName)
+                                            </div>
+                                            <div class="col-md-6 form-group">
+                                                @Html.LabelFor(model => model.Person.FirstName)
+                                                @Html.TextBoxFor(model => model.Person.FirstName, new { @class = "form-control text-uppercase", @readonly = "readonly" })
+                                                @Html.ValidationMessageFor(model => model.Person.FirstName)
+                                            </div>
+
+                                            <div class="col-md-6 form-group">
+                                                @Html.LabelFor(model => model.Person.OtherName, new { @class = "control-label " })
+                                                @Html.TextBoxFor(model => model.Person.OtherName, new { @class = "form-control text-uppercase", @readonly = "readonly" })
+                                                @Html.ValidationMessageFor(model => model.Person.OtherName)
+                                            </div>
+
+                                            <div class="col-md-6 form-group">
+                                                @Html.LabelFor(model => model.Person.Sex.Id, new { @class = "control-label " })
+                                                @Html.DropDownListFor(f => f.Person.Sex.Id, (IEnumerable<SelectListItem>)ViewBag.SexId, new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(model => model.Person.Sex.Id)
+                                            </div>
+
+
+                                            <div class="col-md-6 form-group">
+                                                <div class="form-inline">
+                                                    <div class="form-inline" style="color: black">
+                                                        @Html.LabelFor(model => model.Person.DateOfBirth, new { @class = "control-label " })
+                                                    </div>
+                                                    <div class="clearfix"></div>
+                                                    <div>
+
+                                                        @Html.DropDownListFor(m => m.Person.YearOfBirth.Id, (IEnumerable<SelectListItem>)ViewBag.YearOfBirthId, new { @class = "form-control pl-2 mr-0" })
+                                                        @Html.DropDownListFor(m => m.Person.MonthOfBirth.Id, (IEnumerable<SelectListItem>)ViewBag.MonthOfBirthId, new { @class = "form-control pl-2 ml-0 mr-0" })
+                                                        @Html.DropDownListFor(m => m.Person.DayOfBirth.Id, (IEnumerable<SelectListItem>)ViewBag.DayOfBirthId, new { @class = "form-control ml-0" })
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="col-md-6 form-group">
+                                                @Html.LabelFor(model => model.Person.State.Id, new { @class = "control-label " })
+                                                @Html.DropDownListFor(f => f.Person.State.Id, (IEnumerable<SelectListItem>)ViewBag.StateId, new { @class = "form-control", required = "required" })
+                                                @Html.ValidationMessageFor(model => model.Person.State.Id)
+                                            </div>
+
+                                            <div class="col-md-6 form-group">
+                                                @Html.LabelFor(model => model.Person.LocalGovernment.Id, new { @class = "control-label " })
+                                                @Html.DropDownListFor(f => f.Person.LocalGovernment.Id, (IEnumerable<SelectListItem>)ViewBag.LgaId, new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(model => model.Person.LocalGovernment.Id)
+                                            </div>
+
+
+
+                                            <div class="col-md-6 form-group">
+                                                @Html.LabelFor(model => model.Person.HomeTown, new { @class = "control-label " })
+                                                @Html.TextBoxFor(model => model.Person.HomeTown, new { @class = "form-control text-uppercase", max = "50" })
+                                                @Html.ValidationMessageFor(model => model.Person.HomeTown)
+                                            </div>
+
+                                            <div class="col-md-12 form-group">
+                                                @Html.LabelFor(model => model.Person.HomeAddress, new { @class = "control-label " })
+                                                @Html.TextBoxFor(model => model.Person.HomeAddress, new { @class = "form-control text-uppercase", max = "250" })
+                                            </div>
+
+                                            <div class="col-md-6 form-group">
+                                                @Html.LabelFor(model => model.Person.MobilePhone, new { @class = "control-label " })
+                                                @Html.TextBoxFor(model => model.Person.MobilePhone, new { @class = "form-control", @readonly = "readonly", max = "15", min = "11", type = "number" })
+                                                @Html.ValidationMessageFor(model => model.Person.MobilePhone)
+                                            </div>
+
+                                            <div class="col-md-6 form-group">
+                                                @Html.LabelFor(model => model.Person.Email, new { @class = "control-label " })
+                                                @Html.TextBoxFor(model => model.Person.Email, new { @class = "form-control text-uppercase", @readonly = "readonly", max = "50" })
+                                            </div>
+
+                                            <div class="col-md-6 form-group">
+                                                @Html.LabelFor(model => model.Person.Religion.Id, new { @class = "control-label " })
+                                                @Html.DropDownListFor(model => model.Person.Religion.Id, (IEnumerable<SelectListItem>)ViewBag.ReligionId, new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(model => model.Person.Religion.Id)
+                                            </div>
+
+                                            <div class="col-md-6 form-group">
+                                                @Html.LabelFor(model => model.Applicant.Ability.Id, new { @class = "control-label " })
+                                                @Html.DropDownListFor(model => model.Applicant.Ability.Id, (IEnumerable<SelectListItem>)ViewBag.AbilityId, new { @class = "form-control" })
+                                            </div>
+                                            <div class="col-md-6 form-group">
+                                                @Html.LabelFor(model => model.Applicant.OtherAbility)
+                                                @Html.TextBoxFor(model => model.Applicant.OtherAbility, new { @class = "form-control text-uppercase" })
+                                            </div>
+                                            <div class="col-md-6 form-group">
+                                                @Html.LabelFor(model => model.Applicant.ExtraCurricullarActivities)
+                                                @Html.TextBoxFor(model => model.Applicant.ExtraCurricullarActivities, new { @class = "form-control text-uppercase" })
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12 text-right">
+                                        <a class="btn btn-primary pull-right" style="color: white" id="activate-step-2">NEXT</a>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row setup-content pr-4 pl-4 pb-4 pt-0" id="step-2">
+                            <div class="col-xs-12">
+                                <div class="col-md-12 well" style="height: auto">
+                                    <h4>Academic Details</h4>
+                                    <div class="row">
+                                        @if (Model != null && Model.Programme != null)
+                                        {
+                                            if (Model.Programme.Id == 2 || Model.Programme.Id == 5 || Model.Programme.Id == 6)
+                                            {
+
+                                                <div class="col-md-6 form-group">
+                                                    @Html.LabelFor(model => model.PreviousEducation.SchoolName, new { @class = "control-label " })
+                                                    @Html.TextBoxFor(model => model.PreviousEducation.SchoolName, new { @class = "form-control" })
+                                                    @Html.ValidationMessageFor(model => model.PreviousEducation.SchoolName)
+                                                </div>
+                                                <div class="col-md-6 form-group">
+                                                    @Html.LabelFor(model => model.PreviousEducation.Course, new { @class = "control-label " })
+                                                    @Html.TextBoxFor(model => model.PreviousEducation.Course, new { @class = "form-control" })
+                                                    @Html.ValidationMessageFor(model => model.PreviousEducation.Course)
+                                                </div>
+                                                <div class="col-md-6 form-group">
+                                                    <div class="form-inline">
+                                                        <div class="form-inline" style="color: black">
+                                                            @Html.LabelFor(model => model.PreviousEducation.StartDate, new { @class = "control-label " })
+                                                        </div>
+                                                        <div class="clearfix"></div>
+                                                        <div>
+                                                            @Html.DropDownListFor(model => model.PreviousEducation.StartYear.Id, (IEnumerable<SelectListItem>)ViewBag.PreviousEducationStartYearId, new { @class = "form-control pl-2 mr-0" })
+                                                            @Html.DropDownListFor(model => model.PreviousEducation.StartMonth.Id, (IEnumerable<SelectListItem>)ViewBag.PreviousEducationStartMonthId, new { @class = "form-control pl-2 ml-0 mr-0" })
+                                                            @Html.DropDownListFor(model => model.PreviousEducation.StartDay.Id, (IEnumerable<SelectListItem>)ViewBag.PreviousEducationStartDayId, new { @class = "form-control ml-0" })
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 form-group">
+                                                    <div class="form-inline">
+                                                        <div class="form-inline" style="color:black">
+                                                            @Html.LabelFor(model => model.PreviousEducation.EndDate, new { @class = "control-label " })
+                                                        </div>
+                                                        <div class="clearfix"></div>
+                                                        <div>
+                                                            @Html.DropDownListFor(model => model.PreviousEducation.EndYear.Id, (IEnumerable<SelectListItem>)ViewBag.PreviousEducationEndYearId, new { @class = "form-control pl-2 mr-0" })
+                                                            @Html.DropDownListFor(model => model.PreviousEducation.EndMonth.Id, (IEnumerable<SelectListItem>)ViewBag.PreviousEducationEndMonthId, new { @class = "form-control pl-2 ml-0 mr-0" })
+                                                            @Html.DropDownListFor(model => model.PreviousEducation.EndDay.Id, (IEnumerable<SelectListItem>)ViewBag.PreviousEducationEndDayId, new { @class = "form-control pl-2 ml-0 mr-0" })
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 form-group">
+                                                    @Html.LabelFor(model => model.PreviousEducation.Qualification.Id, new { @class = "control-label " })
+                                                    @Html.DropDownListFor(model => model.PreviousEducation.Qualification.Id, (IEnumerable<SelectListItem>)ViewBag.QualificationId, new { @class = "form-control" })
+                                                    @Html.ValidationMessageFor(model => model.PreviousEducation.Qualification.Id)
+                                                </div>
+
+                                                <div class="col-md-6 form-group">
+                                                    @Html.LabelFor(model => model.PreviousEducation.ResultGrade.Id, new { @class = "control-label" })
+                                                    @Html.DropDownListFor(model => model.PreviousEducation.ResultGrade.Id, (IEnumerable<SelectListItem>)ViewBag.ResultGradeId, new { @class = "form-control" })
+                                                    @Html.ValidationMessageFor(model => model.PreviousEducation.ResultGrade.Id)
+                                                </div>
+                                                <div class="col-md-6 form-group">
+                                                    @Html.LabelFor(model => model.PreviousEducation.ITDuration.Id, "Duration", new { @class = "control-label " })
+                                                    @Html.DropDownListFor(model => model.PreviousEducation.ITDuration.Id, (IEnumerable<SelectListItem>)ViewBag.ITDurationId, new { @class = "form-control" })
+                                                    @Html.ValidationMessageFor(model => model.PreviousEducation.ITDuration.Id)
+
+                                                </div>
+
+                                            }
+                                            //else if (Model.Programme.Id == 1 && (Model.ApplicationFormSetting.Id == 6 || Model.ApplicationFormSetting.Id == 8 || Model.ApplicationFormSetting.Id == 10 || Model.ApplicationFormSetting.Id == 12 || Model.ApplicationFormSetting.Id == 14 || Model.ApplicationFormSetting.Id == 17))
+                                            else if (Model.Programme.Id == 1 && (Model.ApplicationFormSetting.Id == 20 || Model.ApplicationFormSetting.Id == 8 || Model.ApplicationFormSetting.Id == 10 || Model.ApplicationFormSetting.Id == 12 || Model.ApplicationFormSetting.Id == 14 || Model.ApplicationFormSetting.Id == 18 || Model.ApplicationFormSetting.Id == 22))
+                                            {
+                                                if (Model.Programme.Id == 1 && (Model.ApplicationFormSetting.Id == 20))
+                                                {
+                                                    if (Model.SupplementaryCourse != null)
+                                                    {
+                                                        if (Model.SupplementaryCourse.Department != null)
+                                                        {
+                                                            if (Model.SupplementaryCourse.Department.Id > 0)
+                                                            {
+                                                                <div class="col-md-6">
+                                                                    <div class="form-group">
+                                                                        @Html.LabelFor(model => model.SupplementaryCourse.Department.Id, "Supplementary Department", new { @class = "control-label " })
+                                                                        @Html.DropDownListFor(model => model.SupplementaryCourse.Department.Id, (IEnumerable<SelectListItem>)ViewBag.SupplementaryDepartmentId, new { @class = "form-control", @readonly = "readonly" })
+                                                                        @Html.ValidationMessageFor(model => model.SupplementaryCourse.Department.Id)
+                                                                    </div>
+                                                                </div>
+                                                            }
+                                                            else
+                                                            {
+                                                                <div class="col-md-6">
+                                                                    <div class="form-group">
+                                                                        @Html.LabelFor(model => model.SupplementaryCourse.Department.Id, "Supplementary Department", new { @class = "control-label " })
+                                                                        @Html.DropDownListFor(model => model.SupplementaryCourse.Department.Id, (IEnumerable<SelectListItem>)ViewBag.SupplementaryDepartmentId, new { @class = "form-control" })
+                                                                        @Html.ValidationMessageFor(model => model.SupplementaryCourse.Department.Id)
+                                                                    </div>
+                                                                </div>
+                                                            }
+                                                        }
+                                                        else
+                                                        {
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                    @Html.LabelFor(model => model.SupplementaryCourse.Department.Id, "Supplementary Department", new { @class = "control-label " })
+                                                                    @Html.DropDownListFor(model => model.SupplementaryCourse.Department.Id, (IEnumerable<SelectListItem>)ViewBag.SupplementaryDepartmentId, new { @class = "form-control" })
+                                                                    @Html.ValidationMessageFor(model => model.SupplementaryCourse.Department.Id)
+                                                                </div>
+                                                            </div>
+                                                        }
+                                                        if (Model.SupplementaryCourse.Putme_Score > 0)
+                                                        {
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                    @Html.LabelFor(model => model.SupplementaryCourse.Putme_Score, "PUTME Score", new { @class = "control-label " })
+                                                                    @Html.TextBoxFor(model => model.SupplementaryCourse.Putme_Score, new { @class = "form-control", @readonly = "readonly" })
+                                                                    @Html.ValidationMessageFor(model => model.SupplementaryCourse.Putme_Score)
+                                                                </div>
+                                                            </div>
+                                                        }
+                                                        else
+                                                        {
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                    @Html.LabelFor(model => model.SupplementaryCourse.Putme_Score, "PUTME Score", new { @class = "control-label " })
+                                                                    @Html.TextBoxFor(model => model.SupplementaryCourse.Putme_Score, new { @class = "form-control" })
+                                                                    @Html.ValidationMessageFor(model => model.SupplementaryCourse.Putme_Score)
+                                                                </div>
+                                                            </div>
+                                                        }
+                                                        if (Model.SupplementaryCourse.Average_Score > 0)
+                                                        {
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                    @Html.LabelFor(model => model.SupplementaryCourse.Average_Score, "PUTME Average Score", new { @class = "control-label", @readonly = "readonly" })
+                                                                    @Html.TextBoxFor(model => model.SupplementaryCourse.Average_Score, new { @class = "form-control" })
+                                                                    @Html.ValidationMessageFor(model => model.SupplementaryCourse.Average_Score)
+                                                                </div>
+                                                            </div>
+                                                        }
+                                                        else
+                                                        {
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                    @Html.LabelFor(model => model.SupplementaryCourse.Average_Score, "PUTME Average Score", new { @class = "control-label " })
+                                                                    @Html.TextBoxFor(model => model.SupplementaryCourse.Average_Score, new { @class = "form-control" })
+                                                                    @Html.ValidationMessageFor(model => model.SupplementaryCourse.Average_Score)
+                                                                </div>
+                                                            </div>
+
+                                                        }
+                                                    }
+                                                }
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        @Html.LabelFor(model => model.PreviousEducation.SchoolName, new { @class = "control-label " })
+                                                        @Html.TextBoxFor(model => model.PreviousEducation.SchoolName, new { @class = "form-control" })
+                                                        @Html.ValidationMessageFor(model => model.PreviousEducation.SchoolName)
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6 form-group">
+                                                    @Html.LabelFor(model => model.PreviousEducation.Course, new { @class = "control-label " })
+                                                    @Html.TextBoxFor(model => model.PreviousEducation.Course, new { @class = "form-control" })
+                                                    @Html.ValidationMessageFor(model => model.PreviousEducation.Course)
+                                                </div>
+                                                <div class="col-md-6 form-group">
+                                                    <div class="form-inline">
+                                                        <div class="form-inline" style="color: black">
+                                                            @Html.LabelFor(model => model.PreviousEducation.StartDate, new { @class = "control-label " })
+                                                        </div>
+                                                        <div>
+                                                            @Html.DropDownListFor(model => model.PreviousEducation.StartYear.Id, (IEnumerable<SelectListItem>)ViewBag.PreviousEducationStartYearId, new { @class = "form-control pl-2 mr-0" })
+                                                            @Html.DropDownListFor(model => model.PreviousEducation.StartMonth.Id, (IEnumerable<SelectListItem>)ViewBag.PreviousEducationStartMonthId, new { @class = "form-control pl-2 ml-0 mr-0" })
+                                                            @Html.DropDownListFor(model => model.PreviousEducation.StartDay.Id, (IEnumerable<SelectListItem>)ViewBag.PreviousEducationStartDayId, new { @class = "form-control pl-2 ml-0 mr-0" })
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <div class="form-inline">
+                                                            <div class="form-inline" style="color: black">
+                                                                @Html.LabelFor(model => model.PreviousEducation.EndDate, new { @class = "control-label " })
+                                                            </div>
+                                                            <div>
+                                                                @Html.DropDownListFor(model => model.PreviousEducation.EndYear.Id, (IEnumerable<SelectListItem>)ViewBag.PreviousEducationEndYearId, new { @class = "form-control pl-2 mr-0" })
+                                                                @Html.DropDownListFor(model => model.PreviousEducation.EndMonth.Id, (IEnumerable<SelectListItem>)ViewBag.PreviousEducationEndMonthId, new { @class = "form-control pl-2 ml-0 mr-0" })
+                                                                @Html.DropDownListFor(model => model.PreviousEducation.EndDay.Id, (IEnumerable<SelectListItem>)ViewBag.PreviousEducationEndDayId, new { @class = "form-control pl-2 ml-0 mr-0" })
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6 form-group">
+                                                    @Html.LabelFor(model => model.PreviousEducation.Qualification.Id, new { @class = "control-label " })
+                                                    @Html.DropDownListFor(model => model.PreviousEducation.Qualification.Id, (IEnumerable<SelectListItem>)ViewBag.QualificationId, new { @class = "form-control" })
+                                                    @Html.ValidationMessageFor(model => model.PreviousEducation.Qualification.Id)
+
+                                                </div>
+
+                                                <div class="col-md-6 form-group">
+
+                                                    @Html.LabelFor(model => model.PreviousEducation.ResultGrade.Id, new { @class = "control-label" })
+                                                    @Html.DropDownListFor(model => model.PreviousEducation.ResultGrade.Id, (IEnumerable<SelectListItem>)ViewBag.ResultGradeId, new { @class = "form-control" })
+                                                    @Html.ValidationMessageFor(model => model.PreviousEducation.ResultGrade.Id)
+
+                                                </div>
+
+
+
+                                                <div class="col-md-6 form-group">
+                                                    @Html.LabelFor(model => model.PreviousEducation.ITDuration.Id, "Duration", new { @class = "control-label " })
+                                                    @Html.DropDownListFor(model => model.PreviousEducation.ITDuration.Id, (IEnumerable<SelectListItem>)ViewBag.ITDurationId, new { @class = "form-control" })
+                                                    @Html.ValidationMessageFor(model => model.PreviousEducation.ITDuration.Id)
+
+                                                </div>
+
+                                                if (Model.ApplicationFormSetting.Id == 20 || Model.ApplicationFormSetting.Id == 8 || Model.ApplicationFormSetting.Id == 10 || Model.ApplicationFormSetting.Id == 12 || Model.ApplicationFormSetting.Id == 14 || Model.ApplicationFormSetting.Id == 17 || Model.ApplicationFormSetting.Id == 18 || Model.ApplicationFormSetting.Id == 22 || Model.ApplicationFormSetting.Id == 21 || Model.ApplicationFormSetting.Id == 1)
+                                                {
+                                                    if (Model.ApplicantJambDetail != null)
+                                                    {
+                                                        <div class="col-md-6 form-group">
+                                                            @Html.LabelFor(model => model.AppliedCourse.Department.Name, new { @class = "control-label" })
+                                                            @Html.TextBoxFor(model => model.AppliedCourse.Department.Name, new { @class = "form-control", @readonly = "readonly" })
+                                                            @Html.ValidationMessageFor(model => model.AppliedCourse.Department.Name)
+                                                        </div>
+
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                @Html.LabelFor(model => model.ApplicantJambDetail.JambRegistrationNumber, new { @class = "control-label" })
+                                                                @Html.TextBoxFor(model => model.ApplicantJambDetail.JambRegistrationNumber, new { @class = "form-control", @readonly = "readonly" })
+                                                                @Html.ValidationMessageFor(model => model.ApplicantJambDetail.JambRegistrationNumber)
+                                                            </div>
+                                                        </div>
+                                                        if (Model.ApplicantJambDetail.InstitutionChoice != null)
+                                                        {
+                                                            if (Model.ApplicantJambDetail.InstitutionChoice.Id > 0)
+                                                            {
+                                                                <div class="col-md- form-group6">
+                                                                    @Html.LabelFor(model => model.ApplicantJambDetail.InstitutionChoice.Id, "Institution Choice", new { @class = "control-label " })
+                                                                    @Html.DropDownListFor(model => model.ApplicantJambDetail.InstitutionChoice.Id, (IEnumerable<SelectListItem>)ViewBag.InstitutionChoiceId, new { @class = "form-control", @readonly = "readonly" })
+                                                                    @Html.ValidationMessageFor(model => model.ApplicantJambDetail.InstitutionChoice.Id)
+                                                                </div>
+                                                            }
+                                                            else
+                                                            {
+                                                                <div class="col-md-6 form-group">
+                                                                    @Html.LabelFor(model => model.ApplicantJambDetail.InstitutionChoice.Id, "Institution Choice", new { @class = "control-label " })
+                                                                    @Html.DropDownListFor(model => model.ApplicantJambDetail.InstitutionChoice.Id, (IEnumerable<SelectListItem>)ViewBag.InstitutionChoiceId, new { @class = "form-control" })
+                                                                    @Html.ValidationMessageFor(model => model.ApplicantJambDetail.InstitutionChoice.Id)
+
+                                                                </div>
+                                                            }
+                                                        }
+                                                        else
+                                                        {
+                                                            <div class="col-md-6 form-group">
+                                                                @Html.LabelFor(model => model.ApplicantJambDetail.InstitutionChoice.Id, "Institution Choice", new { @class = "control-label " })
+                                                                @Html.DropDownListFor(model => model.ApplicantJambDetail.InstitutionChoice.Id, (IEnumerable<SelectListItem>)ViewBag.InstitutionChoiceId, new { @class = "form-control" })
+                                                                @Html.ValidationMessageFor(model => model.ApplicantJambDetail.InstitutionChoice.Id)
+                                                            </div>
+                                                        }
+
+                                                    }
+                                                    else
+                                                    {
+                                                        <div class="col-md-6 form-group">
+                                                            @Html.LabelFor(model => model.AppliedCourse.Department.Name, new { @class = "control-label" })
+                                                            @Html.TextBoxFor(model => model.AppliedCourse.Department.Name, new { @class = "form-control", @readonly = "readonly" })
+                                                            @Html.ValidationMessageFor(model => model.AppliedCourse.Department.Name)
+                                                        </div>
+                                                        <div class="col-md-6 form-group">
+                                                            @Html.LabelFor(model => model.ApplicantJambDetail.JambRegistrationNumber, new { @class = "control-label" })
+                                                            @Html.TextBoxFor(model => model.ApplicantJambDetail.JambRegistrationNumber, new { @class = "form-control", @readonly = "readonly" })
+                                                            @Html.ValidationMessageFor(model => model.ApplicantJambDetail.JambRegistrationNumber)
+                                                        </div>
+                                                        <div class="col-md-6 form-group">
+                                                            @Html.LabelFor(model => model.ApplicantJambDetail.InstitutionChoice.Id, "Institution Choice", new { @class = "control-label " })
+                                                            @Html.DropDownListFor(model => model.ApplicantJambDetail.InstitutionChoice.Id, (IEnumerable<SelectListItem>)ViewBag.InstitutionChoiceId, new { @class = "form-control" })
+                                                            @Html.ValidationMessageFor(model => model.ApplicantJambDetail.InstitutionChoice.Id)
+
+                                                        </div>
+
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    if (Model.ApplicantJambDetail != null)
+                                                    {
+                                                        <div class="col-md-6 form-group">
+                                                            @Html.LabelFor(model => model.AppliedCourse.Department.Name, new { @class = "control-label" })
+                                                            @Html.TextBoxFor(model => model.AppliedCourse.Department.Name, new { @class = "form-control", @readonly = "readonly" })
+                                                            @Html.ValidationMessageFor(model => model.AppliedCourse.Department.Name)
+                                                        </div>
+                                                        <div class="col-md-6 form-group">
+
+                                                            @Html.LabelFor(model => model.ApplicantJambDetail.JambRegistrationNumber, new { @class = "control-label" })
+                                                            @Html.TextBoxFor(model => model.ApplicantJambDetail.JambRegistrationNumber, new { @class = "form-control", @readonly = "readonly" })
+                                                            @Html.ValidationMessageFor(model => model.ApplicantJambDetail.JambRegistrationNumber)
+
+                                                        </div>
+                                                        if (Model.ApplicantJambDetail.JambScore != null)
+                                                        {
+                                                            <div class="col-md-6 form-group">
+                                                                @Html.LabelFor(model => model.ApplicantJambDetail.JambScore, new { @class = "control-label " })
+                                                                @Html.DropDownListFor(model => model.ApplicantJambDetail.JambScore, (IEnumerable<SelectListItem>)ViewBag.JambScoreId, new { @class = "form-control", @readonly = "readonly" })
+                                                                @Html.ValidationMessageFor(model => model.ApplicantJambDetail.JambScore)
+                                                            </div>
+                                                        }
+                                                        else
+                                                        {
+                                                            <div class="col-md-6 form-group">
+                                                                @Html.LabelFor(model => model.ApplicantJambDetail.JambScore, new { @class = "control-label " })
+                                                                @Html.DropDownListFor(model => model.ApplicantJambDetail.JambScore, (IEnumerable<SelectListItem>)ViewBag.JambScoreId, new { @class = "form-control" })
+                                                                @Html.ValidationMessageFor(model => model.ApplicantJambDetail.JambScore)
+                                                            </div>
+                                                        }
+
+                                                        if (Model.ApplicantJambDetail.InstitutionChoice != null)
+                                                        {
+                                                            if (Model.ApplicantJambDetail.InstitutionChoice.Id > 0)
+                                                            {
+                                                                <div class="col-md-6 form-group">
+
+                                                                    @Html.LabelFor(model => model.ApplicantJambDetail.InstitutionChoice.Id, "Institution Choice", new { @class = "control-label " })
+                                                                    @Html.DropDownListFor(model => model.ApplicantJambDetail.InstitutionChoice.Id, (IEnumerable<SelectListItem>)ViewBag.InstitutionChoiceId, new { @class = "form-control", @readonly = "readonly" })
+                                                                    @Html.ValidationMessageFor(model => model.ApplicantJambDetail.InstitutionChoice.Id)
+
+                                                                </div>
+                                                            }
+                                                            else
+                                                            {
+                                                                <div class="col-md-6 form-group">
+                                                                    @Html.LabelFor(model => model.ApplicantJambDetail.InstitutionChoice.Id, "Institution Choice", new { @class = "control-label " })
+                                                                    @Html.DropDownListFor(model => model.ApplicantJambDetail.InstitutionChoice.Id, (IEnumerable<SelectListItem>)ViewBag.InstitutionChoiceId, new { @class = "form-control" })
+                                                                    @Html.ValidationMessageFor(model => model.ApplicantJambDetail.InstitutionChoice.Id)
+                                                                </div>
+
+                                                            }
+                                                        }
+                                                        else
+                                                        {
+                                                            <div class="col-md-6 form-group">
+                                                                @Html.LabelFor(model => model.ApplicantJambDetail.InstitutionChoice.Id, "Institution Choice", new { @class = "control-label " })
+                                                                @Html.DropDownListFor(model => model.ApplicantJambDetail.InstitutionChoice.Id, (IEnumerable<SelectListItem>)ViewBag.InstitutionChoiceId, new { @class = "form-control" })
+                                                                @Html.ValidationMessageFor(model => model.ApplicantJambDetail.InstitutionChoice.Id)
+                                                            </div>
+                                                        }
+
+                                                        if (Model.ApplicantJambDetail.Subject1 != null)
+                                                        {
+                                                            <div class="col-md-6 form-group">
+                                                                @Html.LabelFor(model => model.ApplicantJambDetail.Subject1, "First Subject", new { @class = "control-label " })
+                                                                @Html.DropDownListFor(model => model.ApplicantJambDetail.Subject1.Id, (IEnumerable<SelectListItem>)ViewBag.Subject1Id, new { @class = "form-control", @readonly = "readonly" })
+                                                                @Html.ValidationMessageFor(model => model.ApplicantJambDetail.Subject1.Id)
+
+                                                            </div>
+                                                        }
+                                                        else
+                                                        {
+                                                            <div class="col-md-6 form-group">
+                                                                @Html.LabelFor(model => model.ApplicantJambDetail.Subject1, "First Subject", new { @class = "control-label " })
+                                                                @Html.DropDownListFor(model => model.ApplicantJambDetail.Subject1.Id, (IEnumerable<SelectListItem>)ViewBag.Subject1Id, new { @class = "form-control" })
+                                                                @Html.ValidationMessageFor(model => model.ApplicantJambDetail.Subject1.Id)
+
+                                                            </div>
+                                                        }
+
+
+                                                        if (Model.ApplicantJambDetail.Subject2 != null)
+                                                        {
+                                                            <div class="col-md-6 form-group">
+                                                                @Html.LabelFor(model => model.ApplicantJambDetail.Subject2, new { @class = "control-label " })
+                                                                @Html.DropDownListFor(model => model.ApplicantJambDetail.Subject2.Id, (IEnumerable<SelectListItem>)ViewBag.Subject2Id, new { @class = "form-control", @readonly = "readonly" })
+                                                                @Html.ValidationMessageFor(model => model.ApplicantJambDetail.Subject2.Id)
+                                                            </div>
+                                                        }
+                                                        else
+                                                        {
+                                                            <div class="col-md-6 form-group">
+                                                                @Html.LabelFor(model => model.ApplicantJambDetail.Subject2, new { @class = "control-label " })
+                                                                @Html.DropDownListFor(model => model.ApplicantJambDetail.Subject2.Id, (IEnumerable<SelectListItem>)ViewBag.Subject2Id, new { @class = "form-control" })
+                                                                @Html.ValidationMessageFor(model => model.ApplicantJambDetail.Subject2.Id)
+
+                                                            </div>
+                                                        }
+
+                                                        if (Model.ApplicantJambDetail.Subject3 != null)
+                                                        {
+                                                            <div class="col-md-6 form-group">
+                                                                @Html.LabelFor(model => model.ApplicantJambDetail.Subject3, new { @class = "control-label " })
+                                                                @Html.DropDownListFor(model => model.ApplicantJambDetail.Subject3.Id, (IEnumerable<SelectListItem>)ViewBag.Subject3Id, new { @class = "form-control", @readonly = "readonly" })
+                                                                @Html.ValidationMessageFor(model => model.ApplicantJambDetail.Subject3.Id)
+
+                                                            </div>
+                                                        }
+                                                        else
+                                                        {
+                                                            <div class="col-md-6 form-group">
+                                                                @Html.LabelFor(model => model.ApplicantJambDetail.Subject3, new { @class = "control-label " })
+                                                                @Html.DropDownListFor(model => model.ApplicantJambDetail.Subject3.Id, (IEnumerable<SelectListItem>)ViewBag.Subject3Id, new { @class = "form-control" })
+                                                                @Html.ValidationMessageFor(model => model.ApplicantJambDetail.Subject3.Id)
+                                                            </div>
+                                                        }
+
+                                                        if (Model.ApplicantJambDetail.Subject4 != null)
+                                                        {
+                                                            <div class="col-md-6 form-group">
+                                                                @Html.LabelFor(model => model.ApplicantJambDetail.Subject4, new { @class = "control-label " })
+                                                                @Html.DropDownListFor(model => model.ApplicantJambDetail.Subject4.Id, (IEnumerable<SelectListItem>)ViewBag.Subject4Id, new { @class = "form-control", @readonly = "readonly" })
+                                                                @Html.ValidationMessageFor(model => model.ApplicantJambDetail.Subject4.Id)
+                                                            </div>
+                                                        }
+                                                        else
+                                                        {
+                                                            <div class="col-md-6 form-group">
+                                                                @Html.LabelFor(model => model.ApplicantJambDetail.Subject4, new { @class = "control-label " })
+                                                                @Html.DropDownListFor(model => model.ApplicantJambDetail.Subject4.Id, (IEnumerable<SelectListItem>)ViewBag.Subject4Id, new { @class = "form-control" })
+                                                                @Html.ValidationMessageFor(model => model.ApplicantJambDetail.Subject4.Id)
+
+                                                            </div>
+                                                        }
+
+                                                    }
+                                                    else
+                                                    {
+                                                        <div class="col-md-6 form-group">
+                                                            @Html.LabelFor(model => model.AppliedCourse.Department.Name, new { @class = "control-label" })
+                                                            @Html.TextBoxFor(model => model.AppliedCourse.Department.Name, new { @class = "form-control", @readonly = "readonly" })
+                                                            @Html.ValidationMessageFor(model => model.AppliedCourse.Department.Name)
+                                                        </div>
+                                                        <div class="col-md-6 form-group">
+                                                            @Html.LabelFor(model => model.ApplicantJambDetail.JambRegistrationNumber, new { @class = "control-label" })
+                                                            @Html.TextBoxFor(model => model.ApplicantJambDetail.JambRegistrationNumber, new { @class = "form-control", @readonly = "readonly" })
+                                                            @Html.ValidationMessageFor(model => model.ApplicantJambDetail.JambRegistrationNumber)
+                                                        </div>
+
+                                                        <div class="col-md-6 form-group">
+                                                            @Html.LabelFor(model => model.ApplicantJambDetail.JambScore, new { @class = "control-label " })
+                                                            @Html.DropDownListFor(model => model.ApplicantJambDetail.JambScore, (IEnumerable<SelectListItem>)ViewBag.JambScoreId, new { @class = "form-control" })
+                                                            @Html.ValidationMessageFor(model => model.ApplicantJambDetail.JambScore)
+                                                        </div>
+
+                                                        <div class="col-md-6 form-group">
+                                                            @Html.LabelFor(model => model.ApplicantJambDetail.InstitutionChoice.Id, "Institution Choice", new { @class = "control-label " })
+                                                            @Html.DropDownListFor(model => model.ApplicantJambDetail.InstitutionChoice.Id, (IEnumerable<SelectListItem>)ViewBag.InstitutionChoiceId, new { @class = "form-control" })
+                                                            @Html.ValidationMessageFor(model => model.ApplicantJambDetail.InstitutionChoice.Id)
+                                                        </div>
+
+                                                        <div class="col-md-6 form-group">
+                                                            @Html.LabelFor(model => model.ApplicantJambDetail.Subject1.Id, "First Subject", new { @class = "control-label " })
+                                                            @Html.DropDownListFor(model => model.ApplicantJambDetail.Subject1.Id, (IEnumerable<SelectListItem>)ViewBag.Subject1Id, new { @class = "form-control" })
+                                                            @Html.ValidationMessageFor(model => model.ApplicantJambDetail.Subject1.Id)
+                                                        </div>
+
+                                                        <div class="col-md-6 form-group">
+                                                            @Html.LabelFor(model => model.ApplicantJambDetail.Subject2, new { @class = "control-label " })
+                                                            @Html.DropDownListFor(model => model.ApplicantJambDetail.Subject2.Id, (IEnumerable<SelectListItem>)ViewBag.Subject2Id, new { @class = "form-control" })
+                                                            @Html.ValidationMessageFor(model => model.ApplicantJambDetail.Subject2.Id)
+                                                        </div>
+
+                                                        <div class="col-md-6 form-group">
+                                                            @Html.LabelFor(model => model.ApplicantJambDetail.Subject3, new { @class = "control-label " })
+                                                            @Html.DropDownListFor(model => model.ApplicantJambDetail.Subject3.Id, (IEnumerable<SelectListItem>)ViewBag.Subject3Id, new { @class = "form-control" })
+                                                            @Html.ValidationMessageFor(model => model.ApplicantJambDetail.Subject3.Id)
+                                                        </div>
+
+                                                        <div class="col-md-6 form-group">
+                                                            @Html.LabelFor(model => model.ApplicantJambDetail.Subject4, new { @class = "control-label " })
+                                                            @Html.DropDownListFor(model => model.ApplicantJambDetail.Subject4.Id, (IEnumerable<SelectListItem>)ViewBag.Subject4Id, new { @class = "form-control" })
+                                                            @Html.ValidationMessageFor(model => model.ApplicantJambDetail.Subject4.Id)
+                                                        </div>
+
+                                                        <div class="col-md-6 form-group">
+                                                        </div>
+                                                    }
+                                                }
+
+                                            }
+                                            else if ((Model.Programme.Id == 1 && (Model.ApplicationFormSetting.Id == 19 || Model.ApplicationFormSetting.Id == 7 || Model.ApplicationFormSetting.Id == 9 || Model.ApplicationFormSetting.Id == 11 || Model.ApplicationFormSetting.Id == 13 || Model.ApplicationFormSetting.Id == 14 || Model.ApplicationFormSetting.Id == 17 || Model.ApplicationFormSetting.Id == 21 || Model.ApplicationFormSetting.Id == 1)) || Model.Programme.Id == 4)
+                                            {
+                                                if (Model.ApplicationFormSetting.Id == 20 || Model.ApplicationFormSetting.Id == 8 || Model.ApplicationFormSetting.Id == 10 || Model.ApplicationFormSetting.Id == 14 || Model.ApplicationFormSetting.Id == 18)
+                                                {
+                                                    if (Model.Programme.Id == 1 && (Model.ApplicationFormSetting.Id == 20))
+                                                    {
+                                                        if (Model.SupplementaryCourse != null)
+                                                        {
+                                                            if (Model.SupplementaryCourse.Department != null)
+                                                            {
+                                                                if (Model.SupplementaryCourse.Department.Id > 0)
+                                                                {
+                                                                    <div class="col-md-6">
+                                                                        <div class="form-group">
+                                                                            @Html.LabelFor(model => model.SupplementaryCourse.Department.Id, "Supplementary Course ", new { @class = "control-label " })
+                                                                            @Html.DropDownListFor(model => model.SupplementaryCourse.Department.Id, (IEnumerable<SelectListItem>)ViewBag.SupplementaryDepartmentId, new { @class = "form-control", @readonly = "readonly" })
+                                                                            @Html.ValidationMessageFor(model => model.SupplementaryCourse.Department.Id)
+                                                                        </div>
+                                                                    </div>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <div class="col-md-6">
+                                                                        <div class="form-group">
+                                                                            @Html.LabelFor(model => model.SupplementaryCourse.Department.Id, "Supplementary Course ", new { @class = "control-label " })
+                                                                            @Html.DropDownListFor(model => model.SupplementaryCourse.Department.Id, (IEnumerable<SelectListItem>)ViewBag.SupplementaryDepartmentId, new { @class = "form-control" })
+                                                                            @Html.ValidationMessageFor(model => model.SupplementaryCourse.Department.Id)
+                                                                        </div>
+                                                                    </div>
+                                                                }
+                                                            }
+                                                            else
+                                                            {
+                                                                <div class="col-md-6">
+                                                                    <div class="form-group">
+                                                                        @Html.LabelFor(model => model.SupplementaryCourse.Department.Id, "Supplementary Course ", new { @class = "control-label " })
+                                                                        @Html.DropDownListFor(model => model.SupplementaryCourse.Department.Id, (IEnumerable<SelectListItem>)ViewBag.SupplementaryDepartmentId, new { @class = "form-control" })
+                                                                        @Html.ValidationMessageFor(model => model.SupplementaryCourse.Department.Id)
+                                                                    </div>
+                                                                </div>
+                                                            }
+                                                            if (Model.SupplementaryCourse.Putme_Score > 0)
+                                                            {
+                                                                <div class="col-md-6">
+                                                                    <div class="form-group">
+                                                                        @Html.LabelFor(model => model.SupplementaryCourse.Putme_Score, "PUTME Score", new { @class = "control-label " })
+                                                                        @Html.TextBoxFor(model => model.SupplementaryCourse.Putme_Score, new { @class = "form-control", @readonly = "readonly" })
+                                                                        @Html.ValidationMessageFor(model => model.SupplementaryCourse.Putme_Score)
+                                                                    </div>
+                                                                </div>
+                                                            }
+                                                            else
+                                                            {
+                                                                <div class="col-md-6">
+                                                                    <div class="form-group">
+                                                                        @Html.LabelFor(model => model.SupplementaryCourse.Putme_Score, "PUTME Score", new { @class = "control-label " })
+                                                                        @Html.TextBoxFor(model => model.SupplementaryCourse.Putme_Score, new { @class = "form-control" })
+                                                                        @Html.ValidationMessageFor(model => model.SupplementaryCourse.Putme_Score)
+                                                                    </div>
+                                                                </div>
+                                                            }
+                                                            @*@*if (Model.SupplementaryCourse.Average_Score > 0)
+                                                            {
+                                                                <div class="col-md-6">
+                                                                    <div class="form-group">
+                                                                        @Html.LabelFor(model => model.SupplementaryCourse.Average_Score, "PUTME Average Score", new { @class = "control-label", @readonly = "readonly" })
+                                                                        @Html.TextBoxFor(model => model.SupplementaryCourse.Average_Score, new { @class = "form-control" })
+                                                                        @Html.ValidationMessageFor(model => model.SupplementaryCourse.Average_Score)
+                                                                    </div>
+                                                                </div>
+                                                            }
+                                                            else
+                                                            {
+                                                                <div class="col-md-6">
+                                                                    <div class="form-group">
+                                                                        @Html.LabelFor(model => model.SupplementaryCourse.Average_Score, "PUTME Average Score", new { @class = "control-label " })
+                                                                        @Html.TextBoxFor(model => model.SupplementaryCourse.Average_Score, new { @class = "form-control" })
+                                                                        @Html.ValidationMessageFor(model => model.SupplementaryCourse.Average_Score)
+                                                                    </div>
+                                                                </div>
+
+                                                            }*@
+                                                        }
+                                                    }
+                                                    if (Model.ApplicantJambDetail != null)
+                                                    {
+                                                        <div class="col-md-6 form-group">
+                                                            @Html.LabelFor(model => model.AppliedCourse.Department.Name, new { @class = "control-label" })
+                                                            @Html.TextBoxFor(model => model.AppliedCourse.Department.Name, new { @class = "form-control", @readonly = "readonly" })
+                                                            @Html.ValidationMessageFor(model => model.AppliedCourse.Department.Name)
+                                                        </div>
+
+                                                        <div class="col-md-6">
+                                                            @Html.LabelFor(model => model.ApplicantJambDetail.JambRegistrationNumber, new { @class = "control-label" })
+                                                            @Html.TextBoxFor(model => model.ApplicantJambDetail.JambRegistrationNumber, new { @class = "form-control", @readonly = "readonly" })
+                                                            @Html.ValidationMessageFor(model => model.ApplicantJambDetail.JambRegistrationNumber)
+                                                        </div>
+
+                                                        if (Model.ApplicantJambDetail.InstitutionChoice != null)
+                                                        {
+                                                            if (Model.ApplicantJambDetail.InstitutionChoice.Id > 0)
+                                                            {
+                                                                <div class="col-md-6 form-group">
+                                                                    @Html.LabelFor(model => model.ApplicantJambDetail.InstitutionChoice.Id, "Institution Choice", new { @class = "control-label " })
+                                                                    @Html.DropDownListFor(model => model.ApplicantJambDetail.InstitutionChoice.Id, (IEnumerable<SelectListItem>)ViewBag.InstitutionChoiceId, new { @class = "form-control", @readonly = "readonly" })
+                                                                    @Html.ValidationMessageFor(model => model.ApplicantJambDetail.InstitutionChoice.Id)
+                                                                </div>
+                                                            }
+                                                            else
+                                                            {
+                                                                <div class="col-md-6 form-group">
+                                                                    @Html.LabelFor(model => model.ApplicantJambDetail.InstitutionChoice.Id, "Institution Choice", new { @class = "control-label " })
+                                                                    @Html.DropDownListFor(model => model.ApplicantJambDetail.InstitutionChoice.Id, (IEnumerable<SelectListItem>)ViewBag.InstitutionChoiceId, new { @class = "form-control" })
+                                                                    @Html.ValidationMessageFor(model => model.ApplicantJambDetail.InstitutionChoice.Id)
+                                                                </div>
+                                                            }
+                                                        }
+                                                        else
+                                                        {
+                                                            <div class="col-md-6 form-group">
+                                                                @Html.LabelFor(model => model.ApplicantJambDetail.InstitutionChoice.Id, "Institution Choice", new { @class = "control-label " })
+                                                                @Html.DropDownListFor(model => model.ApplicantJambDetail.InstitutionChoice.Id, (IEnumerable<SelectListItem>)ViewBag.InstitutionChoiceId, new { @class = "form-control" })
+                                                                @Html.ValidationMessageFor(model => model.ApplicantJambDetail.InstitutionChoice.Id)
+                                                            </div>
+                                                        }
+
+
+
+                                                    }
+                                                    else
+                                                    {
+                                                        <div class="col-md-6 form-group">
+                                                            @Html.LabelFor(model => model.AppliedCourse.Department.Name, new { @class = "control-label" })
+                                                            @Html.TextBoxFor(model => model.AppliedCourse.Department.Name, new { @class = "form-control", @readonly = "readonly" })
+                                                            @Html.ValidationMessageFor(model => model.AppliedCourse.Department.Name)
+                                                        </div>
+                                                        <div class="col-md-6 form-group">
+                                                            @Html.LabelFor(model => model.ApplicantJambDetail.JambRegistrationNumber, new { @class = "control-label" })
+                                                            @Html.TextBoxFor(model => model.ApplicantJambDetail.JambRegistrationNumber, new { @class = "form-control", @readonly = "readonly" })
+                                                            @Html.ValidationMessageFor(model => model.ApplicantJambDetail.JambRegistrationNumber)
+                                                        </div>
+
+
+
+                                                        <div class="col-md-6 form-group">
+                                                            @Html.LabelFor(model => model.ApplicantJambDetail.InstitutionChoice.Id, "Institution Choice", new { @class = "control-label " })
+                                                            @Html.DropDownListFor(model => model.ApplicantJambDetail.InstitutionChoice.Id, (IEnumerable<SelectListItem>)ViewBag.InstitutionChoiceId, new { @class = "form-control" })
+                                                            @Html.ValidationMessageFor(model => model.ApplicantJambDetail.InstitutionChoice.Id)
+                                                        </div>
+
+
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    if (Model.Programme.Id == 1 && (Model.ApplicationFormSetting.Id == 19))
+                                                    {
+                                                        if (Model.SupplementaryCourse != null)
+                                                        {
+                                                            if (Model.SupplementaryCourse.Department != null)
+                                                            {
+                                                                if (Model.SupplementaryCourse.Department.Id > 0)
+                                                                {
+                                                                    <div class="col-md-6">
+                                                                        <div class="form-group">
+                                                                            @Html.LabelFor(model => model.SupplementaryCourse.Department.Id, "Supplementary Course ", new { @class = "control-label " })
+                                                                            @Html.DropDownListFor(model => model.SupplementaryCourse.Department.Id, (IEnumerable<SelectListItem>)ViewBag.SupplementaryDepartmentId, new { @class = "form-control", @readonly = "readonly" })
+                                                                            @Html.ValidationMessageFor(model => model.SupplementaryCourse.Department.Id)
+                                                                        </div>
+                                                                    </div>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <div class="col-md-6">
+                                                                        <div class="form-group">
+                                                                            @Html.LabelFor(model => model.SupplementaryCourse.Department.Id, "Supplementary Course ", new { @class = "control-label " })
+                                                                            @Html.DropDownListFor(model => model.SupplementaryCourse.Department.Id, (IEnumerable<SelectListItem>)ViewBag.SupplementaryDepartmentId, new { @class = "form-control" })
+                                                                            @Html.ValidationMessageFor(model => model.SupplementaryCourse.Department.Id)
+                                                                        </div>
+                                                                    </div>
+                                                                }
+                                                            }
+                                                            else
+                                                            {
+                                                                <div class="col-md-6">
+                                                                    <div class="form-group">
+                                                                        @Html.LabelFor(model => model.SupplementaryCourse.Department.Id, "Supplementary Course Applied", new { @class = "control-label " })
+                                                                        @Html.DropDownListFor(model => model.SupplementaryCourse.Department.Id, (IEnumerable<SelectListItem>)ViewBag.SupplementaryDepartmentId, new { @class = "form-control" })
+                                                                        @Html.ValidationMessageFor(model => model.SupplementaryCourse.Department.Id)
+                                                                    </div>
+                                                                </div>
+                                                            }
+                                                            if (Model.SupplementaryCourse.Putme_Score > 0)
+                                                            {
+                                                                <div class="col-md-6">
+                                                                    <div class="form-group">
+                                                                        @Html.LabelFor(model => model.SupplementaryCourse.Putme_Score, "PUTME Score", new { @class = "control-label " })
+                                                                        @Html.TextBoxFor(model => model.SupplementaryCourse.Putme_Score, new { @class = "form-control", @readonly = "readonly" })
+                                                                        @Html.ValidationMessageFor(model => model.SupplementaryCourse.Putme_Score)
+                                                                    </div>
+                                                                </div>
+                                                            }
+                                                            else
+                                                            {
+                                                                <div class="col-md-6">
+                                                                    <div class="form-group">
+                                                                        @Html.LabelFor(model => model.SupplementaryCourse.Putme_Score, "PUTME Score", new { @class = "control-label " })
+                                                                        @Html.TextBoxFor(model => model.SupplementaryCourse.Putme_Score, new { @class = "form-control" })
+                                                                        @Html.ValidationMessageFor(model => model.SupplementaryCourse.Putme_Score)
+                                                                    </div>
+                                                                </div>
+                                                            }
+                                                            @*if (Model.SupplementaryCourse.Average_Score > 0)
+                                                            {
+                                                                <div class="col-md-6">
+                                                                    <div class="form-group">
+                                                                        @Html.LabelFor(model => model.SupplementaryCourse.Average_Score, "PUTME Average Score", new { @class = "control-label", @readonly = "readonly" })
+                                                                        @Html.TextBoxFor(model => model.SupplementaryCourse.Average_Score, new { @class = "form-control" })
+                                                                        @Html.ValidationMessageFor(model => model.SupplementaryCourse.Average_Score)
+                                                                    </div>
+                                                                </div>
+                                                            }
+                                                            else
+                                                            {
+                                                                <div class="col-md-6">
+                                                                    <div class="form-group">
+                                                                        @Html.LabelFor(model => model.SupplementaryCourse.Average_Score, "PUTME Average Score", new { @class = "control-label " })
+                                                                        @Html.TextBoxFor(model => model.SupplementaryCourse.Average_Score, new { @class = "form-control" })
+                                                                        @Html.ValidationMessageFor(model => model.SupplementaryCourse.Average_Score)
+                                                                    </div>
+                                                                </div>
+
+                                                            }*@
+                                                        }
+
+                                                    }
+
+                                                    if (Model.ApplicantJambDetail != null)
+                                                    {
+                                                        <div class="col-md-6 form-group">
+                                                            @Html.LabelFor(model => model.AppliedCourse.Department.Name, new { @class = "control-label" })
+                                                            @Html.TextBoxFor(model => model.AppliedCourse.Department.Name, new { @class = "form-control", @readonly = "readonly" })
+                                                            @Html.ValidationMessageFor(model => model.AppliedCourse.Department.Name)
+                                                        </div>
+                                                        <div class="col-md-6 form-group">
+                                                            @Html.LabelFor(model => model.ApplicantJambDetail.JambRegistrationNumber, new { @class = "control-label" })
+                                                            @Html.TextBoxFor(model => model.ApplicantJambDetail.JambRegistrationNumber, new { @class = "form-control", @readonly = "readonly" })
+                                                            @Html.ValidationMessageFor(model => model.ApplicantJambDetail.JambRegistrationNumber)
+                                                        </div>
+
+                                                        if (Model.ApplicantJambDetail.JambScore != null)
+                                                        {
+                                                            <div class="col-md-6 form-group">
+                                                                @Html.LabelFor(model => model.ApplicantJambDetail.JambScore, new { @class = "control-label " })
+                                                                @Html.DropDownListFor(model => model.ApplicantJambDetail.JambScore, (IEnumerable<SelectListItem>)ViewBag.JambScoreId, new { @class = "form-control", @readonly = "readonly" })
+                                                                @Html.ValidationMessageFor(model => model.ApplicantJambDetail.JambScore)
+                                                            </div>
+                                                        }
+                                                        else
+                                                        {
+                                                            <div class="col-md-6 form-group">
+                                                                @Html.LabelFor(model => model.ApplicantJambDetail.JambScore, new { @class = "control-label " })
+                                                                @Html.DropDownListFor(model => model.ApplicantJambDetail.JambScore, (IEnumerable<SelectListItem>)ViewBag.JambScoreId, new { @class = "form-control" })
+                                                                @Html.ValidationMessageFor(model => model.ApplicantJambDetail.JambScore)
+                                                            </div>
+                                                        }
+
+                                                        if (Model.ApplicantJambDetail.InstitutionChoice != null)
+                                                        {
+                                                            if (Model.ApplicantJambDetail.InstitutionChoice.Id > 0)
+                                                            {
+                                                                <div class="col-md-6 form-group">
+                                                                    @Html.LabelFor(model => model.ApplicantJambDetail.InstitutionChoice.Id, "Institution Choice", new { @class = "control-label " })
+                                                                    @Html.DropDownListFor(model => model.ApplicantJambDetail.InstitutionChoice.Id, (IEnumerable<SelectListItem>)ViewBag.InstitutionChoiceId, new { @class = "form-control", @readonly = "readonly" })
+                                                                    @Html.ValidationMessageFor(model => model.ApplicantJambDetail.InstitutionChoice.Id)
+                                                                </div>
+                                                            }
+                                                            else
+                                                            {
+                                                                <div class="col-md-6 form-group">
+                                                                    @Html.LabelFor(model => model.ApplicantJambDetail.InstitutionChoice.Id, "Institution Choice", new { @class = "control-label " })
+                                                                    @Html.DropDownListFor(model => model.ApplicantJambDetail.InstitutionChoice.Id, (IEnumerable<SelectListItem>)ViewBag.InstitutionChoiceId, new { @class = "form-control" })
+                                                                    @Html.ValidationMessageFor(model => model.ApplicantJambDetail.InstitutionChoice.Id)
+                                                                </div>
+                                                            }
+                                                        }
+                                                        else
+                                                        {
+                                                            <div class="col-md-6 form-group">
+                                                                @Html.LabelFor(model => model.ApplicantJambDetail.InstitutionChoice.Id, "Institution Choice", new { @class = "control-label " })
+                                                                @Html.DropDownListFor(model => model.ApplicantJambDetail.InstitutionChoice.Id, (IEnumerable<SelectListItem>)ViewBag.InstitutionChoiceId, new { @class = "form-control" })
+                                                                @Html.ValidationMessageFor(model => model.ApplicantJambDetail.InstitutionChoice.Id)
+                                                            </div>
+                                                        }
+
+                                                        if (Model.ApplicantJambDetail.Subject1 != null)
+                                                        {
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                    @Html.LabelFor(model => model.ApplicantJambDetail.Subject1, "First Subject", new { @class = "control-label " })
+                                                                    @Html.DropDownListFor(model => model.ApplicantJambDetail.Subject1.Id, (IEnumerable<SelectListItem>)ViewBag.Subject1Id, new { @class = "form-control", @readonly = "readonly" })
+                                                                    @Html.ValidationMessageFor(model => model.ApplicantJambDetail.Subject1.Id)
+                                                                </div>
+                                                            </div>
+                                                        }
+                                                        else
+                                                        {
+                                                            <div class="col-md-6 form-group">
+                                                                @Html.LabelFor(model => model.ApplicantJambDetail.Subject1, "First Subject", new { @class = "control-label " })
+                                                                @Html.DropDownListFor(model => model.ApplicantJambDetail.Subject1.Id, (IEnumerable<SelectListItem>)ViewBag.Subject1Id, new { @class = "form-control" })
+                                                                @Html.ValidationMessageFor(model => model.ApplicantJambDetail.Subject1.Id)
+                                                            </div>
+                                                        }
+
+                                                        if (Model.ApplicantJambDetail.Subject2 != null)
+                                                        {
+                                                            <div class="col-md-6 form-group">
+                                                                @Html.LabelFor(model => model.ApplicantJambDetail.Subject2, new { @class = "control-label " })
+                                                                @Html.DropDownListFor(model => model.ApplicantJambDetail.Subject2.Id, (IEnumerable<SelectListItem>)ViewBag.Subject2Id, new { @class = "form-control", @readonly = "readonly" })
+                                                                @Html.ValidationMessageFor(model => model.ApplicantJambDetail.Subject2.Id)
+                                                            </div>
+                                                        }
+                                                        else
+                                                        {
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                    @Html.LabelFor(model => model.ApplicantJambDetail.Subject2, new { @class = "control-label " })
+                                                                    @Html.DropDownListFor(model => model.ApplicantJambDetail.Subject2.Id, (IEnumerable<SelectListItem>)ViewBag.Subject2Id, new { @class = "form-control" })
+                                                                    @Html.ValidationMessageFor(model => model.ApplicantJambDetail.Subject2.Id)
+                                                                </div>
+                                                            </div>
+                                                        }
+
+                                                        if (Model.ApplicantJambDetail.Subject3 != null)
+                                                        {
+                                                            <div class="col-md-6 form-group">
+                                                                @Html.LabelFor(model => model.ApplicantJambDetail.Subject3, new { @class = "control-label " })
+                                                                @Html.DropDownListFor(model => model.ApplicantJambDetail.Subject3.Id, (IEnumerable<SelectListItem>)ViewBag.Subject3Id, new { @class = "form-control", @readonly = "readonly" })
+                                                                @Html.ValidationMessageFor(model => model.ApplicantJambDetail.Subject3.Id)
+                                                            </div>
+                                                        }
+                                                        else
+                                                        {
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                    @Html.LabelFor(model => model.ApplicantJambDetail.Subject3, new { @class = "control-label " })
+                                                                    @Html.DropDownListFor(model => model.ApplicantJambDetail.Subject3.Id, (IEnumerable<SelectListItem>)ViewBag.Subject3Id, new { @class = "form-control" })
+                                                                    @Html.ValidationMessageFor(model => model.ApplicantJambDetail.Subject3.Id)
+                                                                </div>
+                                                            </div>
+                                                        }
+
+                                                        if (Model.ApplicantJambDetail.Subject4 != null)
+                                                        {
+                                                            <div class="col-md-6 form-group">
+                                                                @Html.LabelFor(model => model.ApplicantJambDetail.Subject4, new { @class = "control-label " })
+                                                                @Html.DropDownListFor(model => model.ApplicantJambDetail.Subject4.Id, (IEnumerable<SelectListItem>)ViewBag.Subject4Id, new { @class = "form-control", @readonly = "readonly" })
+                                                                @Html.ValidationMessageFor(model => model.ApplicantJambDetail.Subject4.Id)
+                                                            </div>
+                                                        }
+                                                        else
+                                                        {
+                                                            <div class="col-md-6 form-group">
+                                                                @Html.LabelFor(model => model.ApplicantJambDetail.Subject4, new { @class = "control-label " })
+                                                                @Html.DropDownListFor(model => model.ApplicantJambDetail.Subject4.Id, (IEnumerable<SelectListItem>)ViewBag.Subject4Id, new { @class = "form-control" })
+                                                                @Html.ValidationMessageFor(model => model.ApplicantJambDetail.Subject4.Id)
+                                                            </div>
+                                                        }
+
+                                                        <div class="col-md-6 form-group">
+                                                        </div>
+                                                    }
+                                                    else
+                                                    {
+                                                        <div class="col-md-6 form-group">
+                                                            @Html.LabelFor(model => model.AppliedCourse.Department.Name, new { @class = "control-label" })
+                                                            @Html.TextBoxFor(model => model.AppliedCourse.Department.Name, new { @class = "form-control", @readonly = "readonly" })
+                                                            @Html.ValidationMessageFor(model => model.AppliedCourse.Department.Name)
+                                                        </div>
+                                                        <div class="col-md-6 form-group">
+                                                            @Html.LabelFor(model => model.ApplicantJambDetail.JambRegistrationNumber, new { @class = "control-label" })
+                                                            @Html.TextBoxFor(model => model.ApplicantJambDetail.JambRegistrationNumber, new { @class = "form-control", @readonly = "readonly" })
+                                                            @Html.ValidationMessageFor(model => model.ApplicantJambDetail.JambRegistrationNumber)
+                                                        </div>
+
+                                                        <div class="col-md-6 form-group">
+                                                            @Html.LabelFor(model => model.ApplicantJambDetail.JambScore, new { @class = "control-label " })
+                                                            @Html.DropDownListFor(model => model.ApplicantJambDetail.JambScore, (IEnumerable<SelectListItem>)ViewBag.JambScoreId, new { @class = "form-control" })
+                                                            @Html.ValidationMessageFor(model => model.ApplicantJambDetail.JambScore)
+                                                        </div>
+
+                                                        <div class="col-md-6 form-group">
+                                                            @Html.LabelFor(model => model.ApplicantJambDetail.InstitutionChoice.Id, "Institution Choice", new { @class = "control-label " })
+                                                            @Html.DropDownListFor(model => model.ApplicantJambDetail.InstitutionChoice.Id, (IEnumerable<SelectListItem>)ViewBag.InstitutionChoiceId, new { @class = "form-control" })
+                                                            @Html.ValidationMessageFor(model => model.ApplicantJambDetail.InstitutionChoice.Id)
+                                                        </div>
+
+                                                        <div class="col-md-6 form-group">
+                                                            @Html.LabelFor(model => model.ApplicantJambDetail.Subject1.Id, "First Subject", new { @class = "control-label " })
+                                                            @Html.DropDownListFor(model => model.ApplicantJambDetail.Subject1.Id, (IEnumerable<SelectListItem>)ViewBag.Subject1Id, new { @class = "form-control", @readonly = "readonly" })
+                                                            @Html.ValidationMessageFor(model => model.ApplicantJambDetail.Subject1.Id)
+                                                        </div>
+
+                                                        <div class="col-md-6 form-group">
+                                                            @Html.LabelFor(model => model.ApplicantJambDetail.Subject2, new { @class = "control-label " })
+                                                            @Html.DropDownListFor(model => model.ApplicantJambDetail.Subject2.Id, (IEnumerable<SelectListItem>)ViewBag.Subject2Id, new { @class = "form-control" })
+                                                            @Html.ValidationMessageFor(model => model.ApplicantJambDetail.Subject2.Id)
+                                                        </div>
+
+                                                        <div class="col-md-6 form-group">
+                                                            @Html.LabelFor(model => model.ApplicantJambDetail.Subject3, new { @class = "control-label " })
+                                                            @Html.DropDownListFor(model => model.ApplicantJambDetail.Subject3.Id, (IEnumerable<SelectListItem>)ViewBag.Subject3Id, new { @class = "form-control" })
+                                                            @Html.ValidationMessageFor(model => model.ApplicantJambDetail.Subject3.Id)
+                                                        </div>
+
+                                                        <div class="col-md-6 form-group">
+                                                            @Html.LabelFor(model => model.ApplicantJambDetail.Subject4, new { @class = "control-label " })
+                                                            @Html.DropDownListFor(model => model.ApplicantJambDetail.Subject4.Id, (IEnumerable<SelectListItem>)ViewBag.Subject4Id, new { @class = "form-control" })
+                                                            @Html.ValidationMessageFor(model => model.ApplicantJambDetail.Subject4.Id)
+                                                        </div>
+
+                                                        <div class="col-md-6 form-group">
+                                                        </div>
+                                                    }
+                                                }
+
+                                            }
+                                        }
+                                    </div>
+
+                                    <div class="col-md-12 text-right">
+                                        <a id="activate-step-1" style="color: white" class="btn btn-primary pull-left">Previous</a>
+                                        <a id="activate-step-3" style="color: white" class="btn btn-primary pull-right">Next</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row setup-content pr-4 pl-4 pb-4 pt-0" id="step-3">
+                            <div class="col-md-12">
+                                <div class="col-md-12 pb-5" style="height: 700px; overflow-y: auto;">
+                                    <div class="col-md-12">
+                                        <h4>O-Level Information</h4>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6 card pt-2">
+                                            <h5>First Sitting</h5>
+                                            <hr class="no-top-padding" />
+                                            @Html.HiddenFor(model => model.FirstSittingOLevelResult.Id)
+                                            <div>
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.FirstSittingOLevelResult.Type.Id, "Type", new { @class = "control-label col-md-3" })
+                                                    <div class="col-md-9">
+                                                        @Html.DropDownListFor(model => model.FirstSittingOLevelResult.Type.Id, (IEnumerable<SelectListItem>)ViewBag.FirstSittingOLevelTypeId, new { @class = "form-control olevel" })
+                                                        @Html.ValidationMessageFor(model => model.FirstSittingOLevelResult.Type.Id)
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.FirstSittingOLevelResult.ExamNumber, new { @class = "control-label col-md-3" })
+                                                    <div class="col-md-9">
+                                                        @Html.TextBoxFor(model => model.FirstSittingOLevelResult.ExamNumber, new { @class = "form-control" })
+                                                        @Html.ValidationMessageFor(model => model.FirstSittingOLevelResult.ExamNumber)
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group ">
+                                                    @Html.LabelFor(model => model.FirstSittingOLevelResult.ExamYear, new { @class = "control-label col-md-3" })
+                                                    <div class="col-md-9">
+                                                        @Html.DropDownListFor(model => model.FirstSittingOLevelResult.ExamYear, (IEnumerable<SelectListItem>)ViewBag.FirstSittingExamYearId, new { @class = "form-control olevel" })
+                                                        @Html.ValidationMessageFor(model => model.FirstSittingOLevelResult.ExamYear)
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <table id="firstSittingTable" class="table table-condensed table-responsive" style="background-color: whitesmoke">
+                                                <thead>
+                                                    <tr>
+                                                        <th>
+                                                            Subject
+                                                        </th>
+                                                        <th>
+                                                            Grade
+                                                        </th>
+                                                        <th></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @for (int i = 0; i < 9; i++)
+                                                    {
+                                                        <tr>
+                                                            <td>
+                                                                @Html.HiddenFor(model => model.FirstSittingOLevelResultDetails[i].Id)
+                                                                @Html.HiddenFor(model => model.FirstSittingOLevelResultDetails[i].Subject.Name)
+                                                                @Html.DropDownListFor(model => model.FirstSittingOLevelResultDetails[i].Subject.Id, (IEnumerable<SelectListItem>)ViewData["FirstSittingOLevelSubjectId" + i], new { @class = "form-control olevel" })
+                                                            </td>
+                                                            <td>
+
+                                                                @Html.HiddenFor(model => model.FirstSittingOLevelResultDetails[i].Grade.Name)
+                                                                @Html.DropDownListFor(model => model.FirstSittingOLevelResultDetails[i].Grade.Id, (IEnumerable<SelectListItem>)ViewData["FirstSittingOLevelGradeId" + i], new { @class = "form-control olevel" })
+                                                            </td>
+                                                        </tr>
+                                                    }
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!--col-md-6 end form 1-->
+                                        <!-- beginning of form 2-->
+                                        <div class="col-md-6 card pt-2">
+                                            <h5>Second Sitting</h5>
+                                            <hr class="no-top-padding" />
+                                            @Html.HiddenFor(model => model.SecondSittingOLevelResult.Id)
+                                            <div>
+                                                <div class="form-group">
+
+                                                    @Html.LabelFor(model => model.SecondSittingOLevelResult.Type.Id, "Type", new { @class = "control-label col-md-3" })
+                                                    <div class="col-md-9">
+                                                        @Html.DropDownListFor(model => model.SecondSittingOLevelResult.Type.Id, (IEnumerable<SelectListItem>)ViewBag.SecondSittingOLevelTypeId, new { @class = "form-control olevel" })
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.SecondSittingOLevelResult.ExamNumber, new { @class = "control-label col-md-3" })
+                                                    <div class="col-md-9">
+                                                        @Html.TextBoxFor(model => model.SecondSittingOLevelResult.ExamNumber, new { @class = "form-control" })
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group ">
+                                                    @Html.LabelFor(model => model.SecondSittingOLevelResult.ExamYear, new { @class = "control-label col-md-3" })
+                                                    <div class="col-md-9">
+                                                        @Html.DropDownListFor(model => model.SecondSittingOLevelResult.ExamYear, (IEnumerable<SelectListItem>)ViewBag.SecondSittingExamYearId, new { @class = "form-control olevel" })
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <table id="secondSittingTable" class="table table-condensed table-responsive" style="background-color: whitesmoke">
+                                                <thead>
+                                                    <tr>
+                                                        <th>
+                                                            Subject
+                                                        </th>
+                                                        <th>
+                                                            Grade
+                                                        </th>
+                                                        <th></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @for (int i = 0; i < 9; i++)
+                                                    {
+                                                        <tr>
+                                                            <td>
+                                                                @Html.HiddenFor(model => model.SecondSittingOLevelResultDetails[i].Id)
+                                                                @Html.HiddenFor(model => model.SecondSittingOLevelResultDetails[i].Subject.Name)
+                                                                @Html.DropDownListFor(model => model.SecondSittingOLevelResultDetails[i].Subject.Id, (IEnumerable<SelectListItem>)ViewData["SecondSittingOLevelSubjectId" + i], new { @class = "form-control olevel" })
+                                                            </td>
+                                                            <td>
+                                                                @Html.HiddenFor(model => model.SecondSittingOLevelResultDetails[i].Grade.Name)
+                                                                @Html.DropDownListFor(model => model.SecondSittingOLevelResultDetails[i].Grade.Id, (IEnumerable<SelectListItem>)ViewData["SecondSittingOLevelGradeId" + i], new { @class = "form-control olevel" })
+                                                            </td>
+                                                        </tr>
+                                                    }
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <!--row-->
+                                    <div class="col-md-12 text-right">
+                                        <a id="previous-step-3" class="btn btn-primary pull-left" style="color: white">Previous</a>
+                                        <a id="activate-step-4" class="btn btn-primary pull-right" style="color: white">Next</a>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row setup-content pr-4 pl-4 pb-4 pt-0" id="step-4">
+                            <div class="col-xs-12">
+                                <div class="col-md-12 well" style="">
+                                    <h4>Other Information</h4>
+                                    <div class="row">
+                                        <div class="col-md-12 form-group">
+                                            @Html.LabelFor(model => model.Sponsor.Name)
+                                            @Html.TextBoxFor(model => model.Sponsor.Name, new { @class = "form-control text-uppercase", max = "50" })
+                                            @Html.ValidationMessageFor(model => model.Sponsor.Name)
+                                        </div>
+
+                                        <div class="col-md-6 form-group">
+                                            @Html.LabelFor(model => model.Sponsor.Relationship.Id, new { @class = "control-label " })
+                                            @Html.DropDownListFor(model => model.Sponsor.Relationship.Id, (IEnumerable<SelectListItem>)ViewBag.RelationshipId, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.Sponsor.Relationship.Id)
+                                        </div>
+
+                                        <div class="col-md-6 form-group">
+                                            @Html.LabelFor(model => model.Sponsor.MobilePhone, new { @class = "control-label " })
+                                            @Html.TextBoxFor(model => model.Sponsor.MobilePhone, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.Sponsor.MobilePhone)
+                                        </div>
+
+                                        <div class="col-md-12 form-group">
+                                            @Html.LabelFor(model => model.Sponsor.ContactAddress, new { @class = "control-label " })
+                                            @Html.TextBoxFor(model => model.Sponsor.ContactAddress, new { @class = "form-control text-uppercase", max = "350" })
+                                            @Html.ValidationMessageFor(model => model.Sponsor.ContactAddress)
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    @if (Model.Person.ImageFileUrl != null)
+                                                    {
+                                                        <div class="card-img">
+                                                            <img id="Person_ImageFileUrl" name="Person.ImageFileUrl" src="@Url.Content(Model.Person.ImageFileUrl)" height="100" width="100">
+                                                        </div>
+                                                    }
+                                                    else
+                                                    {
+                                                        <img id="Person_ImageFileUrl" name="Person.ImageFileUrl" height="100" width="100">
+                                                    }
+
+                                                    <div id="dropzone">
+                                                        <form class="dropzone needsclick" id="demo-upload" action="/"></form>
+                                                    </div>
+                                                    <div class="custom-file-upload">
+                                                        <div class="col-md-12">
+                                                            <div id="dropzone">
+                                                                <form class="dropzone needsclick" id="demo-upload" action="/"></form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-8 p-4">
+                                                    <b>
+                                                        I hereby acknowledge that all the details supplied are correct to the best
+                                                        of my knowledge and that if any false information was given, I accept to face whatever penalties
+                                                        appropriate.
+                                                    </b>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-md-12 text-right">
+                                        <a id="previous-step-4" class="btn btn-primary pull-left" style="color: white">Previous</a>
+                                        <button class="btn btn-primary pull-right" style="display: none" id="submitBtn" onclick="showLoading()">Submit</button>
+                                        <span class="pull-right" style="display: none;" id="loading"> <img src="~/Content/Images/bx_loader.gif" /></span>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 bg-warning hidden-md-down">
+
+            <div class="col-md-12">
+                <div class="row p-4 mt-5">
+                    <div class="col-md-2">
+                        <img src="~/Content/Images/school_logo.png" alt="absu logo">
+                    </div>
+                    <div class="col-md-10">
+                        <b>@Model.ApplicationFormSetting.Name</b>
+                    </div>
+                    <hr>
+                    <p>You are on your way to becoming an undergraduate at our Great University</p>
+                    <h4 style="font-size:15px">Welcome to University Of Port-Harcourt</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

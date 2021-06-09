@@ -1,0 +1,210 @@
+﻿@model Abundance_Nk.Web.Areas.Admin.ViewModels.AdmissionProcessingViewModel
+@{
+    ViewBag.Title = "View Applicants Per Session";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<link href="~/Content/DataTables-1.10.15/media/css/jquery.dataTables.css" rel="stylesheet" />
+<link href="~/Content/DataTables-1.10.15/extensions/Buttons/css/buttons.dataTables.css" rel="stylesheet" />
+
+
+<script src="~/Scripts/jquery-2.1.3.js"></script>
+<script src="~/Scripts/dataTables.js"></script>
+<script src="~/Content/DataTables-1.10.15/media/js/jquery.dataTables.js"></script>
+<script src="~/Content/DataTables-1.10.15/extensions/Buttons/js/dataTables.buttons.js"></script>
+<script src="~/Content/DataTables-1.10.15/extensions/Buttons/js/buttons.colVis.js"></script>
+<script src="~/Content/DataTables-1.10.15/extensions/Responsive/js/dataTables.responsive.js"></script>
+<script src="~/Content/DataTables-1.10.15/buttons.flash.min.js"></script>
+<script src="~/Content/DataTables-1.10.15/buttons.html5.min.js"></script>
+<script src="~/Content/DataTables-1.10.15/buttons.print.min.js"></script>
+<script src="~/Content/DataTables-1.10.15/jszip.min.js"></script>
+<script src="~/Content/DataTables-1.10.15/pdfmake.min.js"></script>
+<script src="~/Content/DataTables-1.10.15/vfs_fonts.js"></script>
+
+
+<script type="text/javascript">
+    let jqXHRData;
+    let jqueryVersion = $.noConflict(true);
+    jqueryVersion(document).ready(() => {
+        jqueryVersion("#myTable").DataTable({
+            dom: 'Bfrtip',
+            ordering: true,
+            buttons: [
+                {
+                    extend: 'copy',
+                    exportOptions: {
+                        columns: ':visible'
+                    }
+                },
+                {
+                    extend: 'csv',
+                    exportOptions: {
+                        columns: ':visible'
+                    }
+                },
+                {
+                    extend: 'excel',
+                    exportOptions: {
+                        columns: ':visible'
+                    }
+                },
+                {
+                    extend: 'pdf',
+                    exportOptions: {
+                        columns: ':visible'
+                    }
+                },
+                {
+                    extend: 'print',
+                    exportOptions: {
+                        columns: ':visible'
+                    }
+
+
+                }, , 'colvis'
+            ]
+        });
+
+    });
+</script>
+
+
+<div class="panel panel-default">
+    <div class="panel-body">
+
+        <section class="col-md-12">
+            @if (TempData["Message"] != null)
+            {
+                @Html.Partial("_Message", (Abundance_Nk.Model.Model.Message)TempData["Message"])
+            }
+            <div>
+                <h4><p class="custom-text-black text-center ">APPLICANT LIST PER SESSION</p></h4>
+            </div>
+            @using (Html.BeginForm("ViewApplicantsPerSession", "AdmissionProcessing", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+
+                <div class="panel panel-default">
+                    <div class="panel-body ">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <cite><p class="custom-text-black"> Select the Session and Programme</p></cite>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Session.Id, "Session", new { @class = "control-label custom-text-black" })
+                                    @Html.DropDownListFor(model => model.Session.Id, (IEnumerable<SelectListItem>)ViewBag.SessionId, new { @class = "form-control", required = true })
+                                    @Html.ValidationMessageFor(model => model.Session.Id, null, new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Programme.Id, "Programme", new { @class = "control-label custom-text-black" })
+                                    @Html.DropDownListFor(model => model.Programme.Id, (IEnumerable<SelectListItem>)ViewBag.ProgrammeId, new { @class = "form-control", required = true })
+                                    @Html.ValidationMessageFor(model => model.Programme.Id, null, new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                    <div class="form-group ">
+                                        @Html.LabelFor(model => model.DateFrom, "Start:", new { @class = "control-label custom-text-black date" })
+                                        @Html.TextBoxFor(model => model.DateFrom, new { @class = "form-control date", @id = "datafrom", @type = "date" })
+                                        @Html.ValidationMessageFor(model => model.DateFrom)
+                                    </div>
+                                </div>
+
+                            <div class="col-md-6">
+                                    <div class="form-group">
+
+                                        @Html.LabelFor(model => model.DateTo, "End:", new { @class = "control-label custom-text-black date" })
+                                        @Html.TextBoxFor(model => model.DateTo, new { @class = "form-control date", @id = "datato", @type = "date" })
+                                        @Html.ValidationMessageFor(model => model.DateTo)
+
+                                    </div>
+                                </div>
+                            </div>
+                        
+                        <div class="row">
+                            <div class="col-md-8">
+                            </div>
+                            <div class="col-sm-4" style="padding-top: 25px;">
+                                <i class="glyphicon-upload"></i><input class="btn btn-success mr5" type="submit" name="submit" id="submit" value="Submit" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </section>
+        @if (Model.ApplicationSummaryReport != null && Model.ApplicationSummaryReport.Count() > 0)
+        {
+            <section class="panel panel-default">
+                <div class="panel-body">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <cite><p class="custom-text-black"> Download Selected Applicant Passports</p></cite>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-8">
+                            @*<a class="btn btn-success mr5" id="ancDownloadFiles" href="@Html.AttributeEncode(Url.Action("DownloadFile", "AdmissionProcessing", new { Area = "Admin" }))">
+                                  Download Password
+                                </a>*@
+                            @Html.ActionLink("Download Passports", "DownloadIdCardPassport", new { Controller = "AdmissionProcessing", Area = "Admin" }, new { @class = "btn btn-success mr5" })
+                        </div>
+                    </div>
+                </div>
+            </section>
+        }
+
+        @if (Model.ApplicationSummaryReport == null) { return; }
+
+        @if (Model.ApplicationSummaryReport != null)
+        {
+            <div class="col-md-12">
+                <table class="table table-bordered table-hover table-striped" id="myTable">
+                    <thead>
+                        <tr>
+                            <th>SN</th>
+                            <th>Image</th>
+                            <th>Name</th>
+                            <th>Phone Number </th>
+                            <th>Application Number</th>
+                            <th>Programme</th>
+                            <th>Department</th>
+                            <th>Date Of Submission</th>
+                        </tr>
+                    </thead>
+
+                    <tbody style="color:black;">
+                        @{ int N = 0; }
+                        @for (var i = 0; i < Model.ApplicationSummaryReport.Count; i++)
+                        {
+                            <tr>
+                                @{
+                                    N = i + 1;
+                                }
+                                <td>@N</td>
+                                <td style="word-break:break-all;">
+                                    @Html.DisplayTextFor(model => Model.ApplicationSummaryReport[i].ImageUrl)
+                                </td>
+                                <td>@Html.DisplayTextFor(model => model.ApplicationSummaryReport[i].FullName)</td>
+                                <td>@Html.DisplayTextFor(model => model.ApplicationSummaryReport[i].PhoneNo)</td>
+                                <td>@Html.DisplayTextFor(model => model.ApplicationSummaryReport[i].ApplicationFormNo)</td>
+                                <td>@Html.DisplayTextFor(model => model.ApplicationSummaryReport[i].Programme)</td>
+                                <td>@Html.DisplayTextFor(model => model.ApplicationSummaryReport[i].Department)</td>
+                                <td>@Html.DisplayTextFor(model => model.ApplicationSummaryReport[i].ApplicationSubmittedOn)</td>
+                            </tr>
+                                    }
+
+                    </tbody>
+                </table>
+            </div>
+                                    }
+    </div>
+</div>

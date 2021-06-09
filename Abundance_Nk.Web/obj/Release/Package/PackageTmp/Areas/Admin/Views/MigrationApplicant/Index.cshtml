@@ -1,0 +1,82 @@
+﻿@model IEnumerable<Abundance_Nk.Model.Entity.MIGRATION_APPLICANTS>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.JAMB_REG_NO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NAMES)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.STATE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LGA)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FIRST_CHOICE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SCORE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.QUALIFICATION_1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.QUALIFICATION_2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DEPARTMENT)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.JAMB_REG_NO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NAMES)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.STATE)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LGA)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FIRST_CHOICE)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SCORE)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.QUALIFICATION_1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.QUALIFICATION_2)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DEPARTMENT)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.SNO }) |
+            @Html.ActionLink("Details", "Details", new { id=item.SNO }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.SNO })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,291 @@
+﻿@model Abundance_Nk.Web.Models.RefereeFormViewModel
+@{
+    ViewBag.Title = "View Referee Print Out";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    body {
+        overflow-x: hidden !important;
+    }
+
+    .bg-white {
+        background: #fff;
+    }
+
+    .fs-16 {
+        font-size: 16px;
+    }
+
+    .fs-15 {
+        font-size: 15px;
+    }
+
+    .mt-10 {
+        margin-top: 10px !important;
+    }
+
+    .mt-20 {
+        margin-top: 20px !important;
+    }
+
+    .mt-30 {
+        margin-top: 30px !important;
+    }
+
+    .mt-5 {
+        margin-top: 5px !important;
+    }
+
+    .mb-10 {
+        margin-bottom: 10px !important;
+    }
+
+    .mb-5 {
+        margin-bottom: 5px !important;
+    }
+
+    .p-20 {
+        font-size: 20px;
+    }
+
+    .bb-black {
+        border-bottom: 1px solid #ddd;
+    }
+
+    .list-inline {
+        display: inline !important;
+    }
+
+    .no-list-bullet {
+        list-style: none !important;
+    }
+
+    textarea {
+        width: 100% !important;
+    }
+</style>
+
+@if (TempData["Message"] != null)
+{
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <br />
+                @Html.Partial("_Message", TempData["Message"])
+            </div>
+        </div>
+    </div>
+}
+
+@if (Model != null && !string.IsNullOrEmpty(Model.DepartmentFacultyName))
+{
+    <div class="container">
+        <div class="card" id="nodeToRenderAsPDF">
+            <div class="card-body" style="padding: 50px 20px;">
+                <div class="row">
+                    <div class="col-xs-12 col-md-12">
+                        <h2 class="text-center">
+                            <img src="~/Content/Images/absu logo.png" style="width:80px;height:80px" />
+                        </h2>
+                        <h3 class="text-center mb-5">ABIA STATE UNIVERSITY, UTURU</h3>
+                        <h4 class="text-center mt-5">SCHOOL OF POSTGRADUATE</h4>
+                    </div>
+
+                    <div class="col-xs-12 col-md-12">
+                        <h3 class="text-center mb-5">
+                            REFEREE'S CONFIDENTIAL REPORT ON A CANDIDATE FOR ADMISSION <br />TO HIGHER/POSTGRADUATE STUDIES
+                        </h3>
+                    </div>
+
+                    <div class="col-xs-12 col-md-10 offset-md-1 bb-black" style="padding-bottom: 30px !important;">
+                        <p class="p-20">
+                            The candidate whose name is given below wishes to undertake higher degree/postgraduate studies in this university.
+                            Your comments(which will be treated in the strictest confidence) on the candidate's suitability for the work, would be appreciated.
+                            Please return the completed form direct to the Secondary School of Postgraduate Studies, Abia State University, P.M.B 2000 Uturu, Abia State.
+                        </p>
+                    </div>
+
+                    <div class="col-xs-12 col-md-8 offset-md-2 mt-30 mb-10">
+                        @using (Html.BeginForm("RefereeForm", "PostGraduateForm", FormMethod.Post, new { id = "frmPostJAMB", enctype = "multipart/form-data" }))
+                        {
+                            @*<form>*@
+                            @Html.HiddenFor(m => m.ApplicantRefereeId)
+                            <ol class="no-list-bullet">
+                                <li>
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.CandidateName, "Name of Candidate", new { @class = "control-label " })
+                                        <label class="text-uppercase" style="font-weight:400;color:#344E86 !important;">@Model.CandidateName</label>
+
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.DepartmentFacultyName, "Department/Faculty", new { @class = "control-label " })
+                                        <label class="text-uppercase" style="font-weight:400;color:#344E86 !important;">@Model.DepartmentFacultyName</label>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.ProgrammeName, "Programme", new { @class = "control-label " })
+                                        <label class="text-uppercase" style="font-weight:400;color:#344E86 !important;">@Model.ProgrammeName</label>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.LengthOfFamiliarityTime, "Lenght Of Time Referee was familiar with the Candidate", new { @class = "control-label " })
+                                        <label class="text-uppercase" style="font-weight:400;color:#344E86 !important;">@string.Format("{0} Year(s)", Model.LengthOfFamiliarityTime)</label>
+                                    </div>
+                                </li>
+                            </ol>
+                            if (Model.ApplicantRefereeGradingResponses != null && Model.ApplicantRefereeGradingResponses.Count > 0)
+                            {
+                                <span class="help-block fs-16">Candidate Evaluation By Referee</span>
+                                <br />
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            @for (int i = 0; i < Model.RefereeGradingSystems.Count; i++)
+                                            {
+                                                <th>@Model.RefereeGradingSystems[i].Score</th>
+                                            }
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @for (int i = 0; i < Model.RefereeGradingCategories.Count; i++)
+                                        {
+                                            <tr>
+                                                <td>@Model.RefereeGradingCategories[i].GradeCategory</td>
+                                                @for (int j = 0; j < Model.RefereeGradingSystems.Count; j++)
+                                                {
+                                                    <td>
+                                                        @if (Model.ApplicantRefereeGradingResponses[i].RefereeGradingSystem.Id == Model.RefereeGradingSystems[j].Id)
+                                                        {
+                                                            <i class="fa fa-check"></i>
+                                                        }
+                                                    </td>
+                                                }
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            }
+
+                            <ol class="no-list-bullet">
+                                @if (!string.IsNullOrEmpty(Model.CandidateEligibity))
+                                {
+                                    <li>
+                                        <div class="form-group">
+                                            <label class="control-label">Comment on the Candidate's Personality</label>
+                                            <label class="text-uppercase" style="font-weight:400;padding: 5px 10px;border:1px solid #ddd;">
+                                                @Model.CandidateEligibity
+                                            </label>
+                                        </div>
+                                    </li>
+                                }
+                                <li>
+                                    <div class="form-group">
+                                        <label class="control-label">Would you accept the candidate as a graduate student?</label>
+                                        <label style="font-weight:400;color:#344E86 !important;">@string.Format("{0}", Model.AcceptAsGraduateStudent ? "Yes" : "No")</label>
+                                    </div>
+                                </li>
+                                <br />
+                                @if (!string.IsNullOrEmpty(Model.OverallPromise))
+                                {
+                                    <li>
+                                        <div class="form-group">
+                                            <label class="control-label">Please rate this applicant in overall promise</label>
+                                            <label class="text-uppercase" style="font-weight:400;color:#344E86 !important;">@Model.OverallPromise</label>
+                                        </div>
+                                    </li>
+                                }
+
+                                @if (!string.IsNullOrEmpty(Model.CandidateSuitabilty))
+                                {
+                                    <li>
+                                        <div class="form-group">
+                                            <label class="control-label">Relevant information to determine the candidate's suitability?</label>
+                                            <label class="text-uppercase" style="font-weight:400;padding: 5px 10px;border:1px solid #ddd;">
+                                                @Model.CandidateSuitabilty
+                                            </label>
+                                        </div>
+                                    </li>
+                                }
+
+                                <li>
+                                    <div class="form-group">
+                                        <label class="control-label">Do you have any objections about the candidate's eligibity?</label>
+
+                                    </div>
+                                </li>
+                            </ol>
+
+                            <div class="row" style="padding-left: 40px;">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="name" class="control-label">FullName</label>
+                                        <label style="font-weight:400;padding: 3px 15px;border:1px solid #ddd;">
+                                            @Model.RefereeFullName
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                         }
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer bg-white">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6">
+                        <button class="btn btn-primary btn-lg" type="button" name="submit" id="print"><i class="fa fa-print mr5"></i> Print</button>
+                    </div>
+                    <div class="col-xs-12 col-sm-6">
+                        <h5 class="text-right">
+                            <span class="fs-15">Powered by </span>
+                            <a href="http://lloydant.com" target="_blank">
+                                <img src="~/Content/Images/lloydant.png" style="width: 40px; height:30px;" />
+                            </a>
+                        </h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<script src="~/Content/js/jquery.js"></script>
+<script src="~/Content/js/jsPdf.js"></script>
+<script src="~/Content/js/html2canvas.js"></script>
+
+<script type="text/javascript">
+    let image = "";
+
+    initDataURLs();
+
+    async function initDataURLs() {
+        let container = document.querySelector('#nodeToRenderAsPDF'); 
+        const canvas = await html2canvas(container);
+        image = canvas.toDataURL("image/png")
+    }
+
+    //html2canvas(container).then(function (canvas) {
+    //            image = canvas.toDataURL("image/png")
+    //            //var link = document.createElement("a");
+    //            //document.body.appendChild(link);
+    //            //link.download = "html_image.png";
+    //            //link.href = canvas.toDataURL("image/png");
+    //            //link.target = '_blank';
+    //            //link.click();
+    //        });
+
+    document.querySelector("#print").addEventListener("click", (e) => {
+        e.preventDefault();
+
+        const filename = 'Referal_Fillout.pdf';
+        let pdf = new jsPDF('p', 'mm', 'a4');
+        pdf.addImage(image, 'PNG', 0, 0, 211, 278);
+        pdf.addPage();
+        pdf.save(filename);
+    });
+  
+</script>

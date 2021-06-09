@@ -1,0 +1,114 @@
+﻿@model Abundance_Nk.Model.Model.GstScan
+@{
+    ViewBag.Title = "EditGstScanResult";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+@section Scripts{
+    @Scripts.Render(("~/bundles/jquery"))
+
+    <link href="~/Content/sweetalert.css" rel="stylesheet" />
+    <script src="~/Scripts/sweetalert.min.js"></script>
+    <script src="~/Scripts/dataTables.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $(".Load").hide();
+
+        });
+
+        function showBusy() {
+            
+            $(".Load").show();
+        }
+
+    </script>
+
+}
+
+
+<div class="panel panel-default">
+    <div class="panel-body">
+
+        <div class="col-md-12">
+            @if (TempData["Message"] != null)
+            {
+                @Html.Partial("_Message", TempData["Message"])
+            }
+            @using (Html.BeginForm("SaveEditedGstResult", "UploadGstScanResult", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @Html.HiddenFor(model => model.Id)
+
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+
+                <div class="panel panel-default ">
+                    <div class="panel-body "> 
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <div class="alert alert-success text-white" style="text-align: center">
+                                    <h3>
+                                        <b>Edit Gst Result</b>
+                                    </h3>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Name, "Name", new { @class = "control-label" })
+                                    @Html.TextBoxFor(model => model.Name, new { @class = "form-control", id = "idEdit",disable ="disable" })
+                                    @Html.ValidationMessageFor(model => model.Name)
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.MatricNumber, "Matric Number", new { @class = "control-label" })
+                                    @Html.TextBoxFor(model => model.MatricNumber, new { @class = "form-control", id = "idEdit" })
+                                    @Html.ValidationMessageFor(model => model.MatricNumber)
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.RawScore, "Raw Score", new { @class = "control-label" })
+                                    @Html.TextBoxFor(model => model.RawScore, new { @class = "form-control", id = "idEdit" })
+                                    @Html.ValidationMessageFor(model => model.RawScore)
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Ca, "CA", new { @class = "control-label" })
+                                    @Html.TextBoxFor(model => model.Ca, new { @class = "form-control", id = "idEdit" })
+                                    @Html.ValidationMessageFor(model => model.Ca)
+                                </div>
+                            </div>
+                        </div>
+
+                        <br />
+                        <br />
+                        <div class="form-group">
+                            <div class="col-sm-2"></div>
+                            <div class="col-sm-10">
+                                <button onclick="showBusy()" class="btn btn-success mr5" type="submit" name="submit" id="submit"><i class="fa fa-eye"> Save </i></button><span class="Load"><img src="~/Content/Images/loading4.gif" /></span>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            }
+
+        </div>
+    </div>
+</div>

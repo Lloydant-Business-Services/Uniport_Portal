@@ -1,0 +1,76 @@
+﻿@model IEnumerable<Abundance_Nk.Model.Entity.DEGREE_AWARDS_BY_PROGRAMME_DEPARTMENT>
+
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+@section Scripts {
+   
+
+@*<script src="~/Scripts/jquery-3.1.1.min.js"></script>*@
+    <script type="text/javascript" src="~/Scripts/DataTables/datatables.js"></script>
+    <script src="~/Scripts/DataTables/DataTables-1.10.15/js/jquery.dataTables.min.js"></script>
+    <link href="~/Scripts/DataTables/datatables.css" rel="stylesheet" />
+    <link href="~/Scripts/DataTables/DataTables-1.10.15/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+    <script src="~/Scripts/DataTables/Buttons-1.3.1/js/dataTables.buttons.js"></script>
+    <script src="~/Scripts/DataTables/JSZip-3.1.3/jszip.min.js"></script>
+    <script src="~/Scripts/DataTables/pdfmake-0.1.27/build/pdfmake.js"></script>
+    <script src="~/Scripts/DataTables/pdfmake-0.1.27/build/vfs_fonts.js"></script>
+    <script src="~/Scripts/DataTables/Buttons-1.3.1/js/buttons.print.min.js"></script>
+    <script src="~/Scripts/DataTables/Buttons-1.3.1/js/buttons.html5.min.js"></script>
+    <script>
+        $(document).ready(function () {
+           // $('table.table-striped').DataTable();
+            $('table.table-striped').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    'copy', 'csv', 'excel', 'pdf', 'print'
+                ]
+            });
+        });
+    </script>
+}
+<div class="row">
+    <p>
+        @Html.ActionLink("Create New", "Create",null,new{@class="btn btn-primary"})
+    </p>
+    <table class="table table-striped">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Degree_Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Duration)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DEPARTMENT.Department_Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PROGRAMME.Programme_Name)
+            </th>
+            <th></th>
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Degree_Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Duration)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DEPARTMENT.Department_Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PROGRAMME.Programme_Name)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            </td>
+        </tr>
+    }
+    
+    </table>
+</div>

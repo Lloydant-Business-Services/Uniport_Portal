@@ -1,0 +1,46 @@
+﻿@model Abundance_Nk.Web.Areas.Admin.ViewModels.SupportViewModel
+
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<script src="~/Scripts/jquery-1.11.1.min.js"></script>
+
+    <div class=" row-dashboard">
+
+        <table class="table table-bordered">
+
+            <thead>
+                <tr>
+                    <th>@Html.ActionLink("Surname", "ViewAuditReport", new {sortOrder = ViewBag.Department, currentFilter = ViewBag.CurrentFilter})</th>
+                    <th>@Html.ActionLink("First name", "ViewAuditReport", new {sortOrder = ViewBag.Programme, currentFilter = ViewBag.CurrentFilter})</th>
+                    <th>@Html.ActionLink("Middle Name", "ViewAuditReport", new {sortOrder = ViewBag.Minimum, currentFilter = ViewBag.CurrentFilter})</th>
+                    <th>@Html.ActionLink("Email ", "ViewAuditReport", new {sortOrder = ViewBag.Date, currentFilter = ViewBag.CurrentFilter})</th>
+                    <th>@Html.ActionLink("Mobile Number ", "ViewAuditReport", new {sortOrder = ViewBag.Date, currentFilter = ViewBag.CurrentFilter})</th>
+                    <th>@Html.ActionLink("Old Surname", "ViewAuditReport", new {sortOrder = ViewBag.Department, currentFilter = ViewBag.CurrentFilter})</th>
+                    <th>@Html.ActionLink("Old First name", "ViewAuditReport", new {sortOrder = ViewBag.Programme, currentFilter = ViewBag.CurrentFilter})</th>
+                    <th>@Html.ActionLink("Old Middle Name", "ViewAuditReport", new {sortOrder = ViewBag.Minimum, currentFilter = ViewBag.CurrentFilter})</th>
+                    <th>@Html.ActionLink("Old Email ", "ViewAuditReport", new {sortOrder = ViewBag.Date, currentFilter = ViewBag.CurrentFilter})</th>
+                    <th>@Html.ActionLink("Old Mobile Number ", "ViewAuditReport", new {sortOrder = ViewBag.Date, currentFilter = ViewBag.CurrentFilter})</th>
+                </tr>
+            </thead>
+            <tbody style="color: black;">
+
+                <tr>
+                    <td>@Model.PersonAuditDetails.LastName</td>
+                    <td>@Model.PersonAuditDetails.FirstName</td>
+                    <td>@Model.PersonAuditDetails.OtherName</td>
+                    <td>@Model.PersonAuditDetails.Email</td>
+                    <td>@Model.PersonAuditDetails.MobilePhone</td>
+                    <td>@Model.PersonAuditDetails.OldLastName</td>
+                    <td>@Model.PersonAuditDetails.OldFirstName</td>
+                    <td>@Model.PersonAuditDetails.OldOtherName</td>
+                    <td>@Model.PersonAuditDetails.OldEmail</td>
+                    <td>@Model.PersonAuditDetails.OldMobilePhone</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="row">
+        @Html.ActionLink("Back", "ViewAuditReport")
+    </div>

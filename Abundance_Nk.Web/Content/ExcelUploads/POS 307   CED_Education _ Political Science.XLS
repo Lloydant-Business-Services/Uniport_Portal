@@ -1,0 +1,59 @@
+<div>
+	<table cellspacing="0" rules="all" border="1" style="border-collapse:collapse;">
+		<tr style="color:White;background-color:DarkBlue;">
+			<th scope="col">SN</th><th scope="col">MatricNo</th><th scope="col">Fullname</th><th scope="col">Department</th><th scope="col">CA</th><th scope="col">CourseCode</th><th scope="col">Exam</th>
+		</tr><tr>
+			<td>1</td><td>14/20271/IAS</td><td>IHEANCHO KINGSLEY C.</td><td>Political Science </td><td>20.00</td><td>POS 307   </td><td>40.00</td>
+		</tr><tr>
+			<td>2</td><td>15/108904/IAS</td><td>EZINDU VICTORIA AKACHI</td><td>Political Science </td><td>5.00</td><td>POS 307   </td><td>16.00</td>
+		</tr><tr>
+			<td>3</td><td>15/20815</td><td>AJALI SIMON CHUKWU</td><td>Political Science </td><td>20.00</td><td>POS 307   </td><td>16.00</td>
+		</tr><tr>
+			<td>4</td><td>15/20816/ias</td><td>EMENIKE ARIZE PHINIAN</td><td>Political Science </td><td>25.00</td><td>POS 307   </td><td>33.00</td>
+		</tr><tr>
+			<td>5</td><td>15/20819/IAS</td><td>OKONKWO PATIENCE I.</td><td>Political Science </td><td>20.00</td><td>POS 307   </td><td>26.00</td>
+		</tr><tr>
+			<td>6</td><td>15/20820/IAS</td><td>UZOEJI CHINEMEREM FRANCISCA</td><td>Political Science </td><td>20.00</td><td>POS 307   </td><td>32.00</td>
+		</tr><tr>
+			<td>7</td><td>15/20822/ias</td><td>IKENECHENDU CHIDINMA EVELYN</td><td>Political Science </td><td>&nbsp;</td><td>POS 307   </td><td>&nbsp;</td>
+		</tr><tr>
+			<td>8</td><td>15/20823/ias</td><td>IGBO CHUKWUEBUKA GODSWILL</td><td>Political Science </td><td>20.00</td><td>POS 307   </td><td>36.00</td>
+		</tr><tr>
+			<td>9</td><td>15/20824/IAS</td><td>NWAOBASI CHIDINMA VICTORIA</td><td>Political Science </td><td>7.00</td><td>POS 307   </td><td>33.00</td>
+		</tr><tr>
+			<td>10</td><td>15/20825/ias</td><td>IHEANYICHUKWU DEBORAH CHINAGOROM</td><td>Political Science </td><td>&nbsp;</td><td>POS 307   </td><td>&nbsp;</td>
+		</tr><tr>
+			<td>11</td><td>15/20827/IAS</td><td>ANYIKWA OBIOMA GODSWILL</td><td>Political Science </td><td>20.00</td><td>POS 307   </td><td>28.00</td>
+		</tr><tr>
+			<td>12</td><td>15/20829</td><td>UZONDU UJUAMARA MAUREEN</td><td>Political Science </td><td>25.00</td><td>POS 307   </td><td>29.00</td>
+		</tr><tr>
+			<td>13</td><td>15/20831/ias</td><td>DIGHA MINA OPAMINOLA</td><td>Political Science </td><td>16.00</td><td>POS 307   </td><td>34.00</td>
+		</tr><tr>
+			<td>14</td><td>15/20832/ias</td><td>NNODIM GOSPEL CHINEGBO</td><td>Political Science </td><td>25.00</td><td>POS 307   </td><td>26.00</td>
+		</tr><tr>
+			<td>15</td><td>15/20833/IAS</td><td>ENENDU HENRY CHIDI</td><td>Political Science </td><td>20.00</td><td>POS 307   </td><td>44.00</td>
+		</tr><tr>
+			<td>16</td><td>15/21132/ias</td><td>CHIBUEZE IHECHILURU EXCEL</td><td>Political Science </td><td>20.00</td><td>POS 307   </td><td>48.00</td>
+		</tr><tr>
+			<td>17</td><td>15/21133/IAS</td><td>NWANKWO CLINTON C</td><td>Political Science </td><td>20.00</td><td>POS 307   </td><td>33.00</td>
+		</tr><tr>
+			<td>18</td><td>15/21134/ias</td><td>ABALI RAYMOND FAVOUR</td><td>Political Science </td><td>22.00</td><td>POS 307   </td><td>18.00</td>
+		</tr><tr>
+			<td>19</td><td>15/21137/ias</td><td>NNADOZIE OGOCHUKWU CLARA</td><td>Political Science </td><td>5.00</td><td>POS 307   </td><td>29.00</td>
+		</tr><tr>
+			<td>20</td><td>15/21138/IAS</td><td>EMEKWE NELSON TOCHUKWU</td><td>Political Science </td><td>20.00</td><td>POS 307   </td><td>38.00</td>
+		</tr><tr>
+			<td>21</td><td>15/21168/ias</td><td>DIKE BRIGHT ODINAKACHI</td><td>Political Science </td><td>0.00</td><td>POS 307   </td><td>0.00</td>
+		</tr><tr>
+			<td>22</td><td>15/21301/IAS</td><td>UZOZIE HENRY CHIEMEKA</td><td>Political Science </td><td>25.00</td><td>POS 307   </td><td>42.00</td>
+		</tr><tr>
+			<td>23</td><td>15/21303/ias</td><td>OLISAEGBO ANTHONY NZUBECHUKWU</td><td>Political Science </td><td>15.00</td><td>POS 307   </td><td>19.00</td>
+		</tr><tr>
+			<td>24</td><td>15/21362</td><td>OKORO CHIJIOKE A</td><td>Political Science </td><td>5.00</td><td>POS 307   </td><td>7.00</td>
+		</tr><tr>
+			<td>25</td><td>15/21403/IAS</td><td>OKEREKE FESTUS NNABUIFE</td><td>Political Science </td><td>20.00</td><td>POS 307   </td><td>22.00</td>
+		</tr><tr>
+			<td>26</td><td>15/21407/ias</td><td>NWACHUKWU CHIDINMA JULIET</td><td>Political Science </td><td>20.00</td><td>POS 307   </td><td>17.00</td>
+		</tr>
+	</table>
+</div>

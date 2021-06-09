@@ -1,0 +1,361 @@
+﻿@model Abundance_Nk.Web.Areas.Admin.ViewModels.BursaryPaymentViewModel
+@{
+
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    ViewBag.Title = "Payment Report";
+}
+<style>
+    .step {
+        color: blue;
+        font-size: 11pt;
+    }
+</style>
+<link href="~/Content/SmartWizard/smart_wizard.css" rel="stylesheet" />
+<link href="~/Content/SmartWizard/smart_wizard_theme_arrows.css" rel="stylesheet" />
+<link href="~/Content/SmartWizard/smart_wizard_theme_dots.css" rel="stylesheet" />
+<link href="~/Scripts/DataTables-1.10.15/extensions/Buttons/css/buttons.dataTables.css" rel="stylesheet" />
+@*@section Scripts{
+    @Scripts.Render(("~/bundles/jquery"))*@
+<script src="~/Scripts/DataTables-1.10.15/media/js/jquery.js"></script>
+<script src="~/Scripts/jquery.smartWizard.min.js"></script>
+<script src="~/Scripts/dataTables.js"></script>
+<script src="~/Content/js/bootstrap.js"></script>
+<script src="~/Scripts/DataTables-1.10.15/extensions/Buttons/js/dataTables.buttons.js"></script>
+<script src="~/Scripts/DataTables-1.10.15/extensions/Buttons/js/buttons.colVis.js"></script>
+<script src="~/Scripts/DataTables-1.10.15/extensions/Responsive/js/dataTables.responsive.js"></script>
+<script src="~/Scripts/DataTables-1.10.15/buttons.flash.min.js"></script>
+<script src="~/Scripts/DataTables-1.10.15/buttons.html5.min.js"></script>
+<script src="~/Scripts/DataTables-1.10.15/buttons.print.min.js"></script>
+<script src="~/Scripts/DataTables-1.10.15/jszip.min.js"></script>
+<script src="~/Scripts/DataTables-1.10.15/pdfmake.min.js"></script>
+<script src="~/Scripts/DataTables-1.10.15/vfs_fonts.js"></script>
+<script type="text/javascript">
+    var jQueryVesrsion_1_11_1 = $.noConflict(true);
+    var definedDataTable2;
+    var paymnetReportList = [];
+    jQueryVesrsion_1_11_1(document).ready(function () {
+
+        var definedDataTable;
+        $('#gifLoad').hide();
+        var stepToGoTo;
+        jQueryVesrsion_1_11_1('#smartwizard').smartWizard({
+            selected: 0,
+            theme: 'arrows',
+            transitionEffect: 'fade',
+            transitionSpeed: '400',
+            toolbarPosition: 'bottom',
+            showStepURLhash: false,
+            autoAdjustHeight: false,
+            hideButtonsOnDisabled: true
+        });
+
+        jQueryVesrsion_1_11_1("#smartwizard").on("showStep", function (e, anchorObject, stepNumber, stepDirection, stepPosition) {
+            //alert("You are on step " + stepNumber + " now" + stepPosition);
+            if (stepPosition === 'first') {
+                $("#prev-btn").addClass('disabled');
+                $('.sw-btn-next').prop('disabled', false);
+
+            } else if (stepPosition === 'final') {
+                $("#next-btn").addClass('disabled');
+            } else if (stepPosition === "middle") {
+
+            } else {
+                $("#prev-btn").removeClass('disabled');
+                $("#next-btn").removeClass('disabled');
+            }
+
+            stepToGoTo = stepPosition;
+        });
+        jQueryVesrsion_1_11_1("#prev-btn").on("click", function () {
+            // Navigate previous
+
+            $('#smartwizard').smartWizard("prev");
+            return true;
+        });
+
+        jQueryVesrsion_1_11_1('.sw-btn-next').on("click", function () {
+            
+            $('#gifLoad').show();
+            $('.sw-btn-next').prop('disabled', true);
+            var dateFrom = $('#dateFrom').val();
+            var dateTo = $('#dateTo').val();
+           
+            if (dateFrom != null && dateFrom != "" && dateTo != null || dateTo != null) {
+
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("GetVerificationPaymentReport", "Verfication", new { area = "Admin" })",
+                    dataType: "json",
+                    data: { dateFrom: dateFrom, dateTo: dateTo },
+                    success: function (arrayJsonModel) {
+                        if (arrayJsonModel[0].IsError == false) {
+                            $('#headerId').html(' ');
+                            if (definedDataTable != undefined) {
+                                definedDataTable.destroy();
+                            }
+                            $('#myTable tbody > tr').remove();
+                            var paymentReportDetails = arrayJsonModel[arrayJsonModel.length - 1];
+                            paymnetReportList = paymentReportDetails.PaymentVerificationView;
+                            for (var i = 0; i < arrayJsonModel.length; i++) {
+
+                                $('#tableBody').append('<tr><td><a href="#" onclick="loadDetails(this)" data-assigned-id="' + arrayJsonModel[i].UserId + '" data-assigned-dateFrom="' +
+                                    dateFrom + '" data-assigned-dateTo="' + dateTo + '"><b>' + arrayJsonModel[i].VerificationOfficer + '</b></a></td><td>' + arrayJsonModel[i].Count + '</td></tr>');
+                            }
+
+                            jQueryVesrsion_1_11_1('#myTable').DataTable({
+                                dom: 'Bfrtip',
+                                ordering: true,
+                                retrieve: true,
+                                buttons: [
+                                    {
+                                        extend: 'copy',
+                                        exportOptions: {
+                                            columns: ':visible'
+                                        }
+                                    },
+                                    {
+                                        extend: 'csv',
+                                        exportOptions: {
+                                            columns: ':visible'
+                                        }
+                                    },
+                                    {
+                                        extend: 'excel',
+                                        exportOptions: {
+                                            columns: ':visible'
+                                        }
+                                    },
+                                    {
+                                        extend: 'pdf',
+                                        exportOptions: {
+                                            columns: ':visible'
+                                        }
+                                    },
+                                    {
+                                        extend: 'print',
+                                        exportOptions: {
+                                            columns: ':visible'
+                                        }
+                                    }, , 'colvis'
+                                ]
+                            });
+                            $('#headerId').text('Transaction Verification Listing From' + " " + dateFrom + " " + 'through' + " " + " " + dateTo);
+                            definedDataTable = jQueryVesrsion_1_11_1('#myTable').DataTable();
+                            $('#gifLoad').hide();
+
+                        } else {
+                            alert(arrayJsonModel[0].ErrorMessage);
+                            $('#gifLoad').hide();
+                        }
+
+
+                    },
+                    error: function (ex) {
+                        alert('Operation Failed.' + ex);
+                        $('#gifLoad').hide();
+                    },
+                    traditional: true
+                });
+            }
+
+        });
+
+        jQueryVesrsion_1_11_1("#theme_selector").on("change", function () {
+            // Change theme
+            jQueryVesrsion_1_11_1('#smartwizard').smartWizard("theme", $(this).val());
+            return true;
+        });
+
+
+    });
+
+    function loadDetails(officer) {
+
+        var userId = $(officer).data('assigned-id');
+        var dateFrom = $(officer).attr('data-assigned-dateFrom');
+        var dateTo = $(officer).attr('data-assigned-dateTo');
+        jQueryVesrsion_1_11_1('#smartwizard').smartWizard("next");
+        var paymentReportData = paymnetReportList;
+       
+        $.ajax({
+            type: "POST",
+            url: "@Url.Action("GetPaymentDetailsByVerificationOfficer", "Verfication", new { area = "Admin" })",
+            dataType: "json",
+            data: { userId: userId, dateFrom: dateFrom, dateTo: dateTo, paymentReportData: paymentReportData },
+            success: function (arrayJsonModel) {
+
+                if (definedDataTable2 != undefined) {
+                    definedDataTable2.destroy();
+                }
+                if (arrayJsonModel[0].IsError == false) {
+                    $('#table2Body').html(' ');
+                    for (var i = 0; i < arrayJsonModel.length; i++) {
+                        var sN = i + 1;
+                        $('#table2Body').append('<tr><td>' + sN + '</td><td>' + arrayJsonModel[i].FeeTypeName + '</td><td>' + arrayJsonModel[i].FullName + '</td><td>' + arrayJsonModel[i].MatricNumber + '</td><td>' + arrayJsonModel[i].LevelName + '</td><td>' + arrayJsonModel[i].ConfirmationNo + '</td><td>' + arrayJsonModel[i].Receipt + '</td><td>' + arrayJsonModel[i].SessionName + '</td><td>' + arrayJsonModel[i].Amount + '</td></tr>');
+                    }
+
+
+                    jQueryVesrsion_1_11_1('#myTable2').DataTable({
+                        dom: 'Bfrtip',
+                        ordering: true,
+                        retrieve: true,
+                        buttons: [
+                            {
+                              
+                                extend: 'copy',
+                                exportOptions: {
+                                    columns: ':visible',
+                                    modifier: {
+                                        orientation: 'landscape'
+                                    }
+                                },
+                                header: true,
+                                orientation: 'landscape',
+                                title:  'PAYMENT VERIFICATION REPORT',
+                                message: 'Payment Verification Report From  '  + dateFrom +  '  through  ' + dateTo
+                            },
+                            {
+                                extend: 'excel',
+                                exportOptions: {
+                                    columns: ':visible',
+                                    modifier: {
+                                        orientation: 'landscape'
+                                    }
+                                },
+                                header: true,
+                                orientation: 'landscape',
+                                title: 'PAYMENT VERIFICATION REPORT',
+                                message: 'Payment Verification Report From  ' + dateFrom + '  through  ' + dateTo
+                            },
+                            {
+                                extend: 'pdf',
+                                exportOptions: {
+                                    columns: ':visible',
+                                    modifier: {
+                                        orientation: 'landscape'
+                                    }
+                                },
+                                header: true,
+                                orientation: 'landscape',
+                                title: 'PAYMENT VERIFICATION REPORT',
+                                message: 'Payment Verification Report From  ' + dateFrom + '  through  ' + dateTo
+                            },
+                            {
+                                extend: 'print',
+                                exportOptions: {
+                                    columns: ':visible',
+                                    modifier: {
+                                        orientation: 'landscape'
+                                    }
+                                },
+                                header: true,
+                                orientation: 'landscape',
+                                title: 'PAYMENT VERIFICATION REPORT',
+                                message: 'Payment Verification Report From  ' + dateFrom + '  through  ' + dateTo
+                            }, , 'colvis'
+                        ]
+                    });
+                    $('#gifLoad').hide();
+                }
+                else {
+                    alert(arrayJsonModel[0].ErrorMessage);
+                    $('#gifLoad').hide();
+                }
+       
+            },
+            beforeSend: function () {
+                $('#gifLoad').show();
+            },
+            traditional: true
+        });
+        definedDataTable2 = jQueryVesrsion_1_11_1('#myTable2').DataTable();
+
+
+    }
+
+</script>
+@*}*@
+
+<div class="row" style="padding-left: 15px; min-height: 100%;">
+    <div>
+        @if (TempData["Message"] != null)
+        {
+            @Html.Partial("_Message", TempData["Message"])
+        }
+    </div>
+    <h2>Verification Report</h2>
+    <div class="panel">
+        <div class="row">
+            <div class="col-md-12 ">
+                <div id="smartwizard">
+                    <ul>
+                        <li><a href="#step-1">Date Range<br/><small>Select Date Range </small></a></li>
+                        <li><a href="#step-2">Faculty Officers<br/><small>eReceipts Count By Faculty Officers </small></a></li>
+                        <li><a href="#step-3">Detailed Report<br/><small>Details Based on Verified eReceipts By Faculty Officer </small></a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div id="step-1" class="tab-pane">
+                            <div class="panel-body">
+                                <div class="col-md-12">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            @Html.LabelFor(model => model.DateFrom, "Date From", new { @class = "control-label custom-text-black" })
+                                            @Html.TextBoxFor(model => model.DateFrom, new { @class = "form-control", placeholder = "From", type = "date", id = "dateFrom" })
+                                        </div>
+                                        <div class="col-md-3">
+                                            @Html.LabelFor(model => model.DateTo, "Date To", new { @class = "control-label custom-text-black" })
+                                            @Html.TextBoxFor(model => model.DateTo, new { @class = "form-control", placeholder = "To", type = "date", id = "dateTo" })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="step-2" class="tab-pane">
+                            <div class="row">
+                                <h3 class="border-bottom border-gray pb-2" id="headerId"></h3>
+                                <table class="table table-bordered table-hover table-striped" id="myTable">
+                                    <thead>
+                                        <tr>
+                                            <th>Faculty Finance Officer</th>
+                                            <th>eReceipts Count</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tableBody"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div id="step-3" class="tab-pane">
+                            <div class="row">
+                                <table class="table table-bordered table-hover table-striped table-responsive" id="myTable2">
+                                    <thead>
+                                    <tr>
+                                        <th>SN</th>
+                                        <th>Fee Type</th>
+                                        <th>Student Name</th>
+                                        <th>Matric No.</th>
+                                        <th>Level</th>
+                                        <th>Confirmation No.</th>
+                                        <th>Receipt SN</th>
+                                        <th>Session</th>
+                                        <th>Amount</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="table2Body"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="row" style="display: none; position: fixed; top: 50%; left: 50%" id="gifLoad">
+                <img src="~/Content/Images/bx_loader.gif" />
+            </div>
+        </div>
+    </div>
+</div>
+@*<style>
+        .page-content {
+            height: auto;
+        }
+    </style>*@

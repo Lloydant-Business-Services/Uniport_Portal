@@ -1,0 +1,68 @@
+﻿@model Abundance_Nk.Web.Areas.Student.ViewModels.HostelViewModel
+@{
+    ViewBag.Title = "Hostel Fee";
+    if (User.Identity.Name != null && User.Identity.Name != "")
+    {
+        Layout = "~/Areas/Student/Views/Shared/_Layout.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+}
+
+<div class="row">
+    <div class="container">
+
+        <div class="card card-shadow">
+           
+                <div class=" text-success">
+                    <h1><b>Hostel Fee</b></h1>
+                </div>
+
+
+                <section id="loginForm">
+                    @using (Html.BeginForm("PayHostelFee", "Hostel", new { Area = "Student" }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true)
+
+                        <h5>Please enter your <b> Hostel Fee Confirmation Order Number</b> in the box below to print your Hostel Slip</h5>
+                        <hr class="no-top-padding" />
+
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.ConfirmationOrder, new { @class = "col-md-4 control-label" })
+                                    <div class="col-md-8">
+                                        @Html.TextBoxFor(model => model.ConfirmationOrder, new { @class = "form-control", required = "required" })
+                                        @Html.ValidationMessageFor(model => model.ConfirmationOrder, null, new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-offset-4 col-md-8">
+                                        <input type="submit" value="Submit" class="btn btn-default" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                @if (TempData["Message"] != null)
+                                {
+                                    @Html.Partial("_Message", (Abundance_Nk.Model.Model.Message)TempData["Message"])
+                                }
+                            </div>
+                        </div>
+                    }
+                </section>
+
+
+
+
+        </div>
+    </div>
+</div>
+

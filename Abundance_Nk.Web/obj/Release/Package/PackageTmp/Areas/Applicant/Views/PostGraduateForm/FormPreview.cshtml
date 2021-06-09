@@ -1,0 +1,473 @@
+﻿@model Abundance_Nk.Web.Areas.Applicant.ViewModels.PostJambViewModel
+
+@{
+    //Layout = null;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if(Model == null || Model.Person == null)
+{
+    return;
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jquery")
+    <script src="~/Scripts/jquery.print.js"></script>
+    <script src="~/Scripts/jquery-1.11.1.min.js"></script>
+
+    <script type="text/javascript">
+        $(function() {
+            $('#submit').attr('disabled', 'disabled');
+        });
+
+        $(function() {
+            $('#checkboxDefault').click(function() {
+                if ($(this).is(':checked')) {
+                    $('#submit').removeAttr('disabled');
+                } else {
+
+                    $('#submit').attr('disabled', 'disabled');
+                }
+            });
+        });
+    </script>
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-12 ">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-10">
+                            <div>
+                                @if(TempData["Message"] != null)
+                                {
+                                    @Html.Partial("_Message",TempData["Message"])
+                                }
+                            </div>
+
+                            <div id="slip">
+                                @using(Html.BeginForm("FormPreview","PostGraduateForm",FormMethod.Post,new { id = "frmPostJAMBPreview",enctype = "multipart/form-data" }))
+                                {
+                                    @Html.AntiForgeryToken()
+
+                                    <center>
+                                        <div class="alert alert-success fade in nomargin" style="background-color: #b78825">
+                                            <h2><b>@Model.AppliedCourse.Programme.Name</b></h2>
+                                        </div>
+
+                                        <br />
+                                    </center>
+
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <div style="font-size: x-large">Bio Data</div>
+
+                                            @if(Model.ApplicationForm != null && Model.ApplicationForm.Id > 0)
+                                            {
+                                                @Html.HiddenFor(model => model.ApplicationForm.Id)
+                                                @Html.HiddenFor(model => model.ApplicationForm.Number)
+                                                @Html.HiddenFor(model => model.ApplicationForm.ExamNumber)
+                                                @Html.HiddenFor(model => model.ApplicationForm.Rejected)
+                                                @Html.HiddenFor(model => model.ApplicationForm.RejectReason)
+                                            }
+
+                                            @Html.HiddenFor(model => model.Session.Id)
+                                            @Html.HiddenFor(model => model.Session.Name)
+
+                                            @Html.HiddenFor(model => model.ApplicationFormSetting.Id)
+                                            @Html.HiddenFor(model => model.ApplicationFormSetting.PaymentMode.Id)
+                                            @Html.HiddenFor(model => model.ApplicationFormSetting.PaymentType.Id)
+                                            @Html.HiddenFor(model => model.ApplicationFormSetting.PersonType.Id)
+                                            @Html.HiddenFor(model => model.ApplicationFormSetting.Session.Id)
+                                            @Html.HiddenFor(model => model.ApplicationFormSetting.ExamDate)
+                                            @Html.HiddenFor(model => model.ApplicationFormSetting.ExamVenue)
+                                            @Html.HiddenFor(model => model.ApplicationFormSetting.ExamTime)
+
+                                            @Html.HiddenFor(model => model.ApplicationProgrammeFee.FeeType.Id)
+                                            @Html.HiddenFor(model => model.ApplicationProgrammeFee.Id)
+
+                                            @Html.HiddenFor(model => model.Programme.Id)
+                                            @Html.HiddenFor(model => model.Programme.Name)
+                                            @Html.HiddenFor(model => model.Programme.ShortName)
+
+                                            @Html.HiddenFor(model => model.AppliedCourse.Programme.Id)
+                                            @Html.HiddenFor(model => model.AppliedCourse.Programme.Name)
+                                            @Html.HiddenFor(model => model.AppliedCourse.Department.Id)
+                                            @Html.HiddenFor(model => model.AppliedCourse.Department.Code)
+
+                                            @Html.HiddenFor(model => model.Person.Id)
+                                            @Html.HiddenFor(model => model.Payment.Id)
+                                            @Html.HiddenFor(model => model.remitaPyament.payment.Id)
+
+                                            @Html.HiddenFor(model => model.Person.DateEntered)
+                                            @Html.HiddenFor(model => model.Person.FullName)
+                                            @Html.HiddenFor(model => model.ApplicationAlreadyExist)
+                                        </div>
+
+                                        <div class="panel-body">
+                                            <div class="row">
+                                                <div class="col-md-6 custom-text-black">
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <img src="@Url.Content('~' + Model.Person.ImageFileUrl)" alt=" " style="max-width: 150px" />
+                                                    @*<img src="@Url.Content(@Model.PassportUrl)" alt=" " style=" max-width:150px" />*@
+                                                </div>
+                                            </div>
+
+                                            <br />
+
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group margin-bottom-0">
+                                                        <div class="col-md-4">
+                                                            @Html.LabelFor(model => model.Person.LastName,new { @class = "control-label " })
+                                                        </div>
+                                                        <div class="col-md-8 text-bold custom-text-black">
+                                                            @Html.DisplayFor(model => model.Person.LastName)
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <div class="form-group margin-bottom-0">
+                                                        <div class="col-md-4">
+                                                            @Html.LabelFor(model => model.Person.FirstName,new { @class = "control-label " })
+                                                        </div>
+                                                        <div class="col-md-8 text-bold custom-text-black">
+                                                            @Html.DisplayFor(model => model.Person.FirstName)
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group margin-bottom-0">
+                                                        <div class="col-md-4">
+                                                            @Html.LabelFor(model => model.Person.OtherName,new { @class = "control-label " })
+                                                        </div>
+                                                        <div class="col-md-8 text-bold custom-text-black">
+                                                            @Html.DisplayFor(model => model.Person.OtherName)
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <div class="form-group margin-bottom-0">
+                                                        <div class="col-md-4">
+                                                            @Html.LabelFor(model => model.Person.Sex.Id,new { @class = "control-label " })
+                                                        </div>
+                                                        <div class="col-md-8 text-bold custom-text-black">
+                                                            @Html.DisplayFor(model => model.Person.Sex.Name)
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group margin-bottom-0">
+                                                        <div class="col-md-4">
+                                                            @Html.LabelFor(model => model.Person.DateOfBirth,new { @class = "control-label " })
+                                                        </div>
+                                                        <div class="col-md-8 text-bold custom-text-black">
+                                                            @Html.DisplayFor(model => model.Person.DateOfBirth,"{0:dd/MM/yyyy}",new { @class = "form-control datepicker" })
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <div class="form-group margin-bottom-0">
+                                                        <div class="col-md-4">
+                                                            @Html.LabelFor(model => model.Person.State.Id,new { @class = "control-label " })
+                                                        </div>
+                                                        <div class="col-md-8 text-bold custom-text-black">
+                                                            @Html.DisplayFor(model => model.Person.State.Name)
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group margin-bottom-0">
+                                                        <div class="col-md-4">
+                                                            @Html.LabelFor(model => model.Person.LocalGovernment.Id,new { @class = "control-label " })
+                                                        </div>
+                                                        <div class="col-md-8 text-bold custom-text-black">
+                                                            @Html.DisplayFor(model => model.Person.LocalGovernment.Name)
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <div class="form-group margin-bottom-0">
+                                                        <div class="col-md-4">
+                                                            @Html.LabelFor(model => model.Person.HomeTown,new { @class = "control-label " })
+                                                        </div>
+                                                        <div class="col-md-8 text-bold custom-text-black">
+                                                            @Html.DisplayFor(model => model.Person.HomeTown)
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group margin-bottom-0">
+                                                        <div class="col-md-4">
+                                                            @Html.LabelFor(model => model.Person.MobilePhone,new { @class = "control-label " })
+                                                        </div>
+                                                        <div class="col-md-8 text-bold custom-text-black">
+                                                            @Html.DisplayFor(model => model.Person.MobilePhone)
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <div class="form-group margin-bottom-0">
+                                                        <div class="col-md-4">
+                                                            @Html.LabelFor(model => model.Person.Email,new { @class = "control-label " })
+                                                        </div>
+                                                        <div class="col-md-8 text-bold custom-text-black">
+                                                            @Html.DisplayFor(model => model.Person.Email)
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group margin-bottom-0">
+                                                        <div class="col-md-4">
+                                                            @Html.LabelFor(model => model.Person.Religion.Id,new { @class = "control-label " })
+                                                        </div>
+                                                        <div class="col-md-8 text-bold custom-text-black">
+                                                            @Html.DisplayFor(model => model.Person.Religion.Name)
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <div class="form-group margin-bottom-0">
+                                                        <div class="col-md-4">
+                                                            @Html.LabelFor(model => model.Person.HomeAddress,new { @class = "control-label " })
+                                                        </div>
+                                                        <div class="col-md-8 text-bold custom-text-black">
+                                                            @Html.DisplayFor(model => model.Person.HomeAddress)
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group margin-bottom-0">
+                                                        <div class="col-md-4">
+                                                            @Html.LabelFor(model => model.Applicant.Ability.Id,new { @class = "control-label " })
+                                                        </div>
+                                                        <div class="col-md-8 text-bold custom-text-black">
+                                                            @Html.DisplayFor(model => model.Applicant.Ability.Name)
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <div class="form-group margin-bottom-0">
+                                                        <div class="col-md-4">
+                                                            @Html.LabelFor(model => model.Applicant.OtherAbility,new { @class = "control-label " })
+                                                        </div>
+                                                        <div class="col-md-8 text-bold custom-text-black">
+                                                            @Html.DisplayFor(model => model.Applicant.OtherAbility)
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group margin-bottom-0">
+                                                        <div class="col-md-4">
+                                                            @Html.LabelFor(model => model.Applicant.ExtraCurricullarActivities,new { @class = "control-label " })
+                                                        </div>
+                                                        <div class="col-md-8 text-bold custom-text-black">
+                                                            @Html.DisplayFor(model => model.Applicant.ExtraCurricullarActivities)
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <div class="form-group margin-bottom-0">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <div style="font-size: x-large">Next of Kin</div>
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group margin-bottom-0">
+                                                        <div class="col-md-4">
+                                                            @Html.LabelFor(model => model.Sponsor.Name,new { @class = "control-label " })
+                                                        </div>
+                                                        <div class="col-md-8 text-bold custom-text-black">
+                                                            @Html.DisplayFor(model => model.Sponsor.Name)
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <div class="form-group margin-bottom-0">
+                                                        <div class="col-md-4">
+                                                            @Html.LabelFor(model => model.Sponsor.ContactAddress,new { @class = "control-label " })
+                                                        </div>
+                                                        <div class="col-md-8 text-bold custom-text-black">
+                                                            @Html.DisplayFor(model => model.Sponsor.ContactAddress)
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group margin-bottom-0">
+                                                        <div class="col-md-4">
+                                                            @Html.LabelFor(model => model.Sponsor.MobilePhone,new { @class = "control-label " })
+                                                        </div>
+                                                        <div class="col-md-8 text-bold custom-text-black">
+                                                            @Html.DisplayFor(model => model.Sponsor.MobilePhone)
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <div class="form-group margin-bottom-0">
+                                                        <div class="col-md-4">
+                                                            @Html.LabelFor(model => model.Sponsor.Relationship.Id,new { @class = "control-label " })
+                                                        </div>
+                                                        <div class="col-md-8 text-bold custom-text-black">
+                                                            @Html.DisplayFor(model => model.Sponsor.Relationship.Name)
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    if(Model != null)
+                                    {
+                                        @Html.Partial("_OLevelResultPreview",Model)
+                                    }
+
+                                    if(Model != null && Model.Programme != null)
+                                    {
+                                        if(Model.Programme.Id == 2 || Model.Programme.Id == 5 || Model.Programme.Id == 6 || Model.Programme.Id == 8 || Model.Programme.Id == 9 || Model.Programme.Id == 10)
+                                        {
+                                            @Html.Partial("_TertiaryEducationPreview",Model)
+                                        }
+
+                                    }
+                                    if(Model != null)
+                                    {
+                                        @Html.Partial("_RefereePreview",Model)
+                                    }
+
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <div style="font-size: x-large">Academic Details</div>
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        @Html.LabelFor(model => model.AppliedCourse.Programme.Name,new { @class = "control-label" })
+                                                        @Html.TextBoxFor(model => model.AppliedCourse.Programme.Name,new { @class = "form-control",@readonly = "readonly" })
+                                                        @Html.ValidationMessageFor(model => model.AppliedCourse.Programme.Name)
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        @Html.LabelFor(model => model.AppliedCourse.Department.Faculty.Name,new { @class = "control-label" })
+                                                        @Html.TextBoxFor(model => model.AppliedCourse.Department.Faculty.Name,new { @class = "form-control",@readonly = "readonly" })
+                                                        @Html.ValidationMessageFor(model => model.AppliedCourse.Department.Faculty.Name)
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        @Html.LabelFor(model => model.AppliedCourse.Department.Name,new { @class = "control-label " })
+                                                        @Html.TextBoxFor(model => model.AppliedCourse.Department.Name,new { @class = "form-control",@readonly = "readonly" })
+                                                        @Html.ValidationMessageFor(model => model.AppliedCourse.Department.Name)
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        @Html.HiddenFor(model => model.AppliedCourse.Option.Id)
+                                                        @Html.LabelFor(model => model.AppliedCourse.Option.Id,"Department option",new { @class = "control-label " })
+                                                        @Html.TextBoxFor(model => model.AppliedCourse.Option.Name,new { @class = "form-control",@readonly = "readonly" })
+                                                        @Html.ValidationMessageFor(model => model.AppliedCourse.Option.Id)
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <div style="font-size: x-large">Declaration</div>
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <blockquote>
+                                                        <p>
+                                                            I hereby acknowledge by ticking this check box that if it is discovered at any time that I do not possess any of the qualifications which I claim
+                                                            I have obtained, I will be expelled from the university and shall not be re-admitted for the same or any other programme, even if I have upgraded my previous qualifications or possess additional qualifications.
+                                                        </p>
+                                                    </blockquote>
+
+                                                    <div class="ckbox ckbox-default">
+                                                        <input type="checkbox" id="checkboxDefault" />
+                                                        <label for="checkboxDefault"><b style="font-size: 13pt">I Agree</b></label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-actions no-color">
+                                        <button class="btn btn-white btn-lg" type="submit" name="submit" id="submit"><i class="fa fa-save mr5"></i> Submit</button>
+                                        @Html.ActionLink("Back to Form","Form",null,new { @class = "btn btn-white btn-lg mr5" })
+                                        <div id="busy" style="display: none">Processing ...</div>
+                                    </div>
+
+                                    <br />
+
+                                    <div>
+                                        @if(TempData["Message"] != null)
+                                        {
+                                            @Html.Partial("_Message",TempData["Message"])
+                                        }
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

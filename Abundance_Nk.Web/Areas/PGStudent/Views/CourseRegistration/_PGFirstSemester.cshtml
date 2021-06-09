@@ -1,0 +1,75 @@
+﻿@model Abundance_Nk.Web.Areas.PGStudent.ViewModels.PGCourseRegistrationViewModel
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<div class="row">
+    <div class="col-md-12">
+        <b>First Semester Courses</b>
+        <div class="pull-right record-count-label">
+            <label class="caption">Sum of Selected Course Unit</label><span id="spFirstSemesterTotalCourseUnit" class="badge">@Model.SumOfFirstSemesterSelectedCourseUnit</span>
+            <label class="caption">Min Unit</label><span id="spFirstSemesterMinimumUnit" class="badge">@Model.FirstSemesterMinimumUnit</span>
+            <label class="caption">Max Unit</label><span id="spFirstSemesterMaximumUnit" class="badge">@Model.FirstSemesterMaximumUnit</span>
+            <span class="caption">Total Course</span><span class="badge">@Model.FirstSemesterCourses.Count</span>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="table-responsive " style="font-size: 9pt">
+            <table class="table table-condensed grid-table table-head-alt mb30">
+                <thead>
+                    <tr class="well" style="height: 35px; vertical-align: middle">
+                        <th>
+                            @*@Html.CheckBox("selectAllFirstSemester")*@
+                        </th>
+                        <th>
+                            Course Code
+                        </th>
+                        <th>
+                            Course Title
+                        </th>
+                        <th>
+                            Course Unit
+                        </th>
+                        <th>
+                            Course Type
+                        </th>
+                    </tr>
+                </thead>
+
+                @for (int i = 0; i < Model.FirstSemesterCourses.Count; i++)
+                {
+                    <tr>
+                        <td style="margin-bottom: 0; margin-top: 0; padding-bottom: 0; padding-top: 0; vertical-align: middle;">
+                            @Html.CheckBoxFor(model => Model.FirstSemesterCourses[i].Course.IsRegistered, new { @class = "ckb1", id = Model.FirstSemesterCourses[i].Course.Id })
+                        </td>
+
+                        <td style="margin-bottom: 0; margin-top: 0; padding-bottom: 0; padding-top: 0; vertical-align: middle;">
+                            @Html.HiddenFor(model => Model.FirstSemesterCourses[i].Course.Code)
+                            @Html.DisplayFor(model => Model.FirstSemesterCourses[i].Course.Code)
+                        </td>
+
+                        <td style="margin-bottom: 0; margin-top: 0; padding-bottom: 0; padding-top: 0; vertical-align: middle;">
+                            @Html.HiddenFor(model => Model.FirstSemesterCourses[i].Course.Id)
+                            @Html.DisplayFor(model => Model.FirstSemesterCourses[i].Course.Name)
+                        </td>
+
+                        <td class="unit" style="margin-bottom: 0; margin-top: 0; padding-bottom: 0; padding-top: 0; vertical-align: middle;">
+                            @Html.HiddenFor(model => Model.FirstSemesterCourses[i].Course.Unit)
+                            @Html.DisplayFor(model => Model.FirstSemesterCourses[i].Course.Unit)
+                        </td>
+
+                        <td style="margin-bottom: 0; margin-top: 0; padding-bottom: 0; padding-top: 0; vertical-align: middle;">
+                            @Html.HiddenFor(model => Model.FirstSemesterCourses[i].Course.Type.Id)
+                            @Html.DisplayFor(model => Model.FirstSemesterCourses[i].Course.Type.Name)
+                        </td>
+
+                        @Html.HiddenFor(model => Model.FirstSemesterCourses[i].Semester.Id)
+                        @Html.HiddenFor(model => Model.FirstSemesterCourses[i].Mode.Id)
+                        @Html.HiddenFor(model => Model.FirstSemesterCourses[i].Id)
+                        @Html.HiddenFor(model => Model.FirstSemesterCourses[i].CourseRegistration.Id)
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+</div>

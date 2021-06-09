@@ -1,0 +1,108 @@
+﻿@model Abundance_Nk.Web.Areas.Admin.ViewModels.SupportViewModel
+@{
+    ViewBag.Title = "ManageDepartment";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+<script src="~/Scripts/js/plugins/jquery/jquery.min.js"></script>
+
+
+
+
+@if (TempData["Message"] != null)
+{
+    @Html.Partial("_Message", (Abundance_Nk.Model.Model.Message)TempData["Message"])
+}
+<br />
+<br />
+<br />
+
+<br />
+<div class="col-md-12">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h2 style="font-size: large">Manage Programme Department</h2>
+
+            </div>
+            <div class="row panel-body">
+                <div class="col-md-10">
+
+                    @using (Html.BeginForm("ManageDepartment", "Support", new { area = "Admin" }, FormMethod.Post))
+                    {
+                        <div class="row">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Programme.Id, "Programme",new { @class = "control-label col-md-2" })
+                                <div class="col-md-6">
+                                   
+                                    @Html.DropDownListFor(model => model.Programme.Id, (IEnumerable<SelectListItem>)ViewBag.ProgrammeId, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Programme.Id, null, new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-md-offset-2">
+                                    <input class="btn btn-success btn-sm mr5" type="submit" name="submit" id="submit" value="View" />
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    </div>
+                </div>
+            @if (Model.ShowTable==true)
+            {
+                <div class="panel-body">
+                    <div class="col-md-12">
+@using (Html.BeginForm("DeactivateActivateProgrammeDepartment", "Support", new { area = "Admin" }, FormMethod.Post))
+{
+                        @*<h3 class="text-center">Departments</h3>*@
+
+                        <table class="table table-bordered table-hover table-striped" id="myTable">
+                            <thead>
+                                <tr>
+
+                                    <th>S/N</th>
+                                    <th>DEPARTMENT NAME</th>
+                                    <th>ACTIVE</th>
+                                    <th>ACTIVE FOR PUTME</th>
+                                    <th>ACTIVATE</th>
+                                    <th>FOR PUTME APPLICATION</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @for (int i = 0; i < @Model.ProgrammeDepartments.Count; i++)
+                                {
+                                    int sn = i + 1;
+                                    var active = Model.ProgrammeDepartments[i].Activate == true ? "Active" : "In-Active";
+                                    var activePUTME = Model.ProgrammeDepartments[i].ActivePUTMEApplication == true ? "Active" : "In-Active";
+                                    <tr>
+                                        @Html.HiddenFor(model => model.ProgrammeDepartments[i].Id)
+                                        @Html.HiddenFor(model => model.ProgrammeDepartments[i].Programme.Id)
+                                        <td>@sn</td>
+                                        <td>@Model.ProgrammeDepartments[i].Department.Name.ToUpper()</td>
+                                        <td>@active</td>
+                                        <td>@activePUTME</td>
+                                        <td>@Html.CheckBoxFor(m => m.ProgrammeDepartments[i].Activate, new { @type = "checkbox", @class = "checkbox" })</td>
+                                        <td>@Html.CheckBoxFor(m => m.ProgrammeDepartments[i].ActivePUTMEApplication, new { @type = "checkbox", @class = "checkbox" })</td>
+
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                        <br />
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-md-offset-2">
+                                    <input class="btn btn-success btn-sm mr5" type="submit" name="submit" id="submit" value="Save" />
+                                </div>
+                            </div>
+                        </div>
+                        }
+                    </div>
+                </div>
+            }
+            </div>
+        </div>
+    <div class="col-md-1"></div>
+    </div>

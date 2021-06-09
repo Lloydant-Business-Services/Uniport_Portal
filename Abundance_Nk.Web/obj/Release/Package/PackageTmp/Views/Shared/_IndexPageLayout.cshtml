@@ -1,0 +1,306 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>UNIPORT | Web Portal</title>
+    <!--     Fonts and icons     -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
+    <!-- CSS Files -->
+    <link href="~/Content/assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/assets/css/now-ui-kit.css" rel="stylesheet" />
+    <link href="~/Content/assets/css/wfmi-style.css" rel="stylesheet" />
+    <link href="~/Content/index.css" rel="stylesheet" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <style>
+        body {
+            overflow-x: hidden;
+        }
+
+        ul.navbar-nav {
+            text-decoration: none !important;
+            height: 75px;
+
+        }
+
+        .navbar .navbar-nav .nav-link {
+            padding-top: 20px;
+        }
+
+            ul.navbar-nav li.nav-item:hover, .navbar .navbar-nav .nav-link:hover {
+                background: #d25400 !important;
+                text-decoration: none !important;
+            } 
+
+        
+        ul.dropdown-menu.bg-primary {
+            margin-top: 0px;
+        }
+
+        li.dropdown-item:hover, li.dropdown-item a:hover {
+            background: #d25400 !important;
+            text-decoration: none !important;
+        }
+
+       
+    </style>
+</head>
+<body>
+    <div class="container-fluid"></div>
+    <div class="col-md-12 bodi  m-0 p-0">
+        <!-- Image and text -->
+        @*<div class="col-md-12 m-0 p-0">
+                <div class="row">
+                    <div class="col-md-9"></div>
+                    <div class="col-md-3 col-sm-12">
+                        <nav class="navbar navbar-light bg-warning p-0 m-0 h50">
+                            <div class="row pr-0">
+                                <div class="col-md-12 nav-item pt-1">
+                                    <a class="nav-link" href="#">
+                                        <p>RETURN TO SCHOOL WEBSITE</p>
+                                    </a>
+                                </div>
+
+
+                            </div>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>*@
+
+        <nav class="navbar navbar-toggleable-md navbar-expand-lg bg-primary p-0">
+            <div class=" pl-2" style="width: 100%;">
+                <div class="row">
+                    <div class="col-md-3 col-sm-12">
+                        <div class="navbar-translate">
+                            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-bar bar1"></span>
+                                <span class="navbar-toggler-bar bar2"></span>
+                                <span class="navbar-toggler-bar bar3"></span>
+                            </button>
+                            <a class="navbar-brand ml-4" href="@Url.Action("Index", "Home", new {area = ""})">
+                                <img src="~/Content/Images/school_logo.png" style='height: 50px; width: 60px; object-fit: contain'; alt="NAU"/>
+                                @*<span class="hidden-xs"><img src="~/Content/Images/unizik_Index_logo.png" alt=" NAU" style="height: 50px; width: 100px;" /></span>*@
+                                <h6 style="font-size: 16px" class="d-inline mb-0">University of Port-Harcourt</h6>
+                            </a>
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-9 col-sm-12" style="margin: -5px 0;">
+                        <div class="collapse navbar-collapse justify-content-end" id="navigation" data-nav-image="assets/img/blurred-image-1.jpg">
+                            <ul class="navbar-nav" style="z-index:2147483647">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="https://www.web.unizik.edu.ng">
+                                        <p>Website</p>
+                                    </a>
+                                </li>
+
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"><span class="menu-title">APPLICANTS</span></a>
+
+
+
+
+                                    <ul class="dropdown-menu bg-primary" aria-labelledby="dropdown" style="color: #333 !important;">
+                                        <li class="dropdown-item">@Html.ActionLink("Generate Invoice", "PostJambFormInvoiceGeneration", "Form", new { Area = "Applicant" }, null)</li>
+                                        <li class="dropdown-item">@Html.ActionLink("Fill Application Form", "PostJambProgramme", "Form", new { Area = "Applicant" }, null)</li>
+                                        <li class="dropdown-item">@Html.ActionLink("PUTME Hall Allocation", "PUTMEScreenVenueSchedule", "Screening", new { Area = "Applicant" }, null)</li>
+                                        <li class="divider"></li>
+                                        <li class="dropdown-item">@Html.ActionLink("Check PUTME Result", "Index", "Screening", new { Area = "Applicant" }, null)</li>
+                                        <li class="divider"></li>
+
+                                        <li class="dropdown-item">@Html.ActionLink("Purchase Admission Status Card", "PurchaseCard", "Admission", new { Area = "Applicant" }, null)</li>
+                                        <li class="dropdown-item">@Html.ActionLink("Check Admission Status", "CheckStatus", "Admission", new { Area = "Applicant" }, null)</li>
+
+                                        <li class="divider"></li>
+                                        <li class="dropdown-item">@Html.ActionLink("JUPEB Check Admission Status", "JUPEBCheckStatus", "Admission", new { Area = "Applicant" }, null)</li>
+
+                                        <li class="divider"></li>
+                                        <li class="dropdown-item">@Html.ActionLink("Request For Hostel Allocation", "CreateHostelRequest", "Hostel", new { Area = "Student" }, null)</li>
+                                        <li class="dropdown-item">@Html.ActionLink("Hostel Allocation Status", "HostelAllocationStatus", "Hostel", new { Area = "Student" }, null)</li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"><span class="menu-title">RETURNING STUDENT</span></a>
+
+                                    <ul class="dropdown-menu bg-primary" aria-labelledby="dropdown" style="color: #333 !important;">
+                                        <li class="dropdown-item">@Html.ActionLink("Generate Invoice", "Index", "Payment", new { Area = "Student" }, null)</li>
+                                        <li class="divider"></li>
+                                        <li class="dropdown-item">@Html.ActionLink("Session Registration", "Logon", "Registration", new { Area = "Student" }, null)</li>
+                                        <li class="divider"></li>
+
+                                        <li class="dropdown-item">@Html.ActionLink("Check Semester Result", "Check", "Result", new { Area = "Student" }, null)</li>
+                                        <li class="divider"></li>
+                                        <li class="dropdown-item">@Html.ActionLink("Old Fees", "OldFees", "Payment", new { Area = "Student" }, null)</li>
+                                        <li class="dropdown-item">@Html.ActionLink("Print Receipt", "PrintReceipt", "Registration", new { Area = "Student" }, null)</li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"><span class="menu-title">POST GRADUATE SCHOOL</span></a>
+
+                                    <ul class="dropdown-menu bg-primary" aria-labelledby="dropdown" style="color: #333 !important;">
+                                        <li class="dropdown-item">@Html.ActionLink("Generate Application Form Invoice", "PostGraduateApplicationInvoiceGeneration", "Form", new { Area = "PGApplicant" }, null)</li>
+                                        <li class="dropdown-item">@Html.ActionLink("Fill Application Form", "Index", "PostGraduateForm", new { Area = "Applicant" }, null)</li>
+                                        @*<li class="dropdown-item">@Html.ActionLink("Generate Invoice", "Index", "Payment", new { Area = "Student" }, null)</li>*@
+                                        <li class="divider"></li>
+                                        <li class="dropdown-item">@Html.ActionLink("Check Admission Status", "PGCheckStatus", "PGAdmission", new { Area = "Applicant" }, null)</li>
+                                        <li class="divider"></li>
+                                        @*<li class="dropdown-item">@Html.ActionLink("Old Fees", "OldFees", "Payment", new { Area = "Student" }, null)</li>
+                                            <li class="dropdown-item">@Html.ActionLink("Print Receipt", "PrintReceipt", "Registration", new { Area = "Student" }, null)</li>*@
+                                    </ul>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"><span class="menu-title">REMEDIAL STUDIES</span></a>
+                                    <ul class="dropdown-menu bg-primary" aria-labelledby="dropdown" style="color: #333 !important;">
+                                        <li class="dropdown-item">@Html.ActionLink("Generate Invoice", "Index", "Payment", new { Area = "Student" }, null)</li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"><span class="menu-title">GRADUATE</span></a>
+
+                                    <ul class="dropdown-menu bg-primary" aria-labelledby="dropdown" style="color: #333 !important;">
+                                        <li class="dropdown-item">@Html.ActionLink("Apply for Transcript", "Index", "Transcript", new { Area = "Applicant" }, null)</li>
+                                        <li class="dropdown-item">@Html.ActionLink("Generate Transcript Receipt", "PayForTranscript", "Transcript", new { Area = "Applicant" }, null)</li>
+                                    </ul>
+                                </li>
+
+
+                                <li class="nav-item pl-4 pr-5">
+                                    @if (Request.IsAuthenticated)
+                                    {
+                                       
+                                            <a class="nav-link" href="@Url.Action("SignOff","Account", new { Area = "Security" })">
+                                                <p>LOG OUT</p>
+                                            </a>
+                                        
+                                    }
+                                    else
+                                    {
+                                        <a class="nav-link" href="@Url.Action("Login","Account", new { Area = "Security" })">
+                                            <p>LOG IN</p>
+                                        </a>
+                                    }
+
+                                </li>
+
+                            </ul>
+
+
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </nav>
+        <!-- End Navbar -->
+        <div class="clearfix"></div>
+        <div class="clearfix"></div>
+        <div class="" id="wapper" style="overflow-x: hidden;">
+
+            @RenderBody()
+            <div class="clearfix"></div>
+            <div class="container-fluid bg-warning line-1"></div>
+
+            <div class="container-fluid bg-primary py-3 pl-5 pr-5">
+                <div class="row">
+                    <div class="col-md-8 col-sm-12">
+                        &copy; UNIVERSITY OF PORT-HARCOURT
+                       
+                    </div>
+                    <div class="col-md-4 col-sm-12 text-right">
+                        Powered by <img class="image" style="height: 30px; width: 30px" src="~/Content/images/lloydant.png" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!----------------------------------PUTME HALL MODAL------------------------------------>
+    <div class="modal fade" id="mymodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Click <a href="~/Applicant/Screening/PUTMEScreenVenueSchedule"><b>HERE</b></a> to Download 2020 PUTME Hall Allocation</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                </div>
+                <div class="modal-footer">
+                    @*<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>*@
+                    @*<button class="btn btn-primary">@Html.ActionLink("DOWNLOAD", "PUTMEScreenVenueSchedule", "Screening", new { Area = "Applicant" }, null)</button>*@
+                    @*<button type="button" class="btn btn-primary" id="save">DOWNLOAD</button>*@
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="~/Scripts/js/plugins/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/js/plugins/jquery/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/js/plugins/bootstrap/bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/js/core/jquery.3.2.1.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/js/now-ui-kit.js"></script>
+    <script type="text/javascript" src="~/Scripts/js/vendor.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+            crossorigin="anonymous"></script>
+    <script type="text/javascript" src="~/Scripts/js/core/bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/dashboard.js"></script>
+    <link href="~/Content/sweetalert.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.11.1.min.js"></script>
+    <script src="~/Scripts/sweetalert.min.js"></script>
+    @*<script>
+            swal({
+                title: "Attention!",
+                text: "All student's who are to sit for the GST Exams should come to the exam hall with 2B Pencils!",
+                type: "warning"
+
+            });
+        </script>*@
+
+
+    <script type="text/javascript">
+
+        function w3_open() {
+            document.getElementById("main").style.marginLeft = "25%";
+            document.getElementById("mySidebar").style.width = "25%";
+            document.getElementById("mySidebar").style.display = "block";
+            document.getElementById("openNav").style.display = 'none';
+        }
+
+        function w3_close() {
+            document.getElementById("main").style.marginLeft = "0%";
+            document.getElementById("mySidebar").style.display = "none";
+            document.getElementById("openNav").style.display = "inline-block";
+        }
+
+    </script>
+    <!--New Chat box-->
+    <!--Start of Tawk.to Script-->
+    <script type="text/javascript">
+        jQuery.noConflict();
+        $(document).ready(function () {
+            //$('#mymodal').modal('show');
+        })
+        var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+        (function () {
+            var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+            s1.async = true;
+            s1.src = 'https://embed.tawk.to/5e1c9b0b7e39ea1242a465b4/1eojovc27';
+            s1.charset = 'UTF-8';
+            s1.setAttribute('crossorigin', '*');
+            s0.parentNode.insertBefore(s1, s0);
+        })();
+    </script>
+    <!--End of Tawk.to Script-->
+
+</body>
+@RenderSection("scripts", required: false)
+</html>
+
+

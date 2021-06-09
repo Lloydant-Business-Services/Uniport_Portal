@@ -1,0 +1,250 @@
+﻿@model Abundance_Nk.Web.Areas.Admin.ViewModels.VerificationViewModel
+@{
+
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    ViewBag.Title = "Student Payment Report";
+}
+<style>
+    .step {
+        color: blue;
+        font-size: 11pt;
+    }
+</style>
+<link href="~/Content/SmartWizard/smart_wizard.css" rel="stylesheet" />
+<link href="~/Content/SmartWizard/smart_wizard_theme_arrows.css" rel="stylesheet" />
+<link href="~/Content/SmartWizard/smart_wizard_theme_dots.css" rel="stylesheet" />
+<link href="~/Scripts/DataTables-1.10.15/extensions/Buttons/css/buttons.dataTables.css" rel="stylesheet" />
+@*@section Scripts{
+    @Scripts.Render(("~/bundles/jquery"))*@
+<script src="~/Scripts/DataTables-1.10.15/media/js/jquery.js"></script>
+<script src="~/Scripts/jquery.smartWizard.min.js"></script>
+<script src="~/Scripts/dataTables.js"></script>
+<script src="~/Content/js/bootstrap.js"></script>
+<script src="~/Scripts/DataTables-1.10.15/extensions/Buttons/js/dataTables.buttons.js"></script>
+<script src="~/Scripts/DataTables-1.10.15/extensions/Buttons/js/buttons.colVis.js"></script>
+<script src="~/Scripts/DataTables-1.10.15/extensions/Responsive/js/dataTables.responsive.js"></script>
+<script src="~/Scripts/DataTables-1.10.15/buttons.flash.min.js"></script>
+<script src="~/Scripts/DataTables-1.10.15/buttons.html5.min.js"></script>
+<script src="~/Scripts/DataTables-1.10.15/buttons.print.min.js"></script>
+<script src="~/Scripts/DataTables-1.10.15/jszip.min.js"></script>
+<script src="~/Scripts/DataTables-1.10.15/pdfmake.min.js"></script>
+<script src="~/Scripts/DataTables-1.10.15/vfs_fonts.js"></script>
+<script type="text/javascript">
+    var jQueryVesrsion_1_11_1 = $.noConflict(true);
+    var definedDataTable2;
+    var paymnetReportList = [];
+    jQueryVesrsion_1_11_1(document).ready(function () {
+
+        var definedDataTable;
+        $('#gifLoad').hide();
+        var stepToGoTo;
+        jQueryVesrsion_1_11_1('#smartwizard').smartWizard({
+            selected: 0,
+            theme: 'arrows',
+            transitionEffect: 'fade',
+            transitionSpeed: '400',
+            toolbarPosition: 'bottom',
+            showStepURLhash: false,
+            autoAdjustHeight: false,
+            hideButtonsOnDisabled: true
+        });
+
+        jQueryVesrsion_1_11_1("#smartwizard").on("showStep", function (e, anchorObject, stepNumber, stepDirection, stepPosition) {
+            //alert("You are on step " + stepNumber + " now" + stepPosition);
+            if (stepPosition === 'first') {
+                $("#prev-btn").addClass('disabled');
+                $('.sw-btn-next').prop('disabled', false);
+
+            } else if (stepPosition === 'final') {
+                $("#next-btn").addClass('disabled');
+            } else if (stepPosition === "middle") {
+
+            } else {
+                $("#prev-btn").removeClass('disabled');
+                $("#next-btn").removeClass('disabled');
+            }
+
+            stepToGoTo = stepPosition;
+        });
+        jQueryVesrsion_1_11_1("#prev-btn").on("click", function () {
+            // Navigate previous
+
+            $('#smartwizard').smartWizard("prev");
+            return true;
+        });
+
+        jQueryVesrsion_1_11_1('.sw-btn-next').on("click", function () {
+            // Navigate next
+            $('#gifLoad').show();
+            $('.sw-btn-next').prop('disabled', true);
+            var matricNumber = $('#studentMatricNumber').val();
+            var studentName;
+            var studentProgramme;
+            var studentDepartment;
+
+            if (matricNumber != null && matricNumber != "") {
+
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("GetStudentPaymentDetails", "Verfication", new {area = "Admin"})",
+                    dataType: "json",
+                    data: { matricNumber: matricNumber },
+                    success: function (arrayJsonModel) {
+                        if (arrayJsonModel.IsError == false) {
+                            $('#headerId').html(' ');
+                            if (definedDataTable != undefined) {
+                                definedDataTable.destroy();
+                            }
+                            $('#myTable tbody > tr').remove();
+
+                            studentName = arrayJsonModel.Student.FullName;
+                            studentProgramme = arrayJsonModel.StudentLevel.Programme.Name;
+                            studentDepartment = arrayJsonModel.StudentLevel.Department.Name;
+
+                            for (var i = 0; i < arrayJsonModel.Payments.length; i++) {
+                                var paymentId = arrayJsonModel.Payments[i].PaymentId;
+                                $('#tableBody').append('<tr><td><a href="/common/Credential/Receipt?pmid=' + paymentId + '" target = "_blank" ><b>' + arrayJsonModel.Payments[i].FeeTypeName + '</b></a></td><td>' + arrayJsonModel.Payments[i].BankName + '</td><td>' + arrayJsonModel.Payments[i].InvoiceNumber + '</td><td>' + arrayJsonModel.Payments[i].ConfirmationOrderNumber + '</td><td>' + arrayJsonModel.Payments[i].FormatedAmount + '</td><td>' + arrayJsonModel.Payments[i].SessionName + '</td></tr>');
+                            }
+                           
+                            jQueryVesrsion_1_11_1('#myTable').DataTable({
+                                dom: 'Bfrtip',
+                                ordering: true,
+                                retrieve: true,
+                                buttons: [
+                                    
+                                    {
+                                        extend: 'excel',
+                                        exportOptions: {
+                                            columns: ':visible'
+                                        },
+                                        header: true,
+                                        customize: function (doc) {
+                                            doc.defaultStyle.fontSize = 8; //<-- set fontsize to 16 instead of 10 
+                                        },
+                                        title:  'PAYMENT REPORT',
+                                        message: 'NAME: ' + studentName + '\n \n' + 'MATRIC NO.:' + matricNumber + '\n \n' + 'DEPARTMENT: ' + studentDepartment + '\n \n ' + 'PROGRAMME: ' + studentProgramme
+                                    },
+                                    {
+                                        extend: 'pdf',
+                                        exportOptions: {
+                                            columns: ':visible'
+                                        },
+                                        header: true,
+                                        customize: function (doc) {
+                                            doc.defaultStyle.fontSize = 8; //<-- set fontsize to 16 instead of 10 
+                                        },
+                                        title: 'PAYMENT REPORT',
+                                        message: 'NAME: ' + studentName + '\n \n' + 'MATRIC NO.:' + matricNumber + '\n \n' + 'DEPARTMENT: ' + studentDepartment + '\n \n ' + 'PROGRAMME: ' + studentProgramme
+
+                                    },
+                                    {
+                                        extend: 'print',
+                                        exportOptions: {
+                                            columns: ':visible'
+                                        },
+                                        header: true,
+                                        customize: function (doc) {
+                                            doc.defaultStyle.fontSize = 8; //<-- set fontsize to 16 instead of 10 
+                                        },
+                                        title: 'PAYMENT REPORT',
+                                        message: 'NAME: ' + studentName + '\n \n' + 'MATRIC NO.:' + matricNumber + '\n \n' + 'DEPARTMENT: ' + studentDepartment + '\n \n ' + 'PROGRAMME: ' + studentProgramme
+                                    }, , 'colvis'
+                                ]
+                            });
+                            $('#headerId').text('Transaction Listing For ' + " " + studentName + ' ' +'(' + matricNumber + ')');
+                            definedDataTable = jQueryVesrsion_1_11_1('#myTable').DataTable();
+                            $('#gifLoad').hide();
+
+                        } else {
+                            alert(arrayJsonModel.ErrorMessage);
+                            $('#gifLoad').hide();
+                        }
+
+
+                    },
+                    error: function (ex) {
+                        alert('Operation Failed.' + ex);
+                        $('#gifLoad').hide();
+                    },
+                    traditional: true
+                });
+            }
+
+        });
+
+        jQueryVesrsion_1_11_1("#theme_selector").on("change", function () {
+            // Change theme
+            jQueryVesrsion_1_11_1('#smartwizard').smartWizard("theme", $(this).val());
+            return true;
+        });
+
+        // Set selected theme on page refresh
+        jQueryVesrsion_1_11_1("#theme_selector").change();
+
+
+    });
+
+</script>
+@*}*@
+
+<div class="row" style="padding-left: 15px; min-height: 100%;">
+    <div>
+        @if (TempData["Message"] != null)
+        {
+            @Html.Partial("_Message", TempData["Message"])
+        }
+    </div>
+    <h2>Student's Payment Report</h2>
+    <div class="panel">
+        <div class="row">
+            <div class="col-md-12 ">
+                <div id="smartwizard">
+                    <ul>
+                        <li><a href="#step-1">Student Matric Number<br /><small>Enter Student's Matric Number </small></a></li>
+                        <li><a href="#step-2">Transcation Lisiting<br /><small>List of Transcations Made By </small></a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div id="step-1" class="tab-pane">
+                            <div class="panel-body">
+                                <div class="col-md-12">
+                                    <div class="row">
+                                        <div class="col-md-3 form-group">
+                                            <div class="custom-control custom-radio">
+                                                @Html.LabelFor(model => model.receipt.MatricNumber, "Matric Number", new { @class = "control-label" }) 
+                                                @Html.TextBoxFor(model => model.receipt.MatricNumber, new { @class = "form-control", placeholder = "Enter Student Matric Number",Id="studentMatricNumber" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="step-2" class="tab-pane">
+                            <div class="row">
+                                <h3 class="border-bottom border-gray pb-2" id="headerId"></h3>
+                                <table class="table table-bordered table-hover table-striped" id="myTable">
+                                    <thead>
+                                        <tr>
+                                            <th>Fee Type</th>
+                                            <th>Bank</th>
+                                            <th>Invoice Number</th>
+                                            <th>Confirmation Order No.</th>
+                                            <th>Amount</th>
+                                            <th>Session</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tableBody"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="row" style="display: none; position: fixed; top: 50%; left: 50%" id="gifLoad">
+                <img src="~/Content/Images/bx_loader.gif" />
+            </div>
+        </div>
+    </div>
+</div>
+

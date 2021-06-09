@@ -1,0 +1,14 @@
+C:\Users\Miracle\NewlyMigrated\Uniport_Portal\Abundance_Nk.Data\bin\Release\Abundance_Nk.Data.dll.config
+C:\Users\Miracle\NewlyMigrated\Uniport_Portal\Abundance_Nk.Data\bin\Release\Abundance_Nk.Data.dll
+C:\Users\Miracle\NewlyMigrated\Uniport_Portal\Abundance_Nk.Data\bin\Release\Abundance_Nk.Data.pdb
+C:\Users\Miracle\NewlyMigrated\Uniport_Portal\Abundance_Nk.Data\bin\Release\Abundance_Nk.Model.dll
+C:\Users\Miracle\NewlyMigrated\Uniport_Portal\Abundance_Nk.Data\bin\Release\EntityFramework.dll
+C:\Users\Miracle\NewlyMigrated\Uniport_Portal\Abundance_Nk.Data\bin\Release\EntityFramework.SqlServer.dll
+C:\Users\Miracle\NewlyMigrated\Uniport_Portal\Abundance_Nk.Data\bin\Release\Abundance_Nk.Model.pdb
+C:\Users\Miracle\NewlyMigrated\Uniport_Portal\Abundance_Nk.Data\bin\Release\Abundance_Nk.Model.dll.config
+C:\Users\Miracle\NewlyMigrated\Uniport_Portal\Abundance_Nk.Data\bin\Release\EntityFramework.xml
+C:\Users\Miracle\NewlyMigrated\Uniport_Portal\Abundance_Nk.Data\bin\Release\EntityFramework.SqlServer.xml
+C:\Users\Miracle\NewlyMigrated\Uniport_Portal\Abundance_Nk.Data\obj\Release\Abundance_Nk.Data.csprojResolveAssemblyReference.cache
+C:\Users\Miracle\NewlyMigrated\Uniport_Portal\Abundance_Nk.Data\obj\Release\Abundance_Nk.Data.csproj.CoreCompileInputs.cache
+C:\Users\Miracle\NewlyMigrated\Uniport_Portal\Abundance_Nk.Data\obj\Release\Abundance_Nk.Data.dll
+C:\Users\Miracle\NewlyMigrated\Uniport_Portal\Abundance_Nk.Data\obj\Release\Abundance_Nk.Data.pdb

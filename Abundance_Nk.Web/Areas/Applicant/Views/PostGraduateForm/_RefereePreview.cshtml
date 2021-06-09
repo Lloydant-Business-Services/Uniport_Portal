@@ -1,0 +1,46 @@
+﻿@model Abundance_Nk.Web.Areas.Applicant.ViewModels.PostJambViewModel
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <div style="font-size: x-large">Referee Details</div>
+    </div>
+    @for(int i = 0;i < Model.ApplicantReferees.Count;i++)
+    {
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ApplicantReferees[i].Name,new { @class = "control-label " })
+                        @Html.TextBoxFor(model => model.ApplicantReferees[i].Name,new { @class = "form-control",@readonly = "readonly" })
+                        @Html.ValidationMessageFor(model => model.ApplicantReferees[i].Name)
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ApplicantReferees[i].Rank,new { @class = "control-label " })
+                        @Html.TextBoxFor(model => model.ApplicantReferees[i].Rank,new { @class = "form-control",@readonly = "readonly" })
+                        @Html.ValidationMessageFor(model => model.ApplicantReferees[i].Rank)
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ApplicantReferees[i].Department,new { @class = "control-label " })
+                        @Html.TextBoxFor(model => model.ApplicantReferees[i].Department,new { @class = "form-control",@readonly = "readonly" })
+                        @Html.ValidationMessageFor(model => model.ApplicantReferees[i].Department)
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ApplicantReferees[i].Institution,new { @class = "control-label " })
+                        @Html.TextBoxFor(model => model.ApplicantReferees[i].Institution,new { @class = "form-control",@readonly = "readonly" })
+                        @Html.ValidationMessageFor(model => model.ApplicantReferees[i].Institution)
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>

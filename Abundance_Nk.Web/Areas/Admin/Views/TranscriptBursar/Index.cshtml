@@ -1,0 +1,75 @@
+﻿@model Abundance_Nk.Web.Areas.Admin.ViewModels.TranscriptBursarViewModel
+@{
+   
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+@{
+    ViewBag.Title = "Transcript Requests";
+}
+<script>
+    function getnewValue(val) {
+        var dropdownChanged = val.id;
+        var buttonId = document.getElementById(dropdownChanged).offsetParent.nextElementSibling.childNodes[0].id;
+        var buttonUrl = document.getElementById(dropdownChanged).offsetParent.nextElementSibling.childNodes[0].href;
+
+        var ur = buttonUrl + "&stat=" + val.value;
+        document.getElementById(buttonId).href = ur;
+
+    }
+
+    $("a").click(function() {
+        alert($(this).text);
+    });
+</script>
+<div class="row">
+    <div>
+        @if (TempData["Message"] != null)
+    {
+            @Html.Partial("_Message", TempData["Message"])
+    }
+    </div>
+
+    <h2>Incoming Transcript Payment</h2>
+    <a href="@Url.Action("UpdateRRRBulk")">Update All</a>
+    <div class="panel">
+
+        <table class="table table-bordered table-hover table-striped table-responsive">
+
+            <tr>
+                <th>@Html.ActionLink("Full Name", "Index", new {sortOrder = ViewBag.FullName, currentFilter = ViewBag.CurrentFilter})</th>
+                <th>@Html.ActionLink("Matric Number", "Index", new {sortOrder = ViewBag.FullName, currentFilter = ViewBag.CurrentFilter})</th>
+                <th>@Html.ActionLink("Date Requesterd", "Index", new {sortOrder = ViewBag.FullName, currentFilter = ViewBag.CurrentFilter})</th>
+                <th>@Html.ActionLink("Destination", "Index", new {sortOrder = ViewBag.Number, currentFilter = ViewBag.CurrentFilter})</th>
+                <th>@Html.ActionLink("RRR", "Index", new {sortOrder = ViewBag.Number, currentFilter = ViewBag.CurrentFilter})</th>
+                <th>Confirm</th>
+                <th>@Html.ActionLink("Amount Paid", "Index", new {sortOrder = ViewBag.Number, currentFilter = ViewBag.CurrentFilter})</th>
+
+                @*<th>Reject</th>*@
+            </tr>
+
+            @for (int i = 0; i < Model.transcriptRequests.Count; i++)
+        {
+                <tr>
+                    <td>@Html.DisplayTextFor(m => m.transcriptRequests[i].student.FullName)</td>
+                    <td>@Html.DisplayTextFor(m => m.transcriptRequests[i].student.MatricNumber)</td>
+                    <td>@Html.DisplayTextFor(m => m.transcriptRequests[i].DateRequested)</td>
+                    <td>@Html.DisplayTextFor(m => m.transcriptRequests[i].DestinationAddress)</td>
+                    <td>@Html.DisplayTextFor(m => m.transcriptRequests[i].ConfirmationOrderNumber)</td>
+                    <td>
+                        @if (Model.transcriptRequests[i].remitaPayment != null)
+                    {
+                            @*@Html.ActionLink("Confirm Payment", "UpdateStatus", "TranscriptBursar", new { tid = Model.transcriptRequests[i].Id, confirmationOrder = Model.transcriptRequests[i].ConfirmationOrderNumber }, new { @class = "btn btn-default", @id = "url" + i })*@
+                            @Html.ActionLink("Get Status", "GetStatus", "TranscriptBursar", new {order_Id = Model.transcriptRequests[i].remitaPayment.OrderId}, new {@class = "btn btn-default"})
+                    }
+                    else
+                    {
+                            @Html.Display("Invoice not yet generated")
+                    }
+                    </td>
+                    <td class="text-bold text-red">@Html.DisplayTextFor(m => m.transcriptRequests[i].Amount)</td>
+                </tr>
+        }
+        </table>
+    </div>
+</div>

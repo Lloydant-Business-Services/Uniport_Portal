@@ -1,0 +1,79 @@
+﻿@model Abundance_Nk.Web.Areas.Applicant.ViewModels.TranscriptViewModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+<div class="col-md-12 card p-5">
+    <div class="col-md-12">
+        <h3>
+            Transcript Request <span class="label label-default"> Search</span>
+        </h3>
+    </div>
+    <hr/>
+
+    <div class="panel panel-default">
+        <div class="panel-body">
+
+                @using (Html.BeginForm("IndexAlt", "Transcript", FormMethod.Post, new {id = "frmIndex", enctype = "multipart/form-data"}))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true)
+
+                    <div class="row">
+                        
+                        <div class="col-md-12">
+                            <p>Enter your matric Number and click on the search button to retrieve your details</p>
+              
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.transcriptRequest.student.MatricNumber, new { @class = "control-label " })
+                                        @Html.TextBoxFor(model => model.transcriptRequest.student.MatricNumber, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.transcriptRequest.student.MatricNumber, null, new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                @if (Model.transcriptRequest.student != null)
+                                {
+                                    <div class="col-md-12">
+                                        <div class="well well-sm">
+                                            <div class="form-group">
+
+                                                <br />
+                                                @if (Model.transcriptRequest.payment == null)
+                                                {
+                                                    @Html.ActionLink(Model.transcriptRequest.student.FullName + " - " + Model.transcriptRequest.student.MatricNumber + " >> Click to continue", "Request", "Transcript", new { sid = Model.transcriptRequest.student.Id }, new { @class = "btn btn-danger btn-sm", target = "_blank" })
+                                                }
+                                                else
+                                                {
+                                                    @Html.ActionLink(Model.transcriptRequest.student.FullName + " - " + Model.transcriptRequest.student.MatricNumber + " >> Click to check status", "TranscriptPayment", "Transcript", new { tid = Model.transcriptRequest.Id }, new { @class = "btn btn-danger btn-sm", target = "_blank" })
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                        
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        
+                                            <input class="btn btn-success btn-lg mr5" type="submit" name="submit" id="submit" value="Search" />
+                                    
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    
+                    </div>
+
+                    <br/>
+                }
+            </div>
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+</div>
+</div>

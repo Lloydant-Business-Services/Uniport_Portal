@@ -1,0 +1,181 @@
+﻿@model Abundance_Nk.Web.Models.RefereeFormViewModel
+@{
+    ViewBag.Title = "View Applicant Referees";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<script src="~/Scripts/DataTables-1.10.15/media/js/jquery.js"></script>
+
+<link href="~/Scripts/DataTables-1.10.15/media/css/jquery.dataTables.css" rel="stylesheet" />
+<script src="~/Scripts/DataTables-1.10.15/media/js/jquery.dataTables.js"></script>
+<link href="~/Scripts/DataTables-1.10.15/extensions/Buttons/css/buttons.dataTables.css" rel="stylesheet" />
+<script src="~/Scripts/DataTables-1.10.15/extensions/Buttons/js/dataTables.buttons.js"></script>
+<script src="~/Scripts/DataTables-1.10.15/extensions/Buttons/js/buttons.colVis.js"></script>
+<script src="~/Scripts/DataTables-1.10.15/extensions/Responsive/js/dataTables.responsive.js"></script>
+<script src="~/Scripts/DataTables-1.10.15/buttons.flash.min.js"></script>
+<script src="~/Scripts/DataTables-1.10.15/buttons.html5.min.js"></script>
+<script src="~/Scripts/DataTables-1.10.15/buttons.print.min.js"></script>
+<script src="~/Scripts/DataTables-1.10.15/jszip.min.js"></script>
+<script src="~/Scripts/DataTables-1.10.15/pdfmake.min.js"></script>
+<script src="~/Scripts/DataTables-1.10.15/vfs_fonts.js"></script>
+
+<script type="text/javascript">
+    $(function () {
+
+
+        $.extend($.fn.dataTable.defaults, {
+            responsive: false
+        });
+
+        $("#myTable").DataTable({
+            dom: 'Bfrtip',
+            ordering: true,
+            buttons: [
+                {
+                    extend: 'copy',
+                    exportOptions: {
+                        columns: ':visible',
+                        modifier: {
+                            orientation: 'landscape'
+                        }
+                    },
+                    orientation: 'landscape'
+
+
+                },
+                {
+                    extend: 'csv',
+                    exportOptions: {
+                        columns: ':visible',
+                        modifier: {
+                            orientation: 'landscape'
+                        }
+                    },
+                    orientation: 'landscape'
+
+                },
+                {
+                    extend: 'excel',
+                    exportOptions: {
+                        columns: ':visible',
+                        modifier: {
+                            orientation: 'landscape'
+                        }
+                    },
+                    orientation: 'landscape'
+
+
+                },
+                {
+                    extend: 'pdf',
+                    exportOptions: {
+                        columns: ':visible',
+                        header: true,
+                        modifier: {
+                            orientation: 'landscape'
+                        }
+
+
+
+                    },
+                    orientation: 'landscape'
+
+
+                },
+                {
+                    extend: 'print',
+                    exportOptions: {
+                        columns: ':visible',
+                        modifier: {
+                            orientation: 'landscape'
+                        }
+                    },
+                    orientation: 'landscape'
+
+
+                }, , 'colvis'
+            ]
+        });
+
+        $("#submit").click(function () {
+            $('#submit').attr('disable', 'disable');
+        });
+    });
+</script>
+
+@if (TempData["Message"] != null)
+{
+    @Html.Partial("_Message", (Abundance_Nk.Model.Model.Message)TempData["Message"])
+}
+<br />
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div style="background: #fff;padding: 20px;margin-top:30px;">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <h5 class="text-center"
+                                style="padding: 10px 5px;background:whitesmoke;border-radius: 20% !important;">
+                                Referee List For: <span class="text-success">@Model.CandidateName</span>
+                            </h5>
+                        </div>
+                    </div>
+
+                    <table class="table table-bordered table-hover table-striped" id="myTable">
+                        <thead>
+                            <tr>
+                                <th>
+                                    SN
+                                </th>
+                                <th>
+                                    Referee Name
+                                </th>
+                                <th>
+                                    Rank
+                                </th>
+                                <th>
+                                    Department
+                                </th>
+                                <th>
+                                    Institution
+                                </th>
+                                <th>Response</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for (int i = 0; i < Model.ApplicantReferees.Count(); i++)
+                            {
+                                int sn = i + 1;
+                                <tr>
+                                    <td>@sn</td>
+                                    <td>@Model.ApplicantReferees[i].RefereeName.ToUpper()</td>
+                                    <td>@Model.ApplicantReferees[i].Rank.ToUpper()</td>
+                                    <td>@Model.ApplicantReferees[i].Department.ToUpper()</td>
+                                    <td>@Model.ApplicantReferees[i].Institution.ToUpper()</td>
+                                    <td>@Model.ApplicantReferees[i].RespondedTo</td>
+                                    <td>
+                                        @if (Model.ApplicantReferees[i].IsRespondedTo)
+                                        {
+                                            <a target="_blank" href="@Url.Action("ViewRefereePrintOut", "PostGraduateForm", new { Id = Model.ApplicantReferees[i].RefereeId })" class="btn btn-success">View Reference</a>
+                                        }
+                                        else
+                                        {
+                                            <h5>No Preview available</h5>
+                                        }
+
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <div class="panel-footer">
+                    <a class="pull-right btn btn-primary" href="@Url.Action("ViewMultitplePrintOuts", "PostGraduateForm", new { Id = Model.ApplicationFormId })">Preview All References</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

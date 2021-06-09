@@ -1,0 +1,314 @@
+﻿@model Abundance_Nk.Web.Areas.PGApplicant.ViewModels.PGRefereeViewModel
+@{
+    ViewBag.Title = "PGForm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    body {
+        overflow-x: hidden !important;
+    }
+
+    .bg-white {
+        background: #fff;
+    }
+
+    .fs-16 {
+        font-size: 16px;
+    }
+
+    .fs-15 {
+        font-size: 15px;
+    }
+
+    .mt-10 {
+        margin-top: 10px !important;
+    }
+
+    .mt-20 {
+        margin-top: 20px !important;
+    }
+
+    .mt-30 {
+        margin-top: 30px !important;
+    }
+
+    .mt-5 {
+        margin-top: 5px !important;
+    }
+
+    .mb-10 {
+        margin-bottom: 10px !important;
+    }
+
+    .mb-5 {
+        margin-bottom: 5px !important;
+    }
+
+    .p-20 {
+        font-size: 20px;
+    }
+
+    .bb-black {
+        border-bottom: 1px solid #ddd;
+    }
+
+    .list-inline {
+        display: inline !important;
+    }
+
+    .no-list-bullet {
+        list-style: none !important;
+    }
+
+    textarea {
+        width: 100% !important;
+    }
+</style>
+@if (TempData["Message"] != null)
+{
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <br />
+                @Html.Partial("_Message", TempData["Message"])
+            </div>
+        </div>
+    </div>
+}
+@if (!Model.Completed)
+{
+    <div class="container">
+        <div class="card">
+            <div class="card-body" style="padding: 50px 20px;">
+                <div class="row">
+                    <div class="col-xs-12 col-md-12">
+                        <h2 class="text-center">
+                            <img src="~/Content/Images/absu logo.png" style="width:80px;height:80px" />
+                        </h2>
+                        <h3 class="text-center mb-5">ABIA STATE UNIVERSITY, UTURU</h3>
+                        <h4 class="text-center mt-5">SCHOOL OF POSTGRADUATE</h4>
+                    </div>
+
+                    <div class="col-xs-12 col-md-12">
+                        <h3 class="text-center mb-5">
+                            REFEREE'S CONFIDENTIAL REPORT ON A CANDIDATE FOR ADMISSION <br />TO HIGHER/POSTGRADUATE STUDIES
+                        </h3>
+                    </div>
+
+                    <div class="col-xs-12 col-md-10 offset-md-1 bb-black" style="padding-bottom: 30px !important;">
+                        <p class="p-20">
+                            The candidate whose name is given below wishes to undertake higher degree/postgraduate studies in this university.
+                            Your comments(which will be treated in the strictest confidence) on the candidate's suitability for the work, would be appreciated.
+                            Please return the completed form direct to the Secondary School of Postgraduate Studies, Abia State University, P.M.B 2000 Uturu, Abia State.
+                        </p>
+                    </div>
+
+                    <div class="col-xs-12 col-md-8 offset-md-2 mt-30 mb-10">
+                        @using (Html.BeginForm("RefereeForm", "PostGraduateForm", FormMethod.Post, new { id = "frmPostJAMB", enctype = "multipart/form-data" }))
+                        {
+                            @*<form>*@
+                            @Html.HiddenFor(m => m.ApplicantReferee.Id)
+                            <ol class="no-list-bullet">
+                                <li>
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.ApplicantReferee.ApplicationForm.Person, "Name of Candidate", new { @class = "control-label " })
+                                        @Html.TextBoxFor(model => model.ApplicantReferee.ApplicationForm.Person.FullName, new { @class = "form-control", @readonly = "readonly" })
+
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.AppliedCourse.Department.Name, "Department/Faculty", new { @class = "control-label " })
+                                        @Html.TextBoxFor(model => model.AppliedCourse.Department.Name, new { @class = "form-control", @readonly = "readonly" })
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.AppliedCourse.Programme.Name, "Programme", new { @class = "control-label " })
+                                        @Html.TextBoxFor(model => model.AppliedCourse.Programme.Name, new { @class = "form-control", @readonly = "readonly" })
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.ApplicantRefereeResponse.DurationKnownApplicant, "How long have you know the candidate(In Years)?", new { @class = "control-label " })
+                                        @Html.TextBoxFor(model => model.ApplicantRefereeResponse.DurationKnownApplicant, new { @class = "form-control", @type = "number", min = 1, @required=true })
+                                    </div>
+                                </li>
+                            </ol>
+                            <span class="help-block fs-16">Please, Evaluate the candidate with the checklist below:</span>
+                            <br />
+                            <span class="help-block fs-15">(Please, tick as appropriate)</span>
+                            <br />
+                            <div class="table-responsive">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th>Outstanding(top 5%)</th>
+                                            <th>Excellent(15%)</th>
+                                            <th>Very Good(top 25%)</th>
+                                            <th>Good(top 35%)</th>
+                                            <th>Average</th>
+                                            <th>Below Average</th>
+                                            <th>No Information</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @for (int i = 0; i < Model.RefereeEvaluations.Count; i++)
+                                        {
+                                            <tr>
+                                                @Html.HiddenFor(m => m.RefereeEvaluations[i].GradeCategoryId)
+                                                @Html.HiddenFor(m => m.RefereeEvaluations[i].GradeSystemId)
+                                                <td>@Html.DisplayFor(model => model.RefereeEvaluations[i].GradeCategory)</td>
+                                                @for (int j = 0; j < Model.RefereeEvaluations[i].GradingSystems.Count; j++)
+                                                {
+
+                                                    <td>
+                                                        @Html.HiddenFor(m => m.RefereeEvaluations[i].GradeCategoryId)
+                                                        @Html.HiddenFor(m => m.RefereeEvaluations[i].GradingSystems[j].Id)
+                                                        @Html.RadioButtonFor(m => m.RefereeEvaluations[i].GradeCategory, Model.RefereeEvaluations[i].GradingSystems[j].isChecked, new { @type = "radio", @onClick = "setCheckValue(" + i + ',' + Model.RefereeEvaluations[i].GradingSystems[j].Id + ");", @class = "collect-status" })
+                                                    </td>
+
+
+                                                }
+
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                            <ol class="no-list-bullet">
+                                <li>
+                                    <div class="form-group">
+                                        <label class="control-label">Comment on the Candidate's Personality</label>
+                                        @Html.TextAreaFor(model => model.ApplicantRefereeResponse.RelevantInformation, new { @class = "form-control", rows = 6 })
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="form-group">
+                                        <label class="control-label">Would you accept the candidate as a graduate student?</label>
+                                        <br />
+                                        <p>Yes</p>
+                                        @Html.RadioButtonFor(model => model.ApplicantRefereeResponse.CanAcceptApplicant, true, new { @class = "", @type = "radio" })
+                                        &nbsp;&nbsp;
+                                        <p>No</p>
+                                        @Html.RadioButtonFor(model => model.ApplicantRefereeResponse.CanAcceptApplicant, false, new { @class = "", @type = "radio" })
+                                    </div>
+                                </li>
+                                <br />
+                                <li>
+                                    <div class="form-group">
+                                        <label class="control-label">Please rate this applicant in overall promise</label>
+                                        <br /><br />
+                                        <table class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    @for (int k = 0; k < Model.OverallGradingSystems.Count; k++)
+                                                    {
+                                                        <td>
+                                                            @Html.DisplayFor(model => model.OverallGradingSystems[k].score)
+                                                        </td>
+                                                    }
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    @for (int k = 0; k < Model.OverallGradingSystems.Count; k++)
+                                                    {
+                                                        <td>
+                                                            @Html.RadioButtonFor(model => model.OverallRating, @Model.OverallGradingSystems[k].Id, new { @class = "", @type = "radio" })
+                                                            @*<input type="radio" name="Overrall" id=@Model.OverallRating value=@Model.OverallGradingSystems[k].Id />*@
+                                                        </td>
+                                                    }
+
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="form-group">
+                                        <label class="control-label">Relevant information to determine the candidate's suitability?</label>
+                                        @Html.TextAreaFor(model => model.ApplicantRefereeResponse.Remark, new { @class = "form-control", rows = 6 })
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="form-group">
+                                        <label class="control-label">Do you have any objections about the candidate's eligibity?</label>
+
+                                    </div>
+                                </li>
+                            </ol>
+
+                            <div class="row" style="padding-left: 40px;">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+
+                                        <label for="name" class="control-label">FullName</label>
+                                        @Html.TextBoxFor(model => model.ApplicantRefereeResponse.FullName, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-actions no-color col-md-12">
+                                <button class="btn btn-primary btn-lg" type="submit" name="submit" id="submit">Next  @*<i class="fa fa-chevron-right mr5"></i><i class="fa fa-chevron-right mr5"></i>*@</button>
+                                <div id="busy" style="display: none">Processing ...</div>
+                                <div id="result"></div>
+                            </div>
+                            @*</form>*@
+                        }
+
+
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer bg-white">
+                <h5 class="text-right">
+                    <span class="fs-15">Powered by </span>
+                    <a href="http://lloydant.com" target="_blank">
+                        <img src="~/Content/Images/lloydant.png" style="width: 40px; height:30px;" />
+                    </a>
+                </h5>
+            </div>
+        </div>
+    </div>
+}
+
+<script type="text/javascript">
+
+    //function editRadioButtonState(ref) {
+    //    //Get all instances of the css class: ".collect-status"
+    //    const nodes = document.querySelectorAll(".collect-status");
+
+    //    //Cast all instances of the css class: ".collect-status" to an array
+    //    const trigger = Array.prototype.slice.call(nodes, document.body);
+
+    //    //get the index which the clicked element belongs to from the list of element
+    //    const index = trigger.indexOf(ref);
+
+    //    //Get the exact radio button that was clicked on based on its index
+    //    const el = trigger[index];
+
+    //    /**
+    //     * Get all radio buttons that share a common "name", so all their values can be == false 
+    //     * and the selected radio button can then be set == true
+    //     * */
+    //    const elementName = el.getAttribute("name");
+
+    //    //returns an array of radiobutton/html elements that share a common name
+    //    let fields = document.getElementsByName(`${elementName}`);
+    //    //console.log("Number of elements on this row: ", fields.length);
+
+    //    for (let i = 0; i < fields.length; i++) {
+    //        fields[i].value = false;
+    //    }
+
+    //    //Reset the clicked element's value to true after turning its sibling element values to false
+    //    el.value = true;
+    //}
+    function setCheckValue(i, j) {
+        $(`#RefereeEvaluations_${i}__GradeSystemId`).val(j);
+    }
+
+</script>

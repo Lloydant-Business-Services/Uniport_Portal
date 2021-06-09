@@ -1,0 +1,368 @@
+﻿@model Abundance_Nk.Web.Areas.Admin.ViewModels.StaffCourseAllocationViewModel
+@{
+    ViewBag.Title = "Course Evaluation Report";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+@if (TempData["Message"] != null)
+{
+    @Html.Partial("_Message", TempData["Message"])
+}
+
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/Chart.bundle.js"></script>
+<script src="~/Scripts/utils.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+
+
+//Programme Drop down Selected-change event
+        $("#Programme").change(function() {
+            if ($("#Department").val() > 0 && $("#Level").val() > 0 && $("#Semester").val() > 0) {
+                populateCourses();
+            }
+            $("#Department").empty();
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("GetDepartments", "StaffCourseAllocation")', // Calling json method
+                dataType: 'json',
+                data: { id: $("#Programme").val() },
+                // Get Selected Country ID.
+                success: function(departments) {
+                    $("#Department").append('<option value="' + 0 + '">' +
+                        '-- Select Department --' + '</option>');
+                    $.each(departments, function(i, department) {
+                        $("#Department").append('<option value="' + department.Value + '">' +
+                            department.Text + '</option>');
+                    });
+                },
+                error: function(ex) {
+                    alert('Failed to retrieve departments.' + ex);
+                }
+            });
+            return false;
+        }); //Session Drop down Selected change event
+        $("#Session").change(function() {
+            if ($("#Department").val() > 0 && $("#Level").val() > 0 && $("#Semester").val() > 0) {
+                populateCourses();
+            }
+
+            $("#Semester").empty();
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("GetSemester", "StaffCourseAllocation")', // Calling json method
+                dataType: 'json',
+                data: { id: $("#Session").val() },
+                // Get Selected Country ID.
+                success: function(semesters) {
+                    $("#Semester").append('<option value="' + 0 + '">' +
+                        '-- Select Semester --' + '</option>');
+                    $.each(semesters, function(i, semester) {
+                        $("#Semester").append('<option value="' + semester.Value + '">' +
+                            semester.Text + '</option>');
+                    });
+                },
+                error: function(ex) {
+                    alert('Failed to retrieve semesters.' + ex);
+                }
+            });
+            return false;
+        });
+        $("#Department").change(function() {
+            if ($("#Department").val() > 0 && $("#Level").val() > 0 && $("#Semester").val() > 0) {
+                populateCourses();
+            }
+        });
+        $("#Session").change(function() {
+            if ($("#Department").val() > 0 && $("#Level").val() > 0 && $("#Semester").val() > 0) {
+                populateCourses();
+            }
+        });
+        $("#Level").change(function() {
+            if ($("#Department").val() > 0 && $("#Level").val() > 0 && $("#Semester").val() > 0) {
+                populateCourses();
+            }
+
+        });
+
+
+      
+    });
+    function GetChartData(courseId) {
+
+        $('#canvasDiv').html(' ');
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("GetCourseEvaulationReport", "StaffCourseAllocation")', // we are calling json method
+            dataType: 'json',
+            data: { courseId: courseId },
+            success: function (model) {
+
+                $('#canvasDiv').append("<canvas id=" + "canvas" + "></canvas>");
+
+                var evaluationSection1 = [];
+                var evaluationSection2 = [];
+                for (var i = 0; i < model.Count; i++) {
+                    if (model.Section == 1) {
+                        evaluationSection1.push(model.Score);
+                    }
+                    if (model.Section == 2) {
+                        evaluationSection2.push(model.Score);
+                    }
+                }
+
+                var ctx = document.getElementById('canvas').getContext('2d');
+                var config = {
+                    type: 'line',
+                    data: {
+                        labels: ['Question 1', 'Question 2', 'Question 3', 'Question 4', 'Question 5', 'Question 6', 'Question 7', 'Question 8', 'Question 9', 'Question 10', 'Question 11', 'Question 12', 'Question 13', 'Question 14', 'Question 15', 'Question 16'],
+                        datasets: [
+							{
+							    label: 'Evaluation Question Section 1',
+							    backgroundColor: window.chartColors.red,
+							    borderColor: window.chartColors.red,
+							    data: evaluationSection1
+							   ,
+							    fill: false
+							},{
+							    label: 'Evaluation Question Section 2',
+							    fill: false,
+							    backgroundColor: window.chartColors.blue,
+							    borderColor: window.chartColors.blue,
+							    data: evaluationSection2
+                       }]
+
+                    },
+                    options: {
+                        responsive: true,
+                        title: {
+                            display: true,
+                            text: 'Course Evaluation Report' 
+                        },
+                        tooltips: {
+                            mode: 'index',
+                            intersect: false,
+                        },
+                        hover: {
+                            mode: 'nearest',
+                            intersect: true
+                        },
+                        scales: {
+                            xAxes: [
+								{
+								    display: true,
+								    scaleLabel: {
+								        display: true,
+								        labelString: 'Question'
+								    }
+								}
+                            ],
+                            yAxes: [
+								{
+								    display: true,
+								    scaleLabel: {
+								        display: true,
+								        labelString: 'Average Score per No. of Student'
+								    }
+								}
+                            ]
+                        }
+                    }
+                };
+
+                window.myLine = new Chart(ctx, config);
+
+
+                config = {
+                    type: 'doughnut',
+                    data: {
+                        datasets: [{
+                            data: [
+									 model.Products[0].Visits,
+									model.Products[1].Visits,
+									model.Products[2].Visits,
+									model.Products[3].Visits,
+									model.Products[4].Visits
+                            ],
+                            backgroundColor: [
+								window.chartColors.red,
+								window.chartColors.orange,
+								window.chartColors.yellow,
+								window.chartColors.green,
+								window.chartColors.blue,
+                            ],
+                            label: 'Dataset 1'
+                        }],
+                        labels: [
+							model.Products[0].Name,
+							model.Products[1].Name,
+							model.Products[2].Name,
+						   model.Products[3].Name,
+							 model.Products[4].Name
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        legend: {
+                            position: 'top',
+                        },
+                        animation: {
+                            animateScale: true,
+                            animateRotate: true
+                        }
+                    }
+                };
+
+                ctx = document.getElementById('chart-area').getContext('2d');
+                window.myDoughnut = new Chart(ctx, config);
+
+                config = {
+                    type: 'doughnut',
+                    data: {
+                        datasets: [{
+                            data: [
+                               model.SalesLogs[0].Quantity,
+                                  model.SalesLogs[1].Quantity,
+                                  model.SalesLogs[2].Quantity,
+                                  model.SalesLogs[3].Quantity,
+                                  model.SalesLogs[4].Quantity
+                            ],
+                            backgroundColor: [
+                                window.chartColors.Maroon,
+                                window.chartColors.Navy,
+                                window.chartColors.Teal,
+                                window.chartColors.brown,
+                                window.chartColors.green
+                            ],
+                            label: 'Dataset 1'
+                        }],
+                        labels: [
+                            model.SalesLogs[0].Product.Name,
+                                  model.SalesLogs[1].Product.Name,
+                                  model.SalesLogs[2].Product.Name,
+                                  model.SalesLogs[3].Product.Name,
+                                  model.SalesLogs[4].Product.Name
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        legend: {
+                            position: 'top',
+                        },
+                        animation: {
+                            animateScale: true,
+                            animateRotate: true
+                        }
+                    }
+                };
+
+                ctx = document.getElementById('chart-area').getContext('2d');
+                window.myDoughnut = new Chart(ctx, config);
+
+            },
+            error: function (ex) {
+                swal("Error Occured", "Product Brand could not be Added", "error");
+            }
+        });
+    };
+</script>
+
+<style>
+    canvas {
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+    }
+
+    .border-right-line {
+        border-right: 1px solid #f2f2f2;
+    }
+</style>
+
+
+<div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title"><i class="fa fa-fw fa-toggle-left"></i>Evaluation Report </h3>
+        </div>
+        <div class="panel-body">
+@using (Html.BeginForm("CourseEvaulationReport", "StaffCourseAllocation", new { area = "Admin" }, FormMethod.Post))
+{
+            <div class="form-group">
+                @Html.LabelFor(model => model.CourseAllocation.Session.Name, "Session", new { @class = "col-sm-2 control-label " })
+                <div class="col-sm-10">
+                    @Html.DropDownListFor(model => model.CourseAllocation.Session.Id, (IEnumerable<SelectListItem>)ViewBag.Session, new { @class = "form-control", @id = "Session", @required = "required" })
+                    @Html.ValidationMessageFor(model => model.CourseAllocation.Session.Id, null, new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.CourseAllocation.Semester.Name, "Semester", new { @class = "col-sm-2 control-label " })
+                <div class="col-sm-10">
+                    @Html.DropDownListFor(model => model.CourseAllocation.Semester.Id, (IEnumerable<SelectListItem>)ViewBag.Semester, new { @class = "form-control", @id = "Semester", @required = "required" })
+                    @Html.ValidationMessageFor(model => model.CourseAllocation.Semester.Id, null, new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.CourseAllocation.Programme.Name, "Programme", new { @class = "col-sm-2 control-label " })
+                <div class="col-sm-10">
+                    @Html.DropDownListFor(model => model.CourseAllocation.Programme.Id, (IEnumerable<SelectListItem>)ViewBag.Programme, new { @class = "form-control", @id = "Programme", @required = "required" })
+                    @Html.ValidationMessageFor(model => model.CourseAllocation.Programme.Id, null, new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.CourseAllocation.Department.Name, "Department", new { @class = "col-sm-2 control-label " })
+                <div class="col-sm-10">
+                    @Html.DropDownListFor(model => model.CourseAllocation.Department.Id, (IEnumerable<SelectListItem>)ViewBag.Department, new { @class = "form-control", @id = "Department", @required = "required" })
+                    @Html.ValidationMessageFor(model => model.CourseAllocation.Department.Id, null, new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.CourseAllocation.Level.Name, "Level", new { @class = "col-sm-2 control-label " })
+                <div class="col-sm-10">
+                    @Html.DropDownListFor(model => model.CourseAllocation.Level.Id, (IEnumerable<SelectListItem>)ViewBag.Level, new { @class = "form-control", @id = "Level", @required = "required" })
+                    @Html.ValidationMessageFor(model => model.CourseAllocation.Level.Id, null, new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2"></div>
+                <div class="col-sm-10">
+                    <input class="btn btn-success mr5 " type="submit" name="submit" id="submit" value="View"/>
+                </div>
+            </div>
+}
+       @if (Model.CourseEvaluationReports == null) { return; }
+    @if (Model.CourseEvaluationReports.Count > 0)
+    {
+        <div class="col-md-12">
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Lecturer</th>
+                        <th scope="col">Score</th>
+                        <th scope="col">Details</th>
+                    </tr>
+                </thead>
+                <tbody>
+                @for (int i = 0; i < Model.CourseEvaluationReports.Count; i++)
+                {
+                    int sn = i + 1;
+                    <tr>
+                        <th scope="row">@sn</th>
+                        <td><a href="#" onclick="GetChartData(@Model.CourseEvaluationReports[i].CourseId)">@Model.CourseEvaluationReports[i].LecturerName</a></td>
+                        <td>@Model.CourseEvaluationReports[i].Score</td>
+                        <td></td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+
+        </div>
+    }
+            <div style="width: 100%;" id="canvasDiv">
+                <canvas id="canvas"></canvas>
+            </div>
+
+        </div>
+    </div>

@@ -1,0 +1,80 @@
+﻿@model Abundance_Nk.Web.Areas.Student.ViewModels.HostelViewModel
+@{
+    ViewBag.Title = "Hostel Fee";
+    if (User.Identity.Name != null && User.Identity.Name != "")
+    {
+        Layout = "~/Areas/Student/Views/Shared/_Layout.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+}
+
+<div class="container">
+    <div class="col-md-12 card card-shadow p-4">
+        <div>
+            <h3><b>Hostel Status</b></h3>
+        </div>
+
+        <section id="loginForm">
+            @using (Html.BeginForm("HostelAllocationStatus", "Hostel", new { Area = "Student" }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+
+                <p>Please enter your <b>school fee Confirmation Order Number</b> in the box below to generate your Hostel Fee invoice</p>
+                <hr class="no-top-padding" />
+
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Student.MatricNumber, "Confirmation Order Number", new { @class = "control-label" })
+                                    <div>
+                                        @Html.TextBoxFor(model => model.Student.MatricNumber, new { @class = "form-control", required = "required" })
+                                        @Html.ValidationMessageFor(model => model.Student.MatricNumber, null, new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                         
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.FeeType.Id, new { @class = " control-label" })
+                                    <div>
+                                        @Html.HiddenFor(m => m.FeeType.Id)
+
+                                        @Html.DropDownListFor(m => m.FeeType.Id, (IEnumerable<SelectListItem>)ViewBag.FeeTypes, new { @class = "form-control", disabled = true })
+                                        @Html.ValidationMessageFor(m => m.FeeType.Id, null, new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+
+                                <div class="form-group">
+                                    <div>
+                                        <input type="submit" value="Submit" class="btn btn-default" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        @if (TempData["Message"] != null)
+                        {
+                            @Html.Partial("_Message", (Abundance_Nk.Model.Model.Message)TempData["Message"])
+                        }
+                    </div>
+                </div>
+            }
+        </section>
+
+
+    </div>
+</div>
+

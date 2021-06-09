@@ -1,0 +1,56 @@
+﻿@model Abundance_Nk.Web.Areas.Applicant.ViewModels.PostUtmeResultViewModel
+@{
+    ViewBag.Title = "Portal Home";
+}
+
+<div class="panel panel-default" style="padding-top:30px">
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-6">
+                <img src="@Url.Content("~/Content/Images/results.jpg")" alt="" width="500px" />
+            </div>
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class=" text-center">CHECK PUTME RESULT</h3>
+                    </div>
+                    <div class="panel-body">
+                        @using (Html.BeginForm("Index", "PostUtmeResult/Index", FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken()
+
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1">Programme</span>
+                                @Html.DropDownListFor(model => model.Programme.Id, (IEnumerable<SelectListItem>)ViewBag.ProgrammeId, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Programme.Id, null, new { @class = "text-danger" })
+                            </div>
+                            <br />
+
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1">Jamb Registration No</span>
+                                @Html.TextBoxFor(model => model.JambRegistrationNumber, new { @class = "form-control", @placeholder = "Enter your Jamb Registration Number" })
+                                @Html.ValidationMessageFor(model => model.JambRegistrationNumber, null, new { @class = "text-danger" })
+                            </div>
+                            <br />
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1">Scratch Card Pin No</span>
+                                @Html.TextBoxFor(model => model.PinNumber, new { @class = "form-control", @placeholder = "Enter Scratch Card Pin Number" })
+                                @Html.ValidationMessageFor(model => model.PinNumber, null, new { @class = "text-danger" })
+                            </div>
+                            <br />
+
+                            <div class="col-md-offset-6">
+                                <button class="btn btn-default " type="submit">Check Result</button>
+                            </div>
+                        }
+                    </div>
+                    <div class="panel-footer">
+                        <p class="text-center">
+                            If you encounter any issues kindly send an email to <cite>support@lloydant.com</cite> or  call <cite>07088391544</cite>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

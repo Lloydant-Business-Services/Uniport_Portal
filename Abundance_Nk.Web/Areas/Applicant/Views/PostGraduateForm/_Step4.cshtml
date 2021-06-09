@@ -1,0 +1,58 @@
+﻿@model Abundance_Nk.Web.Areas.Applicant.ViewModels.PostJambViewModel
+
+<h3>Referee</h3>
+@for(int i = 0;i < Model.ApplicantReferees.Count;i++)
+{
+
+    <div class="row">
+        <div class="well">
+            <div class="form-group ">
+                @Html.LabelFor(model => model.ApplicantReferees.FirstOrDefault().Name,new { @class = "control-label col-sm-3" })
+                <div class="col-sm-9" style="font-weight: bold">
+                    @Html.TextBoxFor(model =>  model.ApplicantReferees[i].Name,new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.ApplicantReferees[i].Name)
+                </div>
+            </div>
+
+            <div class="form-group ">
+                @Html.LabelFor(model => model.ApplicantReferees.FirstOrDefault().Rank,new { @class = "control-label col-sm-3" })
+                <div class="col-sm-9" style="font-weight: bold">
+                    @Html.TextBoxFor(model => model.ApplicantReferees[i].Rank,new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.ApplicantReferees[i].Rank)
+                </div>
+            </div>
+
+            <div class="form-group ">
+                @Html.LabelFor(model => model.ApplicantReferees.FirstOrDefault().Department,new { @class = "control-label col-sm-3" })
+                <div class="col-sm-9" style="font-weight: bold">
+                    @Html.DropDownListFor(model => model.ApplicantReferees[i].Department,(IEnumerable<SelectListItem>)ViewBag.RelationshipId,new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.ApplicantReferees[i].Department)
+                </div>
+            </div>
+
+            <div class="form-group ">
+                @Html.LabelFor(model => model.ApplicantReferees.FirstOrDefault().Institution,new { @class = "control-label col-sm-3" })
+                <div class="col-sm-9" style="font-weight: bold">
+                    @Html.TextBoxFor(model => model.ApplicantReferees[i].Institution,new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.ApplicantReferees[i].Institution)
+                </div>
+            </div>
+
+            <div class="form-group ">
+                <div class="col-sm-3 "></div>
+                <div class="col-sm-9 ">
+                    <div class="form-inline">
+                        <div class="form-group">
+                            <button class="btn btn-primary btn-metro mr5" type="button" value="Next">Next</button>
+                        </div>
+
+                        <div class="form-group margin-bottom-0">
+                            <div style="display: none">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

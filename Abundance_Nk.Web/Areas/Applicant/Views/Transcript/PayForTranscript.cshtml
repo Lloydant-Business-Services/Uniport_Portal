@@ -1,0 +1,110 @@
+﻿@model Abundance_Nk.Web.Areas.Applicant.ViewModels.TranscriptViewModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<script src="~/Scripts/vue.min.js"></script>
+
+<div class="container">
+    <div class="col-md-12 card p-5">
+        <div id="payFee">
+           
+                <div class="col-md-12">
+
+              
+
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+
+                            <h3>
+                                Transcript Payment
+                            </h3>
+                            <hr style="margin-top: 0" />
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <p>Enter your Confirmation order number, select session and click on the submit button </p>
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.PaymentEtranzact.ConfirmationNo, "Confirmation Number:", new { @class = "control-label " })
+                                                @Html.TextBoxFor(model => model.PaymentEtranzact.ConfirmationNo, new { @class = "form-control", required = "required", @ref = "con" })
+                                                @Html.ValidationMessageFor(model => model.PaymentEtranzact.ConfirmationNo, null, new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.Session.Id, "Session:", new { @class = "control-label " })
+                                                @Html.DropDownListFor(model => model.Session.Id, (List<SelectListItem>)ViewBag.Sessions, new { @class = "form-control", required = "required", @ref = "session" })
+                                                @Html.ValidationMessageFor(model => model.Session.Id, null, new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br />
+                                <br />
+                                <div class="col-md-12">
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+
+                                                <input class="btn btn-success btn-lg mr5" v-on:click="verifyCon" type="button" name="submit" id="submit" value="Search" />
+                                                <span v-show="load"> <img src="~/Content/Images/bx_loader.gif" /></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <br />
+
+                        </div>
+                    </div>
+
+                </div>
+                
+        </div>
+    </div>
+</div>
+        <script>
+            new Vue({
+                el: '#payFee',
+                data: {
+                    load: false
+                },
+                methods: {
+                    verifyCon: function () {
+                        this.load = true;
+
+                        $.ajax({
+                            type: 'POST',
+                            url: '@Url.Action("PayTranscriptFee", "Transcript")', // Calling json method
+                            dataType: 'json',
+                            data: { con: this.$refs.con.value, sessionId: this.$refs.session.value },
+                            success: function (result) {
+
+                                this.load = false;
+
+                                if (result.IsError) {
+                                    alert(result.Message);
+                                } else {
+                                    var id = result.Operation;
+                                    window.location.href = "/Common/Credential/Receipt?pmid=" + id;
+                                }
+                            },
+                            error: function (ex) {
+                                this.load = false;
+                                alert('Request Cannot be Processed.');
+                            }
+                        });
+
+                    }
+                }
+
+            });
+        </script>

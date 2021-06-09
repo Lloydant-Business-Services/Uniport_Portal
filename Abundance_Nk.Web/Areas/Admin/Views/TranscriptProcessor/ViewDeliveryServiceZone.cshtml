@@ -1,0 +1,69 @@
+﻿@model Abundance_Nk.Web.Areas.Admin.ViewModels.TranscriptProcessorViewModel
+
+@{
+    ViewBag.Title = "Delivery Service Zone";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="col-md-12">
+    <div class="panel panel-custom">
+        @if (TempData["Message"] != null)
+        {
+            @Html.Partial("_Message", (Abundance_Nk.Model.Model.Message)TempData["Message"])
+        }
+
+        <div class="panel-body text-justify">
+            <h2 style="font-weight: 300; text-align: center">Delivery Service Zone</h2>
+            <hr />
+            <br />
+            @using (Html.BeginForm("CreateDeliveryServiceZone", "TranscriptProcessor", new { area = "Admin" }, FormMethod.Get))
+            {
+                <div class="row" style="margin-bottom: 3px">
+                    <div class="col-md-10"></div>
+                    <div class="col-md-2" style="padding-bottom: 3px">
+                        <button class="btn btn-success mr5" type="submit" name="submit"><i class="fa fa-plus"> Create New </i></button>
+
+                    </div>
+                </div>
+            }
+            <table class="table-responsive table-striped table-condensed" style="width: 100%" id="MyTable">
+
+                <thead>
+                    <tr>
+                        <th>SN</th>
+                        <th>Delivery Service Name</th>
+                        <th>Geo Zone Name</th>
+                        <th>FeeType</th>
+                        <th>Delivery Service Amount</th>
+                        <th>lloydant Amount</th>
+                        <th>School Amount</th>
+                        <th>Activated</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (int i = 0; i < Model.DeliveryServiceZones.Count; i++)
+                    {
+                        var sN = i + 1;
+                        <tr>
+                            <td>@sN</td>
+                            <td>@Model.DeliveryServiceZones[i].DeliveryService.Name</td>
+                            <td>@Model.DeliveryServiceZones[i].GeoZone.Name</td>
+                            <td>@Model.DeliveryServiceZones[i].FeeType.Name</td>
+                            <td>@Model.DeliveryServiceZones[i].DeliveryServiceAmount</td>
+                            <td>@Model.DeliveryServiceZones[i].LLoydantAmount</td>
+                            <td>@Model.DeliveryServiceZones[i].SchoolAmount</td>
+                            <td>@Model.DeliveryServiceZones[i].Activated</td>
+                            <td>@Html.ActionLink("Edit", "EditDeliveryServiceZone", new { Id = @Model.DeliveryServiceZones[i].Id, area = "admin" }, new { @class = "btn btn-success" })</td>
+
+                        </tr>
+                    }
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+</div>

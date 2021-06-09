@@ -1,0 +1,260 @@
+﻿@model Abundance_Nk.Web.Models.RefereeFormViewModel
+@{
+    ViewBag.Title = "Applicant Referee Response";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<script src="~/Scripts/DataTables-1.10.15/media/js/jquery.js"></script>
+
+<link href="~/Scripts/DataTables-1.10.15/media/css/jquery.dataTables.css" rel="stylesheet" />
+<script src="~/Scripts/DataTables-1.10.15/media/js/jquery.dataTables.js"></script>
+<link href="~/Scripts/DataTables-1.10.15/extensions/Buttons/css/buttons.dataTables.css" rel="stylesheet" />
+<script src="~/Scripts/DataTables-1.10.15/extensions/Buttons/js/dataTables.buttons.js"></script>
+<script src="~/Scripts/DataTables-1.10.15/extensions/Buttons/js/buttons.colVis.js"></script>
+<script src="~/Scripts/DataTables-1.10.15/extensions/Responsive/js/dataTables.responsive.js"></script>
+<script src="~/Scripts/DataTables-1.10.15/buttons.flash.min.js"></script>
+<script src="~/Scripts/DataTables-1.10.15/buttons.html5.min.js"></script>
+<script src="~/Scripts/DataTables-1.10.15/buttons.print.min.js"></script>
+<script src="~/Scripts/DataTables-1.10.15/jszip.min.js"></script>
+<script src="~/Scripts/DataTables-1.10.15/pdfmake.min.js"></script>
+<script src="~/Scripts/DataTables-1.10.15/vfs_fonts.js"></script>
+
+<script type="text/javascript">
+    $(function () {
+
+
+        $.extend($.fn.dataTable.defaults, {
+            responsive: false
+        });
+
+        $("#myTable").DataTable({
+            dom: 'Bfrtip',
+            ordering: true,
+            buttons: [
+                {
+                    extend: 'copy',
+                    exportOptions: {
+                        columns: ':visible',
+                        modifier: {
+                            orientation: 'landscape'
+                        }
+                    },
+                    orientation: 'landscape'
+
+
+                },
+                {
+                    extend: 'csv',
+                    exportOptions: {
+                        columns: ':visible',
+                        modifier: {
+                            orientation: 'landscape'
+                        }
+                    },
+                    orientation: 'landscape'
+
+                },
+                {
+                    extend: 'excel',
+                    exportOptions: {
+                        columns: ':visible',
+                        modifier: {
+                            orientation: 'landscape'
+                        }
+                    },
+                    orientation: 'landscape'
+
+
+                },
+                {
+                    extend: 'pdf',
+                    exportOptions: {
+                        columns: ':visible',
+                        header: true,
+                        modifier: {
+                            orientation: 'landscape'
+                        }
+
+
+
+                    },
+                    orientation: 'landscape'
+
+
+                },
+                {
+                    extend: 'print',
+                    exportOptions: {
+                        columns: ':visible',
+                        modifier: {
+                            orientation: 'landscape'
+                        }
+                    },
+                    orientation: 'landscape'
+
+
+                }, , 'colvis'
+            ]
+        });
+
+        $("#submit").click(function () {
+            $('#submit').attr('disable', 'disable');
+        });
+    });
+</script>
+
+@if (TempData["Message"] != null)
+{
+    @Html.Partial("_Message", (Abundance_Nk.Model.Model.Message)TempData["Message"])
+}
+<br />
+
+<div class="row">
+    <div class="col-xs-12">
+        @using (Html.BeginForm("ApplicantRefereeResponse", "PostGraduateForm", FormMethod.Post))
+        {
+
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+
+            <div class="panel panel-default" style="background:#fff;">
+                <div class="panel-body">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <h5 class="text-center" 
+                                style="padding: 10px 5px;background:whitesmoke;border-radius: 20% !important;">
+                                VIEW APPLICANTS
+                            </h5>
+                        </div>
+                    </div>
+                    <div class="row" style="padding:10px 15px;">
+                        <div class="col-xs-12 col-sm-6">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.SessionId, "Session", new { @class = "control-label custom-text-black" })
+                                @Html.DropDownListFor(model => model.SessionId, (IEnumerable<SelectListItem>)ViewBag.SessionSL, new { @class = "form-control", id = "session-list", required = true })
+                                @Html.ValidationMessageFor(model => model.SessionId, null, new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.ProgrammeId, "Programme", new { @class = "control-label custom-text-black" })
+                                @Html.DropDownListFor(model => model.ProgrammeId, (IEnumerable<SelectListItem>)ViewBag.ProgrammeSL, new { @class = "form-control", id= "programme-list", required = true })
+                                @Html.ValidationMessageFor(model => model.ProgrammeId, null, new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.DepartmentId, "Department", new { @class = "control-label custom-text-black" })
+                                <select name="DepartmentId" id="department-list" class="form-control" disabled></select>
+                                @*@Html.DropDownListFor(model => model.DepartmentId, (IEnumerable<SelectListItem>)ViewBag.DepartmentSL, new { @class = "form-control", required = true })*@
+                                @Html.ValidationMessageFor(model => model.DepartmentId, null, new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="col-xs-12 col-sm-6" style="padding-top: 20px">
+                            <i class="glyphicon-upload"></i><input class="btn btn-success btn-block" disabled type="submit" name="submit" id="submit-btn" value="Submit" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+        @if (Model.Applicants != null && Model.Applicants.Count() > 0)
+        {
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div style="background: #fff;padding: 20px;margin-top:30px;">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <h5 class="text-center"
+                                    style="padding: 10px 5px;background:whitesmoke;border-radius: 20% !important;">
+                                    APPLICANTS
+                                </h5>
+                            </div>
+                        </div>
+
+                        <table class="table table-bordered table-hover table-striped" id="myTable">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        SN
+                                    </th>
+                                    <th>
+                                        Applicant Name
+                                    </th>
+                                    <th>
+                                        Department
+                                    </th>
+                                    <th>
+                                        Programme
+                                    </th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @for (int i = 0; i < Model.Applicants.Count(); i++)
+                                {
+                                    int sn = i + 1;
+                                    <tr>
+                                        <td>@sn</td>
+                                        <td>@Model.Applicants[i].ApplicantName.ToUpper()</td>
+                                        <td>@Model.Applicants[i].Department.ToUpper()</td>
+                                        <td>@Model.Applicants[i].Programme.ToUpper()</td>
+                                        <td>
+                                            <a href="@Url.Action("ViewApplicantReferees", "PostGraduateForm", new { Id = Model.Applicants[i].ApplicantFormId })" class="btn btn-success">View Referees</a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    $("#programme-list, #department-list, #session-list").on("change", (e) => {
+        const programmeValue = $("#programme-list").val();
+        const departmentValue = $("#department-list").val();
+        const sessionValue = $("#session-list").val();
+        const submitBtn = $("#submit-btn");
+        submitBtn.attr("disabled", true);
+
+        if ((programmeValue && programmeValue > 0)
+            && (departmentValue && departmentValue > 0)
+            && (sessionValue && sessionValue > 0)) {
+            submitBtn.removeAttr("disabled");
+        }
+    });
+
+    $("#programme-list").on("change", (e) => {
+        const programmeId = e.target.value;
+
+        if (programmeId) {
+            $.ajax({
+                url: "@Url.Action("SetDepartmentList", "PostGraduateForm")",
+                data: { programmeId },
+                type: "POST",
+                success: (data) => {
+                    const departmentSelectList = $("#department-list");
+                    departmentSelectList.empty();
+                    departmentSelectList.attr("disabled", true);
+
+                    if (data.DepartmentSL.length > 0) {
+                        departmentSelectList.removeAttr("disabled");
+                        $.each(data.DepartmentSL, function (i, department) {
+                            departmentSelectList.append(`<option value="${department.Value}">${department.Text}</option>`);
+                        });
+                    }
+                },
+                error: (error) => {
+                    console.log(error);
+                }
+            });
+        }
+    });
+
+</script>

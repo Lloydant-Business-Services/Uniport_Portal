@@ -1,0 +1,282 @@
+﻿@model Abundance_Nk.Web.Areas.Applicant.ViewModels.PostJAMBFormPaymentViewModel
+@{
+    ViewBag.Title = "Post JAMB Invoice";
+}
+
+
+<link href="~/Content/sweetalert.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-1.11.1.min.js"></script>
+<script src="~/Scripts/sweetalert.min.js"></script>
+<script type="text/javascript">
+
+       
+    $(document).ready(function () {
+        
+      
+        var selectedProgramme = $("#Programme_Id").val();
+        if (selectedProgramme == 1) {
+            $("#divJambNo").show();
+            $("#divFormSetting").show();
+        } else if (selectedProgramme == 4) {
+            $("#divJambNo").show();
+            $("#divFormSetting").show();
+        } else {
+            $("#divJambNo").hide();
+        }
+
+        $("#formsettingdropdown").change(function () {
+            var formSetting = $("#formsettingdropdown").val();
+            if (formSetting == 19 || formSetting == 20) {
+                swal({
+                    title: "Attention!",
+                    text: "Ensure you go to the JAMB portal to change your first choice course to your supplementary admission choice course. Also ensure you upload!",
+                    type: "warning",
+                    timer: 10000
+                });
+            }
+        });
+
+        $("#Programme_Id").change(function () {
+
+            var programme = $("#Programme_Id").val();
+            if (programme == 1) {
+
+                swal({
+                    title: "Attention!",
+                    text: "1. Use your personal telephone number and email address for registration of this screening. Direct entry students should select the direct entry form",
+                    type: "warning",
+                    timer: 20000
+
+                });
+                $("#divJambNo").show();
+                $("#divFormSetting").show();
+
+            } else if (programme == 2) {
+                $("#divJambNo").hide();
+
+            } else if (programme == 3) {
+                $("#divJambNo").hide();
+            } else if (programme == 4) {
+
+                $("#divJambNo").show();
+            } else {
+                $("#divJambNo").hide();
+            }
+
+            $("#AppliedCourse_Department_Id").empty();
+
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("GetDepartmentByProgrammeId")', // we are calling json method
+                dataType: 'json',
+                data: { id: programme },
+                success: function (departments) {
+                    $("#AppliedCourse_Department_Id").append('<option value="' + 0 + '"> -- Select -- </option>');
+
+                    $.each(departments, function (i, department) {
+                        $("#AppliedCourse_Department_Id").append('<option value="' + department.Value + '">' + department.Text + '</option>');
+                    });
+                },
+                error: function (ex) {
+                    alert('Failed to retrieve departments.' + ex);
+                }
+            });
+            //search for jambrecord on blur of jambnumber
+            $('#JambNumber').on('blur', function () {
+                let jambNo = $('#JambNumber').val();
+                if (jambNo != null && jambNo != "") {
+                    FetchJambRecord(jambNo);
+                }
+                else {
+                    RemoveReadOnly();
+                }
+            });
+        });
+
+        //alert("Please double-check all entries you have made; you cannot change any of your information once you have generated an invoice.");
+
+    });
+    //Populate existing Jambrecord
+    function FetchJambRecord(jambNumber) {
+        if (jambNumber != null && jambNumber != undefined) {
+               $.ajax({
+                type: 'POST',
+                url: '@Url.Action("FetchJambRecord")', // we are calling json method
+                dataType: 'json',
+                data: { jambNumber },
+                   success: function (result) {
+                       if (result != null && !result.IsError && result.JambNo != null) {
+                           $('#Person_LastName').val(result.LastName);
+                           $('#Person_LastName').attr('readonly', 'readonly');
+                           $('#Person_FirstName').val(result.FirstName);
+                           $('#Person_FirstName').attr('readonly', 'readonly');
+                           $('#Person_OtherName').val(result.OtherName);
+                           $('#Person_OtherName').attr('readonly', 'readonly');
+                           if (result.CourseId != null) {
+                               $('#AppliedCourse_Department_Id ').val(result.CourseId);
+                           }
+                           if (result.StateId != null) {
+                               $('#Person_State_Id').val(result.StateId);
+                           }
+
+
+                       }
+                       else {
+
+                           RemoveReadOnly();
+                       }
+                },
+                   error: function (ex) {
+                       alert(result.Message);
+                }
+            });
+        }
+    }
+    function RemoveReadOnly() {
+        $('#Person_LastName').removeAttr('readonly');
+        $('#Person_FirstName').removeAttr('readonly');
+        $('#Person_OtherName').removeAttr('readonly');
+    }
+
+    
+</script>
+<div>
+    @if (TempData["Message"] != null)
+    {
+        @Html.Partial("_Message", TempData["Message"])
+    }
+</div>
+<div class="container">
+
+<div class="col-md-12">
+
+    <div class="row pt-4 justify-content-center">
+        <div class="col-lg-8 col-md-12 pl-0 pr-0">
+            <h4 class="text-center font-weight-bold">Application Form Invoice</h4>
+            <div class="card">
+
+                <div class="container">
+                    @*<div class="row form-group">
+                        <div class="col-xs-12 pl-3 pt-3 mb-3">
+                            <ul class="nav nav-tabs setup-panel">
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="#step-1">Invoice Generation </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>*@
+                    @using (Html.BeginForm("PostJambFormInvoiceGeneration", "Form", FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true)
+
+                        <div class="row setup-content pr-4 pl-4 pb-4 pt-0" id="step-1">
+                            <div class="col-xs-12">
+                                <div>
+                                    <div class="col-md-12">
+                                        <div class="row">
+                                            <div class="col-md-12  mb-2">
+                                                <hr class="bg-primary m-0">
+                                                @*<div class="ruleBg"></div>*@
+                                            </div>
+                                            <div class="col-md-12 mt-4">
+                                                @if (TempData["Message"] != null)
+                                                {
+                                                    @Html.Partial("_Message", TempData["Message"])
+                                                }
+                                            </div>
+
+                                            <div class="col-md-6 form-group">
+                                                @Html.LabelFor(model => model.Programme.Id, new {@class = "control-label custom-text-white"})
+                                                @Html.DropDownListFor(model => model.Programme.Id, (IEnumerable<SelectListItem>) ViewBag.ProgrammeId, new {@class = "form-control"})
+                                                @Html.ValidationMessageFor(model => model.Programme.Id, null, new {@class = "text-danger"})
+                                            </div>
+
+                                            <div class="col-md-6 form-group">
+                                                @Html.LabelFor(model => model.AppliedCourse.Department.Id, "Course", new {@class = "control-label custom-text-white"})
+                                                @Html.DropDownListFor(model => model.AppliedCourse.Department.Id, (IEnumerable<SelectListItem>) ViewBag.DepartmentId, new {@class = "form-control"})
+                                                @Html.ValidationMessageFor(model => model.AppliedCourse.Department.Id, null, new {@class = "text-danger"})
+                                            </div>
+
+                                            <div class="col-md-6 form-group" style="display: none" id="divJambNo">
+                                                @Html.LabelFor(model => model.JambRegistrationNumber, "Jamb No.", new {@class = "control-label custom-text-white"})
+                                                @Html.TextBoxFor(model => model.JambRegistrationNumber, new {@class = "form-control", @id="JambNumber"})
+                                                @Html.ValidationMessageFor(model => model.JambRegistrationNumber, null, new {@class = "text-danger"})
+                                            </div>
+                                            <div class="col-md-6 form-group" id="divDepartmentOption" style="display: none">
+                                                @Html.LabelFor(model => model.AppliedCourse.Option.Id, "Course Option", new {@class = "control-label custom-text-white"})
+                                                @Html.DropDownListFor(model => model.AppliedCourse.Option.Id, (IEnumerable<SelectListItem>) ViewBag.DepartmentOptionId, new {@class = "form-control"})
+                                                @Html.ValidationMessageFor(model => model.AppliedCourse.Option.Id, null, new {@class = "text-danger"})
+                                            </div>
+
+                                            <div class="col-md-6 form-group" style="display: none" id="divFormSetting">
+                                                @Html.LabelFor(model => model.ApplicationFormSetting.Name, "Form", new {@class = "control-label custom-text-white"})
+                                                @Html.DropDownListFor(model => model.ApplicationFormSetting.Id, (IEnumerable<SelectListItem>) ViewBag.FormSettings, new {@class = "form-control", @id="formsettingdropdown"})
+                                                @Html.ValidationMessageFor(model => model.ApplicationFormSetting.Id, null, new {@class = "text-danger"})
+                                            </div>
+
+                                            <div class="col-md-12 mb-2">
+                                                @*<hr class="bg-primary m-0">*@
+                                                @*<div class="ruleBg"></div>*@
+                                            </div>
+
+
+
+                                            <div class="col-md-6 form-group">
+                                                @Html.LabelFor(model => model.Person.LastName, new {@class = "control-label custom-text-white"})
+                                                @Html.TextBoxFor(model => model.Person.LastName, new {@class = "form-control"})
+                                                @Html.ValidationMessageFor(model => model.Person.LastName, null, new {@class = "text-danger"})
+                                            </div>
+                                            <div class="col-md-6 form-group">
+                                                @Html.LabelFor(model => model.Person.FirstName, new {@class = "control-label custom-text-white"})
+                                                @Html.TextBoxFor(model => model.Person.FirstName, new {@class = "form-control"})
+                                                @Html.ValidationMessageFor(model => model.Person.FirstName, null, new {@class = "text-danger"})
+                                            </div>
+
+                                            <div class="col-md-6 form-group">
+                                                @Html.LabelFor(model => model.Person.OtherName, new {@class = "control-label custom-text-white"})
+                                                @Html.TextBoxFor(model => model.Person.OtherName, new {@class = "form-control"})
+                                                @Html.ValidationMessageFor(model => model.Person.OtherName, null, new {@class = "text-danger"})
+                                            </div>
+
+                                            <div class="col-md-6 form-group">
+                                                @Html.LabelFor(model => model.Person.State.Id, new {@class = "control-label custom-text-white"})
+                                                @Html.DropDownListFor(model => model.Person.State.Id, (IEnumerable<SelectListItem>) ViewBag.StateId, new {@class = "form-control"})
+                                                @Html.ValidationMessageFor(model => model.Person.State.Id, null, new {@class = "text-danger"})
+                                            </div>
+                                            <div class="col-md-6 form-group">
+                                                @Html.LabelFor(model => model.Person.MobilePhone, new {@class = "control-label custom-text-white"})
+                                                @Html.TextBoxFor(model => model.Person.MobilePhone, new {@class = "form-control", @placeholder = "080XXXXXXXX"})
+                                                @Html.ValidationMessageFor(model => model.Person.MobilePhone, null, new {@class = "text-danger"})
+                                            </div>
+
+                                            <div class="col-md-6 form-group">
+                                                @Html.LabelFor(model => model.Person.Email, new {@class = "control-label custom-text-white"})
+                                                @Html.TextBoxFor(model => model.Person.Email, new {@class = "form-control"})
+                                                @Html.ValidationMessageFor(model => model.Person.Email, null, new {@class = "text-danger"})
+                                            </div>
+
+
+
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12 text-right">
+                                        <button class="btn btn-primary pull-right" id="submitBtn" onclick="showLoading()">Generate Invoice</button>
+                                        <span class="pull-right" style="display: none;" id="loading"> <img src="~/Content/Images/bx_loader.gif" /></span>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    }
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+</div>

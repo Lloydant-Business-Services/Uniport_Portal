@@ -1,0 +1,179 @@
+﻿@model Abundance_Nk.Web.Areas.Admin.ViewModels.UploadAdmissionViewModel
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<script src="~/Scripts/DataTables-1.10.15/media/js/jquery.js"></script>
+<script src="~/Content/js/bootstrap.js"></script>
+
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $('.datepicker').bootstrapMaterialDatePicker({
+            format: 'dddd DD MMMM YYYY',
+            clearButton: true,
+            weekStart: 1,
+            time: false
+        });
+
+        $.extend($.fn.dataTable.defaults, {
+            responsive: true
+        });
+
+        $('#applicantTable').DataTable({
+            dom: 'Bfrtip',
+            ordering: true,
+            buttons: [
+                {
+                    extend: 'copy',
+                    exportOptions: {
+                        columns: ':visible'
+                    }
+
+
+                },
+                {
+                    extend: 'csv',
+                    exportOptions: {
+                        columns: ':visible'
+                    }
+
+                },
+                {
+                    extend: 'excel',
+                    exportOptions: {
+                        columns: ':visible'
+                    }
+
+
+                },
+                {
+                    extend: 'pdf',
+                    exportOptions: {
+                        columns: ':visible'
+                    }
+
+
+                },
+                {
+                    extend: 'print',
+                    exportOptions: {
+                        columns: ':visible'
+                    }
+
+
+                },, 'colvis'
+            ]
+        });
+
+
+    });
+</script>
+
+<div class="panel panel-default">
+    <div class="panel-body">
+
+        <div class="col-md-12">
+            @if (TempData["Message"] != null)
+            {
+                @Html.Partial("_Message", TempData["Message"])
+            }
+            <div>
+                    <h4><p class="custom-text-black text-center ">List of applicants</p></h4>
+                </div>
+            @using (Html.BeginForm("ApplicantList", "UploadAdmission", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+
+                <div class="panel panel-default ">
+                    <div class="panel-body ">
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.CurrentSession.Id, new { @class = "control-label custom-text-black" })
+                                    @Html.DropDownListFor(model => model.CurrentSession.Id, (IEnumerable<SelectListItem>)ViewBag.SessionId, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.CurrentSession.Id, null, new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+
+                            </div>
+                        </div>
+                        <br/>
+                        <div class="row">
+                            <div class="col-md-12">
+                                @Html.TextBoxFor(m => m.DateFrom, new { @class = "datepicker col-md-3", @placeholder = "From:", @required = "required" })
+                                <span class="col-md-1"></span>
+                                @Html.TextBoxFor(m => m.DateTo, new { @class = "datepicker col-md-3", @placeholder = "To:", @required = "required" })
+
+                            </div>
+
+                        </div>
+                        <br/>
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-sm-10">
+                                    <input class="btn btn-success mr5" type="submit" name="submit" id="submit" value="Submit" />
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            }
+        </div>
+
+        @if (Model == null || Model.Applicants == null)
+        {
+            return;
+        }
+
+        @if (Model != null && Model.Applicants != null)
+        {
+            <div class="col-md-12 table-responsive">
+
+                <table class="table table-bordered table-hover table-striped" id="applicantTable">
+                    <thead>
+                    <tr>
+                        <th>SN</th>
+                        <th>Name</th>
+                        <th>Phone Number</th>
+                        <th>Application Number</th>
+                        <th>Exam Number</th>
+                        <th>Jamb Reg. Number</th>
+                        <th>Programme</th>
+                        <th>Department</th>
+                        <th>Sesion</th>
+                        <th>Date Submitted</th>
+                    </tr>
+                    </thead>
+                    <tbody style="color: black;">
+                        @for (int i = 0; i < Model.Applicants.Count; i++)
+                        {
+                            var SN = i + 1;
+                            <tr>
+                                <td>@SN</td>
+                                <td>@Html.DisplayTextFor(m => m.Applicants[i].Name)</td>
+                                <td>@Html.DisplayTextFor(m => m.Applicants[i].MobilePhone)</td>
+                                <td>@Html.DisplayTextFor(m => m.Applicants[i].AplicationFormNumber)</td>
+                                <td>@Html.DisplayTextFor(m => m.Applicants[i].ExamNumber)</td>
+                                <td>@Html.DisplayTextFor(m => m.Applicants[i].JambRegNumber)</td>
+                                <td>@Html.DisplayTextFor(m => m.Applicants[i].AppliedProgrammeName)</td>
+                                <td>@Html.DisplayTextFor(m => m.Applicants[i].FirstChoiceDepartment)</td>
+                                <td>@Html.DisplayTextFor(m => m.Applicants[i].SessionName)</td>
+                                <td>@Html.DisplayTextFor(m => m.Applicants[i].DateSubmitted)</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+        }
+    </div>
+</div>

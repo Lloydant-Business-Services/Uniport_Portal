@@ -1,0 +1,21 @@
+<div>
+	<table cellspacing="0" rules="all" border="1" style="border-collapse:collapse;">
+		<caption>
+			2020_2021 SESSION
+		</caption><tr>
+			<th scope="col">FirstName</th><th scope="col">LastName</th><th scope="col">OtherName</th><th scope="col">PhoneNo</th><th scope="col">ImageUrl</th><th scope="col">ApplicationFormNo</th><th scope="col">Programme</th><th scope="col">Department</th><th scope="col">DepartmentOption</th><th scope="col">FullName</th><th scope="col">ApplicationSubmittedOn</th><th scope="col">Session</th>
+		</tr><tr>
+			<td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>254169__718202084425AM.jpg</td><td>ABSU/UND/2017/000001</td><td>Undergraduate Regular</td><td>Accountancy</td><td>&nbsp;</td><td>UDE OLISA VALENTINE</td><td>7/18/2020 8:47:18 AM</td><td>2020/2021</td>
+		</tr><tr>
+			<td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>254171__718202095200AM.jpg</td><td>ABSU/UND/2017/000002</td><td>Undergraduate Regular</td><td>Animal And Environmental Biology</td><td>&nbsp;</td><td>EZE FRANKLIN OBI</td><td>7/18/2020 9:56:53 AM</td><td>2020/2021</td>
+		</tr><tr>
+			<td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>254172__7182020115800AM.jpg</td><td>ABSU/UND/2020/000001</td><td>Undergraduate Regular</td><td>Animal And Environmental Biology</td><td>&nbsp;</td><td>EZE FRANKLIN OBI</td><td>7/18/2020 12:01:16 PM</td><td>2020/2021</td>
+		</tr><tr>
+			<td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>254173__7192020124703AM.jpg</td><td>ABSU/UND/2020/000003</td><td>Undergraduate Regular</td><td>Accountancy</td><td>&nbsp;</td><td>UDE valentine Patrick</td><td>7/19/2020 12:47:24 AM</td><td>2020/2021</td>
+		</tr><tr>
+			<td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>254174__719202013005AM.jpg</td><td>ABSU/UND/2020/000004</td><td>Undergraduate Regular</td><td>Accountancy</td><td>&nbsp;</td><td>UDE valentine Patrick</td><td>7/19/2020 1:36:32 AM</td><td>2020/2021</td>
+		</tr><tr>
+			<td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>254175__7292020113631AM.jpg</td><td>ABSU/UND/2020/000005</td><td>Undergraduate Regular</td><td>Accountancy</td><td>&nbsp;</td><td>Ude valentine eze</td><td>7/19/2020 1:54:00 AM</td><td>2020/2021</td>
+		</tr>
+	</table>
+</div>

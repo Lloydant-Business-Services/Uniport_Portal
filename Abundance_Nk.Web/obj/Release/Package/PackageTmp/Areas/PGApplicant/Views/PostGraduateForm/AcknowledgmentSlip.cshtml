@@ -1,0 +1,201 @@
+﻿@model Abundance_Nk.Web.Areas.PGApplicant.ViewModels.PGViewModel
+
+@{
+    Layout = null;
+    ViewBag.Title = "::PG Acknowlegment Slip::";
+}
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script src="~/Scripts/jquery-1.11.1.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#aPrint").click(function() {
+            $("#aPrint").hide();
+            $("#printable").show();
+            window.print();
+            $("#aPrint").show();
+        });
+
+    });
+</script>
+
+<div>
+    <div id="printable" class="container">
+        <div class="col-xs-12">
+
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-xs-12 ">
+                            <div class="row">
+                                <div class="col-xs-2 pull-left">
+                                    <img class="img-responsive" src="@Url.Content("~/Content/Images/school_logo.jpg")" width="100px" height="100px" alt="School Logo" />
+                                </div>
+                                <div class="col-xs-8 text-left text-bold">
+
+                                    <h4>ABIA STATE UNIVERSITY, UTURU</h4>
+                                    <h5>@Model.Payment.Session.Name POST GRADUATE APPLICATION</h5>
+                                    <h5>ACKNOWLEDGMENT SLIP</h5>
+                                </div>
+                            </div>
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                </div>
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <div class="col-xs-6">
+                                            <div class="form-group margin-bottom-0">
+                                                <div class="col-xs-4">
+                                                    <img class="img-responsive" src="@Url.Content('~' + Model.Person.ImageFileUrl)" width="100px" height="100px" alt="Student Passport" />
+                                                </div>
+                                                <div class="col-xs-8 text-bold" style="font-size: x-small">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xs-6">
+                                            <div class="form-group margin-bottom-0">
+                                                <div class="col-xs-4">
+                                                </div>
+                                                <div class="col-xs-8 text-bold" style="font-size: x-small">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-7">
+                                            <div class="form-group margin-bottom-0">
+                                                <div class="col-xs-5">
+
+                                                    @Html.LabelFor(model => model.Person.FullName, "Fullname:", new { @class = "", @style = "font-size:small" })
+                                                </div>
+                                                <div class="col-xs-6 text-bold" style="font-size: small">
+                                                    @Html.DisplayFor(model => model.Person.FullName)
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-7">
+                                            <div class="form-group margin-bottom-0">
+                                                <div class="col-xs-5">
+
+                                                    @Html.LabelFor(model => model.Person.MobilePhone, "Mobile No:", new { @class = "", @style = "font-size:small" })
+                                                </div>
+                                                <div class="col-xs-6 text-bold" style="font-size: small">
+                                                    @Html.DisplayFor(model => model.Person.MobilePhone)
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-7">
+                                            <div class="form-group margin-bottom-0">
+                                                <div class="col-xs-5">
+
+                                                    @Html.LabelFor(model => model.ApplicationForm.Number, "Application Number:", new { @class = "", @style = "font-size:small" })
+                                                </div>
+                                                <div class="col-xs-6 text-bold" style="font-size: small">
+                                                    @Html.DisplayFor(model => model.ApplicationForm.Number)
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-7">
+                                            <div class="form-group margin-bottom-0">
+                                                <div class="col-xs-5">
+
+                                                    @Html.LabelFor(model => model.AppliedCourse.Programme.Name, "Programme:", new { @class = "", @style = "font-size:small" })
+                                                </div>
+                                                <div class="col-xs-6 text-bold" style="font-size: small">
+                                                    @Html.DisplayFor(model => model.AppliedCourse.Programme.Name)
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-7">
+                                            <div class="form-group margin-bottom-0">
+                                                <div class="col-xs-5">
+
+                                                    @Html.LabelFor(model => model.AppliedCourse.Department.Name, "Department:", new { @class = "", @style = "font-size:small" })
+                                                </div>
+                                                <div class="col-xs-6 text-bold" style="font-size: small">
+                                                    @Html.DisplayFor(model => model.AppliedCourse.Department.Name)
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-xs-7">
+                                            <div class="form-group margin-bottom-0">
+                                                <div class="col-xs-5">
+
+                                                    @Html.LabelFor(model => model.AppliedCourse.Option, "Area of Specialization:", new { @class = "", @style = "font-size:small" })
+                                                </div>
+                                                <div class="col-xs-6 text-bold" style="font-size: small">
+                                                    @Html.DisplayFor(model => model.AppliedCourse.Option.Name)
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @*<div class="row">
+            <div class="col-xs-7">
+                <div class="form-group margin-bottom-0">
+                    <div class="col-xs-5">
+
+                        @Html.LabelFor(model => model.AppliedCourse.Programme.Id, "Mode Of Study:", new { @class = "", @style = "font-size:small" })
+                    </div>
+                    <div class="col-xs-6 text-bold" style="font-size: small">
+                        @Html.DisplayFor(model => model.AppliedCourse.Programme.Name)
+                    </div>
+                </div>
+            </div>
+        </div>*@
+                                    <div class="row">
+                                        <div class="col-xs-7">
+                                            <div class="form-group margin-bottom-0">
+                                                <div class="col-xs-5">
+
+                                                    @Html.LabelFor(model => model.Person.FullName, "Date Submitted:", new { @class = "", @style = "font-size:small" })
+                                                </div>
+                                                <div class="col-xs-6 text-bold" style="font-size: small">
+                                                    @Html.DisplayFor(model => model.ApplicationForm.DateSubmitted)
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr />
+                                    <div class="row">
+                                        <div class=" col-xs-12 text-bold text-danger">
+                                            <p class="text-bold">
+                                                NB :
+                                                Please ensure that you instruct your former institution(s) to forward transcript(s) of your academic work direct to : The Secretary School of Post­Graduate Studies, Abia State University PMB 2000 Uturu, Abia State, Nigeria
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <hr />
+                                    <div class="row">
+                                        <div class=" col-xs-12 text-bold text-danger">
+                                            <p class="text-bold text-center">
+                                                <a href="@Url.Action("BuildReport","PostGraduateForm",new { studentId=@Model.Person.Id ,type = 1 })">Click Here to Download Referee Form</a><br />
+                                                <a href="@Url.Action("BuildReport","PostGraduateForm",new { studentId = @Model.Person.Id,type = 2 })">Click Here to Download Transcript Request Form</a><br />
+                                                Print and Keep this slip
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <button id="aPrint" class="btn btn-primary btn-lg ">Print Slip</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,75 @@
+﻿@model Abundance_Nk.Web.Areas.Admin.ViewModels.PostjambResultSupportViewModel
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="panel panel-default">
+    <div class="panel-body">
+
+        <div class="col-md-12">
+            @if (TempData["Message"] != null)
+            {
+                @Html.Partial("_Message", TempData["Message"])
+            }
+            <div>
+                    <h4><p class="custom-text-black text-center ">PUTME Result</p></h4>
+                </div>
+            @using (Html.BeginForm("PostJambResult", "PostJamb", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+
+                <div class="panel panel-default ">
+                    <div class="panel-body ">
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Session.Id, new {@class = "control-label custom-text-black"})
+                                    @Html.DropDownListFor(model => model.Session.Id, (IEnumerable<SelectListItem>) ViewBag.SessionId, new {@class = "form-control"})
+                                    @Html.ValidationMessageFor(model => model.Session.Id, null, new {@class = "text-danger"})
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+
+                            </div>
+                        </div>
+                        <br/>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <div class="col-sm-10">
+                                        <input class="btn btn-success mr5" type="submit" name="submit" id="submit" value="Filtered Result"/>
+                                    </div>
+                                </div>
+                            </div>
+
+                           
+                        </div>
+
+
+                    </div>
+                </div>
+            }
+
+            <div class="row">
+                <div class="col-md-6">
+                    @using (Html.BeginForm("PostJambResultAll", "PostJamb", FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true)
+                        <div class="form-group">
+                            <div class="col-sm-10">
+                                <input class="btn btn-success mr5" type="submit" name="submit" id="submit" value="All Uploaded Results" />
+                            </div>
+                        </div>
+                    }
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>

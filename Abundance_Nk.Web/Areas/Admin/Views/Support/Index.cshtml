@@ -1,0 +1,221 @@
+﻿@model Abundance_Nk.Web.Areas.Admin.ViewModels.SupportViewModel
+
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<script src="~/Scripts/jquery-1.11.1.min.js"></script>
+
+<script type="text/javascript">
+
+    $(document).ready(function() {
+        var selectedProgramme = $("#AppliedCourse_Programme_Id").val();
+        if (selectedProgramme == 1 || selectedProgramme == 4) {
+
+            $("#ApplicantJambDetail_JambRegistrationNumber").show();
+
+        } else {
+          
+
+            $("#ApplicantJambDetail_JambRegistrationNumber").hide();
+            $('#ApplicantJambDetail_JambRegistrationNumber').val('');
+        }
+
+        $("#AppliedCourse_Programme_Id").change(function() {
+            var programme = $("#AppliedCourse_Programme_Id").val();
+            if ((programme == 1 || programme == 4)) {
+                $("#ApplicantJambDetail_JambRegistrationNumber").show();
+
+            } else {
+                $("#ApplicantJambDetail_JambRegistrationNumber").hide();
+                $('#ApplicantJambDetail_JambRegistrationNumber').val('');
+            }
+
+            $("#AppliedCourse_Department_Id").empty();
+
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("GetDepartmentByProgrammeId")', // we are calling json method
+                dataType: 'json',
+                data: { id: programme },
+                success: function(departments) {
+                    $("#AppliedCourse_Department_Id").append('<option value="' + 0 + '"> -- Select -- </option>');
+
+                    $.each(departments, function(i, department) {
+                        $("#AppliedCourse_Department_Id").append('<option value="' + department.Value + '">' + department.Text + '</option>');
+                    });
+                },
+                error: function(ex) {
+                    alert('Failed to retrieve departments.' + ex);
+                }
+            });
+        });
+    })
+</script>
+
+<div class="alert alert-success fade in nomargin">
+    <h3>@ViewBag.Title</h3>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-body">
+
+        <div class="col-md-12">
+            <div>
+                <p class="text-center"><h3>CORRECT INVOICE DETAILS</h3></p>
+            </div>
+
+            @if (TempData["Message"] != null)
+            {
+                @Html.Partial("_Message", TempData["Message"])
+            }
+
+            @using (Html.BeginForm("Index", "Support/Index", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+
+                <div class="panel panel-default ">
+                    <div class="panel-body ">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <h4>Enter Invoice Number or Confirmation Order Number</h4>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.InvoiceNumber, new {@class = "col-sm-2 control-label "})
+                            <div class="col-sm-10">
+                                @Html.TextBoxFor(model => model.InvoiceNumber, new {@class = "form-control", @placeholder = "Enter Invoice No"})
+                                @Html.ValidationMessageFor(model => model.InvoiceNumber, null, new {@class = "text-danger"})
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-10">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-2"></div>
+                            <div class="col-sm-10">
+                                <input class="btn btn-success mr5" type="submit" name="submit" id="submit" value="Search" />
+                                <div class="btn btn-default">
+                                    @Html.ActionLink("Back to Home", "Index", "Home", new {Area = ""}, null)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+
+            @if (Model == null || Model.Person == null || Model.Payment == null)
+            {
+                return;
+            }
+
+            @using (Html.BeginForm("UpdateInvoice", "Support/UpdateInvoice", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+
+                @Html.HiddenFor(model => model.Person.Id)
+                @Html.HiddenFor(model => model.Person.DateEntered)
+                @Html.HiddenFor(model => model.Person.DateOfBirth)
+                @Html.HiddenFor(model => model.Person.Type.Id)
+                @Html.HiddenFor(model => model.Person.Sex.Id)
+                @Html.HiddenFor(model => model.Person.State.Id)
+                @Html.HiddenFor(model => model.Person.Nationality.Id)
+                @Html.HiddenFor(model => model.Person.Type.Id)
+                @Html.HiddenFor(model => model.Person.LocalGovernment.Id)
+                @Html.HiddenFor(model => model.Person.Religion.Id)
+                @Html.HiddenFor(model => model.Person.Role.Id)
+
+                @Html.HiddenFor(model => model.Payment.Id)
+                @Html.HiddenFor(model => model.Payment.InvoiceNumber)
+
+                @*@Html.HiddenFor(model => model.AppliedCourse.Person.Id)*@
+                @Html.HiddenFor(model => model.AppliedCourse.Option.Id)
+                @Html.HiddenFor(model => model.AppliedCourse.ApplicationForm.Id)
+                <div class="panel panel-default ">
+                    <div class="panel-body ">
+                        <div class="col-md-12">
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Surname</label>
+                            <div class="col-sm-10">
+                                @Html.TextBoxFor(model => model.Person.LastName, new {@class = "form-control", @placeholder = "Enter Surname"})
+                                @Html.ValidationMessageFor(model => model.Person.LastName)
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">First Name</label>
+                            <div class="col-sm-10">
+                                @Html.TextBoxFor(model => model.Person.FirstName, new {@class = "form-control", @placeholder = "Enter Firstname"})
+                                @Html.ValidationMessageFor(model => model.Person.FirstName)
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Other Names</label>
+                            <div class="col-sm-10">
+                                @Html.TextBoxFor(model => model.Person.OtherName, new {@class = "form-control", @placeholder = "Enter Other Names"})
+                                @Html.ValidationMessageFor(model => model.Person.OtherName)
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Phone Number</label>
+                            <div class="col-sm-10">
+                                @Html.TextBoxFor(model => model.Person.MobilePhone, new {@class = "form-control", @placeholder = "Enter Mobile Number"})
+                                @Html.ValidationMessageFor(model => model.Person.MobilePhone)
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Email</label>
+                            <div class="col-sm-10">
+                                @Html.TextBoxFor(model => model.Person.Email, new {@class = "form-control", @placeholder = "Enter Email address"})
+                                @Html.ValidationMessageFor(model => model.Person.Email)
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Programme</label>
+                            <div class="col-sm-10">
+                                @Html.DropDownListFor(model => model.AppliedCourse.Programme.Id, (IEnumerable<SelectListItem>) ViewBag.ProgrammeId, new {@class = "form-control"})
+                                @Html.ValidationMessageFor(model => model.AppliedCourse.Programme.Id)
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Department</label>
+                            <div class="col-sm-10">
+                                @Html.DropDownListFor(model => model.AppliedCourse.Department.Id, (IEnumerable<SelectListItem>) ViewBag.DepartmentId, new {@class = "form-control"})
+                                @Html.ValidationMessageFor(model => model.AppliedCourse.Department.Id)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Jamb Reg Number</label>
+                            <div class="col-sm-10">
+                                @Html.TextBoxFor(model => model.ApplicantJambDetail.JambRegistrationNumber, new {@class = "form-control"})
+                                @Html.ValidationMessageFor(model => model.ApplicantJambDetail.JambRegistrationNumber)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Form Type</label>
+                            <div class="col-sm-10">
+                                @Html.DropDownListFor(model => model.AppliedCourse.Setting.Id, (IEnumerable<SelectListItem>)ViewBag.SettingId, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.AppliedCourse.Setting.Id)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-2"></div>
+                            <div class="col-sm-10">
+                                <input class="btn btn-success mr5" type="submit" name="submit" id="submit" value="Update" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

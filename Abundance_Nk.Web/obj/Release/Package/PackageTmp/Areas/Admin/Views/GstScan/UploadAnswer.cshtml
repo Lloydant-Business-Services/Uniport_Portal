@@ -1,0 +1,55 @@
+﻿@model Abundance_Nk.Web.Areas.Admin.ViewModels.GstViewModel
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+<script src="~/Scripts/jquery-1.11.1.min.js"></script>
+<div class="panel panel-default">
+    <div class="panel-body">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+            <div class="row">
+                <div>
+                    @if(TempData["Message"] != null)
+                    {
+                        @Html.Partial("_Message",TempData["Message"])
+                    }
+                </div>
+            </div>
+
+            @using(Html.BeginForm("UploadAnswer","GstScan",FormMethod.Post,new { enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+                <div class="row">
+                    <h3>Scan Answers</h3>
+                    <hr style="margin-top: 0" />
+                    <div class="col-md-12">
+                       <div class="row">
+
+                           <div class="col-md-6">
+                               <div class="form-group">
+                                   <label class="control-label ">Answer Desciprion</label>
+                                   <input type="text" class="form-control" name="description" id="description" />
+                               </div>
+                           </div>
+                           <div class="col-md-6">
+                               <div class="form-group">
+                                   <label class="control-label ">File</label>
+                                   <input type="file" class="form-control" name="file" id="file2" />
+                               </div>
+                           </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-offset-8 col-md-10">
+                                <input type="submit" value="Saved" class="btn btn-default" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+
+           
+        </div>
+    </div>
+</div>
+

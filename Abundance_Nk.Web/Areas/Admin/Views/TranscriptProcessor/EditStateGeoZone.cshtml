@@ -1,0 +1,64 @@
+﻿@model Abundance_Nk.Model.Model.StateGeoZone
+@{
+    ViewBag.Title = "Edit State GeoZone";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+
+@using (Html.BeginForm("EditStateGeoZone", "TranscriptProcessor", new { area = "admin" }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <br />
+
+    <div class="panel panel-default">
+        @if (TempData["Message"] != null)
+        {
+            @Html.Partial("_Message", (Abundance_Nk.Model.Model.Message)TempData["Message"])
+        }
+
+        <div class="panel-body">
+            <h2 style="font-weight: 300; text-align: center">Edit State Geo_Zone</h2>
+            <hr />
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-6 mt-5">
+                            <div class="form-group">
+
+                                @Html.LabelFor(model => model.State.Id, "State", new { @class = "control-label" })
+                                @Html.DropDownListFor(model => model.State.Id, (IEnumerable<SelectListItem>)ViewBag.StateId, new { @class = "form-control", id = "sessionCreate" })
+                                @Html.ValidationMessageFor(model => model.State.Id)
+                            </div>
+                        </div>
+                        <div class="col-md-6 mt-5">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.GeoZone.Id, "Geo Zone", new { @class = "control-label" })
+                                @Html.DropDownListFor(model => model.GeoZone.Id, (IEnumerable<SelectListItem>)ViewBag.GeoZoneId, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.GeoZone.Id)
+                            </div>
+                        </div>
+
+                        <div class="col-md-6" style="margin-top: 20px">
+                            <div class="form-group">
+                                @Html.CheckBoxFor(model => model.Activated, new { @class = "" })
+                                @Html.LabelFor(model => model.Activated, "Activated", new { @class = "control-label" })
+                                @Html.ValidationMessageFor(model => model.Activated)
+                            </div>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="row">
+                        <div class="form-group">
+                            <div class="col--2"></div>
+                            <div class="col-sm-10">
+                                <input class="btn btn-success mr5" type="submit" name="submit" value="Save" />
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+}

@@ -1,0 +1,296 @@
+﻿@using Microsoft.AspNet.Identity
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>UNIPORT | Student Portal</title>
+    <!--     Fonts and icons     -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
+    <!-- CSS Files -->
+    <link href="~/Content/assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/assets/css/now-ui-kit.css" rel="stylesheet" />
+    <link href="~/Content/assets/css/wfmi-style.css" rel="stylesheet" />
+    <link href="~/Content/index.css" rel="stylesheet" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <style>
+        .nav-item:hover {
+            /*background: #e2a03f !important*/
+        }
+
+        .navbar ul li a:hover {
+            /*background-color: #e2a03f !important*/
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid"></div>
+    <div class="col-md-12 bodi1  m-0 p-0">
+        <!-- Image and text -->
+
+
+        <nav class="navbar navbar-toggleable-md navbar-expand-lg bg-primary p-0" color-on-scroll="500">
+            <div class=" pl-2" style="width: 100%;">
+                <div class="row">
+                    <div class="col-md-3 col-sm-12">
+                        <div class="navbar-translate">
+                            <button class="navbar-toggler navbar-toggler-right" type="button" onclick="w3_open()" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-bar bar1"></span>
+                                <span class="navbar-toggler-bar bar2"></span>
+                                <span class="navbar-toggler-bar bar3"></span>
+                            </button>
+                            <a class="navbar-brand ml-2" href="#">
+                                <img src="~/Content/Images/school_logo.png" style='height: 50px; width: 60px; object-fit: contain' alt="NAU" />
+                                @*<span class="hidden-xs"><img src="~/Content/Images/abiastate.png" alt=" NAU" style="height: 50px; width: 100px;" /></span>*@
+                                <h6 style="font-size: 16px" class="d-inline mb-0" >University Of Port-Harcourt</h6>
+                            </a>
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-9 col-sm-12 text-right pt-2">
+                        <div class="collapse navbar-collapse justify-content-end" id="mySidebar" data-nav-image="assets/img/blurred-image-1.jpg">
+                            @*id="navigation"*@
+                            <ul class="navbar-nav mySidebar" style="z-index:2147483647">
+
+
+                                <li class="nav-item">
+                                    <a class="nav-link" href="https://www.web.unizik.edu.ng"><span class="menu-title">WEBSITE</span></a>
+                                </li>
+
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"><span class="menu-title">APPLICANTS</span></a>
+
+                                    <ul class="dropdown-menu bg-primary" aria-labelledby="dropdown" style="color: #333 !important;">
+                                        <li class="dropdown-item">@Html.ActionLink("Generate Invoice", "PostJambFormInvoiceGeneration", "Form", new { Area = "Applicant" }, null)</li>
+                                        <li class="dropdown-item">@Html.ActionLink("Fill Application Form", "PostJambProgramme", "Form", new { Area = "Applicant" }, null)</li>
+                                        <li class="divider"></li>
+                                        <li class="dropdown-item">@Html.ActionLink("Check PUTME Result", "Index", "Screening", new { Area = "Applicant" }, null)</li>
+                                        <li class="divider"></li>
+                                        <li class="dropdown-item">@Html.ActionLink("Purchase Admission Status Card", "PurchaseCard", "Admission", new { Area = "Applicant" }, null)</li>
+
+                                        <li class="dropdown-item">@Html.ActionLink("Check Admission Status", "CheckStatus", "Admission", new { Area = "Applicant" }, null)</li>
+                                        <li class="divider"></li>
+                                        <li class="dropdown-item">@Html.ActionLink("Request For Hostel Allocation", "CreateHostelRequest", "Hostel", new { Area = "Student" }, null)</li>
+                                        <li class="dropdown-item">@Html.ActionLink("Hostel Allocation Status", "HostelAllocationStatus", "Hostel", new { Area = "Student" }, null)</li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"><span class="menu-title">RETURNING STUDENT</span></a>
+
+                                    <ul class="dropdown-menu bg-primary" aria-labelledby="dropdown" style="color: #333 !important;">
+                                        <li class="dropdown-item">@Html.ActionLink("Generate Invoice", "Index", "Payment", new { Area = "Student" }, null)</li>
+                                        <li class="divider"></li>
+                                        <li class="dropdown-item">@Html.ActionLink("Session Registration", "Logon", "Registration", new { Area = "Student" }, null)</li>
+                                        <li class="divider"></li>
+
+                                        <li class="dropdown-item">@Html.ActionLink("Check Semester Result", "Check", "Result", new { Area = "Student" }, null)</li>
+                                        <li class="divider"></li>
+                                        <li class="dropdown-item">@Html.ActionLink("Old Fees", "OldFees", "Payment", new { Area = "Student" }, null)</li>
+                                        <li class="dropdown-item">@Html.ActionLink("Print Receipt", "PrintReceipt", "Registration", new { Area = "Student" }, null)</li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"><span class="menu-title">REMEDIAL STUDIES</span></a>
+
+                                    <ul class="dropdown-menu bg-primary" aria-labelledby="dropdown" style="color: #333 !important;">
+                                        <li class="dropdown-item">@Html.ActionLink("Generate Invoice", "Index", "Payment", new { Area = "Student" }, null)</li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"><span class="menu-title">POST GRADUATE SCHOOL</span></a>
+
+
+                                    <ul class="dropdown-menu bg-primary" aria-labelledby="dropdown" style="color: #333 !important;">
+                                        <li class="dropdown-item">@Html.ActionLink("Generate Application Form Invoice", "PostGraduateApplicationInvoiceGeneration", "Form", new { Area = "PGApplicant" }, null)</li>
+                                        <li class="dropdown-item">@Html.ActionLink("Fill Application Form", "Index", "PostGraduateForm", new { Area = "Applicant" }, null)</li>
+                                        @*<li class="dropdown-item">@Html.ActionLink("Generate Invoice", "Index", "Payment", new { Area = "Student" }, null)</li>*@
+                                        <li class="divider"></li>
+                                        <li class="dropdown-item">@Html.ActionLink("Check Admission Status", "PGCheckStatus", "PGAdmission", new { Area = "Applicant" }, null)</li>
+                                        <li class="divider"></li>
+                                        @*<li class="dropdown-item">@Html.ActionLink("Old Fees", "OldFees", "Payment", new { Area = "Student" }, null)</li>
+                                            <li class="dropdown-item">@Html.ActionLink("Print Receipt", "PrintReceipt", "Registration", new { Area = "Student" }, null)</li>*@
+                                    </ul>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"><span class="menu-title">GRADUATE</span></a>
+
+                                    <ul class="dropdown-menu bg-primary" aria-labelledby="dropdown" style="color: #333 !important;">
+                                        <li class="dropdown-item">@Html.ActionLink("Apply for Transcript", "Index", "Transcript", new { Area = "Applicant" }, null)</li>
+                                        <li class="dropdown-item">@Html.ActionLink("Generate Transcript Receipt", "PayForTranscript", "Transcript", new { Area = "Applicant" }, null)</li>
+                                    </ul>
+                                </li>
+
+                            </ul>
+                            <div class="col-md-2 bg-warning hidden-md-down text-center pt-4" style="margin:-12px 0 -20px 0">
+                                @using (Html.BeginForm("LogOff", "Account", new { Area = "Security" }, FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                                {
+
+                                    if (Request.IsAuthenticated)
+                                    {
+                                        <span class="navbar-text">
+
+                                            <button style="background: transparent; color: #fff; border: none;">LOG OFF</button>
+                                        </span>
+
+                                    }
+                                }
+                                @using (Html.BeginForm("Login", "Account", new { Area = "Security" }, FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    if (!Request.IsAuthenticated)
+                                    {
+                                        <span class="navbar-text">
+
+                                            <button style="background: transparent; color: #fff; border: none;"> LOGIN </button>
+                                        </span>
+                                    }
+
+                                }
+
+
+                            </div>
+
+
+
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+        </nav>
+        <!-- End Navbar -->
+        <div class="clearfix"></div>
+        <div class="" id="wapper">
+            <div class="min-vh-70 portal-content">
+
+                @RenderBody()
+
+
+            </div>
+
+
+            <div class="container-fluid pt-5 pb-5 mt-5 Design2">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-md-7 col-sm-12 pt-1 text-center">
+                            <span class="font-1 text-center"><b>ARE YOU EXPERIENCING ANY DIFFICULTIES OR ISSUES?</b></span><br />
+                            <b>CALL:</b> 07088391544 or 090838920222<br />
+                            <b>EMAIL SUPPORT:</b> support@uniport.edu.ng
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="clearfix"></div>
+
+            <div class="container-fluid bg-warning line-1"></div>
+
+            <div class="container-fluid bg-primary py-3 pl-5 pr-5">
+                <div class="row">
+                    <div class="col-md-8 col-sm-12">
+                        &copy; UNIVERSITY OF PORT-HARCOURT
+                                            </div>
+                    <div class="col-md-4 col-sm-12 text-right">
+                        Powered by <img class="image" style="height: 30px; width: 30px" src="~/Content/images/lloydant.png" />
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+    <script src="~/Scripts/js/core/jquery.3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+            crossorigin="anonymous"></script>
+    <script src="~/Scripts/js/core/bootstrap.min.js"></script>
+    <script src="~/Scripts/dashboard.js"></script>
+    <script src="~/Scripts/sweetalert.min.js"></script>
+
+
+    <script type="text/javascript">
+
+
+        //var _smartsupp = _smartsupp || {};
+        //_smartsupp.key = "8d8c5c64fa82b02ea860a7f80d5a93c351259935";
+
+        //
+        //_smartsupp.cookieDomain = '.abiastateuniversity.edu.ng';
+        // _smartsupp.requireLogin = true;
+        // disable email
+        // _smartsupp.loginEmailControl = false;
+        // append checkbox control to confirm something
+        //_smartsupp.loginControls = [
+        //    {
+        //        xtype: 'textinput',
+        //        name: 'number',
+        //        label: 'Phone',
+        //        required: true
+        //    }, {
+        //        xtype: 'textinput',
+        //        name: 'identifier',
+        //        label: 'Application / Matric No',
+        //        required: true
+        //    }
+        //];
+
+        //window.smartsupp || (function (d) {
+        //    var s, c, o = smartsupp = function () { o._.push(arguments); };
+        //    o._ = [];
+        //    s = d.getElementsByTagName('script')[0];
+        //    c = d.createElement('script');
+        //    c.type = 'text/javascript';
+        //    c.charset = 'utf-8';
+        //    c.async = true;
+        //    c.src = '//www.smartsuppchat.com/loader.js';
+        //    s.parentNode.insertBefore(c, s);
+        //})(document);
+
+
+    </script>
+    <!-- End of Smartsupp Live Chat script -->
+    <script>
+        // customize banner & logo
+        //smartsupp('banner:set', 'bubble');
+
+        // customize texts
+        //smartsupp('chat:translate', {
+        //    online: {
+        //        title: 'Support',
+        //        infoTitle: 'LLOYDANT'
+        //    },
+        //    offline: {
+        //        title: 'OFFLINE'
+        //    }
+        //});
+
+        // customize colors
+        //smartsupp('theme:colors', {
+        //    primary: '#b78825',
+        //    banner: '#999999',
+        //    primaryText: '#ffffff'
+        //});
+    </script>
+
+    <!--New Chat box-->
+    <!--Start of Tawk.to Script-->
+    <script type="text/javascript">
+        var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+        (function () {
+            var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+            s1.async = true;
+            s1.src = 'https://embed.tawk.to/5e1c9b0b7e39ea1242a465b4/1eojovc27';
+            s1.charset = 'UTF-8';
+            s1.setAttribute('crossorigin', '*');
+            s0.parentNode.insertBefore(s1, s0);
+        })();
+    </script>
+    <!--End of Tawk.to Script-->
+
+
+</body>
+@RenderSection("scripts", required: false)
+</html>

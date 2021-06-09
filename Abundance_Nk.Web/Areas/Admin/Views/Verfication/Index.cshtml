@@ -1,0 +1,54 @@
+﻿@using Abundance_Nk.Model.Model
+@model Abundance_Nk.Web.Areas.Admin.ViewModels.VerificationViewModel
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+@if (TempData["Message"] != null)
+{
+    @Html.Partial("_Message", TempData["Message"])
+}
+
+<div class="row">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3>Receipt Verification</h3>
+            @using (Html.BeginForm())
+            {
+                <div class="panel-body">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.PaymentEtranzact.ConfirmationNo,"Verification Code",new { @class = "col-sm-2 control-label " })
+                        <div class="col-md-6">
+                            @Html.TextBoxFor(model => model.PaymentEtranzact.ConfirmationNo,new { @class = "form-control" })
+                        </div>
+                        <div class="col-md-4">
+                            <input type="submit" value="Verify" class="btn btn-primary" />
+                        </div>
+                    </div>
+                </div>
+            }
+
+            @if (Model.PaymentVerification != null)
+            {
+                <div class="row">
+                    <table class="table table-responsive">
+                        <thead>
+                        <th>Student Name</th>
+                        <th>Payment Made</th>
+                        <th>Amount Paid</th>
+                        <th>Verification Officer</th>
+                        <th>Date Verified</th>
+                        </thead>
+                        <tbody>
+                            <td>@Model.PaymentVerification.Payment.Person.FullName</td>
+                            <td>@Model.PaymentVerification.Payment.FeeType.Name</td>
+                            <td>@Model.PaymentEtranzact.TransactionAmount</td>
+                            <td>@Model.PaymentVerification.User.Username</td>
+                            <td>@Model.PaymentVerification.DateVerified</td>
+                        </tbody>
+                    </table>
+                </div>
+            }
+        </div>
+    </div>
+</div>
