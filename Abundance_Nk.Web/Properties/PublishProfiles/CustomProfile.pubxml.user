@@ -1255,10 +1255,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/07/2021 10:02:41</publishTime>
     </File>
     <File Include="Areas/Admin/Views/UploadAdmission/UploadAdmission.cshtml">
-      <publishTime>06/07/2021 10:02:41</publishTime>
+      <publishTime>06/10/2021 05:02:00</publishTime>
     </File>
     <File Include="Areas/Admin/Views/UploadAdmission/ViewAdmission.cshtml">
-      <publishTime>06/07/2021 10:02:41</publishTime>
+      <publishTime>06/10/2021 05:02:12</publishTime>
     </File>
     <File Include="Areas/Admin/Views/UploadAdmission/ViewDuplicates.cshtml">
       <publishTime>06/07/2021 10:02:41</publishTime>
@@ -1834,7 +1834,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/07/2021 10:02:41</publishTime>
     </File>
     <File Include="Areas/Security/Views/Account/Login.cshtml">
-      <publishTime>06/09/2021 13:17:44</publishTime>
+      <publishTime>06/10/2021 04:56:21</publishTime>
     </File>
     <File Include="Areas/Security/Views/Account/Unauthorized.cshtml">
       <publishTime>06/07/2021 10:02:41</publishTime>
@@ -1927,7 +1927,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/07/2021 10:02:41</publishTime>
     </File>
     <File Include="Areas/Student/Views/Hostel/HostelReceipt.cshtml">
-      <publishTime>06/07/2021 10:02:41</publishTime>
+      <publishTime>06/10/2021 04:56:56</publishTime>
     </File>
     <File Include="Areas/Student/Views/Hostel/Invoice.cshtml">
       <publishTime>06/07/2021 10:02:41</publishTime>
