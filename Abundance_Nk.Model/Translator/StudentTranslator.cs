@@ -57,6 +57,8 @@ namespace Abundance_Nk.Model.Translator
                     student.Reason = studentEntity.Reason;
                     student.RejectCategory = studentEntity.Reject_Category;
                     student.PasswordHash = studentEntity.Password_hash;
+                    student.IsEmailConfirmed = studentEntity.IsEmailConfirmed;
+                    student.Guid = studentEntity.Guid;
 
                     if (studentEntity.PERSON != null)
                     {
@@ -140,6 +142,18 @@ namespace Abundance_Nk.Model.Translator
                     if (student.ApplicationForm != null && student.ApplicationForm.Id > 0)
                     {
                         studentEntity.Application_Form_Id = student.ApplicationForm.Id;
+                    }
+                    if (student.PasswordHash != null)
+                    {
+                        studentEntity.Password_hash = student.PasswordHash;
+                    }
+                    if (student.IsEmailConfirmed != null)
+                    {
+                        studentEntity.IsEmailConfirmed = student.IsEmailConfirmed;
+                    }
+                    if (student.Guid != null)
+                    {
+                        studentEntity.Guid = student.Guid;
                     }
                 }
 

@@ -354,7 +354,6 @@ namespace Abundance_Nk.Model.Entity
         public virtual DbSet<PERSON_MERGER> PERSON_MERGER { get; set; }
         public virtual DbSet<REFEREE_GRADING_CATEGORY> REFEREE_GRADING_CATEGORY { get; set; }
         public virtual DbSet<REFEREE_GRADING_SYSTEM> REFEREE_GRADING_SYSTEM { get; set; }
-        public virtual DbSet<STUDENT> STUDENT { get; set; }
         public virtual DbSet<VW_ABIASTUDENTINDIGENESREPORT> VW_ABIASTUDENTINDIGENESREPORT { get; set; }
         public virtual DbSet<VW_PGSTUDENT_NOMINAL_REPORT> VW_PGSTUDENT_NOMINAL_REPORT { get; set; }
         public virtual DbSet<VW_UNDERGRADUATE_NOMINAL_REPORT> VW_UNDERGRADUATE_NOMINAL_REPORT { get; set; }
@@ -365,6 +364,7 @@ namespace Abundance_Nk.Model.Entity
         public virtual DbSet<VW_PAYMENT_REMITA> VW_PAYMENT_REMITA { get; set; }
         public virtual DbSet<VW_PAYMENT_OLD_STUDENT> VW_PAYMENT_OLD_STUDENT { get; set; }
         public virtual DbSet<VW_PAYMENT_NEW_STUDENT> VW_PAYMENT_NEW_STUDENT { get; set; }
+        public virtual DbSet<STUDENT> STUDENT { get; set; }
     
         public virtual int STP_DELETE_APPLICATION_FORM(Nullable<long> paramApplication_Form_Id)
         {

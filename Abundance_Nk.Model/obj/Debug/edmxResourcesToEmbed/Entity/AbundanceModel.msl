@@ -5504,28 +5504,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="STUDENT">
-      <EntityTypeMapping TypeName="Abundance_NkModel.STUDENT">
-        <MappingFragment StoreEntitySet="STUDENT">
-          <ScalarProperty Name="Password_hash" ColumnName="Password_hash" />
-          <ScalarProperty Name="Reject_Category" ColumnName="Reject_Category" />
-          <ScalarProperty Name="Reason" ColumnName="Reason" />
-          <ScalarProperty Name="Activated" ColumnName="Activated" />
-          <ScalarProperty Name="School_Contact_Address" ColumnName="School_Contact_Address" />
-          <ScalarProperty Name="Genotype_Id" ColumnName="Genotype_Id" />
-          <ScalarProperty Name="Blood_Group_Id" ColumnName="Blood_Group_Id" />
-          <ScalarProperty Name="Marital_Status_Id" ColumnName="Marital_Status_Id" />
-          <ScalarProperty Name="Title_Id" ColumnName="Title_Id" />
-          <ScalarProperty Name="Matric_Number" ColumnName="Matric_Number" />
-          <ScalarProperty Name="Student_Number" ColumnName="Student_Number" />
-          <ScalarProperty Name="Student_Status_Id" ColumnName="Student_Status_Id" />
-          <ScalarProperty Name="Student_Category_Id" ColumnName="Student_Category_Id" />
-          <ScalarProperty Name="Student_Type_Id" ColumnName="Student_Type_Id" />
-          <ScalarProperty Name="Application_Form_Id" ColumnName="Application_Form_Id" />
-          <ScalarProperty Name="Person_Id" ColumnName="Person_Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <FunctionImportMapping FunctionImportName="STP_GENERATE_POST_GRADUATE_MATRIC_NUMBER" FunctionName="Abundance_NkModel.Store.STP_GENERATE_POST_GRADUATE_MATRIC_NUMBER" />
     <EntitySetMapping Name="VW_ABIASTUDENTINDIGENESREPORT">
       <EntityTypeMapping TypeName="Abundance_NkModel.VW_ABIASTUDENTINDIGENESREPORT">
@@ -5788,6 +5766,30 @@
           <ScalarProperty Name="Signature_File_Url" ColumnName="Signature_File_Url" />
           <ScalarProperty Name="Image_File_Url" ColumnName="Image_File_Url" />
           <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Person_Id" ColumnName="Person_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="STUDENT">
+      <EntityTypeMapping TypeName="Abundance_NkModel.STUDENT">
+        <MappingFragment StoreEntitySet="STUDENT">
+          <ScalarProperty Name="IsEmailConfirmed" ColumnName="IsEmailConfirmed" />
+          <ScalarProperty Name="Guid" ColumnName="Guid" />
+          <ScalarProperty Name="Password_hash" ColumnName="Password_hash" />
+          <ScalarProperty Name="Reject_Category" ColumnName="Reject_Category" />
+          <ScalarProperty Name="Reason" ColumnName="Reason" />
+          <ScalarProperty Name="Activated" ColumnName="Activated" />
+          <ScalarProperty Name="School_Contact_Address" ColumnName="School_Contact_Address" />
+          <ScalarProperty Name="Genotype_Id" ColumnName="Genotype_Id" />
+          <ScalarProperty Name="Blood_Group_Id" ColumnName="Blood_Group_Id" />
+          <ScalarProperty Name="Marital_Status_Id" ColumnName="Marital_Status_Id" />
+          <ScalarProperty Name="Title_Id" ColumnName="Title_Id" />
+          <ScalarProperty Name="Matric_Number" ColumnName="Matric_Number" />
+          <ScalarProperty Name="Student_Number" ColumnName="Student_Number" />
+          <ScalarProperty Name="Student_Status_Id" ColumnName="Student_Status_Id" />
+          <ScalarProperty Name="Student_Category_Id" ColumnName="Student_Category_Id" />
+          <ScalarProperty Name="Student_Type_Id" ColumnName="Student_Type_Id" />
+          <ScalarProperty Name="Application_Form_Id" ColumnName="Application_Form_Id" />
           <ScalarProperty Name="Person_Id" ColumnName="Person_Id" />
         </MappingFragment>
       </EntityTypeMapping>

@@ -1400,6 +1400,7 @@
     <Content Include="Content\codemirror\theme\vibrant-ink.css" />
     <Content Include="Content\codemirror\theme\xq-dark.css" />
     <Content Include="Content\codemirror\theme\xq-light.css" />
+    <Content Include="Content\confirmMail.css" />
     <Content Include="Content\Credential\Credential\119981_credential_93201692654AM.jpg" />
     <Content Include="Content\Credential\Credential\119981_credential_93201694433AM.jpg" />
     <Content Include="Content\Credential\Credential\56692_credential_6222016100526AM.jpg" />
@@ -3110,6 +3111,10 @@
     <Content Include="Areas\Common\Views\Credential\LoginCredentialTemplate.cshtml" />
     <Content Include="Areas\Applicant\Views\Form\ProcessRemitaPayment.cshtml" />
     <Content Include="Areas\Security\Views\Account\UserLogin.cshtml" />
+    <Content Include="Areas\Security\Views\Account\PasswordResetTemplate.cshtml" />
+    <Content Include="Areas\Security\Views\Account\InvalidGuid.cshtml" />
+    <Content Include="Areas\Security\Views\Account\ConfirmPasswordReset.cshtml" />
+    <Content Include="Areas\Security\Views\Account\ConfirmEmail.cshtml" />
     <None Include="Areas\Student\Views\Elearning\Index.cshtml" />
     <Content Include="Areas\Student\Views\Payment\PaymentClearanceReport.cshtml" />
     <Content Include="Areas\Student\Views\Elearning\RegisteredCourse.cshtml" />

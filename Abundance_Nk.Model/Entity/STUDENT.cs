@@ -50,6 +50,8 @@ namespace Abundance_Nk.Model.Entity
         public string Reason { get; set; }
         public string Reject_Category { get; set; }
         public string Password_hash { get; set; }
+        public string Guid { get; set; }
+        public Nullable<bool> IsEmailConfirmed { get; set; }
     
         public virtual APPLICATION_FORM APPLICATION_FORM { get; set; }
         public virtual BLOOD_GROUP BLOOD_GROUP { get; set; }
@@ -63,6 +65,7 @@ namespace Abundance_Nk.Model.Entity
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HOSTEL_BLACKLIST> HOSTEL_BLACKLIST { get; set; }
         public virtual MARITAL_STATUS MARITAL_STATUS { get; set; }
+        public virtual PERSON PERSON { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<REPORT_CARD> REPORT_CARD { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -93,6 +96,5 @@ namespace Abundance_Nk.Model.Entity
         public virtual ICollection<STUDENT_UPDATE_AUDIT> STUDENT_UPDATE_AUDIT { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TRANSCRIPT_REQUEST> TRANSCRIPT_REQUEST { get; set; }
-        public virtual PERSON PERSON { get; set; }
     }
 }

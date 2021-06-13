@@ -14,4 +14,13 @@ namespace Abundance_Nk.Model.Model
         public string Body { get; set; }
         public string From { get; set; }
     }
+
+    public class PasswordEmailReset
+    {
+        public string Name { get; set; }
+        public string message { get; set; }
+        public string header { get; set; }
+        public string footer { get; set; }
+        public string confirmationLink { get; set; }
+    }
 }

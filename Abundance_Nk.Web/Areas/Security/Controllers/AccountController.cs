@@ -11,12 +11,17 @@ using System.Linq.Expressions;
 using System.Text.RegularExpressions;
 using System.Web.Mvc;
 using System.Web.Security;
+using System.Configuration;
+using System.Transactions;
+
 
 
 namespace Abundance_Nk.Web.Areas.Security.Controllers
 {
     public class AccountController : BaseController
     {
+        string appRoot = ConfigurationManager.AppSettings["AppRoot"].ToString();
+
         private const string ID = "Id";
         private const string NAME = "Name";
         private const string VALUE = "Value";
@@ -107,7 +112,7 @@ namespace Abundance_Nk.Web.Areas.Security.Controllers
                     StudentLevelLogic studentLevelLogic = new StudentLevelLogic();
                     if (studentLogic.ValidateUser(viewModel.UserName, viewModel.Password))
                     {
-                        FormsAuthentication.SetAuthCookie(viewModel.UserName, false);
+                        
                         var student = studentLogic.GetBy(viewModel.UserName);
                         //check if student has more than one student record
                         var newStudent = CheckForMultipleStudentRecord(viewModel.UserName);
@@ -115,34 +120,47 @@ namespace Abundance_Nk.Web.Areas.Security.Controllers
                         {
                             student = newStudent;
                         }
-                        Session["student"] = student;
                         var studentLevel = studentLevelLogic.GetModelsBy(f => f.Person_Id == student.Id).LastOrDefault();
                         if (studentLevel?.Id > 0 && studentLevel.Department?.Id == 83)
                         {
+                            FormsAuthentication.SetAuthCookie(viewModel.UserName, false);
+                            Session["student"] = student;
+
                             //have not updated academic detail
                             return RedirectToAction("UpdateAcademicRecord", new { sid = Utility.Encrypt(studentLevel.Student.Id.ToString()) });
                         }
                         if (string.IsNullOrEmpty(returnUrl))
                         {
-                            bool isPGStudent = false;
-                            if (studentLevel?.Id > 0)
+                            if(student.IsEmailConfirmed == true)
                             {
-
-                                if (studentLevel.Programme.Name != null && studentLevel.Programme.Name.Contains("PG"))
-                                {
-                                    isPGStudent = true;
-                                }
-
-                            }
-                            if (isPGStudent)
-                            {
-                                //return RedirectToAction("Index", "Home", new { Area = "PGStudent" });
+                                FormsAuthentication.SetAuthCookie(viewModel.UserName, false);
+                                Session["student"] = student;
                                 return RedirectToAction("Index", "Home", new { Area = "Student" });
                             }
                             else
                             {
-                                return RedirectToAction("Index", "Home", new { Area = "Student" });
+                                TempData["_Student_ID_"] = student.Id;
+                                return RedirectToAction("ConfirmEmail");
                             }
+                         
+                            //bool isPGStudent = false;
+                            //if (studentLevel?.Id > 0)
+                            //{
+
+                            //    if (studentLevel.Programme.Name != null && studentLevel.Programme.Name.Contains("PG"))
+                            //    {
+                            //        isPGStudent = true;
+                            //    }
+
+                            //}
+                            //if (isPGStudent)
+                            //{
+                            //    return RedirectToAction("Index", "Home", new { Area = "Student" });
+                            //}
+                            //else
+                            //{
+                            //    return RedirectToAction("Index", "Home", new { Area = "Student" });
+                            //}
 
                         }
                         return RedirectToLocal(returnUrl);
@@ -357,6 +375,200 @@ namespace Abundance_Nk.Web.Areas.Security.Controllers
         public ActionResult UserLogin()
         {
             return View();
+        }
+
+
+        [AllowAnonymous]
+        public JsonResult ResetPassword(string user)
+        {
+            JsonResultModel result = new JsonResultModel();
+            EmailMessage message = new EmailMessage();
+            PasswordEmailReset emailReset = new PasswordEmailReset();
+            Person person = new Person();
+            PersonLogic personLogic = new PersonLogic();
+            try
+            {
+                if (!string.IsNullOrEmpty(user))
+                {
+                    StudentLogic studentLogic = new StudentLogic();
+                    Model.Model.Student student = studentLogic.GetModelsBy(u => u.Matric_Number == user.Trim()).LastOrDefault();
+                    person = personLogic.GetModelBy(p => p.Person_Id == student.Id);
+
+                    if (student != null && person != null && !string.IsNullOrEmpty(person.Email))
+                    {
+
+                        string s_guid = Convert.ToString(Guid.NewGuid());
+                        string userMail = person.Email;
+
+                        message.Body = "Hello " + student.FullName + ", \n Your password for access into The University of Port-Harcourt Web Portal has been reset. \n Click on the link below to create a new password and complete this process";
+                        message.Subject = "UNIVERSITY OF PORT-HARCOURT";
+                        message.Email = userMail;
+                        emailReset.header = "Password Reset Request";
+                        emailReset.footer = "https://www.uniport.edu.ng/";
+                        //emailReset.confirmationLink = $"http://localhost:2720/Security/Account/ConfirmPasswordReset?guid={s_guid}&email={userMail}";
+                        emailReset.confirmationLink = appRoot + $"Security/Account/ConfirmPasswordReset?guid={s_guid}&email={userMail}";
+                        emailReset.message = message.Body;
+
+
+                        var template = Server.MapPath("/Areas/Security/Views/Account/PasswordResetTemplate.cshtml");
+                        EmailSenderLogic<PasswordEmailReset> receiptEmailSenderLogic = new EmailSenderLogic<PasswordEmailReset>(template, emailReset);
+
+                        var isSent = receiptEmailSenderLogic.SendPasswordReset(message);
+                        if (isSent)
+                        {
+                            student.Guid = s_guid;
+                            studentLogic.Modify(student);
+                            result.IsError = false;
+                            result.Message = "Your password has been reset, follow the instructions in the mail sent to you to see your new password.";
+                        }
+
+                    }
+                    else
+                    {
+                        result.IsError = true;
+                        result.Message = "User/Student with this username was not found.";
+                    }
+                }
+                else
+                {
+                    result.IsError = true;
+                    result.Message = "Parameter not set!";
+                }
+            }
+            catch (Exception ex)
+            {
+                result.IsError = true;
+                result.Message = ex.Message;
+            }
+
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+        [AllowAnonymous]
+        public ActionResult ConfirmPasswordReset(string guid, string email)
+        {
+            LoginViewModel viewModel = new LoginViewModel();
+            string appRoot = ConfigurationManager.AppSettings["AppRoot"].ToString();
+            try
+            {
+                StudentLogic studentLogic = new StudentLogic();
+                Model.Model.Student student = new Model.Model.Student();
+                student = studentLogic.GetModelBy(s => s.Guid == guid && s.PERSON.Email == email);
+                if (student != null)
+                {
+                    TempData["_StudentID_"] = student.Id;
+                    //ViewBag.RedireckLink = appRoot;
+                }
+                else
+                {
+                    return RedirectToAction("InvalidGuid");
+                }
+                return View(viewModel);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        [AllowAnonymous]
+        public ActionResult InvalidGuid()
+        {
+            try
+            {
+
+                return View();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        [AllowAnonymous]
+        public JsonResult UpdatePassword(string password)
+        {
+            var sid = Convert.ToInt64(TempData["_StudentID_"]);
+            //TempData.Keep("_StudentID_");
+            JsonResultModel result = new JsonResultModel();
+            result.IsError = true;
+            StudentLogic studentLogic = new StudentLogic();
+            Model.Model.Student student = new Model.Model.Student();
+            student = studentLogic.GetModelBy(s => s.Person_Id == sid);
+            if (student != null)
+            {
+                student.PasswordHash = password;
+                student.Guid = "NULL";
+                studentLogic.Modify(student);
+                result.IsError = false;
+                result.Message = "Password Updated!";
+            }
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+
+        [AllowAnonymous]
+        public ActionResult ConfirmEmail()
+        {
+            LoginViewModel viewModel = new LoginViewModel();
+            StudentLogic studentLogic = new StudentLogic();
+            PersonLogic personLogic = new PersonLogic();
+            Model.Model.Student currentStudent = new Model.Model.Student();
+            var sid = Convert.ToInt64(TempData["_Student_ID_"]);
+            TempData.Keep("_Student_ID_");
+            currentStudent = studentLogic.GetBy(sid);
+            viewModel.UserName = currentStudent.LastName + " " + currentStudent.FirstName + "!";
+            var person = personLogic.GetModelBy(p => p.Person_Id == currentStudent.Id);
+            viewModel.Email = person.Email != null ? person.Email : null;
+            viewModel.PhoneNumber = person.MobilePhone != null ? person.MobilePhone : null;
+           
+
+
+            return View(viewModel);
+        }
+
+        [AllowAnonymous]
+        public JsonResult ConfirmStudentEmail(string studentEmail, string studentPhone)
+        {
+            StudentLogic studentLogic = new StudentLogic();
+            JsonResultModel result = new JsonResultModel();
+            Person person = new Person();
+            PersonLogic personLogic = new PersonLogic();
+            Model.Model.Student currentStudent = new Model.Model.Student();
+            result.IsError = true;
+
+
+
+            if (!string.IsNullOrWhiteSpace(studentEmail))
+            {
+                var sid = Convert.ToInt64(TempData["_Student_ID_"]);
+                TempData.Keep("_Student_ID_");
+                //currentStudent = System.Web.HttpContext.Current.Session["student"] as Model.Model.Student;
+                currentStudent = studentLogic.GetBy(sid);
+                if (currentStudent != null && currentStudent.Id > 0)
+                {
+                    person = personLogic.GetModelBy(p => p.Person_Id == currentStudent.Id);
+
+                    if (person != null && currentStudent != null)
+                    {
+                        using (TransactionScope scope = new TransactionScope())
+                        {
+                            person.Email = studentEmail.Trim();
+                            person.MobilePhone = studentPhone.Trim();
+                            currentStudent.IsEmailConfirmed = true;
+                            personLogic.Modify(person);
+                            studentLogic.Modify(currentStudent);
+                            FormsAuthentication.SetAuthCookie(currentStudent.MatricNumber, false);
+                            Session["student"] = currentStudent;
+                            scope.Complete();
+                        }
+                        result.IsError = false;
+                        result.Message = "Email Confirmed";
+                    }
+                }
+
+            }
+            return Json(result, JsonRequestBehavior.AllowGet);
         }
 
     }

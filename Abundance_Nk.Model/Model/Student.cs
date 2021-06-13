@@ -28,5 +28,7 @@ namespace Abundance_Nk.Model.Model
         public string RejectCategory { get; set; }
         public string Reason { get; set; }
         public string PasswordHash { get; set; }
+        public bool? IsEmailConfirmed { get; set; }
+        public string Guid { get; set; }
     }
 }

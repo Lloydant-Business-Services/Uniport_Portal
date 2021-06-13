@@ -1,7 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
-
+using System.Configuration;
 namespace Abundance_Nk.Web.Models
 {
+    
     public class ExternalLoginConfirmationViewModel
     {
         [Required]
@@ -43,6 +44,10 @@ namespace Abundance_Nk.Web.Models
 
         [Display(Name = "Remember me?")]
         public bool RememberMe { get; set; }
+        public string Email { get; set; }
+        public string PhoneNumber { get; set; }
+        public string AppRoot { get; set; } = ConfigurationManager.AppSettings["AppRoot"].ToString();
+
     }
 
     public class RegisterViewModel

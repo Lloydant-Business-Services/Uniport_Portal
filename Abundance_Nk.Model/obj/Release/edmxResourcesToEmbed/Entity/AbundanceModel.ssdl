@@ -643,7 +643,7 @@
     <Property Name="Active" Type="bit" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.DUPLICATE' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.DUPLICATE' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="DUPLICATE">
     <Key>
       <PropertyRef Name="Person_Id" />
@@ -653,7 +653,7 @@ warning 6002: The table/view 'VS_NAU.dbo.DUPLICATE' does not have a primary key 
     <Property Name="Application_Form_Id" Type="bigint" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.DUPLICATE_ADMISSION' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.DUPLICATE_ADMISSION' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="DUPLICATE_ADMISSION">
     <Key>
       <PropertyRef Name="Applicant_Jamb_Registration_Number" />
@@ -662,7 +662,7 @@ warning 6002: The table/view 'VS_NAU.dbo.DUPLICATE_ADMISSION' does not have a pr
     <Property Name="No" Type="int" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.DUPLICATE_ADMISSION_LIST' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.DUPLICATE_ADMISSION_LIST' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="DUPLICATE_ADMISSION_LIST">
     <Key>
       <PropertyRef Name="Application_Form_Id" />
@@ -674,7 +674,7 @@ warning 6002: The table/view 'VS_NAU.dbo.DUPLICATE_ADMISSION_LIST' does not have
     <Property Name="Person_Id" Type="bigint" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.DUPLICATE_STUDENT_AFFECTED' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.DUPLICATE_STUDENT_AFFECTED' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="DUPLICATE_STUDENT_AFFECTED">
     <Key>
       <PropertyRef Name="Person_Id" />
@@ -937,7 +937,7 @@ warning 6002: The table/view 'VS_NAU.dbo.DUPLICATE_STUDENT_AFFECTED' does not ha
     <Property Name="Grade_Level_Name" Type="varchar" MaxLength="20" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.GST_SCAN' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.GST_SCAN' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="GST_SCAN">
     <Key>
       <PropertyRef Name="Id" />
@@ -1323,7 +1323,7 @@ warning 6002: The table/view 'VS_NAU.dbo.GST_SCAN' does not have a primary key d
     <Property Name="Role_Id" Type="int" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.MIGRA' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.MIGRA' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="MIGRA">
     <Key>
       <PropertyRef Name="Student_Course_Registration_Id" />
@@ -1354,7 +1354,7 @@ warning 6002: The table/view 'VS_NAU.dbo.MIGRA' does not have a primary key defi
     <Property Name="Exam_Score" Type="decimal" Precision="5" Scale="2" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.MIGRATE_FIRST_SEMESTER_RESULT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.MIGRATE_FIRST_SEMESTER_RESULT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="MIGRATE_FIRST_SEMESTER_RESULT">
     <Key>
       <PropertyRef Name="SN" />
@@ -1411,7 +1411,7 @@ warning 6002: The table/view 'VS_NAU.dbo.MIGRATE_FIRST_SEMESTER_RESULT' does not
     <Property Name="DEPARTMENT" Type="nvarchar" MaxLength="255" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.MIGRATION_BIODATA' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.MIGRATION_BIODATA' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="MIGRATION_BIODATA">
     <Key>
       <PropertyRef Name="SN" />
@@ -1602,7 +1602,7 @@ warning 6002: The table/view 'VS_NAU.dbo.MIGRATION_BIODATA' does not have a prim
     <Property Name="Transaction_Date" Type="datetime" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.PAID' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.PAID' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="PAID">
     <Key>
       <PropertyRef Name="SN" />
@@ -1834,7 +1834,7 @@ warning 6002: The table/view 'VS_NAU.dbo.PAID' does not have a primary key defin
     <Property Name="Session_Id" Type="int" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.PAYMENT_TO_WEBAPI_FIX' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.PAYMENT_TO_WEBAPI_FIX' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="PAYMENT_TO_WEBAPI_FIX">
     <Key>
       <PropertyRef Name="Payment_Id" />
@@ -2468,6 +2468,8 @@ warning 6002: The table/view 'VS_NAU.dbo.PAYMENT_TO_WEBAPI_FIX' does not have a 
     <Property Name="Reason" Type="varchar(max)" />
     <Property Name="Reject_Category" Type="varchar" MaxLength="10" />
     <Property Name="Password_hash" Type="varchar" MaxLength="50" />
+    <Property Name="Guid" Type="varchar(max)" />
+    <Property Name="IsEmailConfirmed" Type="bit" />
   </EntityType>
   <EntityType Name="STUDENT_ACADEMIC_INFORMATION">
     <Key>
@@ -2558,7 +2560,7 @@ warning 6002: The table/view 'VS_NAU.dbo.PAYMENT_TO_WEBAPI_FIX' does not have a 
     <Property Name="Client" Type="varchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.STUDENT_COURSE_REGISTRATION_DETAIL_COURSE' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.STUDENT_COURSE_REGISTRATION_DETAIL_COURSE' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="STUDENT_COURSE_REGISTRATION_DETAIL_COURSE">
     <Key>
       <PropertyRef Name="Course_Id" />
@@ -2567,7 +2569,7 @@ warning 6002: The table/view 'VS_NAU.dbo.STUDENT_COURSE_REGISTRATION_DETAIL_COUR
     <Property Name="Course_Id" Type="bigint" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.STUDENT_COURSE_REGISTRATION_DETAIL_DUPLICATE' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.STUDENT_COURSE_REGISTRATION_DETAIL_DUPLICATE' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="STUDENT_COURSE_REGISTRATION_DETAIL_DUPLICATE">
     <Key>
       <PropertyRef Name="Student_Course_Registration_Detail_Id" />
@@ -3003,7 +3005,7 @@ warning 6002: The table/view 'VS_NAU.dbo.STUDENT_COURSE_REGISTRATION_DETAIL_DUPL
     <Property Name="Value" Type="int" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.ACCPTANCE _REPORT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.ACCPTANCE _REPORT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="ACCPTANCE _REPORT">
     <Key>
       <PropertyRef Name="Department_Name" />
@@ -3032,7 +3034,7 @@ warning 6002: The table/view 'VS_NAU.dbo.ACCPTANCE _REPORT' does not have a prim
     <Property Name="Application_Exam_Number" Type="varchar" MaxLength="50" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_ABIASTUDENTINDIGENESREPORT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_ABIASTUDENTINDIGENESREPORT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="VW_ABIASTUDENTINDIGENESREPORT">
     <Key>
       <PropertyRef Name="Name" />
@@ -3058,7 +3060,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_ABIASTUDENTINDIGENESREPORT' does not
     <Property Name="Department_Option_Id" Type="int" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_ACCEPTANCE_REPORT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_ACCEPTANCE_REPORT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="VW_ACCEPTANCE_REPORT">
     <Key>
       <PropertyRef Name="Department_Name" />
@@ -3092,7 +3094,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_ACCEPTANCE_REPORT' does not have a p
     <Property Name="Transaction_Date" Type="datetime" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_ACTIVATED_BED_SPACES' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_ACTIVATED_BED_SPACES' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="VW_ACTIVATED_BED_SPACES">
     <Key>
       <PropertyRef Name="Hostel_Id" />
@@ -3116,7 +3118,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_ACTIVATED_BED_SPACES' does not have 
     <Property Name="Corner_Name" Type="varchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_ADMISSION_LIST_ALL' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_ADMISSION_LIST_ALL' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="VW_ADMISSION_LIST_ALL">
     <Key>
       <PropertyRef Name="Person_Id" />
@@ -3145,7 +3147,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_ADMISSION_LIST_ALL' does not have a 
     <Property Name="Session_Id" Type="int" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_ADMISSION_LIST_UNDERGRADUATE' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_ADMISSION_LIST_UNDERGRADUATE' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="VW_ADMISSION_LIST_UNDERGRADUATE">
     <Key>
       <PropertyRef Name="Admission_List_Id" />
@@ -3172,7 +3174,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_ADMISSION_LIST_UNDERGRADUATE' does n
     <Property Name="Mobile_Phone" Type="varchar" MaxLength="15" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_ADMITTED_STUDENT_BREAKDOWN' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_ADMITTED_STUDENT_BREAKDOWN' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="VW_ADMITTED_STUDENT_BREAKDOWN">
     <Key>
       <PropertyRef Name="Admission_List_Id" />
@@ -3205,7 +3207,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_ADMITTED_STUDENT_BREAKDOWN' does not
     <Property Name="Mobile_Phone" Type="varchar" MaxLength="15" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_ADMITTED_STUDENT_DATA' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_ADMITTED_STUDENT_DATA' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="VW_ADMITTED_STUDENT_DATA">
     <Key>
       <PropertyRef Name="Person_Id" />
@@ -3259,7 +3261,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_ADMITTED_STUDENT_DATA' does not have
     <Property Name="Applicant_Jamb_Registration_Number" Type="varchar" MaxLength="20" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_ALL_PAYMENT_REPORT_GENERAL' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_ALL_PAYMENT_REPORT_GENERAL' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="VW_ALL_PAYMENT_REPORT_GENERAL">
     <Key>
       <PropertyRef Name="Level" />
@@ -3289,7 +3291,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_ALL_PAYMENT_REPORT_GENERAL' does not
     <Property Name="Payment_Id" Type="bigint" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_ALL_PAYMENT_REPORT_NEW_STUDENTS' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_ALL_PAYMENT_REPORT_NEW_STUDENTS' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="VW_ALL_PAYMENT_REPORT_NEW_STUDENTS">
     <Key>
       <PropertyRef Name="Last_Name" />
@@ -3334,7 +3336,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_ALL_PAYMENT_REPORT_NEW_STUDENTS' doe
     <Property Name="SECOND YEAR FEE INVOICE" Type="varchar" MaxLength="20" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_ALL_PAYMENT_REPORT_RETURNING_STUDENT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_ALL_PAYMENT_REPORT_RETURNING_STUDENT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="VW_ALL_PAYMENT_REPORT_RETURNING_STUDENT">
     <Key>
       <PropertyRef Name="Last_Name" />
@@ -3378,7 +3380,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_ALL_PAYMENT_REPORT_RETURNING_STUDENT
     <Property Name="SECOND YEAR FEE INVOICE" Type="varchar" MaxLength="20" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_ALL_STUDENTS_WITH_JAMB_NUMBER' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_ALL_STUDENTS_WITH_JAMB_NUMBER' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="VW_ALL_STUDENTS_WITH_JAMB_NUMBER">
     <Key>
       <PropertyRef Name="Last_Name" />
@@ -3395,7 +3397,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_ALL_STUDENTS_WITH_JAMB_NUMBER' does 
     <Property Name="Faculty_Name" Type="varchar" MaxLength="150" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_APPLICANT_PAYMENT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_APPLICANT_PAYMENT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="VW_APPLICANT_PAYMENT">
     <Key>
       <PropertyRef Name="Payment_Id" />
@@ -3428,7 +3430,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_APPLICANT_PAYMENT' does not have a p
     <Property Name="Amount" Type="money" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_APPLICANT_RESULT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_APPLICANT_RESULT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="VW_APPLICANT_RESULT">
     <Key>
       <PropertyRef Name="Person_Id" />
@@ -3499,7 +3501,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_APPLICANT_RESULT' does not have a pr
     <Property Name="Sex_Name" Type="varchar" MaxLength="15" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_APPLICATION_EXAM_NUMBER' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_APPLICATION_EXAM_NUMBER' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="VW_APPLICATION_EXAM_NUMBER">
     <Key>
       <PropertyRef Name="Application_Form_Id" />
@@ -3518,7 +3520,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_APPLICATION_EXAM_NUMBER' does not ha
     <Property Name="Application_Form_Setting_Id" Type="int" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_APPLICATION_FORM_REASSIGN' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_APPLICATION_FORM_REASSIGN' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="VW_APPLICATION_FORM_REASSIGN">
     <Key>
       <PropertyRef Name="Application_Form_Id" />
@@ -3546,7 +3548,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_APPLICATION_FORM_REASSIGN' does not 
     <Property Name="Remarks" Type="varchar" MaxLength="500" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_APPLICATION_FORM_SUMMARY' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_APPLICATION_FORM_SUMMARY' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="VW_APPLICATION_FORM_SUMMARY">
     <Key>
       <PropertyRef Name="Programme_Id" />
@@ -3567,7 +3569,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_APPLICATION_FORM_SUMMARY' does not h
     <Property Name="Application_Form_Count" Type="int" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_APPLICATION_SUMMARY_REPORT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_APPLICATION_SUMMARY_REPORT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="VW_APPLICATION_SUMMARY_REPORT">
     <Key>
       <PropertyRef Name="Person_Id" />
@@ -3607,7 +3609,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_APPLICATION_SUMMARY_REPORT' does not
     <Property Name="Application_Programme_Fee_Id" Type="int" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_ASSIGNED_MATRIC_NUMBER' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_ASSIGNED_MATRIC_NUMBER' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="VW_ASSIGNED_MATRIC_NUMBER">
     <Key>
       <PropertyRef Name="Department_Name" />
@@ -3632,7 +3634,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_ASSIGNED_MATRIC_NUMBER' does not hav
     <Property Name="Session_Id" Type="int" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_CORRECT_DE_APPLICANTS' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_CORRECT_DE_APPLICANTS' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="VW_CORRECT_DE_APPLICANTS">
     <Key>
       <PropertyRef Name="Application_Form_Id" />
@@ -3671,7 +3673,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_CORRECT_DE_APPLICANTS' does not have
     <Property Name="Subject4" Type="int" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_COURSE_EVALUATION_SCORES' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_COURSE_EVALUATION_SCORES' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="VW_COURSE_EVALUATION_SCORES">
     <Key>
       <PropertyRef Name="Person_Id" />
@@ -3715,7 +3717,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_COURSE_EVALUATION_SCORES' does not h
     <Property Name="Department_Option_Name" Type="varchar" MaxLength="150" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_COURSE_REG_REPORT_BY_DEPARTMENT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_COURSE_REG_REPORT_BY_DEPARTMENT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="VW_COURSE_REG_REPORT_BY_DEPARTMENT">
     <Key>
       <PropertyRef Name="Person_Id" />
@@ -3745,7 +3747,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_COURSE_REG_REPORT_BY_DEPARTMENT' doe
     <Property Name="Sex_Name" Type="varchar" MaxLength="15" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_COURSE_REGISTRATION_GST' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_COURSE_REGISTRATION_GST' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="VW_COURSE_REGISTRATION_GST">
     <Key>
       <PropertyRef Name="First_Name" />
@@ -3812,7 +3814,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_COURSE_REGISTRATION_GST' does not ha
     <Property Name="Sex_Name" Type="varchar" MaxLength="15" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_DEPARTMENT_OPTION' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_DEPARTMENT_OPTION' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="VW_DEPARTMENT_OPTION">
     <Key>
       <PropertyRef Name="Programme_Department_Id" />
@@ -3838,7 +3840,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_DEPARTMENT_OPTION' does not have a p
     <Property Name="Activated" Type="bit" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_ELEARNING_COURSE_CONTENT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_ELEARNING_COURSE_CONTENT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="VW_ELEARNING_COURSE_CONTENT">
     <Key>
       <PropertyRef Name="Student_Course_Registration_Detail_Id" />
@@ -3888,7 +3890,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_ELEARNING_COURSE_CONTENT' does not h
     <Property Name="Id" Type="bigint" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_ETRANZACT_FEETYPE' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_ETRANZACT_FEETYPE' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="VW_ETRANZACT_FEETYPE">
     <Key>
       <PropertyRef Name="Fee_Type_Id" />
@@ -3900,7 +3902,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_ETRANZACT_FEETYPE' does not have a p
     <Property Name="Confirmation_No" Type="varchar" MaxLength="50" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_ETRANZACT_REPORT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_ETRANZACT_REPORT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="VW_ETRANZACT_REPORT">
     <Key>
       <PropertyRef Name="Payment_Id" />
@@ -3932,7 +3934,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_ETRANZACT_REPORT' does not have a pr
     <Property Name="Payment_Etranzact_Type_Name" Type="varchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_GST_ALL_YEAR' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_GST_ALL_YEAR' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="VW_GST_ALL_YEAR">
     <Key>
       <PropertyRef Name="Course_Id" />
@@ -3953,7 +3955,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_GST_ALL_YEAR' does not have a primar
     <Property Name="Semester_Id" Type="int" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_GST_RESULT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_GST_RESULT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="VW_GST_RESULT">
     <Key>
       <PropertyRef Name="ID" />
@@ -3983,7 +3985,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_GST_RESULT' does not have a primary 
     <Property Name="Expr1" Type="varchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_GST_YEAR_ONE' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_GST_YEAR_ONE' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="VW_GST_YEAR_ONE">
     <Key>
       <PropertyRef Name="Course_Id" />
@@ -4004,7 +4006,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_GST_YEAR_ONE' does not have a primar
     <Property Name="Semester_Id" Type="int" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_HND_APPLICANTS' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_HND_APPLICANTS' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="VW_HND_APPLICANTS">
     <Key>
       <PropertyRef Name="First_Name" />
@@ -4032,7 +4034,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_HND_APPLICANTS' does not have a prim
     <Property Name="Sex_Name" Type="varchar" MaxLength="15" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_IAS_APPLICATION_REPORT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_IAS_APPLICATION_REPORT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="VW_IAS_APPLICATION_REPORT">
     <Key>
       <PropertyRef Name="Last_Name" />
@@ -4061,7 +4063,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_IAS_APPLICATION_REPORT' does not hav
     <Property Name="Applicant_Jamb_Score" Type="smallint" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_MONNIFY_PAYMENT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_MONNIFY_PAYMENT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="VW_MONNIFY_PAYMENT">
     <Key>
       <PropertyRef Name="Payment_Id" />
@@ -4107,7 +4109,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_MONNIFY_PAYMENT' does not have a pri
     <Property Name="Account_Number" Type="varchar" MaxLength="50" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_NEW_STUDENT_INVOICE' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_NEW_STUDENT_INVOICE' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="VW_NEW_STUDENT_INVOICE">
     <Key>
       <PropertyRef Name="Payment_Id" />
@@ -4132,7 +4134,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_NEW_STUDENT_INVOICE' does not have a
     <Property Name="AMOUNT" Type="money" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_NEW_STUDENTCOUNT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_NEW_STUDENTCOUNT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="VW_NEW_STUDENTCOUNT">
     <Key>
       <PropertyRef Name="Programme_Id" />
@@ -4153,7 +4155,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_NEW_STUDENTCOUNT' does not have a pr
     <Property Name="NEW_Student_Count" Type="int" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_PAYMENT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_PAYMENT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="VW_PAYMENT">
     <Key>
       <PropertyRef Name="Payment_Id" />
@@ -4195,7 +4197,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_PAYMENT' does not have a primary key
     <Property Name="Session_Name" Type="varchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_PAYMENT_ETRANZACT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_PAYMENT_ETRANZACT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="VW_PAYMENT_ETRANZACT">
     <Key>
       <PropertyRef Name="Payment_Id" />
@@ -4235,7 +4237,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_PAYMENT_ETRANZACT' does not have a p
     <Property Name="Transaction_Date" Type="datetime" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_PAYMENT_INTERSWITCH' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_PAYMENT_INTERSWITCH' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="VW_PAYMENT_INTERSWITCH">
     <Key>
       <PropertyRef Name="Payment_Interswitch_Id" />
@@ -4284,7 +4286,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_PAYMENT_INTERSWITCH' does not have a
     <Property Name="ResponseDescription" Type="varchar(max)" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_PAYMENT_NEW_STUDENT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_PAYMENT_NEW_STUDENT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="VW_PAYMENT_NEW_STUDENT">
     <Key>
       <PropertyRef Name="Person_Id" />
@@ -4326,7 +4328,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_PAYMENT_NEW_STUDENT' does not have a
     <Property Name="OrderId" Type="varchar" MaxLength="50" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_PAYMENT_OLD_STUDENT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_PAYMENT_OLD_STUDENT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="VW_PAYMENT_OLD_STUDENT">
     <Key>
       <PropertyRef Name="Person_Id" />
@@ -4372,7 +4374,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_PAYMENT_OLD_STUDENT' does not have a
     <Property Name="Customer_Name" Type="varchar" MaxLength="800" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_PAYMENT_PAYSTACK' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_PAYMENT_PAYSTACK' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="VW_PAYMENT_PAYSTACK">
     <Key>
       <PropertyRef Name="Payment_Id" />
@@ -4420,7 +4422,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_PAYMENT_PAYSTACK' does not have a pr
     <Property Name="domain" Type="varchar" MaxLength="50" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_PAYMENT_REMITA' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_PAYMENT_REMITA' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="VW_PAYMENT_REMITA">
     <Key>
       <PropertyRef Name="Payment_Id" />
@@ -4463,7 +4465,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_PAYMENT_REMITA' does not have a prim
     <Property Name="Description" Type="varchar" MaxLength="50" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_PAYMENT_SUMMARY' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_PAYMENT_SUMMARY' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="VW_PAYMENT_SUMMARY">
     <Key>
       <PropertyRef Name="Person_Id" />
@@ -4499,7 +4501,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_PAYMENT_SUMMARY' does not have a pri
     <Property Name="Payment_Etranzact_Id" Type="bigint" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_PAYMENT_VERIFICATION' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_PAYMENT_VERIFICATION' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="VW_PAYMENT_VERIFICATION">
     <Key>
       <PropertyRef Name="Last_Name" />
@@ -4546,7 +4548,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_PAYMENT_VERIFICATION' does not have 
     <Property Name="Matric_Number" Type="varchar" MaxLength="50" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_PAYMENT_VERIFICATION_NEW_STUDENT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_PAYMENT_VERIFICATION_NEW_STUDENT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="VW_PAYMENT_VERIFICATION_NEW_STUDENT">
     <Key>
       <PropertyRef Name="Last_Name" />
@@ -4586,7 +4588,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_PAYMENT_VERIFICATION_NEW_STUDENT' do
     <Property Name="Transaction_Date" Type="datetime" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_PAYMENT_VERIFICATION_OLD_STUDENT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_PAYMENT_VERIFICATION_OLD_STUDENT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="VW_PAYMENT_VERIFICATION_OLD_STUDENT">
     <Key>
       <PropertyRef Name="Last_Name" />
@@ -4630,7 +4632,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_PAYMENT_VERIFICATION_OLD_STUDENT' do
     <Property Name="Transaction_Date" Type="datetime" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_PAYMENTETRANZACT_BANK' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_PAYMENTETRANZACT_BANK' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="VW_PAYMENTETRANZACT_BANK">
     <Key>
       <PropertyRef Name="Bank_Name" />
@@ -4641,7 +4643,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_PAYMENTETRANZACT_BANK' does not have
     <Property Name="Transaction_Date" Type="datetime" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_PAYSTACK_FEETYPE' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_PAYSTACK_FEETYPE' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="VW_PAYSTACK_FEETYPE">
     <Key>
       <PropertyRef Name="Fee_Type_Id" />
@@ -4653,7 +4655,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_PAYSTACK_FEETYPE' does not have a pr
     <Property Name="transaction_date" Type="datetime" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_PERSON_APPLICATION' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_PERSON_APPLICATION' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="VW_PERSON_APPLICATION">
     <Key>
       <PropertyRef Name="First_Name" />
@@ -4670,7 +4672,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_PERSON_APPLICATION' does not have a 
     <Property Name="Rejected" Type="bit" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_PGSTUDENT_NOMINAL_REPORT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_PGSTUDENT_NOMINAL_REPORT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="VW_PGSTUDENT_NOMINAL_REPORT">
     <Key>
       <PropertyRef Name="Person_Id" />
@@ -4703,7 +4705,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_PGSTUDENT_NOMINAL_REPORT' does not h
     <Property Name="GeneratedLevel" Type="varchar" MaxLength="7" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_POST_JAMP_APPLICATION' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_POST_JAMP_APPLICATION' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="VW_POST_JAMP_APPLICATION">
     <Key>
       <PropertyRef Name="Application_Form_Id" />
@@ -4746,7 +4748,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_POST_JAMP_APPLICATION' does not have
     <Property Name="Application_Form_Setting_Name" Type="varchar" MaxLength="150" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_POST_JAMP_APPLICATION_ND_REGULAR' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_POST_JAMP_APPLICATION_ND_REGULAR' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="VW_POST_JAMP_APPLICATION_ND_REGULAR">
     <Key>
       <PropertyRef Name="Application_Form_Id" />
@@ -4783,7 +4785,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_POST_JAMP_APPLICATION_ND_REGULAR' do
     <Property Name="Applicant_Jamb_Score" Type="smallint" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_PROCESSED_SUPPLEMENTARY_REPORT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_PROCESSED_SUPPLEMENTARY_REPORT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="VW_PROCESSED_SUPPLEMENTARY_REPORT">
     <Key>
       <PropertyRef Name="Person_Id" />
@@ -4830,7 +4832,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_PROCESSED_SUPPLEMENTARY_REPORT' does
     <Property Name="Qualification2" Type="varchar(max)" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_PROGRAMME_DEPARTMENT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_PROGRAMME_DEPARTMENT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="VW_PROGRAMME_DEPARTMENT">
     <Key>
       <PropertyRef Name="Programme_Department_Id" />
@@ -4854,7 +4856,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_PROGRAMME_DEPARTMENT' does not have 
     <Property Name="Activate" Type="bit" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_PROSPECTIVE_STUDENT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_PROSPECTIVE_STUDENT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="VW_PROSPECTIVE_STUDENT">
     <Key>
       <PropertyRef Name="Application_Form_Id" />
@@ -4901,7 +4903,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_PROSPECTIVE_STUDENT' does not have a
     <Property Name="Applicant_Status_Id" Type="int" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_PUTME_RESULT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_PUTME_RESULT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="VW_PUTME_RESULT">
     <Key>
       <PropertyRef Name="ID" />
@@ -5003,7 +5005,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_PUTME_RESULT' does not have a primar
     <Property Name="Institution_Choice_Name" Type="varchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_PUTME_RESULT_O_LEVEL' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_PUTME_RESULT_O_LEVEL' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="VW_PUTME_RESULT_O_LEVEL">
     <Key>
       <PropertyRef Name="ID" />
@@ -5123,7 +5125,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_PUTME_RESULT_O_LEVEL' does not have 
     <Property Name="Institution_Choice_Name" Type="varchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_PUTME_RESULT_O_LEVEL_SUPPLEMENTARY' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_PUTME_RESULT_O_LEVEL_SUPPLEMENTARY' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="VW_PUTME_RESULT_O_LEVEL_SUPPLEMENTARY">
     <Key>
       <PropertyRef Name="ID" />
@@ -5241,7 +5243,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_PUTME_RESULT_O_LEVEL_SUPPLEMENTARY' 
     <Property Name="O_Level_Type_Name" Type="varchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_PUTME_RESULT_SUPPLEMENTARY' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_PUTME_RESULT_SUPPLEMENTARY' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="VW_PUTME_RESULT_SUPPLEMENTARY">
     <Key>
       <PropertyRef Name="ID" />
@@ -5341,7 +5343,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_PUTME_RESULT_SUPPLEMENTARY' does not
     <Property Name="Expr2" Type="int" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_PUTME_SLUG' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_PUTME_SLUG' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="VW_PUTME_SLUG">
     <Key>
       <PropertyRef Name="Department_Name" />
@@ -5375,7 +5377,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_PUTME_SLUG' does not have a primary 
     <Property Name="Date_Submitted" Type="datetime" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_PUTME_UNMATCHED' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_PUTME_UNMATCHED' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="VW_PUTME_UNMATCHED">
     <Key>
       <PropertyRef Name="ID" />
@@ -5399,7 +5401,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_PUTME_UNMATCHED' does not have a pri
     <Property Name="Session_Id" Type="int" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_REGISTERED_COURSES' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_REGISTERED_COURSES' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="VW_REGISTERED_COURSES">
     <Key>
       <PropertyRef Name="Course_Type_Id" />
@@ -5452,7 +5454,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_REGISTERED_COURSES' does not have a 
     <Property Name="Activated" Type="bit" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_REMITA_PAYMENT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_REMITA_PAYMENT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="VW_REMITA_PAYMENT">
     <Key>
       <PropertyRef Name="Payment_Id" />
@@ -5493,7 +5495,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_REMITA_PAYMENT' does not have a prim
     <Property Name="Transaction_Amount" Type="decimal" Precision="18" Scale="0" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_RETURNING_STUDENT_INVOICE' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_RETURNING_STUDENT_INVOICE' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="VW_RETURNING_STUDENT_INVOICE">
     <Key>
       <PropertyRef Name="Payment_Id" />
@@ -5520,7 +5522,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_RETURNING_STUDENT_INVOICE' does not 
     <Property Name="Level_Name" Type="varchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_RETURNING_STUDENTCOUNT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_RETURNING_STUDENTCOUNT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="VW_RETURNING_STUDENTCOUNT">
     <Key>
       <PropertyRef Name="Programme_Id" />
@@ -5539,7 +5541,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_RETURNING_STUDENTCOUNT' does not hav
     <Property Name="Returning_Student_Count" Type="int" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_SCHOOL_FEES_PAYMENT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_SCHOOL_FEES_PAYMENT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="VW_SCHOOL_FEES_PAYMENT">
     <Key>
       <PropertyRef Name="FULLNAME" />
@@ -5569,7 +5571,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_SCHOOL_FEES_PAYMENT' does not have a
     <Property Name="Student_Course_Registration_Id" Type="bigint" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_STDUENT_DETAILS' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_STDUENT_DETAILS' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="VW_STDUENT_DETAILS">
     <Key>
       <PropertyRef Name="Person_Id" />
@@ -5598,7 +5600,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_STDUENT_DETAILS' does not have a pri
     <Property Name="Session_Name" Type="varchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_STUDENT_BIODATA' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_STUDENT_BIODATA' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="VW_STUDENT_BIODATA">
     <Key>
       <PropertyRef Name="First_Name" />
@@ -5723,7 +5725,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_STUDENT_BIODATA' does not have a pri
     <Property Name="Year_Of_Graduation" Type="int" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_STUDENT_ID_DATA' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_STUDENT_ID_DATA' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="VW_STUDENT_ID_DATA">
     <Key>
       <PropertyRef Name="Person_Id" />
@@ -5756,7 +5758,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_STUDENT_ID_DATA' does not have a pri
     <Property Name="Date_Entered" Type="date" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_STUDENT_NUMBER_ASSIGNED' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_STUDENT_NUMBER_ASSIGNED' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="VW_STUDENT_NUMBER_ASSIGNED">
     <Key>
       <PropertyRef Name="Person_Id" />
@@ -5780,7 +5782,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_STUDENT_NUMBER_ASSIGNED' does not ha
     <Property Name="Session_Name" Type="varchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_STUDENT_O_LEVEL_RESULT_DETAIL' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_STUDENT_O_LEVEL_RESULT_DETAIL' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="VW_STUDENT_O_LEVEL_RESULT_DETAIL">
     <Key>
       <PropertyRef Name="Person_Id" />
@@ -5843,7 +5845,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_STUDENT_O_LEVEL_RESULT_DETAIL' does 
     <Property Name="O_Level_Grade_Name" Type="char" MaxLength="3" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_STUDENT_PAYMENT_RECORD' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_STUDENT_PAYMENT_RECORD' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="VW_STUDENT_PAYMENT_RECORD">
     <Key>
       <PropertyRef Name="Person_Id" />
@@ -5875,7 +5877,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_STUDENT_PAYMENT_RECORD' does not hav
     <Property Name="Invoice_Date" Type="datetime" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_STUDENT_REGISTERED_COURSE_CARRYOVER' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_STUDENT_REGISTERED_COURSE_CARRYOVER' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="VW_STUDENT_REGISTERED_COURSE_CARRYOVER">
     <Key>
       <PropertyRef Name="Student_Course_Registration_Id" />
@@ -5906,7 +5908,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_STUDENT_REGISTERED_COURSE_CARRYOVER'
     <Property Name="Student_Course_Registration_Detail_Id" Type="bigint" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_STUDENT_REGISTERED_COURSES' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_STUDENT_REGISTERED_COURSES' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="VW_STUDENT_REGISTERED_COURSES">
     <Key>
       <PropertyRef Name="Course_Id" />
@@ -5939,7 +5941,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_STUDENT_REGISTERED_COURSES' does not
     <Property Name="Exam_Score" Type="decimal" Precision="5" Scale="2" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_STUDENT_RESULT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_STUDENT_RESULT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="VW_STUDENT_RESULT">
     <Key>
       <PropertyRef Name="Person_Id" />
@@ -6001,7 +6003,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_STUDENT_RESULT' does not have a prim
     <Property Name="Maximum_Score_Obtainable" Type="int" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_STUDENT_RESULT_2' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_STUDENT_RESULT_2' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="VW_STUDENT_RESULT_2">
     <Key>
       <PropertyRef Name="Name" />
@@ -6082,7 +6084,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_STUDENT_RESULT_2' does not have a pr
     <Property Name="Date_Uploaded" Type="datetime" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_STUDENT_RESULT_MASTER_LIST' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_STUDENT_RESULT_MASTER_LIST' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="VW_STUDENT_RESULT_MASTER_LIST">
     <Key>
       <PropertyRef Name="Student_Result_Type_Name" />
@@ -6127,7 +6129,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_STUDENT_RESULT_MASTER_LIST' does not
     <Property Name="Department_Id" Type="int" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_STUDENT_RESULT_OLD_GRADING_SYSTEM' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_STUDENT_RESULT_OLD_GRADING_SYSTEM' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="VW_STUDENT_RESULT_OLD_GRADING_SYSTEM">
     <Key>
       <PropertyRef Name="Name" />
@@ -6205,7 +6207,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_STUDENT_RESULT_OLD_GRADING_SYSTEM' d
     <Property Name="Level_Id" Type="int" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_STUDENT_RESULT_RAW_SCORE_SHEET' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_STUDENT_RESULT_RAW_SCORE_SHEET' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="VW_STUDENT_RESULT_RAW_SCORE_SHEET">
     <Key>
       <PropertyRef Name="Name" />
@@ -6304,7 +6306,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_STUDENT_RESULT_RAW_SCORE_SHEET' does
     <Property Name="Student_Result_Id" Type="bigint" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_STUDENT_RESULT_RAW_SCORE_SHEET_UNREGISTERED' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_STUDENT_RESULT_RAW_SCORE_SHEET_UNREGISTERED' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="VW_STUDENT_RESULT_RAW_SCORE_SHEET_UNREGISTERED">
     <Key>
       <PropertyRef Name="Student_Result_Id" />
@@ -6359,7 +6361,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_STUDENT_RESULT_RAW_SCORE_SHEET_UNREG
     <Property Name="Session_Name" Type="varchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_STUDENT_RESULT_SUMMARY' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_STUDENT_RESULT_SUMMARY' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="VW_STUDENT_RESULT_SUMMARY">
     <Key>
       <PropertyRef Name="Name" />
@@ -6424,7 +6426,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_STUDENT_RESULT_SUMMARY' does not hav
     <Property Name="Session_Semester_Sequence_Number" Type="int" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_SUPPLEMENTARY_APPLICATION_REPORT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_SUPPLEMENTARY_APPLICATION_REPORT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="VW_SUPPLEMENTARY_APPLICATION_REPORT">
     <Key>
       <PropertyRef Name="Last_Name" />
@@ -6450,7 +6452,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_SUPPLEMENTARY_APPLICATION_REPORT' do
     <Property Name="Qualification 2" Type="varchar(max)" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_TRANSCRIPT_REQUEST_BY_ETRANZACT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_TRANSCRIPT_REQUEST_BY_ETRANZACT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="VW_TRANSCRIPT_REQUEST_BY_ETRANZACT">
     <Key>
       <PropertyRef Name="Transcript_Request_Id" />
@@ -6489,7 +6491,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_TRANSCRIPT_REQUEST_BY_ETRANZACT' doe
     <Property Name="Delivery_Service" Type="varchar" MaxLength="50" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_TRANSCRIPT_REQUEST_BY_INTERSWITCH' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_TRANSCRIPT_REQUEST_BY_INTERSWITCH' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="VW_TRANSCRIPT_REQUEST_BY_INTERSWITCH">
     <Key>
       <PropertyRef Name="Transcript_Request_Id" />
@@ -6528,7 +6530,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_TRANSCRIPT_REQUEST_BY_INTERSWITCH' d
     <Property Name="Delivery_Service" Type="varchar" MaxLength="50" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_UNDERGRADUATE_NOMINAL_REPORT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_UNDERGRADUATE_NOMINAL_REPORT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="VW_UNDERGRADUATE_NOMINAL_REPORT">
     <Key>
       <PropertyRef Name="Name" />
@@ -6556,7 +6558,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_UNDERGRADUATE_NOMINAL_REPORT' does n
     <Property Name="State_Name" Type="varchar" MaxLength="50" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_UPLOADED_COURSES' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_UPLOADED_COURSES' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="VW_UPLOADED_COURSES">
     <Key>
       <PropertyRef Name="Course_Code" />
@@ -6596,7 +6598,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_UPLOADED_COURSES' does not have a pr
     <Property Name="Course_Id" Type="bigint" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_VACANT_BEDSPACES' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_VACANT_BEDSPACES' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="VW_VACANT_BEDSPACES">
     <Key>
       <PropertyRef Name="Hostel_Id" />

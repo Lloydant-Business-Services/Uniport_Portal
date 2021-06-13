@@ -2035,7 +2035,6 @@
     <EntitySet Name="PERSON_MERGER" EntityType="Abundance_NkModel.PERSON_MERGER" />
     <EntitySet Name="REFEREE_GRADING_CATEGORY" EntityType="Abundance_NkModel.REFEREE_GRADING_CATEGORY" />
     <EntitySet Name="REFEREE_GRADING_SYSTEM" EntityType="Abundance_NkModel.REFEREE_GRADING_SYSTEM" />
-    <EntitySet Name="STUDENT" EntityType="Abundance_NkModel.STUDENT" />
     <AssociationSet Name="FK_APPLICANT_REFEREE_RESPONSE_APPLICANT_REFEREE" Association="Abundance_NkModel.FK_APPLICANT_REFEREE_RESPONSE_APPLICANT_REFEREE">
       <End Role="APPLICANT_REFEREE" EntitySet="APPLICANT_REFEREE" />
       <End Role="APPLICANT_REFEREE_RESPONSE" EntitySet="APPLICANT_REFEREE_RESPONSE" />
@@ -2055,114 +2054,6 @@
     <AssociationSet Name="FK_APPLICANT_REFEREE_RESPONSE_REFEREE_GRADING_SYSTEM" Association="Abundance_NkModel.FK_APPLICANT_REFEREE_RESPONSE_REFEREE_GRADING_SYSTEM">
       <End Role="REFEREE_GRADING_SYSTEM" EntitySet="REFEREE_GRADING_SYSTEM" />
       <End Role="APPLICANT_REFEREE_RESPONSE" EntitySet="APPLICANT_REFEREE_RESPONSE" />
-    </AssociationSet>
-    <AssociationSet Name="FK_STUDENT_APPLICATION_FORM" Association="Abundance_NkModel.FK_STUDENT_APPLICATION_FORM">
-      <End Role="APPLICATION_FORM" EntitySet="APPLICATION_FORM" />
-      <End Role="STUDENT" EntitySet="STUDENT" />
-    </AssociationSet>
-    <AssociationSet Name="FK_STUDENT_BLOOD_GROUP" Association="Abundance_NkModel.FK_STUDENT_BLOOD_GROUP">
-      <End Role="BLOOD_GROUP" EntitySet="BLOOD_GROUP" />
-      <End Role="STUDENT" EntitySet="STUDENT" />
-    </AssociationSet>
-    <AssociationSet Name="FK_COURSE_EVALUATION_ANSWER_STUDENT" Association="Abundance_NkModel.FK_COURSE_EVALUATION_ANSWER_STUDENT">
-      <End Role="STUDENT" EntitySet="STUDENT" />
-      <End Role="COURSE_EVALUATION_ANSWER" EntitySet="COURSE_EVALUATION_ANSWER" />
-    </AssociationSet>
-    <AssociationSet Name="FK_E_ASSIGNMENT_SUBMISSION_STUDENT" Association="Abundance_NkModel.FK_E_ASSIGNMENT_SUBMISSION_STUDENT">
-      <End Role="STUDENT" EntitySet="STUDENT" />
-      <End Role="E_ASSIGNMENT_SUBMISSION" EntitySet="E_ASSIGNMENT_SUBMISSION" />
-    </AssociationSet>
-    <AssociationSet Name="FK_E_CHAT_RESPONPSE_STUDENT" Association="Abundance_NkModel.FK_E_CHAT_RESPONPSE_STUDENT">
-      <End Role="STUDENT" EntitySet="STUDENT" />
-      <End Role="E_CHAT_RESPONPSE" EntitySet="E_CHAT_RESPONPSE" />
-    </AssociationSet>
-    <AssociationSet Name="FK_STUDENT_GENOTYPE" Association="Abundance_NkModel.FK_STUDENT_GENOTYPE">
-      <End Role="GENOTYPE" EntitySet="GENOTYPE" />
-      <End Role="STUDENT" EntitySet="STUDENT" />
-    </AssociationSet>
-    <AssociationSet Name="FK_HOSTEL_BLACKLIST_STUDENT" Association="Abundance_NkModel.FK_HOSTEL_BLACKLIST_STUDENT">
-      <End Role="STUDENT" EntitySet="STUDENT" />
-      <End Role="HOSTEL_BLACKLIST" EntitySet="HOSTEL_BLACKLIST" />
-    </AssociationSet>
-    <AssociationSet Name="FK_STUDENT_MARITAL_STATUS" Association="Abundance_NkModel.FK_STUDENT_MARITAL_STATUS">
-      <End Role="MARITAL_STATUS" EntitySet="MARITAL_STATUS" />
-      <End Role="STUDENT" EntitySet="STUDENT" />
-    </AssociationSet>
-    <AssociationSet Name="FK_REPORT_CARD_STUDENT" Association="Abundance_NkModel.FK_REPORT_CARD_STUDENT">
-      <End Role="STUDENT" EntitySet="STUDENT" />
-      <End Role="REPORT_CARD" EntitySet="REPORT_CARD" />
-    </AssociationSet>
-    <AssociationSet Name="FK_GST_SCAN_STUDENT" Association="Abundance_NkModel.FK_GST_SCAN_STUDENT">
-      <End Role="STUDENT" EntitySet="STUDENT" />
-      <End Role="GST_SCAN" EntitySet="GST_SCAN" />
-    </AssociationSet>
-    <AssociationSet Name="FK_STUDENT_ACADEMIC_INFORMATION_STUDENT" Association="Abundance_NkModel.FK_STUDENT_ACADEMIC_INFORMATION_STUDENT">
-      <End Role="STUDENT" EntitySet="STUDENT" />
-      <End Role="STUDENT_ACADEMIC_INFORMATION" EntitySet="STUDENT_ACADEMIC_INFORMATION" />
-    </AssociationSet>
-    <AssociationSet Name="FK_STUDENT_COURSE_REGISTRATION_STUDENT1" Association="Abundance_NkModel.FK_STUDENT_COURSE_REGISTRATION_STUDENT1">
-      <End Role="STUDENT" EntitySet="STUDENT" />
-      <End Role="STUDENT_COURSE_REGISTRATION" EntitySet="STUDENT_COURSE_REGISTRATION" />
-    </AssociationSet>
-    <AssociationSet Name="FK_STUDENT_EMPLOYMENT_INFORMATION_STUDENT" Association="Abundance_NkModel.FK_STUDENT_EMPLOYMENT_INFORMATION_STUDENT">
-      <End Role="STUDENT" EntitySet="STUDENT" />
-      <End Role="STUDENT_EMPLOYMENT_INFORMATION" EntitySet="STUDENT_EMPLOYMENT_INFORMATION" />
-    </AssociationSet>
-    <AssociationSet Name="FK_STUDENT_EXAM_RAW_SCORE_SHEET_RESULT_STUDENT" Association="Abundance_NkModel.FK_STUDENT_EXAM_RAW_SCORE_SHEET_RESULT_STUDENT">
-      <End Role="STUDENT" EntitySet="STUDENT" />
-      <End Role="STUDENT_EXAM_RAW_SCORE_SHEET_RESULT" EntitySet="STUDENT_EXAM_RAW_SCORE_SHEET_RESULT" />
-    </AssociationSet>
-    <AssociationSet Name="FK_STUDENT_FINANCE_INFORMATION_STUDENT" Association="Abundance_NkModel.FK_STUDENT_FINANCE_INFORMATION_STUDENT">
-      <End Role="STUDENT" EntitySet="STUDENT" />
-      <End Role="STUDENT_FINANCE_INFORMATION" EntitySet="STUDENT_FINANCE_INFORMATION" />
-    </AssociationSet>
-    <AssociationSet Name="FK_STUDENT_LEVEL_STUDENT" Association="Abundance_NkModel.FK_STUDENT_LEVEL_STUDENT">
-      <End Role="STUDENT" EntitySet="STUDENT" />
-      <End Role="STUDENT_LEVEL" EntitySet="STUDENT_LEVEL" />
-    </AssociationSet>
-    <AssociationSet Name="FK_STUDENT_ND_RESULT_STUDENT" Association="Abundance_NkModel.FK_STUDENT_ND_RESULT_STUDENT">
-      <End Role="STUDENT" EntitySet="STUDENT" />
-      <End Role="STUDENT_ND_RESULT" EntitySet="STUDENT_ND_RESULT" />
-    </AssociationSet>
-    <AssociationSet Name="FK_STUDENT_RESULT_DETAIL_PERSON" Association="Abundance_NkModel.FK_STUDENT_RESULT_DETAIL_PERSON">
-      <End Role="STUDENT" EntitySet="STUDENT" />
-      <End Role="STUDENT_RESULT_DETAIL" EntitySet="STUDENT_RESULT_DETAIL" />
-    </AssociationSet>
-    <AssociationSet Name="FK_STUDENT_SCORE_STUDENT" Association="Abundance_NkModel.FK_STUDENT_SCORE_STUDENT">
-      <End Role="STUDENT" EntitySet="STUDENT" />
-      <End Role="STUDENT_SCORE" EntitySet="STUDENT_SCORE" />
-    </AssociationSet>
-    <AssociationSet Name="FK_STUDENT_SPONSOR_STUDENT" Association="Abundance_NkModel.FK_STUDENT_SPONSOR_STUDENT">
-      <End Role="STUDENT" EntitySet="STUDENT" />
-      <End Role="STUDENT_SPONSOR" EntitySet="STUDENT_SPONSOR" />
-    </AssociationSet>
-    <AssociationSet Name="FK_STUDENT_STUDENT_CATEGORY" Association="Abundance_NkModel.FK_STUDENT_STUDENT_CATEGORY">
-      <End Role="STUDENT_CATEGORY" EntitySet="STUDENT_CATEGORY" />
-      <End Role="STUDENT" EntitySet="STUDENT" />
-    </AssociationSet>
-    <AssociationSet Name="FK_STUDENT_STUDENT_STATUS" Association="Abundance_NkModel.FK_STUDENT_STUDENT_STATUS">
-      <End Role="STUDENT_STATUS" EntitySet="STUDENT_STATUS" />
-      <End Role="STUDENT" EntitySet="STUDENT" />
-    </AssociationSet>
-    <AssociationSet Name="FK_STUDENT_STUDENT_TYPE" Association="Abundance_NkModel.FK_STUDENT_STUDENT_TYPE">
-      <End Role="STUDENT_TYPE" EntitySet="STUDENT_TYPE" />
-      <End Role="STUDENT" EntitySet="STUDENT" />
-    </AssociationSet>
-    <AssociationSet Name="FK_STUDENT_TERM_STUDENT" Association="Abundance_NkModel.FK_STUDENT_TERM_STUDENT">
-      <End Role="STUDENT" EntitySet="STUDENT" />
-      <End Role="STUDENT_SEMESTER" EntitySet="STUDENT_SEMESTER" />
-    </AssociationSet>
-    <AssociationSet Name="FK_STUDENT_TITLE" Association="Abundance_NkModel.FK_STUDENT_TITLE">
-      <End Role="TITLE" EntitySet="TITLE" />
-      <End Role="STUDENT" EntitySet="STUDENT" />
-    </AssociationSet>
-    <AssociationSet Name="FK_STUDENT_UPDATE_AUDIT_STUDENT" Association="Abundance_NkModel.FK_STUDENT_UPDATE_AUDIT_STUDENT">
-      <End Role="STUDENT" EntitySet="STUDENT" />
-      <End Role="STUDENT_UPDATE_AUDIT" EntitySet="STUDENT_UPDATE_AUDIT" />
-    </AssociationSet>
-    <AssociationSet Name="FK_TRANSCRIPT_REQUEST_STUDENT" Association="Abundance_NkModel.FK_TRANSCRIPT_REQUEST_STUDENT">
-      <End Role="STUDENT" EntitySet="STUDENT" />
-      <End Role="TRANSCRIPT_REQUEST" EntitySet="TRANSCRIPT_REQUEST" />
     </AssociationSet>
     <FunctionImport Name="STP_GENERATE_POST_GRADUATE_MATRIC_NUMBER" ReturnType="Collection(String)">
       <Parameter Name="paramPerson_Id" Mode="In" Type="Int64" />
@@ -2354,15 +2245,124 @@
       <End Role="PERSON" EntitySet="PERSON" />
       <End Role="STUDENT_PAYMENT" EntitySet="STUDENT_PAYMENT" />
     </AssociationSet>
-    <AssociationSet Name="FK_STUDENT_PERSON" Association="Abundance_NkModel.FK_STUDENT_PERSON">
-      <End Role="PERSON" EntitySet="PERSON" />
-      <End Role="STUDENT" EntitySet="STUDENT" />
-    </AssociationSet>
     <EntitySet Name="VW_ACCEPTANCE_REPORT" EntityType="Abundance_NkModel.VW_ACCEPTANCE_REPORT" />
     <EntitySet Name="VW_ALL_PAYMENT_REPORT_GENERAL" EntityType="Abundance_NkModel.VW_ALL_PAYMENT_REPORT_GENERAL" />
     <EntitySet Name="VW_PAYMENT_REMITA" EntityType="Abundance_NkModel.VW_PAYMENT_REMITA" />
     <EntitySet Name="VW_PAYMENT_OLD_STUDENT" EntityType="Abundance_NkModel.VW_PAYMENT_OLD_STUDENT" />
     <EntitySet Name="VW_PAYMENT_NEW_STUDENT" EntityType="Abundance_NkModel.VW_PAYMENT_NEW_STUDENT" />
+    <EntitySet Name="STUDENT" EntityType="Abundance_NkModel.STUDENT" />
+    <AssociationSet Name="FK_STUDENT_APPLICATION_FORM" Association="Abundance_NkModel.FK_STUDENT_APPLICATION_FORM">
+      <End Role="APPLICATION_FORM" EntitySet="APPLICATION_FORM" />
+      <End Role="STUDENT" EntitySet="STUDENT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_STUDENT_BLOOD_GROUP" Association="Abundance_NkModel.FK_STUDENT_BLOOD_GROUP">
+      <End Role="BLOOD_GROUP" EntitySet="BLOOD_GROUP" />
+      <End Role="STUDENT" EntitySet="STUDENT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_COURSE_EVALUATION_ANSWER_STUDENT" Association="Abundance_NkModel.FK_COURSE_EVALUATION_ANSWER_STUDENT">
+      <End Role="STUDENT" EntitySet="STUDENT" />
+      <End Role="COURSE_EVALUATION_ANSWER" EntitySet="COURSE_EVALUATION_ANSWER" />
+    </AssociationSet>
+    <AssociationSet Name="FK_E_ASSIGNMENT_SUBMISSION_STUDENT" Association="Abundance_NkModel.FK_E_ASSIGNMENT_SUBMISSION_STUDENT">
+      <End Role="STUDENT" EntitySet="STUDENT" />
+      <End Role="E_ASSIGNMENT_SUBMISSION" EntitySet="E_ASSIGNMENT_SUBMISSION" />
+    </AssociationSet>
+    <AssociationSet Name="FK_E_CHAT_RESPONPSE_STUDENT" Association="Abundance_NkModel.FK_E_CHAT_RESPONPSE_STUDENT">
+      <End Role="STUDENT" EntitySet="STUDENT" />
+      <End Role="E_CHAT_RESPONPSE" EntitySet="E_CHAT_RESPONPSE" />
+    </AssociationSet>
+    <AssociationSet Name="FK_STUDENT_GENOTYPE" Association="Abundance_NkModel.FK_STUDENT_GENOTYPE">
+      <End Role="GENOTYPE" EntitySet="GENOTYPE" />
+      <End Role="STUDENT" EntitySet="STUDENT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HOSTEL_BLACKLIST_STUDENT" Association="Abundance_NkModel.FK_HOSTEL_BLACKLIST_STUDENT">
+      <End Role="STUDENT" EntitySet="STUDENT" />
+      <End Role="HOSTEL_BLACKLIST" EntitySet="HOSTEL_BLACKLIST" />
+    </AssociationSet>
+    <AssociationSet Name="FK_STUDENT_MARITAL_STATUS" Association="Abundance_NkModel.FK_STUDENT_MARITAL_STATUS">
+      <End Role="MARITAL_STATUS" EntitySet="MARITAL_STATUS" />
+      <End Role="STUDENT" EntitySet="STUDENT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_STUDENT_PERSON" Association="Abundance_NkModel.FK_STUDENT_PERSON">
+      <End Role="PERSON" EntitySet="PERSON" />
+      <End Role="STUDENT" EntitySet="STUDENT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_REPORT_CARD_STUDENT" Association="Abundance_NkModel.FK_REPORT_CARD_STUDENT">
+      <End Role="STUDENT" EntitySet="STUDENT" />
+      <End Role="REPORT_CARD" EntitySet="REPORT_CARD" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GST_SCAN_STUDENT" Association="Abundance_NkModel.FK_GST_SCAN_STUDENT">
+      <End Role="STUDENT" EntitySet="STUDENT" />
+      <End Role="GST_SCAN" EntitySet="GST_SCAN" />
+    </AssociationSet>
+    <AssociationSet Name="FK_STUDENT_ACADEMIC_INFORMATION_STUDENT" Association="Abundance_NkModel.FK_STUDENT_ACADEMIC_INFORMATION_STUDENT">
+      <End Role="STUDENT" EntitySet="STUDENT" />
+      <End Role="STUDENT_ACADEMIC_INFORMATION" EntitySet="STUDENT_ACADEMIC_INFORMATION" />
+    </AssociationSet>
+    <AssociationSet Name="FK_STUDENT_COURSE_REGISTRATION_STUDENT1" Association="Abundance_NkModel.FK_STUDENT_COURSE_REGISTRATION_STUDENT1">
+      <End Role="STUDENT" EntitySet="STUDENT" />
+      <End Role="STUDENT_COURSE_REGISTRATION" EntitySet="STUDENT_COURSE_REGISTRATION" />
+    </AssociationSet>
+    <AssociationSet Name="FK_STUDENT_EMPLOYMENT_INFORMATION_STUDENT" Association="Abundance_NkModel.FK_STUDENT_EMPLOYMENT_INFORMATION_STUDENT">
+      <End Role="STUDENT" EntitySet="STUDENT" />
+      <End Role="STUDENT_EMPLOYMENT_INFORMATION" EntitySet="STUDENT_EMPLOYMENT_INFORMATION" />
+    </AssociationSet>
+    <AssociationSet Name="FK_STUDENT_EXAM_RAW_SCORE_SHEET_RESULT_STUDENT" Association="Abundance_NkModel.FK_STUDENT_EXAM_RAW_SCORE_SHEET_RESULT_STUDENT">
+      <End Role="STUDENT" EntitySet="STUDENT" />
+      <End Role="STUDENT_EXAM_RAW_SCORE_SHEET_RESULT" EntitySet="STUDENT_EXAM_RAW_SCORE_SHEET_RESULT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_STUDENT_FINANCE_INFORMATION_STUDENT" Association="Abundance_NkModel.FK_STUDENT_FINANCE_INFORMATION_STUDENT">
+      <End Role="STUDENT" EntitySet="STUDENT" />
+      <End Role="STUDENT_FINANCE_INFORMATION" EntitySet="STUDENT_FINANCE_INFORMATION" />
+    </AssociationSet>
+    <AssociationSet Name="FK_STUDENT_LEVEL_STUDENT" Association="Abundance_NkModel.FK_STUDENT_LEVEL_STUDENT">
+      <End Role="STUDENT" EntitySet="STUDENT" />
+      <End Role="STUDENT_LEVEL" EntitySet="STUDENT_LEVEL" />
+    </AssociationSet>
+    <AssociationSet Name="FK_STUDENT_ND_RESULT_STUDENT" Association="Abundance_NkModel.FK_STUDENT_ND_RESULT_STUDENT">
+      <End Role="STUDENT" EntitySet="STUDENT" />
+      <End Role="STUDENT_ND_RESULT" EntitySet="STUDENT_ND_RESULT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_STUDENT_RESULT_DETAIL_PERSON" Association="Abundance_NkModel.FK_STUDENT_RESULT_DETAIL_PERSON">
+      <End Role="STUDENT" EntitySet="STUDENT" />
+      <End Role="STUDENT_RESULT_DETAIL" EntitySet="STUDENT_RESULT_DETAIL" />
+    </AssociationSet>
+    <AssociationSet Name="FK_STUDENT_SCORE_STUDENT" Association="Abundance_NkModel.FK_STUDENT_SCORE_STUDENT">
+      <End Role="STUDENT" EntitySet="STUDENT" />
+      <End Role="STUDENT_SCORE" EntitySet="STUDENT_SCORE" />
+    </AssociationSet>
+    <AssociationSet Name="FK_STUDENT_SPONSOR_STUDENT" Association="Abundance_NkModel.FK_STUDENT_SPONSOR_STUDENT">
+      <End Role="STUDENT" EntitySet="STUDENT" />
+      <End Role="STUDENT_SPONSOR" EntitySet="STUDENT_SPONSOR" />
+    </AssociationSet>
+    <AssociationSet Name="FK_STUDENT_STUDENT_CATEGORY" Association="Abundance_NkModel.FK_STUDENT_STUDENT_CATEGORY">
+      <End Role="STUDENT_CATEGORY" EntitySet="STUDENT_CATEGORY" />
+      <End Role="STUDENT" EntitySet="STUDENT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_STUDENT_STUDENT_STATUS" Association="Abundance_NkModel.FK_STUDENT_STUDENT_STATUS">
+      <End Role="STUDENT_STATUS" EntitySet="STUDENT_STATUS" />
+      <End Role="STUDENT" EntitySet="STUDENT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_STUDENT_STUDENT_TYPE" Association="Abundance_NkModel.FK_STUDENT_STUDENT_TYPE">
+      <End Role="STUDENT_TYPE" EntitySet="STUDENT_TYPE" />
+      <End Role="STUDENT" EntitySet="STUDENT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_STUDENT_TERM_STUDENT" Association="Abundance_NkModel.FK_STUDENT_TERM_STUDENT">
+      <End Role="STUDENT" EntitySet="STUDENT" />
+      <End Role="STUDENT_SEMESTER" EntitySet="STUDENT_SEMESTER" />
+    </AssociationSet>
+    <AssociationSet Name="FK_STUDENT_TITLE" Association="Abundance_NkModel.FK_STUDENT_TITLE">
+      <End Role="TITLE" EntitySet="TITLE" />
+      <End Role="STUDENT" EntitySet="STUDENT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_STUDENT_UPDATE_AUDIT_STUDENT" Association="Abundance_NkModel.FK_STUDENT_UPDATE_AUDIT_STUDENT">
+      <End Role="STUDENT" EntitySet="STUDENT" />
+      <End Role="STUDENT_UPDATE_AUDIT" EntitySet="STUDENT_UPDATE_AUDIT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TRANSCRIPT_REQUEST_STUDENT" Association="Abundance_NkModel.FK_TRANSCRIPT_REQUEST_STUDENT">
+      <End Role="STUDENT" EntitySet="STUDENT" />
+      <End Role="TRANSCRIPT_REQUEST" EntitySet="TRANSCRIPT_REQUEST" />
+    </AssociationSet>
   </EntityContainer>
   <ComplexType Name="STP_INSERT_APPLICATION_FORM_Result">
     <Property Type="Int64" Name="Application_Form_Id" Nullable="false" />
@@ -2936,8 +2936,8 @@
     <NavigationProperty Name="APPLICATION_PROGRAMME_FEE" Relationship="Abundance_NkModel.FK_APPLICATION_FORM_APPLICATION_PROGRAMME_FEE" FromRole="APPLICATION_FORM" ToRole="APPLICATION_PROGRAMME_FEE" />
     <NavigationProperty Name="PAYMENT" Relationship="Abundance_NkModel.FK_APPLICATION_FORM_PAYMENT" FromRole="APPLICATION_FORM" ToRole="PAYMENT" />
     <NavigationProperty Name="NEXT_OF_KIN" Relationship="Abundance_NkModel.FK_NEXT_OF_KIN_APPLICATION_FORM" FromRole="APPLICATION_FORM" ToRole="NEXT_OF_KIN" />
-    <NavigationProperty Name="STUDENT" Relationship="Abundance_NkModel.FK_STUDENT_APPLICATION_FORM" FromRole="APPLICATION_FORM" ToRole="STUDENT" />
     <NavigationProperty Name="PERSON" Relationship="Abundance_NkModel.FK_APPLICATION_FORM_PERSON" FromRole="APPLICATION_FORM" ToRole="PERSON" />
+    <NavigationProperty Name="STUDENT" Relationship="Abundance_NkModel.FK_STUDENT_APPLICATION_FORM" FromRole="APPLICATION_FORM" ToRole="STUDENT" />
   </EntityType>
   <EntityType Name="APPLICATION_FORM_SETTING">
     <Key>
@@ -14132,55 +14132,6 @@
     <NavigationProperty Name="APPLICANT_REFEREE_GRADING_RESPONSE" Relationship="Abundance_NkModel.FK_APPLICANT_REFEREE_GRADING_RESPONSE_REFEREE_GRADING_SYSTEM" FromRole="REFEREE_GRADING_SYSTEM" ToRole="APPLICANT_REFEREE_GRADING_RESPONSE" />
     <NavigationProperty Name="APPLICANT_REFEREE_RESPONSE" Relationship="Abundance_NkModel.FK_APPLICANT_REFEREE_RESPONSE_REFEREE_GRADING_SYSTEM" FromRole="REFEREE_GRADING_SYSTEM" ToRole="APPLICANT_REFEREE_RESPONSE" />
   </EntityType>
-  <EntityType Name="STUDENT">
-    <Key>
-      <PropertyRef Name="Person_Id" />
-    </Key>
-    <Property Name="Person_Id" Type="Int64" Nullable="false" />
-    <Property Name="Application_Form_Id" Type="Int64" />
-    <Property Name="Student_Type_Id" Type="Int32" Nullable="false" />
-    <Property Name="Student_Category_Id" Type="Int32" Nullable="false" />
-    <Property Name="Student_Status_Id" Type="Int32" Nullable="false" />
-    <Property Name="Student_Number" Type="Int64" />
-    <Property Name="Matric_Number" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="Title_Id" Type="Int32" />
-    <Property Name="Marital_Status_Id" Type="Int32" />
-    <Property Name="Blood_Group_Id" Type="Int32" />
-    <Property Name="Genotype_Id" Type="Int32" />
-    <Property Name="School_Contact_Address" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
-    <Property Name="Activated" Type="Boolean" />
-    <Property Name="Reason" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-    <Property Name="Reject_Category" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-    <Property Name="Password_hash" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="APPLICATION_FORM" Relationship="Abundance_NkModel.FK_STUDENT_APPLICATION_FORM" FromRole="STUDENT" ToRole="APPLICATION_FORM" />
-    <NavigationProperty Name="BLOOD_GROUP" Relationship="Abundance_NkModel.FK_STUDENT_BLOOD_GROUP" FromRole="STUDENT" ToRole="BLOOD_GROUP" />
-    <NavigationProperty Name="COURSE_EVALUATION_ANSWER" Relationship="Abundance_NkModel.FK_COURSE_EVALUATION_ANSWER_STUDENT" FromRole="STUDENT" ToRole="COURSE_EVALUATION_ANSWER" />
-    <NavigationProperty Name="E_ASSIGNMENT_SUBMISSION" Relationship="Abundance_NkModel.FK_E_ASSIGNMENT_SUBMISSION_STUDENT" FromRole="STUDENT" ToRole="E_ASSIGNMENT_SUBMISSION" />
-    <NavigationProperty Name="E_CHAT_RESPONPSE" Relationship="Abundance_NkModel.FK_E_CHAT_RESPONPSE_STUDENT" FromRole="STUDENT" ToRole="E_CHAT_RESPONPSE" />
-    <NavigationProperty Name="GENOTYPE" Relationship="Abundance_NkModel.FK_STUDENT_GENOTYPE" FromRole="STUDENT" ToRole="GENOTYPE" />
-    <NavigationProperty Name="HOSTEL_BLACKLIST" Relationship="Abundance_NkModel.FK_HOSTEL_BLACKLIST_STUDENT" FromRole="STUDENT" ToRole="HOSTEL_BLACKLIST" />
-    <NavigationProperty Name="MARITAL_STATUS" Relationship="Abundance_NkModel.FK_STUDENT_MARITAL_STATUS" FromRole="STUDENT" ToRole="MARITAL_STATUS" />
-    <NavigationProperty Name="REPORT_CARD" Relationship="Abundance_NkModel.FK_REPORT_CARD_STUDENT" FromRole="STUDENT" ToRole="REPORT_CARD" />
-    <NavigationProperty Name="GST_SCAN" Relationship="Abundance_NkModel.FK_GST_SCAN_STUDENT" FromRole="STUDENT" ToRole="GST_SCAN" />
-    <NavigationProperty Name="STUDENT_ACADEMIC_INFORMATION" Relationship="Abundance_NkModel.FK_STUDENT_ACADEMIC_INFORMATION_STUDENT" FromRole="STUDENT" ToRole="STUDENT_ACADEMIC_INFORMATION" />
-    <NavigationProperty Name="STUDENT_COURSE_REGISTRATION" Relationship="Abundance_NkModel.FK_STUDENT_COURSE_REGISTRATION_STUDENT1" FromRole="STUDENT" ToRole="STUDENT_COURSE_REGISTRATION" />
-    <NavigationProperty Name="STUDENT_EMPLOYMENT_INFORMATION" Relationship="Abundance_NkModel.FK_STUDENT_EMPLOYMENT_INFORMATION_STUDENT" FromRole="STUDENT" ToRole="STUDENT_EMPLOYMENT_INFORMATION" />
-    <NavigationProperty Name="STUDENT_EXAM_RAW_SCORE_SHEET_RESULT" Relationship="Abundance_NkModel.FK_STUDENT_EXAM_RAW_SCORE_SHEET_RESULT_STUDENT" FromRole="STUDENT" ToRole="STUDENT_EXAM_RAW_SCORE_SHEET_RESULT" />
-    <NavigationProperty Name="STUDENT_FINANCE_INFORMATION" Relationship="Abundance_NkModel.FK_STUDENT_FINANCE_INFORMATION_STUDENT" FromRole="STUDENT" ToRole="STUDENT_FINANCE_INFORMATION" />
-    <NavigationProperty Name="STUDENT_LEVEL" Relationship="Abundance_NkModel.FK_STUDENT_LEVEL_STUDENT" FromRole="STUDENT" ToRole="STUDENT_LEVEL" />
-    <NavigationProperty Name="STUDENT_ND_RESULT" Relationship="Abundance_NkModel.FK_STUDENT_ND_RESULT_STUDENT" FromRole="STUDENT" ToRole="STUDENT_ND_RESULT" />
-    <NavigationProperty Name="STUDENT_RESULT_DETAIL" Relationship="Abundance_NkModel.FK_STUDENT_RESULT_DETAIL_PERSON" FromRole="STUDENT" ToRole="STUDENT_RESULT_DETAIL" />
-    <NavigationProperty Name="STUDENT_SCORE" Relationship="Abundance_NkModel.FK_STUDENT_SCORE_STUDENT" FromRole="STUDENT" ToRole="STUDENT_SCORE" />
-    <NavigationProperty Name="STUDENT_SPONSOR" Relationship="Abundance_NkModel.FK_STUDENT_SPONSOR_STUDENT" FromRole="STUDENT" ToRole="STUDENT_SPONSOR" />
-    <NavigationProperty Name="STUDENT_CATEGORY" Relationship="Abundance_NkModel.FK_STUDENT_STUDENT_CATEGORY" FromRole="STUDENT" ToRole="STUDENT_CATEGORY" />
-    <NavigationProperty Name="STUDENT_STATUS" Relationship="Abundance_NkModel.FK_STUDENT_STUDENT_STATUS" FromRole="STUDENT" ToRole="STUDENT_STATUS" />
-    <NavigationProperty Name="STUDENT_TYPE" Relationship="Abundance_NkModel.FK_STUDENT_STUDENT_TYPE" FromRole="STUDENT" ToRole="STUDENT_TYPE" />
-    <NavigationProperty Name="STUDENT_SEMESTER" Relationship="Abundance_NkModel.FK_STUDENT_TERM_STUDENT" FromRole="STUDENT" ToRole="STUDENT_SEMESTER" />
-    <NavigationProperty Name="TITLE" Relationship="Abundance_NkModel.FK_STUDENT_TITLE" FromRole="STUDENT" ToRole="TITLE" />
-    <NavigationProperty Name="STUDENT_UPDATE_AUDIT" Relationship="Abundance_NkModel.FK_STUDENT_UPDATE_AUDIT_STUDENT" FromRole="STUDENT" ToRole="STUDENT_UPDATE_AUDIT" />
-    <NavigationProperty Name="TRANSCRIPT_REQUEST" Relationship="Abundance_NkModel.FK_TRANSCRIPT_REQUEST_STUDENT" FromRole="STUDENT" ToRole="TRANSCRIPT_REQUEST" />
-    <NavigationProperty Name="PERSON" Relationship="Abundance_NkModel.FK_STUDENT_PERSON" FromRole="STUDENT" ToRole="PERSON" />
-  </EntityType>
   <Association Name="FK_APPLICANT_REFEREE_RESPONSE_APPLICANT_REFEREE">
     <End Type="Abundance_NkModel.APPLICANT_REFEREE" Role="APPLICANT_REFEREE" Multiplicity="1" />
     <End Type="Abundance_NkModel.APPLICANT_REFEREE_RESPONSE" Role="APPLICANT_REFEREE_RESPONSE" Multiplicity="*" />
@@ -14238,330 +14189,6 @@
       </Principal>
       <Dependent Role="APPLICANT_REFEREE_RESPONSE">
         <PropertyRef Name="Overall_Rating" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_STUDENT_APPLICATION_FORM">
-    <End Type="Abundance_NkModel.APPLICATION_FORM" Role="APPLICATION_FORM" Multiplicity="0..1" />
-    <End Type="Abundance_NkModel.STUDENT" Role="STUDENT" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="APPLICATION_FORM">
-        <PropertyRef Name="Application_Form_Id" />
-      </Principal>
-      <Dependent Role="STUDENT">
-        <PropertyRef Name="Application_Form_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_STUDENT_BLOOD_GROUP">
-    <End Type="Abundance_NkModel.BLOOD_GROUP" Role="BLOOD_GROUP" Multiplicity="0..1" />
-    <End Type="Abundance_NkModel.STUDENT" Role="STUDENT" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="BLOOD_GROUP">
-        <PropertyRef Name="Blood_Group_Id" />
-      </Principal>
-      <Dependent Role="STUDENT">
-        <PropertyRef Name="Blood_Group_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_COURSE_EVALUATION_ANSWER_STUDENT">
-    <End Type="Abundance_NkModel.STUDENT" Role="STUDENT" Multiplicity="1" />
-    <End Type="Abundance_NkModel.COURSE_EVALUATION_ANSWER" Role="COURSE_EVALUATION_ANSWER" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="STUDENT">
-        <PropertyRef Name="Person_Id" />
-      </Principal>
-      <Dependent Role="COURSE_EVALUATION_ANSWER">
-        <PropertyRef Name="Person_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_E_ASSIGNMENT_SUBMISSION_STUDENT">
-    <End Type="Abundance_NkModel.STUDENT" Role="STUDENT" Multiplicity="1" />
-    <End Type="Abundance_NkModel.E_ASSIGNMENT_SUBMISSION" Role="E_ASSIGNMENT_SUBMISSION" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="STUDENT">
-        <PropertyRef Name="Person_Id" />
-      </Principal>
-      <Dependent Role="E_ASSIGNMENT_SUBMISSION">
-        <PropertyRef Name="Student_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_E_CHAT_RESPONPSE_STUDENT">
-    <End Type="Abundance_NkModel.STUDENT" Role="STUDENT" Multiplicity="0..1" />
-    <End Type="Abundance_NkModel.E_CHAT_RESPONPSE" Role="E_CHAT_RESPONPSE" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="STUDENT">
-        <PropertyRef Name="Person_Id" />
-      </Principal>
-      <Dependent Role="E_CHAT_RESPONPSE">
-        <PropertyRef Name="Student_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_STUDENT_GENOTYPE">
-    <End Type="Abundance_NkModel.GENOTYPE" Role="GENOTYPE" Multiplicity="0..1" />
-    <End Type="Abundance_NkModel.STUDENT" Role="STUDENT" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="GENOTYPE">
-        <PropertyRef Name="Genotype_Id" />
-      </Principal>
-      <Dependent Role="STUDENT">
-        <PropertyRef Name="Genotype_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_HOSTEL_BLACKLIST_STUDENT">
-    <End Type="Abundance_NkModel.STUDENT" Role="STUDENT" Multiplicity="1" />
-    <End Type="Abundance_NkModel.HOSTEL_BLACKLIST" Role="HOSTEL_BLACKLIST" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="STUDENT">
-        <PropertyRef Name="Person_Id" />
-      </Principal>
-      <Dependent Role="HOSTEL_BLACKLIST">
-        <PropertyRef Name="Person_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_STUDENT_MARITAL_STATUS">
-    <End Type="Abundance_NkModel.MARITAL_STATUS" Role="MARITAL_STATUS" Multiplicity="0..1" />
-    <End Type="Abundance_NkModel.STUDENT" Role="STUDENT" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="MARITAL_STATUS">
-        <PropertyRef Name="Marital_Status_Id" />
-      </Principal>
-      <Dependent Role="STUDENT">
-        <PropertyRef Name="Marital_Status_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_REPORT_CARD_STUDENT">
-    <End Type="Abundance_NkModel.STUDENT" Role="STUDENT" Multiplicity="1" />
-    <End Type="Abundance_NkModel.REPORT_CARD" Role="REPORT_CARD" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="STUDENT">
-        <PropertyRef Name="Person_Id" />
-      </Principal>
-      <Dependent Role="REPORT_CARD">
-        <PropertyRef Name="Student_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_GST_SCAN_STUDENT">
-    <End Type="Abundance_NkModel.STUDENT" Role="STUDENT" Multiplicity="0..1" />
-    <End Type="Abundance_NkModel.GST_SCAN" Role="GST_SCAN" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="STUDENT">
-        <PropertyRef Name="Person_Id" />
-      </Principal>
-      <Dependent Role="GST_SCAN">
-        <PropertyRef Name="Student_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_STUDENT_ACADEMIC_INFORMATION_STUDENT">
-    <End Type="Abundance_NkModel.STUDENT" Role="STUDENT" Multiplicity="1" />
-    <End Type="Abundance_NkModel.STUDENT_ACADEMIC_INFORMATION" Role="STUDENT_ACADEMIC_INFORMATION" Multiplicity="0..1" />
-    <ReferentialConstraint>
-      <Principal Role="STUDENT">
-        <PropertyRef Name="Person_Id" />
-      </Principal>
-      <Dependent Role="STUDENT_ACADEMIC_INFORMATION">
-        <PropertyRef Name="Person_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_STUDENT_COURSE_REGISTRATION_STUDENT1">
-    <End Type="Abundance_NkModel.STUDENT" Role="STUDENT" Multiplicity="1" />
-    <End Type="Abundance_NkModel.STUDENT_COURSE_REGISTRATION" Role="STUDENT_COURSE_REGISTRATION" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="STUDENT">
-        <PropertyRef Name="Person_Id" />
-      </Principal>
-      <Dependent Role="STUDENT_COURSE_REGISTRATION">
-        <PropertyRef Name="Person_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_STUDENT_EMPLOYMENT_INFORMATION_STUDENT">
-    <End Type="Abundance_NkModel.STUDENT" Role="STUDENT" Multiplicity="1" />
-    <End Type="Abundance_NkModel.STUDENT_EMPLOYMENT_INFORMATION" Role="STUDENT_EMPLOYMENT_INFORMATION" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="STUDENT">
-        <PropertyRef Name="Person_Id" />
-      </Principal>
-      <Dependent Role="STUDENT_EMPLOYMENT_INFORMATION">
-        <PropertyRef Name="Person_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_STUDENT_EXAM_RAW_SCORE_SHEET_RESULT_STUDENT">
-    <End Type="Abundance_NkModel.STUDENT" Role="STUDENT" Multiplicity="1" />
-    <End Type="Abundance_NkModel.STUDENT_EXAM_RAW_SCORE_SHEET_RESULT" Role="STUDENT_EXAM_RAW_SCORE_SHEET_RESULT" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="STUDENT">
-        <PropertyRef Name="Person_Id" />
-      </Principal>
-      <Dependent Role="STUDENT_EXAM_RAW_SCORE_SHEET_RESULT">
-        <PropertyRef Name="Student_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_STUDENT_FINANCE_INFORMATION_STUDENT">
-    <End Type="Abundance_NkModel.STUDENT" Role="STUDENT" Multiplicity="1" />
-    <End Type="Abundance_NkModel.STUDENT_FINANCE_INFORMATION" Role="STUDENT_FINANCE_INFORMATION" Multiplicity="0..1" />
-    <ReferentialConstraint>
-      <Principal Role="STUDENT">
-        <PropertyRef Name="Person_Id" />
-      </Principal>
-      <Dependent Role="STUDENT_FINANCE_INFORMATION">
-        <PropertyRef Name="Person_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_STUDENT_LEVEL_STUDENT">
-    <End Type="Abundance_NkModel.STUDENT" Role="STUDENT" Multiplicity="1" />
-    <End Type="Abundance_NkModel.STUDENT_LEVEL" Role="STUDENT_LEVEL" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="STUDENT">
-        <PropertyRef Name="Person_Id" />
-      </Principal>
-      <Dependent Role="STUDENT_LEVEL">
-        <PropertyRef Name="Person_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_STUDENT_ND_RESULT_STUDENT">
-    <End Type="Abundance_NkModel.STUDENT" Role="STUDENT" Multiplicity="1" />
-    <End Type="Abundance_NkModel.STUDENT_ND_RESULT" Role="STUDENT_ND_RESULT" Multiplicity="0..1" />
-    <ReferentialConstraint>
-      <Principal Role="STUDENT">
-        <PropertyRef Name="Person_Id" />
-      </Principal>
-      <Dependent Role="STUDENT_ND_RESULT">
-        <PropertyRef Name="Person_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_STUDENT_RESULT_DETAIL_PERSON">
-    <End Type="Abundance_NkModel.STUDENT" Role="STUDENT" Multiplicity="1" />
-    <End Type="Abundance_NkModel.STUDENT_RESULT_DETAIL" Role="STUDENT_RESULT_DETAIL" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="STUDENT">
-        <PropertyRef Name="Person_Id" />
-      </Principal>
-      <Dependent Role="STUDENT_RESULT_DETAIL">
-        <PropertyRef Name="Person_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_STUDENT_SCORE_STUDENT">
-    <End Type="Abundance_NkModel.STUDENT" Role="STUDENT" Multiplicity="1" />
-    <End Type="Abundance_NkModel.STUDENT_SCORE" Role="STUDENT_SCORE" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="STUDENT">
-        <PropertyRef Name="Person_Id" />
-      </Principal>
-      <Dependent Role="STUDENT_SCORE">
-        <PropertyRef Name="Person_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_STUDENT_SPONSOR_STUDENT">
-    <End Type="Abundance_NkModel.STUDENT" Role="STUDENT" Multiplicity="1" />
-    <End Type="Abundance_NkModel.STUDENT_SPONSOR" Role="STUDENT_SPONSOR" Multiplicity="0..1" />
-    <ReferentialConstraint>
-      <Principal Role="STUDENT">
-        <PropertyRef Name="Person_Id" />
-      </Principal>
-      <Dependent Role="STUDENT_SPONSOR">
-        <PropertyRef Name="Person_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_STUDENT_STUDENT_CATEGORY">
-    <End Type="Abundance_NkModel.STUDENT_CATEGORY" Role="STUDENT_CATEGORY" Multiplicity="1" />
-    <End Type="Abundance_NkModel.STUDENT" Role="STUDENT" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="STUDENT_CATEGORY">
-        <PropertyRef Name="Student_Category_Id" />
-      </Principal>
-      <Dependent Role="STUDENT">
-        <PropertyRef Name="Student_Category_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_STUDENT_STUDENT_STATUS">
-    <End Type="Abundance_NkModel.STUDENT_STATUS" Role="STUDENT_STATUS" Multiplicity="1" />
-    <End Type="Abundance_NkModel.STUDENT" Role="STUDENT" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="STUDENT_STATUS">
-        <PropertyRef Name="Student_Status_Id" />
-      </Principal>
-      <Dependent Role="STUDENT">
-        <PropertyRef Name="Student_Status_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_STUDENT_STUDENT_TYPE">
-    <End Type="Abundance_NkModel.STUDENT_TYPE" Role="STUDENT_TYPE" Multiplicity="1" />
-    <End Type="Abundance_NkModel.STUDENT" Role="STUDENT" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="STUDENT_TYPE">
-        <PropertyRef Name="Student_Type_Id" />
-      </Principal>
-      <Dependent Role="STUDENT">
-        <PropertyRef Name="Student_Type_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_STUDENT_TERM_STUDENT">
-    <End Type="Abundance_NkModel.STUDENT" Role="STUDENT" Multiplicity="1" />
-    <End Type="Abundance_NkModel.STUDENT_SEMESTER" Role="STUDENT_SEMESTER" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="STUDENT">
-        <PropertyRef Name="Person_Id" />
-      </Principal>
-      <Dependent Role="STUDENT_SEMESTER">
-        <PropertyRef Name="Person_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_STUDENT_TITLE">
-    <End Type="Abundance_NkModel.TITLE" Role="TITLE" Multiplicity="0..1" />
-    <End Type="Abundance_NkModel.STUDENT" Role="STUDENT" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="TITLE">
-        <PropertyRef Name="Title_Id" />
-      </Principal>
-      <Dependent Role="STUDENT">
-        <PropertyRef Name="Title_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_STUDENT_UPDATE_AUDIT_STUDENT">
-    <End Type="Abundance_NkModel.STUDENT" Role="STUDENT" Multiplicity="1" />
-    <End Type="Abundance_NkModel.STUDENT_UPDATE_AUDIT" Role="STUDENT_UPDATE_AUDIT" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="STUDENT">
-        <PropertyRef Name="Person_Id" />
-      </Principal>
-      <Dependent Role="STUDENT_UPDATE_AUDIT">
-        <PropertyRef Name="Student_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_TRANSCRIPT_REQUEST_STUDENT">
-    <End Type="Abundance_NkModel.STUDENT" Role="STUDENT" Multiplicity="0..1" />
-    <End Type="Abundance_NkModel.TRANSCRIPT_REQUEST" Role="TRANSCRIPT_REQUEST" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="STUDENT">
-        <PropertyRef Name="Person_Id" />
-      </Principal>
-      <Dependent Role="TRANSCRIPT_REQUEST">
-        <PropertyRef Name="Student_id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -15278,18 +14905,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_STUDENT_PERSON">
-    <End Type="Abundance_NkModel.PERSON" Role="PERSON" Multiplicity="1" />
-    <End Type="Abundance_NkModel.STUDENT" Role="STUDENT" Multiplicity="0..1" />
-    <ReferentialConstraint>
-      <Principal Role="PERSON">
-        <PropertyRef Name="Person_Id" />
-      </Principal>
-      <Dependent Role="STUDENT">
-        <PropertyRef Name="Person_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <EntityType Name="VW_ACCEPTANCE_REPORT">
     <Key>
       <PropertyRef Name="Department_Name" />
@@ -15475,4 +15090,391 @@
     <Property Name="Branch_Code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="OrderId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
   </EntityType>
+  <EntityType Name="STUDENT">
+    <Key>
+      <PropertyRef Name="Person_Id" />
+    </Key>
+    <Property Name="Person_Id" Type="Int64" Nullable="false" />
+    <Property Name="Application_Form_Id" Type="Int64" />
+    <Property Name="Student_Type_Id" Type="Int32" Nullable="false" />
+    <Property Name="Student_Category_Id" Type="Int32" Nullable="false" />
+    <Property Name="Student_Status_Id" Type="Int32" Nullable="false" />
+    <Property Name="Student_Number" Type="Int64" />
+    <Property Name="Matric_Number" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Title_Id" Type="Int32" />
+    <Property Name="Marital_Status_Id" Type="Int32" />
+    <Property Name="Blood_Group_Id" Type="Int32" />
+    <Property Name="Genotype_Id" Type="Int32" />
+    <Property Name="School_Contact_Address" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="Activated" Type="Boolean" />
+    <Property Name="Reason" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Reject_Category" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="Password_hash" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Guid" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="IsEmailConfirmed" Type="Boolean" />
+    <NavigationProperty Name="APPLICATION_FORM" Relationship="Abundance_NkModel.FK_STUDENT_APPLICATION_FORM" FromRole="STUDENT" ToRole="APPLICATION_FORM" />
+    <NavigationProperty Name="BLOOD_GROUP" Relationship="Abundance_NkModel.FK_STUDENT_BLOOD_GROUP" FromRole="STUDENT" ToRole="BLOOD_GROUP" />
+    <NavigationProperty Name="COURSE_EVALUATION_ANSWER" Relationship="Abundance_NkModel.FK_COURSE_EVALUATION_ANSWER_STUDENT" FromRole="STUDENT" ToRole="COURSE_EVALUATION_ANSWER" />
+    <NavigationProperty Name="E_ASSIGNMENT_SUBMISSION" Relationship="Abundance_NkModel.FK_E_ASSIGNMENT_SUBMISSION_STUDENT" FromRole="STUDENT" ToRole="E_ASSIGNMENT_SUBMISSION" />
+    <NavigationProperty Name="E_CHAT_RESPONPSE" Relationship="Abundance_NkModel.FK_E_CHAT_RESPONPSE_STUDENT" FromRole="STUDENT" ToRole="E_CHAT_RESPONPSE" />
+    <NavigationProperty Name="GENOTYPE" Relationship="Abundance_NkModel.FK_STUDENT_GENOTYPE" FromRole="STUDENT" ToRole="GENOTYPE" />
+    <NavigationProperty Name="HOSTEL_BLACKLIST" Relationship="Abundance_NkModel.FK_HOSTEL_BLACKLIST_STUDENT" FromRole="STUDENT" ToRole="HOSTEL_BLACKLIST" />
+    <NavigationProperty Name="MARITAL_STATUS" Relationship="Abundance_NkModel.FK_STUDENT_MARITAL_STATUS" FromRole="STUDENT" ToRole="MARITAL_STATUS" />
+    <NavigationProperty Name="PERSON" Relationship="Abundance_NkModel.FK_STUDENT_PERSON" FromRole="STUDENT" ToRole="PERSON" />
+    <NavigationProperty Name="REPORT_CARD" Relationship="Abundance_NkModel.FK_REPORT_CARD_STUDENT" FromRole="STUDENT" ToRole="REPORT_CARD" />
+    <NavigationProperty Name="GST_SCAN" Relationship="Abundance_NkModel.FK_GST_SCAN_STUDENT" FromRole="STUDENT" ToRole="GST_SCAN" />
+    <NavigationProperty Name="STUDENT_ACADEMIC_INFORMATION" Relationship="Abundance_NkModel.FK_STUDENT_ACADEMIC_INFORMATION_STUDENT" FromRole="STUDENT" ToRole="STUDENT_ACADEMIC_INFORMATION" />
+    <NavigationProperty Name="STUDENT_COURSE_REGISTRATION" Relationship="Abundance_NkModel.FK_STUDENT_COURSE_REGISTRATION_STUDENT1" FromRole="STUDENT" ToRole="STUDENT_COURSE_REGISTRATION" />
+    <NavigationProperty Name="STUDENT_EMPLOYMENT_INFORMATION" Relationship="Abundance_NkModel.FK_STUDENT_EMPLOYMENT_INFORMATION_STUDENT" FromRole="STUDENT" ToRole="STUDENT_EMPLOYMENT_INFORMATION" />
+    <NavigationProperty Name="STUDENT_EXAM_RAW_SCORE_SHEET_RESULT" Relationship="Abundance_NkModel.FK_STUDENT_EXAM_RAW_SCORE_SHEET_RESULT_STUDENT" FromRole="STUDENT" ToRole="STUDENT_EXAM_RAW_SCORE_SHEET_RESULT" />
+    <NavigationProperty Name="STUDENT_FINANCE_INFORMATION" Relationship="Abundance_NkModel.FK_STUDENT_FINANCE_INFORMATION_STUDENT" FromRole="STUDENT" ToRole="STUDENT_FINANCE_INFORMATION" />
+    <NavigationProperty Name="STUDENT_LEVEL" Relationship="Abundance_NkModel.FK_STUDENT_LEVEL_STUDENT" FromRole="STUDENT" ToRole="STUDENT_LEVEL" />
+    <NavigationProperty Name="STUDENT_ND_RESULT" Relationship="Abundance_NkModel.FK_STUDENT_ND_RESULT_STUDENT" FromRole="STUDENT" ToRole="STUDENT_ND_RESULT" />
+    <NavigationProperty Name="STUDENT_RESULT_DETAIL" Relationship="Abundance_NkModel.FK_STUDENT_RESULT_DETAIL_PERSON" FromRole="STUDENT" ToRole="STUDENT_RESULT_DETAIL" />
+    <NavigationProperty Name="STUDENT_SCORE" Relationship="Abundance_NkModel.FK_STUDENT_SCORE_STUDENT" FromRole="STUDENT" ToRole="STUDENT_SCORE" />
+    <NavigationProperty Name="STUDENT_SPONSOR" Relationship="Abundance_NkModel.FK_STUDENT_SPONSOR_STUDENT" FromRole="STUDENT" ToRole="STUDENT_SPONSOR" />
+    <NavigationProperty Name="STUDENT_CATEGORY" Relationship="Abundance_NkModel.FK_STUDENT_STUDENT_CATEGORY" FromRole="STUDENT" ToRole="STUDENT_CATEGORY" />
+    <NavigationProperty Name="STUDENT_STATUS" Relationship="Abundance_NkModel.FK_STUDENT_STUDENT_STATUS" FromRole="STUDENT" ToRole="STUDENT_STATUS" />
+    <NavigationProperty Name="STUDENT_TYPE" Relationship="Abundance_NkModel.FK_STUDENT_STUDENT_TYPE" FromRole="STUDENT" ToRole="STUDENT_TYPE" />
+    <NavigationProperty Name="STUDENT_SEMESTER" Relationship="Abundance_NkModel.FK_STUDENT_TERM_STUDENT" FromRole="STUDENT" ToRole="STUDENT_SEMESTER" />
+    <NavigationProperty Name="TITLE" Relationship="Abundance_NkModel.FK_STUDENT_TITLE" FromRole="STUDENT" ToRole="TITLE" />
+    <NavigationProperty Name="STUDENT_UPDATE_AUDIT" Relationship="Abundance_NkModel.FK_STUDENT_UPDATE_AUDIT_STUDENT" FromRole="STUDENT" ToRole="STUDENT_UPDATE_AUDIT" />
+    <NavigationProperty Name="TRANSCRIPT_REQUEST" Relationship="Abundance_NkModel.FK_TRANSCRIPT_REQUEST_STUDENT" FromRole="STUDENT" ToRole="TRANSCRIPT_REQUEST" />
+  </EntityType>
+  <Association Name="FK_STUDENT_APPLICATION_FORM">
+    <End Type="Abundance_NkModel.APPLICATION_FORM" Role="APPLICATION_FORM" Multiplicity="0..1" />
+    <End Type="Abundance_NkModel.STUDENT" Role="STUDENT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="APPLICATION_FORM">
+        <PropertyRef Name="Application_Form_Id" />
+      </Principal>
+      <Dependent Role="STUDENT">
+        <PropertyRef Name="Application_Form_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_STUDENT_BLOOD_GROUP">
+    <End Type="Abundance_NkModel.BLOOD_GROUP" Role="BLOOD_GROUP" Multiplicity="0..1" />
+    <End Type="Abundance_NkModel.STUDENT" Role="STUDENT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BLOOD_GROUP">
+        <PropertyRef Name="Blood_Group_Id" />
+      </Principal>
+      <Dependent Role="STUDENT">
+        <PropertyRef Name="Blood_Group_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_COURSE_EVALUATION_ANSWER_STUDENT">
+    <End Type="Abundance_NkModel.STUDENT" Role="STUDENT" Multiplicity="1" />
+    <End Type="Abundance_NkModel.COURSE_EVALUATION_ANSWER" Role="COURSE_EVALUATION_ANSWER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="STUDENT">
+        <PropertyRef Name="Person_Id" />
+      </Principal>
+      <Dependent Role="COURSE_EVALUATION_ANSWER">
+        <PropertyRef Name="Person_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_E_ASSIGNMENT_SUBMISSION_STUDENT">
+    <End Type="Abundance_NkModel.STUDENT" Role="STUDENT" Multiplicity="1" />
+    <End Type="Abundance_NkModel.E_ASSIGNMENT_SUBMISSION" Role="E_ASSIGNMENT_SUBMISSION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="STUDENT">
+        <PropertyRef Name="Person_Id" />
+      </Principal>
+      <Dependent Role="E_ASSIGNMENT_SUBMISSION">
+        <PropertyRef Name="Student_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_E_CHAT_RESPONPSE_STUDENT">
+    <End Type="Abundance_NkModel.STUDENT" Role="STUDENT" Multiplicity="0..1" />
+    <End Type="Abundance_NkModel.E_CHAT_RESPONPSE" Role="E_CHAT_RESPONPSE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="STUDENT">
+        <PropertyRef Name="Person_Id" />
+      </Principal>
+      <Dependent Role="E_CHAT_RESPONPSE">
+        <PropertyRef Name="Student_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_STUDENT_GENOTYPE">
+    <End Type="Abundance_NkModel.GENOTYPE" Role="GENOTYPE" Multiplicity="0..1" />
+    <End Type="Abundance_NkModel.STUDENT" Role="STUDENT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GENOTYPE">
+        <PropertyRef Name="Genotype_Id" />
+      </Principal>
+      <Dependent Role="STUDENT">
+        <PropertyRef Name="Genotype_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HOSTEL_BLACKLIST_STUDENT">
+    <End Type="Abundance_NkModel.STUDENT" Role="STUDENT" Multiplicity="1" />
+    <End Type="Abundance_NkModel.HOSTEL_BLACKLIST" Role="HOSTEL_BLACKLIST" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="STUDENT">
+        <PropertyRef Name="Person_Id" />
+      </Principal>
+      <Dependent Role="HOSTEL_BLACKLIST">
+        <PropertyRef Name="Person_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_STUDENT_MARITAL_STATUS">
+    <End Type="Abundance_NkModel.MARITAL_STATUS" Role="MARITAL_STATUS" Multiplicity="0..1" />
+    <End Type="Abundance_NkModel.STUDENT" Role="STUDENT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MARITAL_STATUS">
+        <PropertyRef Name="Marital_Status_Id" />
+      </Principal>
+      <Dependent Role="STUDENT">
+        <PropertyRef Name="Marital_Status_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_STUDENT_PERSON">
+    <End Type="Abundance_NkModel.PERSON" Role="PERSON" Multiplicity="1" />
+    <End Type="Abundance_NkModel.STUDENT" Role="STUDENT" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="PERSON">
+        <PropertyRef Name="Person_Id" />
+      </Principal>
+      <Dependent Role="STUDENT">
+        <PropertyRef Name="Person_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_REPORT_CARD_STUDENT">
+    <End Type="Abundance_NkModel.STUDENT" Role="STUDENT" Multiplicity="1" />
+    <End Type="Abundance_NkModel.REPORT_CARD" Role="REPORT_CARD" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="STUDENT">
+        <PropertyRef Name="Person_Id" />
+      </Principal>
+      <Dependent Role="REPORT_CARD">
+        <PropertyRef Name="Student_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GST_SCAN_STUDENT">
+    <End Type="Abundance_NkModel.STUDENT" Role="STUDENT" Multiplicity="0..1" />
+    <End Type="Abundance_NkModel.GST_SCAN" Role="GST_SCAN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="STUDENT">
+        <PropertyRef Name="Person_Id" />
+      </Principal>
+      <Dependent Role="GST_SCAN">
+        <PropertyRef Name="Student_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_STUDENT_ACADEMIC_INFORMATION_STUDENT">
+    <End Type="Abundance_NkModel.STUDENT" Role="STUDENT" Multiplicity="1" />
+    <End Type="Abundance_NkModel.STUDENT_ACADEMIC_INFORMATION" Role="STUDENT_ACADEMIC_INFORMATION" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="STUDENT">
+        <PropertyRef Name="Person_Id" />
+      </Principal>
+      <Dependent Role="STUDENT_ACADEMIC_INFORMATION">
+        <PropertyRef Name="Person_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_STUDENT_COURSE_REGISTRATION_STUDENT1">
+    <End Type="Abundance_NkModel.STUDENT" Role="STUDENT" Multiplicity="1" />
+    <End Type="Abundance_NkModel.STUDENT_COURSE_REGISTRATION" Role="STUDENT_COURSE_REGISTRATION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="STUDENT">
+        <PropertyRef Name="Person_Id" />
+      </Principal>
+      <Dependent Role="STUDENT_COURSE_REGISTRATION">
+        <PropertyRef Name="Person_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_STUDENT_EMPLOYMENT_INFORMATION_STUDENT">
+    <End Type="Abundance_NkModel.STUDENT" Role="STUDENT" Multiplicity="1" />
+    <End Type="Abundance_NkModel.STUDENT_EMPLOYMENT_INFORMATION" Role="STUDENT_EMPLOYMENT_INFORMATION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="STUDENT">
+        <PropertyRef Name="Person_Id" />
+      </Principal>
+      <Dependent Role="STUDENT_EMPLOYMENT_INFORMATION">
+        <PropertyRef Name="Person_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_STUDENT_EXAM_RAW_SCORE_SHEET_RESULT_STUDENT">
+    <End Type="Abundance_NkModel.STUDENT" Role="STUDENT" Multiplicity="1" />
+    <End Type="Abundance_NkModel.STUDENT_EXAM_RAW_SCORE_SHEET_RESULT" Role="STUDENT_EXAM_RAW_SCORE_SHEET_RESULT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="STUDENT">
+        <PropertyRef Name="Person_Id" />
+      </Principal>
+      <Dependent Role="STUDENT_EXAM_RAW_SCORE_SHEET_RESULT">
+        <PropertyRef Name="Student_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_STUDENT_FINANCE_INFORMATION_STUDENT">
+    <End Type="Abundance_NkModel.STUDENT" Role="STUDENT" Multiplicity="1" />
+    <End Type="Abundance_NkModel.STUDENT_FINANCE_INFORMATION" Role="STUDENT_FINANCE_INFORMATION" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="STUDENT">
+        <PropertyRef Name="Person_Id" />
+      </Principal>
+      <Dependent Role="STUDENT_FINANCE_INFORMATION">
+        <PropertyRef Name="Person_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_STUDENT_LEVEL_STUDENT">
+    <End Type="Abundance_NkModel.STUDENT" Role="STUDENT" Multiplicity="1" />
+    <End Type="Abundance_NkModel.STUDENT_LEVEL" Role="STUDENT_LEVEL" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="STUDENT">
+        <PropertyRef Name="Person_Id" />
+      </Principal>
+      <Dependent Role="STUDENT_LEVEL">
+        <PropertyRef Name="Person_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_STUDENT_ND_RESULT_STUDENT">
+    <End Type="Abundance_NkModel.STUDENT" Role="STUDENT" Multiplicity="1" />
+    <End Type="Abundance_NkModel.STUDENT_ND_RESULT" Role="STUDENT_ND_RESULT" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="STUDENT">
+        <PropertyRef Name="Person_Id" />
+      </Principal>
+      <Dependent Role="STUDENT_ND_RESULT">
+        <PropertyRef Name="Person_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_STUDENT_RESULT_DETAIL_PERSON">
+    <End Type="Abundance_NkModel.STUDENT" Role="STUDENT" Multiplicity="1" />
+    <End Type="Abundance_NkModel.STUDENT_RESULT_DETAIL" Role="STUDENT_RESULT_DETAIL" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="STUDENT">
+        <PropertyRef Name="Person_Id" />
+      </Principal>
+      <Dependent Role="STUDENT_RESULT_DETAIL">
+        <PropertyRef Name="Person_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_STUDENT_SCORE_STUDENT">
+    <End Type="Abundance_NkModel.STUDENT" Role="STUDENT" Multiplicity="1" />
+    <End Type="Abundance_NkModel.STUDENT_SCORE" Role="STUDENT_SCORE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="STUDENT">
+        <PropertyRef Name="Person_Id" />
+      </Principal>
+      <Dependent Role="STUDENT_SCORE">
+        <PropertyRef Name="Person_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_STUDENT_SPONSOR_STUDENT">
+    <End Type="Abundance_NkModel.STUDENT" Role="STUDENT" Multiplicity="1" />
+    <End Type="Abundance_NkModel.STUDENT_SPONSOR" Role="STUDENT_SPONSOR" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="STUDENT">
+        <PropertyRef Name="Person_Id" />
+      </Principal>
+      <Dependent Role="STUDENT_SPONSOR">
+        <PropertyRef Name="Person_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_STUDENT_STUDENT_CATEGORY">
+    <End Type="Abundance_NkModel.STUDENT_CATEGORY" Role="STUDENT_CATEGORY" Multiplicity="1" />
+    <End Type="Abundance_NkModel.STUDENT" Role="STUDENT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="STUDENT_CATEGORY">
+        <PropertyRef Name="Student_Category_Id" />
+      </Principal>
+      <Dependent Role="STUDENT">
+        <PropertyRef Name="Student_Category_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_STUDENT_STUDENT_STATUS">
+    <End Type="Abundance_NkModel.STUDENT_STATUS" Role="STUDENT_STATUS" Multiplicity="1" />
+    <End Type="Abundance_NkModel.STUDENT" Role="STUDENT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="STUDENT_STATUS">
+        <PropertyRef Name="Student_Status_Id" />
+      </Principal>
+      <Dependent Role="STUDENT">
+        <PropertyRef Name="Student_Status_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_STUDENT_STUDENT_TYPE">
+    <End Type="Abundance_NkModel.STUDENT_TYPE" Role="STUDENT_TYPE" Multiplicity="1" />
+    <End Type="Abundance_NkModel.STUDENT" Role="STUDENT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="STUDENT_TYPE">
+        <PropertyRef Name="Student_Type_Id" />
+      </Principal>
+      <Dependent Role="STUDENT">
+        <PropertyRef Name="Student_Type_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_STUDENT_TERM_STUDENT">
+    <End Type="Abundance_NkModel.STUDENT" Role="STUDENT" Multiplicity="1" />
+    <End Type="Abundance_NkModel.STUDENT_SEMESTER" Role="STUDENT_SEMESTER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="STUDENT">
+        <PropertyRef Name="Person_Id" />
+      </Principal>
+      <Dependent Role="STUDENT_SEMESTER">
+        <PropertyRef Name="Person_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_STUDENT_TITLE">
+    <End Type="Abundance_NkModel.TITLE" Role="TITLE" Multiplicity="0..1" />
+    <End Type="Abundance_NkModel.STUDENT" Role="STUDENT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TITLE">
+        <PropertyRef Name="Title_Id" />
+      </Principal>
+      <Dependent Role="STUDENT">
+        <PropertyRef Name="Title_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_STUDENT_UPDATE_AUDIT_STUDENT">
+    <End Type="Abundance_NkModel.STUDENT" Role="STUDENT" Multiplicity="1" />
+    <End Type="Abundance_NkModel.STUDENT_UPDATE_AUDIT" Role="STUDENT_UPDATE_AUDIT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="STUDENT">
+        <PropertyRef Name="Person_Id" />
+      </Principal>
+      <Dependent Role="STUDENT_UPDATE_AUDIT">
+        <PropertyRef Name="Student_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TRANSCRIPT_REQUEST_STUDENT">
+    <End Type="Abundance_NkModel.STUDENT" Role="STUDENT" Multiplicity="0..1" />
+    <End Type="Abundance_NkModel.TRANSCRIPT_REQUEST" Role="TRANSCRIPT_REQUEST" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="STUDENT">
+        <PropertyRef Name="Person_Id" />
+      </Principal>
+      <Dependent Role="TRANSCRIPT_REQUEST">
+        <PropertyRef Name="Student_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

@@ -373,6 +373,18 @@ namespace Abundance_Nk.Business
                     {
                         entity.Application_Form_Id = student.ApplicationForm.Id;
                     }
+                    if (student.IsEmailConfirmed != null)
+                    {
+                        entity.IsEmailConfirmed = student.IsEmailConfirmed;
+                    }
+                    if (student.Guid != null)
+                    {
+                        entity.Guid = student.Guid;
+                    }
+                    if (student.PasswordHash != null)
+                    {
+                        entity.Password_hash = student.PasswordHash;
+                    }
 
                     int modifiedRecordCount = Save();
 

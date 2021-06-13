@@ -1830,11 +1830,23 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Areas/Security/Views/Account/ChangePassword.cshtml">
       <publishTime>06/08/2021 13:19:52</publishTime>
     </File>
+    <File Include="Areas/Security/Views/Account/ConfirmEmail.cshtml">
+      <publishTime>06/13/2021 20:00:20</publishTime>
+    </File>
+    <File Include="Areas/Security/Views/Account/ConfirmPasswordReset.cshtml">
+      <publishTime>06/13/2021 20:34:11</publishTime>
+    </File>
     <File Include="Areas/Security/Views/Account/Home.cshtml">
       <publishTime>06/07/2021 10:02:41</publishTime>
     </File>
+    <File Include="Areas/Security/Views/Account/InvalidGuid.cshtml">
+      <publishTime>06/13/2021 17:38:32</publishTime>
+    </File>
     <File Include="Areas/Security/Views/Account/Login.cshtml">
-      <publishTime>06/10/2021 04:56:21</publishTime>
+      <publishTime>06/13/2021 20:35:43</publishTime>
+    </File>
+    <File Include="Areas/Security/Views/Account/PasswordResetTemplate.cshtml">
+      <publishTime>06/13/2021 18:38:14</publishTime>
     </File>
     <File Include="Areas/Security/Views/Account/Unauthorized.cshtml">
       <publishTime>06/07/2021 10:02:41</publishTime>
@@ -2032,37 +2044,37 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/07/2021 10:02:41</publishTime>
     </File>
     <File Include="bin/Abundance_Nk.Business.dll">
-      <publishTime>06/09/2021 16:23:47</publishTime>
+      <publishTime>06/13/2021 20:26:40</publishTime>
     </File>
     <File Include="bin/Abundance_Nk.Business.dll.config">
       <publishTime>06/07/2021 10:02:40</publishTime>
     </File>
     <File Include="bin/Abundance_Nk.Business.pdb">
-      <publishTime>06/09/2021 16:23:47</publishTime>
+      <publishTime>06/13/2021 20:26:40</publishTime>
     </File>
     <File Include="bin/Abundance_Nk.Data.dll">
-      <publishTime>06/09/2021 16:23:42</publishTime>
+      <publishTime>06/13/2021 20:26:37</publishTime>
     </File>
     <File Include="bin/Abundance_Nk.Data.dll.config">
       <publishTime>06/07/2021 10:02:40</publishTime>
     </File>
     <File Include="bin/Abundance_Nk.Data.pdb">
-      <publishTime>06/09/2021 16:23:42</publishTime>
+      <publishTime>06/13/2021 20:26:37</publishTime>
     </File>
     <File Include="bin/Abundance_Nk.Model.dll">
-      <publishTime>06/09/2021 16:23:41</publishTime>
+      <publishTime>06/13/2021 20:26:34</publishTime>
     </File>
     <File Include="bin/Abundance_Nk.Model.dll.config">
-      <publishTime>06/07/2021 10:02:40</publishTime>
+      <publishTime>06/13/2021 17:26:41</publishTime>
     </File>
     <File Include="bin/Abundance_Nk.Model.pdb">
-      <publishTime>06/09/2021 16:23:41</publishTime>
+      <publishTime>06/13/2021 20:26:34</publishTime>
     </File>
     <File Include="bin/Abundance_Nk.Web.dll">
-      <publishTime>06/09/2021 17:21:34</publishTime>
+      <publishTime>06/13/2021 20:26:44</publishTime>
     </File>
     <File Include="bin/Abundance_Nk.Web.pdb">
-      <publishTime>06/09/2021 17:21:34</publishTime>
+      <publishTime>06/13/2021 20:26:44</publishTime>
     </File>
     <File Include="bin/Antlr3.Runtime.dll">
       <publishTime>09/10/2013 16:29:20</publishTime>
@@ -2102,6 +2114,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="bin/ExcelLibrary.dll">
       <publishTime>01/27/2016 15:56:00</publishTime>
+    </File>
+    <File Include="bin/ExcelNumberFormat.dll">
+      <publishTime>03/13/2020 09:36:50</publishTime>
     </File>
     <File Include="bin/FastMember.Signed.dll">
       <publishTime>08/26/2016 16:04:20</publishTime>
@@ -2786,6 +2801,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="Content/codemirror/theme/xq-light.css">
       <publishTime>06/07/2021 10:02:53</publishTime>
+    </File>
+    <File Include="Content/confirmMail.css">
+      <publishTime>06/13/2021 19:47:48</publishTime>
     </File>
     <File Include="Content/Credential/Credential/119981_credential_93201692654AM.jpg">
       <publishTime>06/07/2021 10:02:42</publishTime>
@@ -11842,7 +11860,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/07/2021 10:02:55</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>06/09/2021 17:21:39</publishTime>
+      <publishTime>06/13/2021 20:27:47</publishTime>
     </File>
     <File Include="WebApi.aspx">
       <publishTime>06/07/2021 10:02:55</publishTime>

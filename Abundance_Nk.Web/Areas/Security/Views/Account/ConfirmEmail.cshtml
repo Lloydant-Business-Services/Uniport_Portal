@@ -1,0 +1,169 @@
+﻿@model Abundance_Nk.Web.Models.LoginViewModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="~/Content/confirmMail.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width" />
+
+
+    <script src="~/Scripts/jquery-1.11.1.min.js"></script>
+    <link href="~/Content/sweetalert.css" rel="stylesheet" />
+    <script src="~/Scripts/sweetalert.min.js"></script>
+    <title>ConfirmEmail</title>
+    <style>
+        .btn-primary {
+            background-color: #005123 !important
+        }
+    </style>
+
+    <script type="text/javascript">
+
+    $(document).ready(function () {
+
+
+        $("#save").click(function () {
+            var s_email = $("#studentMail").val();
+            var s_phone = $("#studentPhone").val();
+            $("#load").show();
+            if (s_email == null || s_phone == null) {
+                swal("Error", "Email Confirmation is required as you would not be allowed to proceed beyond this point without providing a valid email address", "error");
+                $("#load").hide();
+                return;
+            }
+            else {
+                //alert("Contact the school admin for password reset.");
+                //$("#load").hide();
+                //return;
+                 $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("ConfirmStudentEmail", "Account")', // Calling json method
+                     dataType: 'json',
+                     data: { studentEmail: s_email, studentPhone: s_phone },
+                     success: function (result) {
+                         //$("#load").hide();
+                         if (!result.IsError) {
+                             swal("Email Confirmed", "Your Email was successfully confirmed! Please wait, as you will now be redirected to your dashboard", "success");
+                             setTimeout(() => {
+                                window.location.href = '@Model.AppRoot' + "Student/Home"
+                                 //window.location.href = "http://localhost:2600/Student/Home"
+
+                             },2000)
+                         }
+                         else {
+                             alert(result.Message);
+                         }
+                    },
+                     error: function (jqXHR) {
+                         $("#load").hide();
+                         alert('Failed.' + jqXHR.statusText);
+                    }
+                });
+            }
+
+
+        })
+
+
+    })
+
+
+
+    </script>
+
+
+</head>
+<body>
+    <div>
+        <br />
+        <center>
+            <div class="col-md-12 img-responsive">
+                <img class="text-center" src="~/Content/Images/school_logo.png" height="70px" />
+            </div>
+        </center>
+        <table border="0" cellpadding="0" cellspacing="0" class="body">
+            <tr>
+                <td>&nbsp;</td>
+                <td class="container">
+                    <div class="content">
+                        <span class="preheader">-</span>
+                        <table class="main">
+
+                            <!-- START MAIN CONTENT AREA -->
+                            <tr>
+                                <td class="wrapper">
+                                    <table border="0" cellpadding="0" cellspacing="0">
+                                        <tr>
+                                            <td>
+                                                <h1>Hello @Model.UserName</h1>
+                                                <h3>Please confirm that the email address and phone number presented below belongs to you.</h3>
+                                                <p><b>Click on the confirm button if they belong you, otherwise, modify accordingly then click confirm.</b></p>
+                                                <label class="">Email Address</label>
+                                                <input type="text" value="@Model.Email" class="form-control" id="studentMail" />
+                                                <br />
+                                                <label class="">Phone Number</label>
+                                                <input type="text" value="@Model.PhoneNumber" class="form-control" id="studentPhone" />
+                                                <br />
+                                                <table border="0" cellpadding="0" cellspacing="0" class="btn btn-success">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td align="left">
+                                                                <table border="0" cellpadding="0" cellspacing="0">
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td> <a href="#" id="save">Confirm email & Phone</a> </td>
+                                                                        </tr>
+
+                                                                    </tbody>
+                                                                </table>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+
+                                        <tr>
+
+                                            <td style="display: none" id="load"><img src="~/Content/Images/bx_loader.gif" /></td>
+
+                                        </tr>
+                                </td>
+                            </tr>
+                        </table>
+                </td>
+            </tr>
+
+            <!-- END MAIN CONTENT AREA -->
+        </table>
+
+        <!-- START FOOTER -->
+        <div class="footer">
+            <table border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td class="content-block">
+                        <span class="apple-link">University of Port-Harcourt</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="content-block powered-by">
+                        <br />
+                        Powered by LloydAnt Business Services
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <!-- END FOOTER -->
+        <!-- END CENTERED WHITE CONTAINER -->
+    </div>
+    </td>
+    <td>&nbsp;</td>
+    </tr>
+    </table>
+    </div>
+</body>
+</html>

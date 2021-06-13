@@ -54,6 +54,33 @@ namespace Abundance_Nk.Business
             }
         }
 
+        public bool SendPasswordReset(Model.Model.EmailMessage message)
+        {
+            try
+            {
+
+                string template = File.ReadAllText(_templateFilePath);
+                if (!string.IsNullOrEmpty(template))
+                {
+                    var key = "key_" + DateTime.Now.Ticks;
+
+                    string result = Engine.Razor.RunCompile(template, key, null, _model);
+                    if (!string.IsNullOrEmpty(result))
+                    {
+                        message.Body = result;
+                        useMailgun(message);
+                        return true;
+                    }
+
+                }
+                return false;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
         private IRestResponse useMailgun(EmailMessage message)
         {
             RestClient client = new RestClient();
@@ -62,7 +89,6 @@ namespace Abundance_Nk.Business
                 new HttpBasicAuthenticator("api",
                     "key-8540f3ef6a66cdaf8d9121f11c99aa6b");
             RestRequest request = new RestRequest();
-            //request.AddParameter("domain", "audme.dreamteam.com.ng", ParameterType.UrlSegment);
             request.AddParameter("domain", "nrf.lloydant.com", ParameterType.UrlSegment);
             request.Resource = "{domain}/messages";
             //if (message.From != null)
@@ -71,8 +97,7 @@ namespace Abundance_Nk.Business
             //}
             //else
             //{
-            //request.AddParameter("from", "Portal Admin <portaladmin@audme.dreamteam.com.ng>");
-            request.AddParameter("from", "Nnamdi Azikiwe University, Uturu.<portaladmin@nrf.lloydant.com>");
+            request.AddParameter("from", "Portal Admin <portaladmin@uniport.edu.ng>");
             //}
 
             request.AddParameter("to", message.Email);
@@ -81,8 +106,6 @@ namespace Abundance_Nk.Business
             request.Method = Method.POST;
             return client.Execute(request);
         }
-
-        
 
 
     }

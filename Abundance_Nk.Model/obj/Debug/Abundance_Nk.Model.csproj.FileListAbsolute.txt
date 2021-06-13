@@ -37,7 +37,6 @@ C:\Users\Miracle\NewlyMigrated\Uniport_Portal\Abundance_Nk.Model\bin\Debug\zxing
 C:\Users\Miracle\NewlyMigrated\Uniport_Portal\Abundance_Nk.Model\bin\Debug\zxing.xml
 C:\Users\Miracle\NewlyMigrated\Uniport_Portal\Abundance_Nk.Model\bin\Debug\Microsoft.Web.Infrastructure.xml
 C:\Users\Miracle\NewlyMigrated\Uniport_Portal\Abundance_Nk.Model\bin\Debug\System.Web.WebPages.Deployment.xml
-C:\Users\Miracle\NewlyMigrated\Uniport_Portal\Abundance_Nk.Model\obj\Debug\Abundance_Nk.Model.csprojResolveAssemblyReference.cache
 C:\Users\Miracle\NewlyMigrated\Uniport_Portal\Abundance_Nk.Model\obj\Debug\Abundance_Nk.Model.csproj.CoreCompileInputs.cache
 C:\Users\Miracle\NewlyMigrated\Uniport_Portal\Abundance_Nk.Model\obj\Debug\Abundance_Nk.Model.dll
 C:\Users\Miracle\NewlyMigrated\Uniport_Portal\Abundance_Nk.Model\obj\Debug\Abundance_Nk.Model.pdb

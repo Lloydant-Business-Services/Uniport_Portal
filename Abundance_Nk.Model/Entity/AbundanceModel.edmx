@@ -649,7 +649,7 @@
           <Property Name="Active" Type="bit" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.DUPLICATE' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.DUPLICATE' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="DUPLICATE">
           <Key>
             <PropertyRef Name="Person_Id" />
@@ -659,7 +659,7 @@ warning 6002: The table/view 'VS_NAU.dbo.DUPLICATE' does not have a primary key 
           <Property Name="Application_Form_Id" Type="bigint" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.DUPLICATE_ADMISSION' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.DUPLICATE_ADMISSION' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="DUPLICATE_ADMISSION">
           <Key>
             <PropertyRef Name="Applicant_Jamb_Registration_Number" />
@@ -668,7 +668,7 @@ warning 6002: The table/view 'VS_NAU.dbo.DUPLICATE_ADMISSION' does not have a pr
           <Property Name="No" Type="int" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.DUPLICATE_ADMISSION_LIST' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.DUPLICATE_ADMISSION_LIST' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="DUPLICATE_ADMISSION_LIST">
           <Key>
             <PropertyRef Name="Application_Form_Id" />
@@ -680,7 +680,7 @@ warning 6002: The table/view 'VS_NAU.dbo.DUPLICATE_ADMISSION_LIST' does not have
           <Property Name="Person_Id" Type="bigint" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.DUPLICATE_STUDENT_AFFECTED' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.DUPLICATE_STUDENT_AFFECTED' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="DUPLICATE_STUDENT_AFFECTED">
           <Key>
             <PropertyRef Name="Person_Id" />
@@ -943,7 +943,7 @@ warning 6002: The table/view 'VS_NAU.dbo.DUPLICATE_STUDENT_AFFECTED' does not ha
           <Property Name="Grade_Level_Name" Type="varchar" MaxLength="20" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.GST_SCAN' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.GST_SCAN' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="GST_SCAN">
           <Key>
             <PropertyRef Name="Id" />
@@ -1329,7 +1329,7 @@ warning 6002: The table/view 'VS_NAU.dbo.GST_SCAN' does not have a primary key d
           <Property Name="Role_Id" Type="int" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.MIGRA' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.MIGRA' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="MIGRA">
           <Key>
             <PropertyRef Name="Student_Course_Registration_Id" />
@@ -1360,7 +1360,7 @@ warning 6002: The table/view 'VS_NAU.dbo.MIGRA' does not have a primary key defi
           <Property Name="Exam_Score" Type="decimal" Precision="5" Scale="2" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.MIGRATE_FIRST_SEMESTER_RESULT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.MIGRATE_FIRST_SEMESTER_RESULT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="MIGRATE_FIRST_SEMESTER_RESULT">
           <Key>
             <PropertyRef Name="SN" />
@@ -1417,7 +1417,7 @@ warning 6002: The table/view 'VS_NAU.dbo.MIGRATE_FIRST_SEMESTER_RESULT' does not
           <Property Name="DEPARTMENT" Type="nvarchar" MaxLength="255" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.MIGRATION_BIODATA' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.MIGRATION_BIODATA' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="MIGRATION_BIODATA">
           <Key>
             <PropertyRef Name="SN" />
@@ -1608,7 +1608,7 @@ warning 6002: The table/view 'VS_NAU.dbo.MIGRATION_BIODATA' does not have a prim
           <Property Name="Transaction_Date" Type="datetime" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.PAID' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.PAID' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="PAID">
           <Key>
             <PropertyRef Name="SN" />
@@ -1840,7 +1840,7 @@ warning 6002: The table/view 'VS_NAU.dbo.PAID' does not have a primary key defin
           <Property Name="Session_Id" Type="int" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.PAYMENT_TO_WEBAPI_FIX' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.PAYMENT_TO_WEBAPI_FIX' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="PAYMENT_TO_WEBAPI_FIX">
           <Key>
             <PropertyRef Name="Payment_Id" />
@@ -2474,6 +2474,8 @@ warning 6002: The table/view 'VS_NAU.dbo.PAYMENT_TO_WEBAPI_FIX' does not have a 
           <Property Name="Reason" Type="varchar(max)" />
           <Property Name="Reject_Category" Type="varchar" MaxLength="10" />
           <Property Name="Password_hash" Type="varchar" MaxLength="50" />
+          <Property Name="Guid" Type="varchar(max)" />
+          <Property Name="IsEmailConfirmed" Type="bit" />
         </EntityType>
         <EntityType Name="STUDENT_ACADEMIC_INFORMATION">
           <Key>
@@ -2564,7 +2566,7 @@ warning 6002: The table/view 'VS_NAU.dbo.PAYMENT_TO_WEBAPI_FIX' does not have a 
           <Property Name="Client" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.STUDENT_COURSE_REGISTRATION_DETAIL_COURSE' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.STUDENT_COURSE_REGISTRATION_DETAIL_COURSE' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="STUDENT_COURSE_REGISTRATION_DETAIL_COURSE">
           <Key>
             <PropertyRef Name="Course_Id" />
@@ -2573,7 +2575,7 @@ warning 6002: The table/view 'VS_NAU.dbo.STUDENT_COURSE_REGISTRATION_DETAIL_COUR
           <Property Name="Course_Id" Type="bigint" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.STUDENT_COURSE_REGISTRATION_DETAIL_DUPLICATE' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.STUDENT_COURSE_REGISTRATION_DETAIL_DUPLICATE' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="STUDENT_COURSE_REGISTRATION_DETAIL_DUPLICATE">
           <Key>
             <PropertyRef Name="Student_Course_Registration_Detail_Id" />
@@ -3009,7 +3011,7 @@ warning 6002: The table/view 'VS_NAU.dbo.STUDENT_COURSE_REGISTRATION_DETAIL_DUPL
           <Property Name="Value" Type="int" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.ACCPTANCE _REPORT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.ACCPTANCE _REPORT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="ACCPTANCE _REPORT">
           <Key>
             <PropertyRef Name="Department_Name" />
@@ -3038,7 +3040,7 @@ warning 6002: The table/view 'VS_NAU.dbo.ACCPTANCE _REPORT' does not have a prim
           <Property Name="Application_Exam_Number" Type="varchar" MaxLength="50" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_ABIASTUDENTINDIGENESREPORT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_ABIASTUDENTINDIGENESREPORT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="VW_ABIASTUDENTINDIGENESREPORT">
           <Key>
             <PropertyRef Name="Name" />
@@ -3064,7 +3066,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_ABIASTUDENTINDIGENESREPORT' does not
           <Property Name="Department_Option_Id" Type="int" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_ACCEPTANCE_REPORT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_ACCEPTANCE_REPORT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="VW_ACCEPTANCE_REPORT">
           <Key>
             <PropertyRef Name="Department_Name" />
@@ -3098,7 +3100,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_ACCEPTANCE_REPORT' does not have a p
           <Property Name="Transaction_Date" Type="datetime" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_ACTIVATED_BED_SPACES' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_ACTIVATED_BED_SPACES' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="VW_ACTIVATED_BED_SPACES">
           <Key>
             <PropertyRef Name="Hostel_Id" />
@@ -3122,7 +3124,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_ACTIVATED_BED_SPACES' does not have 
           <Property Name="Corner_Name" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_ADMISSION_LIST_ALL' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_ADMISSION_LIST_ALL' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="VW_ADMISSION_LIST_ALL">
           <Key>
             <PropertyRef Name="Person_Id" />
@@ -3151,7 +3153,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_ADMISSION_LIST_ALL' does not have a 
           <Property Name="Session_Id" Type="int" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_ADMISSION_LIST_UNDERGRADUATE' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_ADMISSION_LIST_UNDERGRADUATE' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="VW_ADMISSION_LIST_UNDERGRADUATE">
           <Key>
             <PropertyRef Name="Admission_List_Id" />
@@ -3178,7 +3180,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_ADMISSION_LIST_UNDERGRADUATE' does n
           <Property Name="Mobile_Phone" Type="varchar" MaxLength="15" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_ADMITTED_STUDENT_BREAKDOWN' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_ADMITTED_STUDENT_BREAKDOWN' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="VW_ADMITTED_STUDENT_BREAKDOWN">
           <Key>
             <PropertyRef Name="Admission_List_Id" />
@@ -3211,7 +3213,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_ADMITTED_STUDENT_BREAKDOWN' does not
           <Property Name="Mobile_Phone" Type="varchar" MaxLength="15" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_ADMITTED_STUDENT_DATA' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_ADMITTED_STUDENT_DATA' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="VW_ADMITTED_STUDENT_DATA">
           <Key>
             <PropertyRef Name="Person_Id" />
@@ -3265,7 +3267,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_ADMITTED_STUDENT_DATA' does not have
           <Property Name="Applicant_Jamb_Registration_Number" Type="varchar" MaxLength="20" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_ALL_PAYMENT_REPORT_GENERAL' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_ALL_PAYMENT_REPORT_GENERAL' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="VW_ALL_PAYMENT_REPORT_GENERAL">
           <Key>
             <PropertyRef Name="Level" />
@@ -3295,7 +3297,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_ALL_PAYMENT_REPORT_GENERAL' does not
           <Property Name="Payment_Id" Type="bigint" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_ALL_PAYMENT_REPORT_NEW_STUDENTS' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_ALL_PAYMENT_REPORT_NEW_STUDENTS' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="VW_ALL_PAYMENT_REPORT_NEW_STUDENTS">
           <Key>
             <PropertyRef Name="Last_Name" />
@@ -3340,7 +3342,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_ALL_PAYMENT_REPORT_NEW_STUDENTS' doe
           <Property Name="SECOND YEAR FEE INVOICE" Type="varchar" MaxLength="20" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_ALL_PAYMENT_REPORT_RETURNING_STUDENT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_ALL_PAYMENT_REPORT_RETURNING_STUDENT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="VW_ALL_PAYMENT_REPORT_RETURNING_STUDENT">
           <Key>
             <PropertyRef Name="Last_Name" />
@@ -3384,7 +3386,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_ALL_PAYMENT_REPORT_RETURNING_STUDENT
           <Property Name="SECOND YEAR FEE INVOICE" Type="varchar" MaxLength="20" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_ALL_STUDENTS_WITH_JAMB_NUMBER' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_ALL_STUDENTS_WITH_JAMB_NUMBER' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="VW_ALL_STUDENTS_WITH_JAMB_NUMBER">
           <Key>
             <PropertyRef Name="Last_Name" />
@@ -3401,7 +3403,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_ALL_STUDENTS_WITH_JAMB_NUMBER' does 
           <Property Name="Faculty_Name" Type="varchar" MaxLength="150" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_APPLICANT_PAYMENT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_APPLICANT_PAYMENT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="VW_APPLICANT_PAYMENT">
           <Key>
             <PropertyRef Name="Payment_Id" />
@@ -3434,7 +3436,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_APPLICANT_PAYMENT' does not have a p
           <Property Name="Amount" Type="money" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_APPLICANT_RESULT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_APPLICANT_RESULT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="VW_APPLICANT_RESULT">
           <Key>
             <PropertyRef Name="Person_Id" />
@@ -3505,7 +3507,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_APPLICANT_RESULT' does not have a pr
           <Property Name="Sex_Name" Type="varchar" MaxLength="15" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_APPLICATION_EXAM_NUMBER' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_APPLICATION_EXAM_NUMBER' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="VW_APPLICATION_EXAM_NUMBER">
           <Key>
             <PropertyRef Name="Application_Form_Id" />
@@ -3524,7 +3526,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_APPLICATION_EXAM_NUMBER' does not ha
           <Property Name="Application_Form_Setting_Id" Type="int" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_APPLICATION_FORM_REASSIGN' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_APPLICATION_FORM_REASSIGN' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="VW_APPLICATION_FORM_REASSIGN">
           <Key>
             <PropertyRef Name="Application_Form_Id" />
@@ -3552,7 +3554,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_APPLICATION_FORM_REASSIGN' does not 
           <Property Name="Remarks" Type="varchar" MaxLength="500" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_APPLICATION_FORM_SUMMARY' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_APPLICATION_FORM_SUMMARY' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="VW_APPLICATION_FORM_SUMMARY">
           <Key>
             <PropertyRef Name="Programme_Id" />
@@ -3573,7 +3575,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_APPLICATION_FORM_SUMMARY' does not h
           <Property Name="Application_Form_Count" Type="int" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_APPLICATION_SUMMARY_REPORT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_APPLICATION_SUMMARY_REPORT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="VW_APPLICATION_SUMMARY_REPORT">
           <Key>
             <PropertyRef Name="Person_Id" />
@@ -3613,7 +3615,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_APPLICATION_SUMMARY_REPORT' does not
           <Property Name="Application_Programme_Fee_Id" Type="int" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_ASSIGNED_MATRIC_NUMBER' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_ASSIGNED_MATRIC_NUMBER' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="VW_ASSIGNED_MATRIC_NUMBER">
           <Key>
             <PropertyRef Name="Department_Name" />
@@ -3638,7 +3640,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_ASSIGNED_MATRIC_NUMBER' does not hav
           <Property Name="Session_Id" Type="int" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_CORRECT_DE_APPLICANTS' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_CORRECT_DE_APPLICANTS' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="VW_CORRECT_DE_APPLICANTS">
           <Key>
             <PropertyRef Name="Application_Form_Id" />
@@ -3677,7 +3679,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_CORRECT_DE_APPLICANTS' does not have
           <Property Name="Subject4" Type="int" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_COURSE_EVALUATION_SCORES' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_COURSE_EVALUATION_SCORES' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="VW_COURSE_EVALUATION_SCORES">
           <Key>
             <PropertyRef Name="Person_Id" />
@@ -3721,7 +3723,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_COURSE_EVALUATION_SCORES' does not h
           <Property Name="Department_Option_Name" Type="varchar" MaxLength="150" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_COURSE_REG_REPORT_BY_DEPARTMENT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_COURSE_REG_REPORT_BY_DEPARTMENT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="VW_COURSE_REG_REPORT_BY_DEPARTMENT">
           <Key>
             <PropertyRef Name="Person_Id" />
@@ -3751,7 +3753,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_COURSE_REG_REPORT_BY_DEPARTMENT' doe
           <Property Name="Sex_Name" Type="varchar" MaxLength="15" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_COURSE_REGISTRATION_GST' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_COURSE_REGISTRATION_GST' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="VW_COURSE_REGISTRATION_GST">
           <Key>
             <PropertyRef Name="First_Name" />
@@ -3818,7 +3820,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_COURSE_REGISTRATION_GST' does not ha
           <Property Name="Sex_Name" Type="varchar" MaxLength="15" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_DEPARTMENT_OPTION' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_DEPARTMENT_OPTION' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="VW_DEPARTMENT_OPTION">
           <Key>
             <PropertyRef Name="Programme_Department_Id" />
@@ -3844,7 +3846,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_DEPARTMENT_OPTION' does not have a p
           <Property Name="Activated" Type="bit" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_ELEARNING_COURSE_CONTENT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_ELEARNING_COURSE_CONTENT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="VW_ELEARNING_COURSE_CONTENT">
           <Key>
             <PropertyRef Name="Student_Course_Registration_Detail_Id" />
@@ -3894,7 +3896,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_ELEARNING_COURSE_CONTENT' does not h
           <Property Name="Id" Type="bigint" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_ETRANZACT_FEETYPE' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_ETRANZACT_FEETYPE' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="VW_ETRANZACT_FEETYPE">
           <Key>
             <PropertyRef Name="Fee_Type_Id" />
@@ -3906,7 +3908,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_ETRANZACT_FEETYPE' does not have a p
           <Property Name="Confirmation_No" Type="varchar" MaxLength="50" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_ETRANZACT_REPORT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_ETRANZACT_REPORT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="VW_ETRANZACT_REPORT">
           <Key>
             <PropertyRef Name="Payment_Id" />
@@ -3938,7 +3940,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_ETRANZACT_REPORT' does not have a pr
           <Property Name="Payment_Etranzact_Type_Name" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_GST_ALL_YEAR' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_GST_ALL_YEAR' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="VW_GST_ALL_YEAR">
           <Key>
             <PropertyRef Name="Course_Id" />
@@ -3959,7 +3961,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_GST_ALL_YEAR' does not have a primar
           <Property Name="Semester_Id" Type="int" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_GST_RESULT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_GST_RESULT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="VW_GST_RESULT">
           <Key>
             <PropertyRef Name="ID" />
@@ -3989,7 +3991,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_GST_RESULT' does not have a primary 
           <Property Name="Expr1" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_GST_YEAR_ONE' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_GST_YEAR_ONE' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="VW_GST_YEAR_ONE">
           <Key>
             <PropertyRef Name="Course_Id" />
@@ -4010,7 +4012,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_GST_YEAR_ONE' does not have a primar
           <Property Name="Semester_Id" Type="int" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_HND_APPLICANTS' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_HND_APPLICANTS' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="VW_HND_APPLICANTS">
           <Key>
             <PropertyRef Name="First_Name" />
@@ -4038,7 +4040,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_HND_APPLICANTS' does not have a prim
           <Property Name="Sex_Name" Type="varchar" MaxLength="15" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_IAS_APPLICATION_REPORT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_IAS_APPLICATION_REPORT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="VW_IAS_APPLICATION_REPORT">
           <Key>
             <PropertyRef Name="Last_Name" />
@@ -4067,7 +4069,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_IAS_APPLICATION_REPORT' does not hav
           <Property Name="Applicant_Jamb_Score" Type="smallint" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_MONNIFY_PAYMENT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_MONNIFY_PAYMENT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="VW_MONNIFY_PAYMENT">
           <Key>
             <PropertyRef Name="Payment_Id" />
@@ -4113,7 +4115,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_MONNIFY_PAYMENT' does not have a pri
           <Property Name="Account_Number" Type="varchar" MaxLength="50" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_NEW_STUDENT_INVOICE' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_NEW_STUDENT_INVOICE' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="VW_NEW_STUDENT_INVOICE">
           <Key>
             <PropertyRef Name="Payment_Id" />
@@ -4138,7 +4140,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_NEW_STUDENT_INVOICE' does not have a
           <Property Name="AMOUNT" Type="money" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_NEW_STUDENTCOUNT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_NEW_STUDENTCOUNT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="VW_NEW_STUDENTCOUNT">
           <Key>
             <PropertyRef Name="Programme_Id" />
@@ -4159,7 +4161,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_NEW_STUDENTCOUNT' does not have a pr
           <Property Name="NEW_Student_Count" Type="int" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_PAYMENT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_PAYMENT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="VW_PAYMENT">
           <Key>
             <PropertyRef Name="Payment_Id" />
@@ -4201,7 +4203,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_PAYMENT' does not have a primary key
           <Property Name="Session_Name" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_PAYMENT_ETRANZACT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_PAYMENT_ETRANZACT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="VW_PAYMENT_ETRANZACT">
           <Key>
             <PropertyRef Name="Payment_Id" />
@@ -4241,7 +4243,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_PAYMENT_ETRANZACT' does not have a p
           <Property Name="Transaction_Date" Type="datetime" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_PAYMENT_INTERSWITCH' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_PAYMENT_INTERSWITCH' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="VW_PAYMENT_INTERSWITCH">
           <Key>
             <PropertyRef Name="Payment_Interswitch_Id" />
@@ -4290,7 +4292,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_PAYMENT_INTERSWITCH' does not have a
           <Property Name="ResponseDescription" Type="varchar(max)" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_PAYMENT_NEW_STUDENT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_PAYMENT_NEW_STUDENT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="VW_PAYMENT_NEW_STUDENT">
           <Key>
             <PropertyRef Name="Person_Id" />
@@ -4332,7 +4334,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_PAYMENT_NEW_STUDENT' does not have a
           <Property Name="OrderId" Type="varchar" MaxLength="50" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_PAYMENT_OLD_STUDENT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_PAYMENT_OLD_STUDENT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="VW_PAYMENT_OLD_STUDENT">
           <Key>
             <PropertyRef Name="Person_Id" />
@@ -4378,7 +4380,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_PAYMENT_OLD_STUDENT' does not have a
           <Property Name="Customer_Name" Type="varchar" MaxLength="800" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_PAYMENT_PAYSTACK' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_PAYMENT_PAYSTACK' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="VW_PAYMENT_PAYSTACK">
           <Key>
             <PropertyRef Name="Payment_Id" />
@@ -4426,7 +4428,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_PAYMENT_PAYSTACK' does not have a pr
           <Property Name="domain" Type="varchar" MaxLength="50" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_PAYMENT_REMITA' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_PAYMENT_REMITA' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="VW_PAYMENT_REMITA">
           <Key>
             <PropertyRef Name="Payment_Id" />
@@ -4469,7 +4471,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_PAYMENT_REMITA' does not have a prim
           <Property Name="Description" Type="varchar" MaxLength="50" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_PAYMENT_SUMMARY' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_PAYMENT_SUMMARY' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="VW_PAYMENT_SUMMARY">
           <Key>
             <PropertyRef Name="Person_Id" />
@@ -4505,7 +4507,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_PAYMENT_SUMMARY' does not have a pri
           <Property Name="Payment_Etranzact_Id" Type="bigint" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_PAYMENT_VERIFICATION' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_PAYMENT_VERIFICATION' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="VW_PAYMENT_VERIFICATION">
           <Key>
             <PropertyRef Name="Last_Name" />
@@ -4552,7 +4554,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_PAYMENT_VERIFICATION' does not have 
           <Property Name="Matric_Number" Type="varchar" MaxLength="50" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_PAYMENT_VERIFICATION_NEW_STUDENT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_PAYMENT_VERIFICATION_NEW_STUDENT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="VW_PAYMENT_VERIFICATION_NEW_STUDENT">
           <Key>
             <PropertyRef Name="Last_Name" />
@@ -4592,7 +4594,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_PAYMENT_VERIFICATION_NEW_STUDENT' do
           <Property Name="Transaction_Date" Type="datetime" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_PAYMENT_VERIFICATION_OLD_STUDENT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_PAYMENT_VERIFICATION_OLD_STUDENT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="VW_PAYMENT_VERIFICATION_OLD_STUDENT">
           <Key>
             <PropertyRef Name="Last_Name" />
@@ -4636,7 +4638,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_PAYMENT_VERIFICATION_OLD_STUDENT' do
           <Property Name="Transaction_Date" Type="datetime" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_PAYMENTETRANZACT_BANK' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_PAYMENTETRANZACT_BANK' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="VW_PAYMENTETRANZACT_BANK">
           <Key>
             <PropertyRef Name="Bank_Name" />
@@ -4647,7 +4649,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_PAYMENTETRANZACT_BANK' does not have
           <Property Name="Transaction_Date" Type="datetime" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_PAYSTACK_FEETYPE' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_PAYSTACK_FEETYPE' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="VW_PAYSTACK_FEETYPE">
           <Key>
             <PropertyRef Name="Fee_Type_Id" />
@@ -4659,7 +4661,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_PAYSTACK_FEETYPE' does not have a pr
           <Property Name="transaction_date" Type="datetime" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_PERSON_APPLICATION' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_PERSON_APPLICATION' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="VW_PERSON_APPLICATION">
           <Key>
             <PropertyRef Name="First_Name" />
@@ -4676,7 +4678,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_PERSON_APPLICATION' does not have a 
           <Property Name="Rejected" Type="bit" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_PGSTUDENT_NOMINAL_REPORT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_PGSTUDENT_NOMINAL_REPORT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="VW_PGSTUDENT_NOMINAL_REPORT">
           <Key>
             <PropertyRef Name="Person_Id" />
@@ -4709,7 +4711,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_PGSTUDENT_NOMINAL_REPORT' does not h
           <Property Name="GeneratedLevel" Type="varchar" MaxLength="7" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_POST_JAMP_APPLICATION' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_POST_JAMP_APPLICATION' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="VW_POST_JAMP_APPLICATION">
           <Key>
             <PropertyRef Name="Application_Form_Id" />
@@ -4752,7 +4754,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_POST_JAMP_APPLICATION' does not have
           <Property Name="Application_Form_Setting_Name" Type="varchar" MaxLength="150" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_POST_JAMP_APPLICATION_ND_REGULAR' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_POST_JAMP_APPLICATION_ND_REGULAR' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="VW_POST_JAMP_APPLICATION_ND_REGULAR">
           <Key>
             <PropertyRef Name="Application_Form_Id" />
@@ -4789,7 +4791,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_POST_JAMP_APPLICATION_ND_REGULAR' do
           <Property Name="Applicant_Jamb_Score" Type="smallint" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_PROCESSED_SUPPLEMENTARY_REPORT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_PROCESSED_SUPPLEMENTARY_REPORT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="VW_PROCESSED_SUPPLEMENTARY_REPORT">
           <Key>
             <PropertyRef Name="Person_Id" />
@@ -4836,7 +4838,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_PROCESSED_SUPPLEMENTARY_REPORT' does
           <Property Name="Qualification2" Type="varchar(max)" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_PROGRAMME_DEPARTMENT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_PROGRAMME_DEPARTMENT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="VW_PROGRAMME_DEPARTMENT">
           <Key>
             <PropertyRef Name="Programme_Department_Id" />
@@ -4860,7 +4862,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_PROGRAMME_DEPARTMENT' does not have 
           <Property Name="Activate" Type="bit" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_PROSPECTIVE_STUDENT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_PROSPECTIVE_STUDENT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="VW_PROSPECTIVE_STUDENT">
           <Key>
             <PropertyRef Name="Application_Form_Id" />
@@ -4907,7 +4909,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_PROSPECTIVE_STUDENT' does not have a
           <Property Name="Applicant_Status_Id" Type="int" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_PUTME_RESULT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_PUTME_RESULT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="VW_PUTME_RESULT">
           <Key>
             <PropertyRef Name="ID" />
@@ -5009,7 +5011,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_PUTME_RESULT' does not have a primar
           <Property Name="Institution_Choice_Name" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_PUTME_RESULT_O_LEVEL' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_PUTME_RESULT_O_LEVEL' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="VW_PUTME_RESULT_O_LEVEL">
           <Key>
             <PropertyRef Name="ID" />
@@ -5129,7 +5131,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_PUTME_RESULT_O_LEVEL' does not have 
           <Property Name="Institution_Choice_Name" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_PUTME_RESULT_O_LEVEL_SUPPLEMENTARY' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_PUTME_RESULT_O_LEVEL_SUPPLEMENTARY' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="VW_PUTME_RESULT_O_LEVEL_SUPPLEMENTARY">
           <Key>
             <PropertyRef Name="ID" />
@@ -5247,7 +5249,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_PUTME_RESULT_O_LEVEL_SUPPLEMENTARY' 
           <Property Name="O_Level_Type_Name" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_PUTME_RESULT_SUPPLEMENTARY' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_PUTME_RESULT_SUPPLEMENTARY' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="VW_PUTME_RESULT_SUPPLEMENTARY">
           <Key>
             <PropertyRef Name="ID" />
@@ -5347,7 +5349,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_PUTME_RESULT_SUPPLEMENTARY' does not
           <Property Name="Expr2" Type="int" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_PUTME_SLUG' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_PUTME_SLUG' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="VW_PUTME_SLUG">
           <Key>
             <PropertyRef Name="Department_Name" />
@@ -5381,7 +5383,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_PUTME_SLUG' does not have a primary 
           <Property Name="Date_Submitted" Type="datetime" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_PUTME_UNMATCHED' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_PUTME_UNMATCHED' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="VW_PUTME_UNMATCHED">
           <Key>
             <PropertyRef Name="ID" />
@@ -5405,7 +5407,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_PUTME_UNMATCHED' does not have a pri
           <Property Name="Session_Id" Type="int" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_REGISTERED_COURSES' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_REGISTERED_COURSES' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="VW_REGISTERED_COURSES">
           <Key>
             <PropertyRef Name="Course_Type_Id" />
@@ -5458,7 +5460,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_REGISTERED_COURSES' does not have a 
           <Property Name="Activated" Type="bit" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_REMITA_PAYMENT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_REMITA_PAYMENT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="VW_REMITA_PAYMENT">
           <Key>
             <PropertyRef Name="Payment_Id" />
@@ -5499,7 +5501,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_REMITA_PAYMENT' does not have a prim
           <Property Name="Transaction_Amount" Type="decimal" Precision="18" Scale="0" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_RETURNING_STUDENT_INVOICE' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_RETURNING_STUDENT_INVOICE' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="VW_RETURNING_STUDENT_INVOICE">
           <Key>
             <PropertyRef Name="Payment_Id" />
@@ -5526,7 +5528,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_RETURNING_STUDENT_INVOICE' does not 
           <Property Name="Level_Name" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_RETURNING_STUDENTCOUNT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_RETURNING_STUDENTCOUNT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="VW_RETURNING_STUDENTCOUNT">
           <Key>
             <PropertyRef Name="Programme_Id" />
@@ -5545,7 +5547,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_RETURNING_STUDENTCOUNT' does not hav
           <Property Name="Returning_Student_Count" Type="int" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_SCHOOL_FEES_PAYMENT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_SCHOOL_FEES_PAYMENT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="VW_SCHOOL_FEES_PAYMENT">
           <Key>
             <PropertyRef Name="FULLNAME" />
@@ -5575,7 +5577,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_SCHOOL_FEES_PAYMENT' does not have a
           <Property Name="Student_Course_Registration_Id" Type="bigint" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_STDUENT_DETAILS' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_STDUENT_DETAILS' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="VW_STDUENT_DETAILS">
           <Key>
             <PropertyRef Name="Person_Id" />
@@ -5604,7 +5606,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_STDUENT_DETAILS' does not have a pri
           <Property Name="Session_Name" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_STUDENT_BIODATA' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_STUDENT_BIODATA' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="VW_STUDENT_BIODATA">
           <Key>
             <PropertyRef Name="First_Name" />
@@ -5729,7 +5731,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_STUDENT_BIODATA' does not have a pri
           <Property Name="Year_Of_Graduation" Type="int" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_STUDENT_ID_DATA' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_STUDENT_ID_DATA' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="VW_STUDENT_ID_DATA">
           <Key>
             <PropertyRef Name="Person_Id" />
@@ -5762,7 +5764,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_STUDENT_ID_DATA' does not have a pri
           <Property Name="Date_Entered" Type="date" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_STUDENT_NUMBER_ASSIGNED' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_STUDENT_NUMBER_ASSIGNED' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="VW_STUDENT_NUMBER_ASSIGNED">
           <Key>
             <PropertyRef Name="Person_Id" />
@@ -5786,7 +5788,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_STUDENT_NUMBER_ASSIGNED' does not ha
           <Property Name="Session_Name" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_STUDENT_O_LEVEL_RESULT_DETAIL' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_STUDENT_O_LEVEL_RESULT_DETAIL' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="VW_STUDENT_O_LEVEL_RESULT_DETAIL">
           <Key>
             <PropertyRef Name="Person_Id" />
@@ -5849,7 +5851,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_STUDENT_O_LEVEL_RESULT_DETAIL' does 
           <Property Name="O_Level_Grade_Name" Type="char" MaxLength="3" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_STUDENT_PAYMENT_RECORD' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_STUDENT_PAYMENT_RECORD' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="VW_STUDENT_PAYMENT_RECORD">
           <Key>
             <PropertyRef Name="Person_Id" />
@@ -5881,7 +5883,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_STUDENT_PAYMENT_RECORD' does not hav
           <Property Name="Invoice_Date" Type="datetime" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_STUDENT_REGISTERED_COURSE_CARRYOVER' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_STUDENT_REGISTERED_COURSE_CARRYOVER' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="VW_STUDENT_REGISTERED_COURSE_CARRYOVER">
           <Key>
             <PropertyRef Name="Student_Course_Registration_Id" />
@@ -5912,7 +5914,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_STUDENT_REGISTERED_COURSE_CARRYOVER'
           <Property Name="Student_Course_Registration_Detail_Id" Type="bigint" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_STUDENT_REGISTERED_COURSES' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_STUDENT_REGISTERED_COURSES' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="VW_STUDENT_REGISTERED_COURSES">
           <Key>
             <PropertyRef Name="Course_Id" />
@@ -5945,7 +5947,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_STUDENT_REGISTERED_COURSES' does not
           <Property Name="Exam_Score" Type="decimal" Precision="5" Scale="2" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_STUDENT_RESULT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_STUDENT_RESULT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="VW_STUDENT_RESULT">
           <Key>
             <PropertyRef Name="Person_Id" />
@@ -6007,7 +6009,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_STUDENT_RESULT' does not have a prim
           <Property Name="Maximum_Score_Obtainable" Type="int" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_STUDENT_RESULT_2' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_STUDENT_RESULT_2' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="VW_STUDENT_RESULT_2">
           <Key>
             <PropertyRef Name="Name" />
@@ -6088,7 +6090,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_STUDENT_RESULT_2' does not have a pr
           <Property Name="Date_Uploaded" Type="datetime" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_STUDENT_RESULT_MASTER_LIST' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_STUDENT_RESULT_MASTER_LIST' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="VW_STUDENT_RESULT_MASTER_LIST">
           <Key>
             <PropertyRef Name="Student_Result_Type_Name" />
@@ -6133,7 +6135,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_STUDENT_RESULT_MASTER_LIST' does not
           <Property Name="Department_Id" Type="int" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_STUDENT_RESULT_OLD_GRADING_SYSTEM' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_STUDENT_RESULT_OLD_GRADING_SYSTEM' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="VW_STUDENT_RESULT_OLD_GRADING_SYSTEM">
           <Key>
             <PropertyRef Name="Name" />
@@ -6211,7 +6213,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_STUDENT_RESULT_OLD_GRADING_SYSTEM' d
           <Property Name="Level_Id" Type="int" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_STUDENT_RESULT_RAW_SCORE_SHEET' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_STUDENT_RESULT_RAW_SCORE_SHEET' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="VW_STUDENT_RESULT_RAW_SCORE_SHEET">
           <Key>
             <PropertyRef Name="Name" />
@@ -6310,7 +6312,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_STUDENT_RESULT_RAW_SCORE_SHEET' does
           <Property Name="Student_Result_Id" Type="bigint" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_STUDENT_RESULT_RAW_SCORE_SHEET_UNREGISTERED' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_STUDENT_RESULT_RAW_SCORE_SHEET_UNREGISTERED' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="VW_STUDENT_RESULT_RAW_SCORE_SHEET_UNREGISTERED">
           <Key>
             <PropertyRef Name="Student_Result_Id" />
@@ -6365,7 +6367,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_STUDENT_RESULT_RAW_SCORE_SHEET_UNREG
           <Property Name="Session_Name" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_STUDENT_RESULT_SUMMARY' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_STUDENT_RESULT_SUMMARY' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="VW_STUDENT_RESULT_SUMMARY">
           <Key>
             <PropertyRef Name="Name" />
@@ -6430,7 +6432,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_STUDENT_RESULT_SUMMARY' does not hav
           <Property Name="Session_Semester_Sequence_Number" Type="int" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_SUPPLEMENTARY_APPLICATION_REPORT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_SUPPLEMENTARY_APPLICATION_REPORT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="VW_SUPPLEMENTARY_APPLICATION_REPORT">
           <Key>
             <PropertyRef Name="Last_Name" />
@@ -6456,7 +6458,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_SUPPLEMENTARY_APPLICATION_REPORT' do
           <Property Name="Qualification 2" Type="varchar(max)" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_TRANSCRIPT_REQUEST_BY_ETRANZACT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_TRANSCRIPT_REQUEST_BY_ETRANZACT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="VW_TRANSCRIPT_REQUEST_BY_ETRANZACT">
           <Key>
             <PropertyRef Name="Transcript_Request_Id" />
@@ -6495,7 +6497,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_TRANSCRIPT_REQUEST_BY_ETRANZACT' doe
           <Property Name="Delivery_Service" Type="varchar" MaxLength="50" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_TRANSCRIPT_REQUEST_BY_INTERSWITCH' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_TRANSCRIPT_REQUEST_BY_INTERSWITCH' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="VW_TRANSCRIPT_REQUEST_BY_INTERSWITCH">
           <Key>
             <PropertyRef Name="Transcript_Request_Id" />
@@ -6534,7 +6536,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_TRANSCRIPT_REQUEST_BY_INTERSWITCH' d
           <Property Name="Delivery_Service" Type="varchar" MaxLength="50" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_UNDERGRADUATE_NOMINAL_REPORT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_UNDERGRADUATE_NOMINAL_REPORT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="VW_UNDERGRADUATE_NOMINAL_REPORT">
           <Key>
             <PropertyRef Name="Name" />
@@ -6562,7 +6564,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_UNDERGRADUATE_NOMINAL_REPORT' does n
           <Property Name="State_Name" Type="varchar" MaxLength="50" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_UPLOADED_COURSES' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_UPLOADED_COURSES' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="VW_UPLOADED_COURSES">
           <Key>
             <PropertyRef Name="Course_Code" />
@@ -6602,7 +6604,7 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_UPLOADED_COURSES' does not have a pr
           <Property Name="Course_Id" Type="bigint" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'VS_NAU.dbo.VW_VACANT_BEDSPACES' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'VS_UNIPORT.dbo.VW_VACANT_BEDSPACES' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="VW_VACANT_BEDSPACES">
           <Key>
             <PropertyRef Name="Hostel_Id" />
@@ -19147,7 +19149,6 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_VACANT_BEDSPACES' does not have a pr
           <EntitySet Name="PERSON_MERGER" EntityType="Abundance_NkModel.PERSON_MERGER" />
           <EntitySet Name="REFEREE_GRADING_CATEGORY" EntityType="Abundance_NkModel.REFEREE_GRADING_CATEGORY" />
           <EntitySet Name="REFEREE_GRADING_SYSTEM" EntityType="Abundance_NkModel.REFEREE_GRADING_SYSTEM" />
-          <EntitySet Name="STUDENT" EntityType="Abundance_NkModel.STUDENT" />
           <AssociationSet Name="FK_APPLICANT_REFEREE_RESPONSE_APPLICANT_REFEREE" Association="Abundance_NkModel.FK_APPLICANT_REFEREE_RESPONSE_APPLICANT_REFEREE">
             <End Role="APPLICANT_REFEREE" EntitySet="APPLICANT_REFEREE" />
             <End Role="APPLICANT_REFEREE_RESPONSE" EntitySet="APPLICANT_REFEREE_RESPONSE" />
@@ -19167,114 +19168,6 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_VACANT_BEDSPACES' does not have a pr
           <AssociationSet Name="FK_APPLICANT_REFEREE_RESPONSE_REFEREE_GRADING_SYSTEM" Association="Abundance_NkModel.FK_APPLICANT_REFEREE_RESPONSE_REFEREE_GRADING_SYSTEM">
             <End Role="REFEREE_GRADING_SYSTEM" EntitySet="REFEREE_GRADING_SYSTEM" />
             <End Role="APPLICANT_REFEREE_RESPONSE" EntitySet="APPLICANT_REFEREE_RESPONSE" />
-          </AssociationSet>
-          <AssociationSet Name="FK_STUDENT_APPLICATION_FORM" Association="Abundance_NkModel.FK_STUDENT_APPLICATION_FORM">
-            <End Role="APPLICATION_FORM" EntitySet="APPLICATION_FORM" />
-            <End Role="STUDENT" EntitySet="STUDENT" />
-          </AssociationSet>
-          <AssociationSet Name="FK_STUDENT_BLOOD_GROUP" Association="Abundance_NkModel.FK_STUDENT_BLOOD_GROUP">
-            <End Role="BLOOD_GROUP" EntitySet="BLOOD_GROUP" />
-            <End Role="STUDENT" EntitySet="STUDENT" />
-          </AssociationSet>
-          <AssociationSet Name="FK_COURSE_EVALUATION_ANSWER_STUDENT" Association="Abundance_NkModel.FK_COURSE_EVALUATION_ANSWER_STUDENT">
-            <End Role="STUDENT" EntitySet="STUDENT" />
-            <End Role="COURSE_EVALUATION_ANSWER" EntitySet="COURSE_EVALUATION_ANSWER" />
-          </AssociationSet>
-          <AssociationSet Name="FK_E_ASSIGNMENT_SUBMISSION_STUDENT" Association="Abundance_NkModel.FK_E_ASSIGNMENT_SUBMISSION_STUDENT">
-            <End Role="STUDENT" EntitySet="STUDENT" />
-            <End Role="E_ASSIGNMENT_SUBMISSION" EntitySet="E_ASSIGNMENT_SUBMISSION" />
-          </AssociationSet>
-          <AssociationSet Name="FK_E_CHAT_RESPONPSE_STUDENT" Association="Abundance_NkModel.FK_E_CHAT_RESPONPSE_STUDENT">
-            <End Role="STUDENT" EntitySet="STUDENT" />
-            <End Role="E_CHAT_RESPONPSE" EntitySet="E_CHAT_RESPONPSE" />
-          </AssociationSet>
-          <AssociationSet Name="FK_STUDENT_GENOTYPE" Association="Abundance_NkModel.FK_STUDENT_GENOTYPE">
-            <End Role="GENOTYPE" EntitySet="GENOTYPE" />
-            <End Role="STUDENT" EntitySet="STUDENT" />
-          </AssociationSet>
-          <AssociationSet Name="FK_HOSTEL_BLACKLIST_STUDENT" Association="Abundance_NkModel.FK_HOSTEL_BLACKLIST_STUDENT">
-            <End Role="STUDENT" EntitySet="STUDENT" />
-            <End Role="HOSTEL_BLACKLIST" EntitySet="HOSTEL_BLACKLIST" />
-          </AssociationSet>
-          <AssociationSet Name="FK_STUDENT_MARITAL_STATUS" Association="Abundance_NkModel.FK_STUDENT_MARITAL_STATUS">
-            <End Role="MARITAL_STATUS" EntitySet="MARITAL_STATUS" />
-            <End Role="STUDENT" EntitySet="STUDENT" />
-          </AssociationSet>
-          <AssociationSet Name="FK_REPORT_CARD_STUDENT" Association="Abundance_NkModel.FK_REPORT_CARD_STUDENT">
-            <End Role="STUDENT" EntitySet="STUDENT" />
-            <End Role="REPORT_CARD" EntitySet="REPORT_CARD" />
-          </AssociationSet>
-          <AssociationSet Name="FK_GST_SCAN_STUDENT" Association="Abundance_NkModel.FK_GST_SCAN_STUDENT">
-            <End Role="STUDENT" EntitySet="STUDENT" />
-            <End Role="GST_SCAN" EntitySet="GST_SCAN" />
-          </AssociationSet>
-          <AssociationSet Name="FK_STUDENT_ACADEMIC_INFORMATION_STUDENT" Association="Abundance_NkModel.FK_STUDENT_ACADEMIC_INFORMATION_STUDENT">
-            <End Role="STUDENT" EntitySet="STUDENT" />
-            <End Role="STUDENT_ACADEMIC_INFORMATION" EntitySet="STUDENT_ACADEMIC_INFORMATION" />
-          </AssociationSet>
-          <AssociationSet Name="FK_STUDENT_COURSE_REGISTRATION_STUDENT1" Association="Abundance_NkModel.FK_STUDENT_COURSE_REGISTRATION_STUDENT1">
-            <End Role="STUDENT" EntitySet="STUDENT" />
-            <End Role="STUDENT_COURSE_REGISTRATION" EntitySet="STUDENT_COURSE_REGISTRATION" />
-          </AssociationSet>
-          <AssociationSet Name="FK_STUDENT_EMPLOYMENT_INFORMATION_STUDENT" Association="Abundance_NkModel.FK_STUDENT_EMPLOYMENT_INFORMATION_STUDENT">
-            <End Role="STUDENT" EntitySet="STUDENT" />
-            <End Role="STUDENT_EMPLOYMENT_INFORMATION" EntitySet="STUDENT_EMPLOYMENT_INFORMATION" />
-          </AssociationSet>
-          <AssociationSet Name="FK_STUDENT_EXAM_RAW_SCORE_SHEET_RESULT_STUDENT" Association="Abundance_NkModel.FK_STUDENT_EXAM_RAW_SCORE_SHEET_RESULT_STUDENT">
-            <End Role="STUDENT" EntitySet="STUDENT" />
-            <End Role="STUDENT_EXAM_RAW_SCORE_SHEET_RESULT" EntitySet="STUDENT_EXAM_RAW_SCORE_SHEET_RESULT" />
-          </AssociationSet>
-          <AssociationSet Name="FK_STUDENT_FINANCE_INFORMATION_STUDENT" Association="Abundance_NkModel.FK_STUDENT_FINANCE_INFORMATION_STUDENT">
-            <End Role="STUDENT" EntitySet="STUDENT" />
-            <End Role="STUDENT_FINANCE_INFORMATION" EntitySet="STUDENT_FINANCE_INFORMATION" />
-          </AssociationSet>
-          <AssociationSet Name="FK_STUDENT_LEVEL_STUDENT" Association="Abundance_NkModel.FK_STUDENT_LEVEL_STUDENT">
-            <End Role="STUDENT" EntitySet="STUDENT" />
-            <End Role="STUDENT_LEVEL" EntitySet="STUDENT_LEVEL" />
-          </AssociationSet>
-          <AssociationSet Name="FK_STUDENT_ND_RESULT_STUDENT" Association="Abundance_NkModel.FK_STUDENT_ND_RESULT_STUDENT">
-            <End Role="STUDENT" EntitySet="STUDENT" />
-            <End Role="STUDENT_ND_RESULT" EntitySet="STUDENT_ND_RESULT" />
-          </AssociationSet>
-          <AssociationSet Name="FK_STUDENT_RESULT_DETAIL_PERSON" Association="Abundance_NkModel.FK_STUDENT_RESULT_DETAIL_PERSON">
-            <End Role="STUDENT" EntitySet="STUDENT" />
-            <End Role="STUDENT_RESULT_DETAIL" EntitySet="STUDENT_RESULT_DETAIL" />
-          </AssociationSet>
-          <AssociationSet Name="FK_STUDENT_SCORE_STUDENT" Association="Abundance_NkModel.FK_STUDENT_SCORE_STUDENT">
-            <End Role="STUDENT" EntitySet="STUDENT" />
-            <End Role="STUDENT_SCORE" EntitySet="STUDENT_SCORE" />
-          </AssociationSet>
-          <AssociationSet Name="FK_STUDENT_SPONSOR_STUDENT" Association="Abundance_NkModel.FK_STUDENT_SPONSOR_STUDENT">
-            <End Role="STUDENT" EntitySet="STUDENT" />
-            <End Role="STUDENT_SPONSOR" EntitySet="STUDENT_SPONSOR" />
-          </AssociationSet>
-          <AssociationSet Name="FK_STUDENT_STUDENT_CATEGORY" Association="Abundance_NkModel.FK_STUDENT_STUDENT_CATEGORY">
-            <End Role="STUDENT_CATEGORY" EntitySet="STUDENT_CATEGORY" />
-            <End Role="STUDENT" EntitySet="STUDENT" />
-          </AssociationSet>
-          <AssociationSet Name="FK_STUDENT_STUDENT_STATUS" Association="Abundance_NkModel.FK_STUDENT_STUDENT_STATUS">
-            <End Role="STUDENT_STATUS" EntitySet="STUDENT_STATUS" />
-            <End Role="STUDENT" EntitySet="STUDENT" />
-          </AssociationSet>
-          <AssociationSet Name="FK_STUDENT_STUDENT_TYPE" Association="Abundance_NkModel.FK_STUDENT_STUDENT_TYPE">
-            <End Role="STUDENT_TYPE" EntitySet="STUDENT_TYPE" />
-            <End Role="STUDENT" EntitySet="STUDENT" />
-          </AssociationSet>
-          <AssociationSet Name="FK_STUDENT_TERM_STUDENT" Association="Abundance_NkModel.FK_STUDENT_TERM_STUDENT">
-            <End Role="STUDENT" EntitySet="STUDENT" />
-            <End Role="STUDENT_SEMESTER" EntitySet="STUDENT_SEMESTER" />
-          </AssociationSet>
-          <AssociationSet Name="FK_STUDENT_TITLE" Association="Abundance_NkModel.FK_STUDENT_TITLE">
-            <End Role="TITLE" EntitySet="TITLE" />
-            <End Role="STUDENT" EntitySet="STUDENT" />
-          </AssociationSet>
-          <AssociationSet Name="FK_STUDENT_UPDATE_AUDIT_STUDENT" Association="Abundance_NkModel.FK_STUDENT_UPDATE_AUDIT_STUDENT">
-            <End Role="STUDENT" EntitySet="STUDENT" />
-            <End Role="STUDENT_UPDATE_AUDIT" EntitySet="STUDENT_UPDATE_AUDIT" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TRANSCRIPT_REQUEST_STUDENT" Association="Abundance_NkModel.FK_TRANSCRIPT_REQUEST_STUDENT">
-            <End Role="STUDENT" EntitySet="STUDENT" />
-            <End Role="TRANSCRIPT_REQUEST" EntitySet="TRANSCRIPT_REQUEST" />
           </AssociationSet>
           <FunctionImport Name="STP_GENERATE_POST_GRADUATE_MATRIC_NUMBER" ReturnType="Collection(String)">
             <Parameter Name="paramPerson_Id" Mode="In" Type="Int64" />
@@ -19466,15 +19359,124 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_VACANT_BEDSPACES' does not have a pr
             <End Role="PERSON" EntitySet="PERSON" />
             <End Role="STUDENT_PAYMENT" EntitySet="STUDENT_PAYMENT" />
           </AssociationSet>
-          <AssociationSet Name="FK_STUDENT_PERSON" Association="Abundance_NkModel.FK_STUDENT_PERSON">
-            <End Role="PERSON" EntitySet="PERSON" />
-            <End Role="STUDENT" EntitySet="STUDENT" />
-          </AssociationSet>
           <EntitySet Name="VW_ACCEPTANCE_REPORT" EntityType="Abundance_NkModel.VW_ACCEPTANCE_REPORT" />
           <EntitySet Name="VW_ALL_PAYMENT_REPORT_GENERAL" EntityType="Abundance_NkModel.VW_ALL_PAYMENT_REPORT_GENERAL" />
           <EntitySet Name="VW_PAYMENT_REMITA" EntityType="Abundance_NkModel.VW_PAYMENT_REMITA" />
           <EntitySet Name="VW_PAYMENT_OLD_STUDENT" EntityType="Abundance_NkModel.VW_PAYMENT_OLD_STUDENT" />
           <EntitySet Name="VW_PAYMENT_NEW_STUDENT" EntityType="Abundance_NkModel.VW_PAYMENT_NEW_STUDENT" />
+          <EntitySet Name="STUDENT" EntityType="Abundance_NkModel.STUDENT" />
+          <AssociationSet Name="FK_STUDENT_APPLICATION_FORM" Association="Abundance_NkModel.FK_STUDENT_APPLICATION_FORM">
+            <End Role="APPLICATION_FORM" EntitySet="APPLICATION_FORM" />
+            <End Role="STUDENT" EntitySet="STUDENT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_STUDENT_BLOOD_GROUP" Association="Abundance_NkModel.FK_STUDENT_BLOOD_GROUP">
+            <End Role="BLOOD_GROUP" EntitySet="BLOOD_GROUP" />
+            <End Role="STUDENT" EntitySet="STUDENT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_COURSE_EVALUATION_ANSWER_STUDENT" Association="Abundance_NkModel.FK_COURSE_EVALUATION_ANSWER_STUDENT">
+            <End Role="STUDENT" EntitySet="STUDENT" />
+            <End Role="COURSE_EVALUATION_ANSWER" EntitySet="COURSE_EVALUATION_ANSWER" />
+          </AssociationSet>
+          <AssociationSet Name="FK_E_ASSIGNMENT_SUBMISSION_STUDENT" Association="Abundance_NkModel.FK_E_ASSIGNMENT_SUBMISSION_STUDENT">
+            <End Role="STUDENT" EntitySet="STUDENT" />
+            <End Role="E_ASSIGNMENT_SUBMISSION" EntitySet="E_ASSIGNMENT_SUBMISSION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_E_CHAT_RESPONPSE_STUDENT" Association="Abundance_NkModel.FK_E_CHAT_RESPONPSE_STUDENT">
+            <End Role="STUDENT" EntitySet="STUDENT" />
+            <End Role="E_CHAT_RESPONPSE" EntitySet="E_CHAT_RESPONPSE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_STUDENT_GENOTYPE" Association="Abundance_NkModel.FK_STUDENT_GENOTYPE">
+            <End Role="GENOTYPE" EntitySet="GENOTYPE" />
+            <End Role="STUDENT" EntitySet="STUDENT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HOSTEL_BLACKLIST_STUDENT" Association="Abundance_NkModel.FK_HOSTEL_BLACKLIST_STUDENT">
+            <End Role="STUDENT" EntitySet="STUDENT" />
+            <End Role="HOSTEL_BLACKLIST" EntitySet="HOSTEL_BLACKLIST" />
+          </AssociationSet>
+          <AssociationSet Name="FK_STUDENT_MARITAL_STATUS" Association="Abundance_NkModel.FK_STUDENT_MARITAL_STATUS">
+            <End Role="MARITAL_STATUS" EntitySet="MARITAL_STATUS" />
+            <End Role="STUDENT" EntitySet="STUDENT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_STUDENT_PERSON" Association="Abundance_NkModel.FK_STUDENT_PERSON">
+            <End Role="PERSON" EntitySet="PERSON" />
+            <End Role="STUDENT" EntitySet="STUDENT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_REPORT_CARD_STUDENT" Association="Abundance_NkModel.FK_REPORT_CARD_STUDENT">
+            <End Role="STUDENT" EntitySet="STUDENT" />
+            <End Role="REPORT_CARD" EntitySet="REPORT_CARD" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GST_SCAN_STUDENT" Association="Abundance_NkModel.FK_GST_SCAN_STUDENT">
+            <End Role="STUDENT" EntitySet="STUDENT" />
+            <End Role="GST_SCAN" EntitySet="GST_SCAN" />
+          </AssociationSet>
+          <AssociationSet Name="FK_STUDENT_ACADEMIC_INFORMATION_STUDENT" Association="Abundance_NkModel.FK_STUDENT_ACADEMIC_INFORMATION_STUDENT">
+            <End Role="STUDENT" EntitySet="STUDENT" />
+            <End Role="STUDENT_ACADEMIC_INFORMATION" EntitySet="STUDENT_ACADEMIC_INFORMATION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_STUDENT_COURSE_REGISTRATION_STUDENT1" Association="Abundance_NkModel.FK_STUDENT_COURSE_REGISTRATION_STUDENT1">
+            <End Role="STUDENT" EntitySet="STUDENT" />
+            <End Role="STUDENT_COURSE_REGISTRATION" EntitySet="STUDENT_COURSE_REGISTRATION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_STUDENT_EMPLOYMENT_INFORMATION_STUDENT" Association="Abundance_NkModel.FK_STUDENT_EMPLOYMENT_INFORMATION_STUDENT">
+            <End Role="STUDENT" EntitySet="STUDENT" />
+            <End Role="STUDENT_EMPLOYMENT_INFORMATION" EntitySet="STUDENT_EMPLOYMENT_INFORMATION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_STUDENT_EXAM_RAW_SCORE_SHEET_RESULT_STUDENT" Association="Abundance_NkModel.FK_STUDENT_EXAM_RAW_SCORE_SHEET_RESULT_STUDENT">
+            <End Role="STUDENT" EntitySet="STUDENT" />
+            <End Role="STUDENT_EXAM_RAW_SCORE_SHEET_RESULT" EntitySet="STUDENT_EXAM_RAW_SCORE_SHEET_RESULT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_STUDENT_FINANCE_INFORMATION_STUDENT" Association="Abundance_NkModel.FK_STUDENT_FINANCE_INFORMATION_STUDENT">
+            <End Role="STUDENT" EntitySet="STUDENT" />
+            <End Role="STUDENT_FINANCE_INFORMATION" EntitySet="STUDENT_FINANCE_INFORMATION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_STUDENT_LEVEL_STUDENT" Association="Abundance_NkModel.FK_STUDENT_LEVEL_STUDENT">
+            <End Role="STUDENT" EntitySet="STUDENT" />
+            <End Role="STUDENT_LEVEL" EntitySet="STUDENT_LEVEL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_STUDENT_ND_RESULT_STUDENT" Association="Abundance_NkModel.FK_STUDENT_ND_RESULT_STUDENT">
+            <End Role="STUDENT" EntitySet="STUDENT" />
+            <End Role="STUDENT_ND_RESULT" EntitySet="STUDENT_ND_RESULT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_STUDENT_RESULT_DETAIL_PERSON" Association="Abundance_NkModel.FK_STUDENT_RESULT_DETAIL_PERSON">
+            <End Role="STUDENT" EntitySet="STUDENT" />
+            <End Role="STUDENT_RESULT_DETAIL" EntitySet="STUDENT_RESULT_DETAIL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_STUDENT_SCORE_STUDENT" Association="Abundance_NkModel.FK_STUDENT_SCORE_STUDENT">
+            <End Role="STUDENT" EntitySet="STUDENT" />
+            <End Role="STUDENT_SCORE" EntitySet="STUDENT_SCORE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_STUDENT_SPONSOR_STUDENT" Association="Abundance_NkModel.FK_STUDENT_SPONSOR_STUDENT">
+            <End Role="STUDENT" EntitySet="STUDENT" />
+            <End Role="STUDENT_SPONSOR" EntitySet="STUDENT_SPONSOR" />
+          </AssociationSet>
+          <AssociationSet Name="FK_STUDENT_STUDENT_CATEGORY" Association="Abundance_NkModel.FK_STUDENT_STUDENT_CATEGORY">
+            <End Role="STUDENT_CATEGORY" EntitySet="STUDENT_CATEGORY" />
+            <End Role="STUDENT" EntitySet="STUDENT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_STUDENT_STUDENT_STATUS" Association="Abundance_NkModel.FK_STUDENT_STUDENT_STATUS">
+            <End Role="STUDENT_STATUS" EntitySet="STUDENT_STATUS" />
+            <End Role="STUDENT" EntitySet="STUDENT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_STUDENT_STUDENT_TYPE" Association="Abundance_NkModel.FK_STUDENT_STUDENT_TYPE">
+            <End Role="STUDENT_TYPE" EntitySet="STUDENT_TYPE" />
+            <End Role="STUDENT" EntitySet="STUDENT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_STUDENT_TERM_STUDENT" Association="Abundance_NkModel.FK_STUDENT_TERM_STUDENT">
+            <End Role="STUDENT" EntitySet="STUDENT" />
+            <End Role="STUDENT_SEMESTER" EntitySet="STUDENT_SEMESTER" />
+          </AssociationSet>
+          <AssociationSet Name="FK_STUDENT_TITLE" Association="Abundance_NkModel.FK_STUDENT_TITLE">
+            <End Role="TITLE" EntitySet="TITLE" />
+            <End Role="STUDENT" EntitySet="STUDENT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_STUDENT_UPDATE_AUDIT_STUDENT" Association="Abundance_NkModel.FK_STUDENT_UPDATE_AUDIT_STUDENT">
+            <End Role="STUDENT" EntitySet="STUDENT" />
+            <End Role="STUDENT_UPDATE_AUDIT" EntitySet="STUDENT_UPDATE_AUDIT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TRANSCRIPT_REQUEST_STUDENT" Association="Abundance_NkModel.FK_TRANSCRIPT_REQUEST_STUDENT">
+            <End Role="STUDENT" EntitySet="STUDENT" />
+            <End Role="TRANSCRIPT_REQUEST" EntitySet="TRANSCRIPT_REQUEST" />
+          </AssociationSet>
         </EntityContainer>
         <ComplexType Name="STP_INSERT_APPLICATION_FORM_Result">
           <Property Type="Int64" Name="Application_Form_Id" Nullable="false" />
@@ -20048,8 +20050,8 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_VACANT_BEDSPACES' does not have a pr
           <NavigationProperty Name="APPLICATION_PROGRAMME_FEE" Relationship="Abundance_NkModel.FK_APPLICATION_FORM_APPLICATION_PROGRAMME_FEE" FromRole="APPLICATION_FORM" ToRole="APPLICATION_PROGRAMME_FEE" />
           <NavigationProperty Name="PAYMENT" Relationship="Abundance_NkModel.FK_APPLICATION_FORM_PAYMENT" FromRole="APPLICATION_FORM" ToRole="PAYMENT" />
           <NavigationProperty Name="NEXT_OF_KIN" Relationship="Abundance_NkModel.FK_NEXT_OF_KIN_APPLICATION_FORM" FromRole="APPLICATION_FORM" ToRole="NEXT_OF_KIN" />
-          <NavigationProperty Name="STUDENT" Relationship="Abundance_NkModel.FK_STUDENT_APPLICATION_FORM" FromRole="APPLICATION_FORM" ToRole="STUDENT" />
           <NavigationProperty Name="PERSON" Relationship="Abundance_NkModel.FK_APPLICATION_FORM_PERSON" FromRole="APPLICATION_FORM" ToRole="PERSON" />
+          <NavigationProperty Name="STUDENT" Relationship="Abundance_NkModel.FK_STUDENT_APPLICATION_FORM" FromRole="APPLICATION_FORM" ToRole="STUDENT" />
         </EntityType>
         <EntityType Name="APPLICATION_FORM_SETTING">
           <Key>
@@ -31244,55 +31246,6 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_VACANT_BEDSPACES' does not have a pr
           <NavigationProperty Name="APPLICANT_REFEREE_GRADING_RESPONSE" Relationship="Abundance_NkModel.FK_APPLICANT_REFEREE_GRADING_RESPONSE_REFEREE_GRADING_SYSTEM" FromRole="REFEREE_GRADING_SYSTEM" ToRole="APPLICANT_REFEREE_GRADING_RESPONSE" />
           <NavigationProperty Name="APPLICANT_REFEREE_RESPONSE" Relationship="Abundance_NkModel.FK_APPLICANT_REFEREE_RESPONSE_REFEREE_GRADING_SYSTEM" FromRole="REFEREE_GRADING_SYSTEM" ToRole="APPLICANT_REFEREE_RESPONSE" />
         </EntityType>
-        <EntityType Name="STUDENT">
-          <Key>
-            <PropertyRef Name="Person_Id" />
-          </Key>
-          <Property Name="Person_Id" Type="Int64" Nullable="false" />
-          <Property Name="Application_Form_Id" Type="Int64" />
-          <Property Name="Student_Type_Id" Type="Int32" Nullable="false" />
-          <Property Name="Student_Category_Id" Type="Int32" Nullable="false" />
-          <Property Name="Student_Status_Id" Type="Int32" Nullable="false" />
-          <Property Name="Student_Number" Type="Int64" />
-          <Property Name="Matric_Number" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Title_Id" Type="Int32" />
-          <Property Name="Marital_Status_Id" Type="Int32" />
-          <Property Name="Blood_Group_Id" Type="Int32" />
-          <Property Name="Genotype_Id" Type="Int32" />
-          <Property Name="School_Contact_Address" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
-          <Property Name="Activated" Type="Boolean" />
-          <Property Name="Reason" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Reject_Category" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="Password_hash" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="APPLICATION_FORM" Relationship="Abundance_NkModel.FK_STUDENT_APPLICATION_FORM" FromRole="STUDENT" ToRole="APPLICATION_FORM" />
-          <NavigationProperty Name="BLOOD_GROUP" Relationship="Abundance_NkModel.FK_STUDENT_BLOOD_GROUP" FromRole="STUDENT" ToRole="BLOOD_GROUP" />
-          <NavigationProperty Name="COURSE_EVALUATION_ANSWER" Relationship="Abundance_NkModel.FK_COURSE_EVALUATION_ANSWER_STUDENT" FromRole="STUDENT" ToRole="COURSE_EVALUATION_ANSWER" />
-          <NavigationProperty Name="E_ASSIGNMENT_SUBMISSION" Relationship="Abundance_NkModel.FK_E_ASSIGNMENT_SUBMISSION_STUDENT" FromRole="STUDENT" ToRole="E_ASSIGNMENT_SUBMISSION" />
-          <NavigationProperty Name="E_CHAT_RESPONPSE" Relationship="Abundance_NkModel.FK_E_CHAT_RESPONPSE_STUDENT" FromRole="STUDENT" ToRole="E_CHAT_RESPONPSE" />
-          <NavigationProperty Name="GENOTYPE" Relationship="Abundance_NkModel.FK_STUDENT_GENOTYPE" FromRole="STUDENT" ToRole="GENOTYPE" />
-          <NavigationProperty Name="HOSTEL_BLACKLIST" Relationship="Abundance_NkModel.FK_HOSTEL_BLACKLIST_STUDENT" FromRole="STUDENT" ToRole="HOSTEL_BLACKLIST" />
-          <NavigationProperty Name="MARITAL_STATUS" Relationship="Abundance_NkModel.FK_STUDENT_MARITAL_STATUS" FromRole="STUDENT" ToRole="MARITAL_STATUS" />
-          <NavigationProperty Name="REPORT_CARD" Relationship="Abundance_NkModel.FK_REPORT_CARD_STUDENT" FromRole="STUDENT" ToRole="REPORT_CARD" />
-          <NavigationProperty Name="GST_SCAN" Relationship="Abundance_NkModel.FK_GST_SCAN_STUDENT" FromRole="STUDENT" ToRole="GST_SCAN" />
-          <NavigationProperty Name="STUDENT_ACADEMIC_INFORMATION" Relationship="Abundance_NkModel.FK_STUDENT_ACADEMIC_INFORMATION_STUDENT" FromRole="STUDENT" ToRole="STUDENT_ACADEMIC_INFORMATION" />
-          <NavigationProperty Name="STUDENT_COURSE_REGISTRATION" Relationship="Abundance_NkModel.FK_STUDENT_COURSE_REGISTRATION_STUDENT1" FromRole="STUDENT" ToRole="STUDENT_COURSE_REGISTRATION" />
-          <NavigationProperty Name="STUDENT_EMPLOYMENT_INFORMATION" Relationship="Abundance_NkModel.FK_STUDENT_EMPLOYMENT_INFORMATION_STUDENT" FromRole="STUDENT" ToRole="STUDENT_EMPLOYMENT_INFORMATION" />
-          <NavigationProperty Name="STUDENT_EXAM_RAW_SCORE_SHEET_RESULT" Relationship="Abundance_NkModel.FK_STUDENT_EXAM_RAW_SCORE_SHEET_RESULT_STUDENT" FromRole="STUDENT" ToRole="STUDENT_EXAM_RAW_SCORE_SHEET_RESULT" />
-          <NavigationProperty Name="STUDENT_FINANCE_INFORMATION" Relationship="Abundance_NkModel.FK_STUDENT_FINANCE_INFORMATION_STUDENT" FromRole="STUDENT" ToRole="STUDENT_FINANCE_INFORMATION" />
-          <NavigationProperty Name="STUDENT_LEVEL" Relationship="Abundance_NkModel.FK_STUDENT_LEVEL_STUDENT" FromRole="STUDENT" ToRole="STUDENT_LEVEL" />
-          <NavigationProperty Name="STUDENT_ND_RESULT" Relationship="Abundance_NkModel.FK_STUDENT_ND_RESULT_STUDENT" FromRole="STUDENT" ToRole="STUDENT_ND_RESULT" />
-          <NavigationProperty Name="STUDENT_RESULT_DETAIL" Relationship="Abundance_NkModel.FK_STUDENT_RESULT_DETAIL_PERSON" FromRole="STUDENT" ToRole="STUDENT_RESULT_DETAIL" />
-          <NavigationProperty Name="STUDENT_SCORE" Relationship="Abundance_NkModel.FK_STUDENT_SCORE_STUDENT" FromRole="STUDENT" ToRole="STUDENT_SCORE" />
-          <NavigationProperty Name="STUDENT_SPONSOR" Relationship="Abundance_NkModel.FK_STUDENT_SPONSOR_STUDENT" FromRole="STUDENT" ToRole="STUDENT_SPONSOR" />
-          <NavigationProperty Name="STUDENT_CATEGORY" Relationship="Abundance_NkModel.FK_STUDENT_STUDENT_CATEGORY" FromRole="STUDENT" ToRole="STUDENT_CATEGORY" />
-          <NavigationProperty Name="STUDENT_STATUS" Relationship="Abundance_NkModel.FK_STUDENT_STUDENT_STATUS" FromRole="STUDENT" ToRole="STUDENT_STATUS" />
-          <NavigationProperty Name="STUDENT_TYPE" Relationship="Abundance_NkModel.FK_STUDENT_STUDENT_TYPE" FromRole="STUDENT" ToRole="STUDENT_TYPE" />
-          <NavigationProperty Name="STUDENT_SEMESTER" Relationship="Abundance_NkModel.FK_STUDENT_TERM_STUDENT" FromRole="STUDENT" ToRole="STUDENT_SEMESTER" />
-          <NavigationProperty Name="TITLE" Relationship="Abundance_NkModel.FK_STUDENT_TITLE" FromRole="STUDENT" ToRole="TITLE" />
-          <NavigationProperty Name="STUDENT_UPDATE_AUDIT" Relationship="Abundance_NkModel.FK_STUDENT_UPDATE_AUDIT_STUDENT" FromRole="STUDENT" ToRole="STUDENT_UPDATE_AUDIT" />
-          <NavigationProperty Name="TRANSCRIPT_REQUEST" Relationship="Abundance_NkModel.FK_TRANSCRIPT_REQUEST_STUDENT" FromRole="STUDENT" ToRole="TRANSCRIPT_REQUEST" />
-          <NavigationProperty Name="PERSON" Relationship="Abundance_NkModel.FK_STUDENT_PERSON" FromRole="STUDENT" ToRole="PERSON" />
-        </EntityType>
         <Association Name="FK_APPLICANT_REFEREE_RESPONSE_APPLICANT_REFEREE">
           <End Type="Abundance_NkModel.APPLICANT_REFEREE" Role="APPLICANT_REFEREE" Multiplicity="1" />
           <End Type="Abundance_NkModel.APPLICANT_REFEREE_RESPONSE" Role="APPLICANT_REFEREE_RESPONSE" Multiplicity="*" />
@@ -31350,330 +31303,6 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_VACANT_BEDSPACES' does not have a pr
             </Principal>
             <Dependent Role="APPLICANT_REFEREE_RESPONSE">
               <PropertyRef Name="Overall_Rating" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_STUDENT_APPLICATION_FORM">
-          <End Type="Abundance_NkModel.APPLICATION_FORM" Role="APPLICATION_FORM" Multiplicity="0..1" />
-          <End Type="Abundance_NkModel.STUDENT" Role="STUDENT" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="APPLICATION_FORM">
-              <PropertyRef Name="Application_Form_Id" />
-            </Principal>
-            <Dependent Role="STUDENT">
-              <PropertyRef Name="Application_Form_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_STUDENT_BLOOD_GROUP">
-          <End Type="Abundance_NkModel.BLOOD_GROUP" Role="BLOOD_GROUP" Multiplicity="0..1" />
-          <End Type="Abundance_NkModel.STUDENT" Role="STUDENT" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="BLOOD_GROUP">
-              <PropertyRef Name="Blood_Group_Id" />
-            </Principal>
-            <Dependent Role="STUDENT">
-              <PropertyRef Name="Blood_Group_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_COURSE_EVALUATION_ANSWER_STUDENT">
-          <End Type="Abundance_NkModel.STUDENT" Role="STUDENT" Multiplicity="1" />
-          <End Type="Abundance_NkModel.COURSE_EVALUATION_ANSWER" Role="COURSE_EVALUATION_ANSWER" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="STUDENT">
-              <PropertyRef Name="Person_Id" />
-            </Principal>
-            <Dependent Role="COURSE_EVALUATION_ANSWER">
-              <PropertyRef Name="Person_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_E_ASSIGNMENT_SUBMISSION_STUDENT">
-          <End Type="Abundance_NkModel.STUDENT" Role="STUDENT" Multiplicity="1" />
-          <End Type="Abundance_NkModel.E_ASSIGNMENT_SUBMISSION" Role="E_ASSIGNMENT_SUBMISSION" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="STUDENT">
-              <PropertyRef Name="Person_Id" />
-            </Principal>
-            <Dependent Role="E_ASSIGNMENT_SUBMISSION">
-              <PropertyRef Name="Student_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_E_CHAT_RESPONPSE_STUDENT">
-          <End Type="Abundance_NkModel.STUDENT" Role="STUDENT" Multiplicity="0..1" />
-          <End Type="Abundance_NkModel.E_CHAT_RESPONPSE" Role="E_CHAT_RESPONPSE" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="STUDENT">
-              <PropertyRef Name="Person_Id" />
-            </Principal>
-            <Dependent Role="E_CHAT_RESPONPSE">
-              <PropertyRef Name="Student_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_STUDENT_GENOTYPE">
-          <End Type="Abundance_NkModel.GENOTYPE" Role="GENOTYPE" Multiplicity="0..1" />
-          <End Type="Abundance_NkModel.STUDENT" Role="STUDENT" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="GENOTYPE">
-              <PropertyRef Name="Genotype_Id" />
-            </Principal>
-            <Dependent Role="STUDENT">
-              <PropertyRef Name="Genotype_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_HOSTEL_BLACKLIST_STUDENT">
-          <End Type="Abundance_NkModel.STUDENT" Role="STUDENT" Multiplicity="1" />
-          <End Type="Abundance_NkModel.HOSTEL_BLACKLIST" Role="HOSTEL_BLACKLIST" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="STUDENT">
-              <PropertyRef Name="Person_Id" />
-            </Principal>
-            <Dependent Role="HOSTEL_BLACKLIST">
-              <PropertyRef Name="Person_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_STUDENT_MARITAL_STATUS">
-          <End Type="Abundance_NkModel.MARITAL_STATUS" Role="MARITAL_STATUS" Multiplicity="0..1" />
-          <End Type="Abundance_NkModel.STUDENT" Role="STUDENT" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="MARITAL_STATUS">
-              <PropertyRef Name="Marital_Status_Id" />
-            </Principal>
-            <Dependent Role="STUDENT">
-              <PropertyRef Name="Marital_Status_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_REPORT_CARD_STUDENT">
-          <End Type="Abundance_NkModel.STUDENT" Role="STUDENT" Multiplicity="1" />
-          <End Type="Abundance_NkModel.REPORT_CARD" Role="REPORT_CARD" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="STUDENT">
-              <PropertyRef Name="Person_Id" />
-            </Principal>
-            <Dependent Role="REPORT_CARD">
-              <PropertyRef Name="Student_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_GST_SCAN_STUDENT">
-          <End Type="Abundance_NkModel.STUDENT" Role="STUDENT" Multiplicity="0..1" />
-          <End Type="Abundance_NkModel.GST_SCAN" Role="GST_SCAN" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="STUDENT">
-              <PropertyRef Name="Person_Id" />
-            </Principal>
-            <Dependent Role="GST_SCAN">
-              <PropertyRef Name="Student_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_STUDENT_ACADEMIC_INFORMATION_STUDENT">
-          <End Type="Abundance_NkModel.STUDENT" Role="STUDENT" Multiplicity="1" />
-          <End Type="Abundance_NkModel.STUDENT_ACADEMIC_INFORMATION" Role="STUDENT_ACADEMIC_INFORMATION" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="STUDENT">
-              <PropertyRef Name="Person_Id" />
-            </Principal>
-            <Dependent Role="STUDENT_ACADEMIC_INFORMATION">
-              <PropertyRef Name="Person_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_STUDENT_COURSE_REGISTRATION_STUDENT1">
-          <End Type="Abundance_NkModel.STUDENT" Role="STUDENT" Multiplicity="1" />
-          <End Type="Abundance_NkModel.STUDENT_COURSE_REGISTRATION" Role="STUDENT_COURSE_REGISTRATION" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="STUDENT">
-              <PropertyRef Name="Person_Id" />
-            </Principal>
-            <Dependent Role="STUDENT_COURSE_REGISTRATION">
-              <PropertyRef Name="Person_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_STUDENT_EMPLOYMENT_INFORMATION_STUDENT">
-          <End Type="Abundance_NkModel.STUDENT" Role="STUDENT" Multiplicity="1" />
-          <End Type="Abundance_NkModel.STUDENT_EMPLOYMENT_INFORMATION" Role="STUDENT_EMPLOYMENT_INFORMATION" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="STUDENT">
-              <PropertyRef Name="Person_Id" />
-            </Principal>
-            <Dependent Role="STUDENT_EMPLOYMENT_INFORMATION">
-              <PropertyRef Name="Person_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_STUDENT_EXAM_RAW_SCORE_SHEET_RESULT_STUDENT">
-          <End Type="Abundance_NkModel.STUDENT" Role="STUDENT" Multiplicity="1" />
-          <End Type="Abundance_NkModel.STUDENT_EXAM_RAW_SCORE_SHEET_RESULT" Role="STUDENT_EXAM_RAW_SCORE_SHEET_RESULT" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="STUDENT">
-              <PropertyRef Name="Person_Id" />
-            </Principal>
-            <Dependent Role="STUDENT_EXAM_RAW_SCORE_SHEET_RESULT">
-              <PropertyRef Name="Student_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_STUDENT_FINANCE_INFORMATION_STUDENT">
-          <End Type="Abundance_NkModel.STUDENT" Role="STUDENT" Multiplicity="1" />
-          <End Type="Abundance_NkModel.STUDENT_FINANCE_INFORMATION" Role="STUDENT_FINANCE_INFORMATION" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="STUDENT">
-              <PropertyRef Name="Person_Id" />
-            </Principal>
-            <Dependent Role="STUDENT_FINANCE_INFORMATION">
-              <PropertyRef Name="Person_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_STUDENT_LEVEL_STUDENT">
-          <End Type="Abundance_NkModel.STUDENT" Role="STUDENT" Multiplicity="1" />
-          <End Type="Abundance_NkModel.STUDENT_LEVEL" Role="STUDENT_LEVEL" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="STUDENT">
-              <PropertyRef Name="Person_Id" />
-            </Principal>
-            <Dependent Role="STUDENT_LEVEL">
-              <PropertyRef Name="Person_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_STUDENT_ND_RESULT_STUDENT">
-          <End Type="Abundance_NkModel.STUDENT" Role="STUDENT" Multiplicity="1" />
-          <End Type="Abundance_NkModel.STUDENT_ND_RESULT" Role="STUDENT_ND_RESULT" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="STUDENT">
-              <PropertyRef Name="Person_Id" />
-            </Principal>
-            <Dependent Role="STUDENT_ND_RESULT">
-              <PropertyRef Name="Person_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_STUDENT_RESULT_DETAIL_PERSON">
-          <End Type="Abundance_NkModel.STUDENT" Role="STUDENT" Multiplicity="1" />
-          <End Type="Abundance_NkModel.STUDENT_RESULT_DETAIL" Role="STUDENT_RESULT_DETAIL" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="STUDENT">
-              <PropertyRef Name="Person_Id" />
-            </Principal>
-            <Dependent Role="STUDENT_RESULT_DETAIL">
-              <PropertyRef Name="Person_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_STUDENT_SCORE_STUDENT">
-          <End Type="Abundance_NkModel.STUDENT" Role="STUDENT" Multiplicity="1" />
-          <End Type="Abundance_NkModel.STUDENT_SCORE" Role="STUDENT_SCORE" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="STUDENT">
-              <PropertyRef Name="Person_Id" />
-            </Principal>
-            <Dependent Role="STUDENT_SCORE">
-              <PropertyRef Name="Person_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_STUDENT_SPONSOR_STUDENT">
-          <End Type="Abundance_NkModel.STUDENT" Role="STUDENT" Multiplicity="1" />
-          <End Type="Abundance_NkModel.STUDENT_SPONSOR" Role="STUDENT_SPONSOR" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="STUDENT">
-              <PropertyRef Name="Person_Id" />
-            </Principal>
-            <Dependent Role="STUDENT_SPONSOR">
-              <PropertyRef Name="Person_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_STUDENT_STUDENT_CATEGORY">
-          <End Type="Abundance_NkModel.STUDENT_CATEGORY" Role="STUDENT_CATEGORY" Multiplicity="1" />
-          <End Type="Abundance_NkModel.STUDENT" Role="STUDENT" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="STUDENT_CATEGORY">
-              <PropertyRef Name="Student_Category_Id" />
-            </Principal>
-            <Dependent Role="STUDENT">
-              <PropertyRef Name="Student_Category_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_STUDENT_STUDENT_STATUS">
-          <End Type="Abundance_NkModel.STUDENT_STATUS" Role="STUDENT_STATUS" Multiplicity="1" />
-          <End Type="Abundance_NkModel.STUDENT" Role="STUDENT" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="STUDENT_STATUS">
-              <PropertyRef Name="Student_Status_Id" />
-            </Principal>
-            <Dependent Role="STUDENT">
-              <PropertyRef Name="Student_Status_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_STUDENT_STUDENT_TYPE">
-          <End Type="Abundance_NkModel.STUDENT_TYPE" Role="STUDENT_TYPE" Multiplicity="1" />
-          <End Type="Abundance_NkModel.STUDENT" Role="STUDENT" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="STUDENT_TYPE">
-              <PropertyRef Name="Student_Type_Id" />
-            </Principal>
-            <Dependent Role="STUDENT">
-              <PropertyRef Name="Student_Type_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_STUDENT_TERM_STUDENT">
-          <End Type="Abundance_NkModel.STUDENT" Role="STUDENT" Multiplicity="1" />
-          <End Type="Abundance_NkModel.STUDENT_SEMESTER" Role="STUDENT_SEMESTER" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="STUDENT">
-              <PropertyRef Name="Person_Id" />
-            </Principal>
-            <Dependent Role="STUDENT_SEMESTER">
-              <PropertyRef Name="Person_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_STUDENT_TITLE">
-          <End Type="Abundance_NkModel.TITLE" Role="TITLE" Multiplicity="0..1" />
-          <End Type="Abundance_NkModel.STUDENT" Role="STUDENT" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TITLE">
-              <PropertyRef Name="Title_Id" />
-            </Principal>
-            <Dependent Role="STUDENT">
-              <PropertyRef Name="Title_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_STUDENT_UPDATE_AUDIT_STUDENT">
-          <End Type="Abundance_NkModel.STUDENT" Role="STUDENT" Multiplicity="1" />
-          <End Type="Abundance_NkModel.STUDENT_UPDATE_AUDIT" Role="STUDENT_UPDATE_AUDIT" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="STUDENT">
-              <PropertyRef Name="Person_Id" />
-            </Principal>
-            <Dependent Role="STUDENT_UPDATE_AUDIT">
-              <PropertyRef Name="Student_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_TRANSCRIPT_REQUEST_STUDENT">
-          <End Type="Abundance_NkModel.STUDENT" Role="STUDENT" Multiplicity="0..1" />
-          <End Type="Abundance_NkModel.TRANSCRIPT_REQUEST" Role="TRANSCRIPT_REQUEST" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="STUDENT">
-              <PropertyRef Name="Person_Id" />
-            </Principal>
-            <Dependent Role="TRANSCRIPT_REQUEST">
-              <PropertyRef Name="Student_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -32390,18 +32019,6 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_VACANT_BEDSPACES' does not have a pr
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_STUDENT_PERSON">
-          <End Type="Abundance_NkModel.PERSON" Role="PERSON" Multiplicity="1" />
-          <End Type="Abundance_NkModel.STUDENT" Role="STUDENT" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="PERSON">
-              <PropertyRef Name="Person_Id" />
-            </Principal>
-            <Dependent Role="STUDENT">
-              <PropertyRef Name="Person_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="VW_ACCEPTANCE_REPORT">
           <Key>
             <PropertyRef Name="Department_Name" />
@@ -32587,6 +32204,393 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_VACANT_BEDSPACES' does not have a pr
           <Property Name="Branch_Code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="OrderId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="STUDENT">
+          <Key>
+            <PropertyRef Name="Person_Id" />
+          </Key>
+          <Property Name="Person_Id" Type="Int64" Nullable="false" />
+          <Property Name="Application_Form_Id" Type="Int64" />
+          <Property Name="Student_Type_Id" Type="Int32" Nullable="false" />
+          <Property Name="Student_Category_Id" Type="Int32" Nullable="false" />
+          <Property Name="Student_Status_Id" Type="Int32" Nullable="false" />
+          <Property Name="Student_Number" Type="Int64" />
+          <Property Name="Matric_Number" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Title_Id" Type="Int32" />
+          <Property Name="Marital_Status_Id" Type="Int32" />
+          <Property Name="Blood_Group_Id" Type="Int32" />
+          <Property Name="Genotype_Id" Type="Int32" />
+          <Property Name="School_Contact_Address" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Activated" Type="Boolean" />
+          <Property Name="Reason" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Reject_Category" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Password_hash" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Guid" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="IsEmailConfirmed" Type="Boolean" />
+          <NavigationProperty Name="APPLICATION_FORM" Relationship="Abundance_NkModel.FK_STUDENT_APPLICATION_FORM" FromRole="STUDENT" ToRole="APPLICATION_FORM" />
+          <NavigationProperty Name="BLOOD_GROUP" Relationship="Abundance_NkModel.FK_STUDENT_BLOOD_GROUP" FromRole="STUDENT" ToRole="BLOOD_GROUP" />
+          <NavigationProperty Name="COURSE_EVALUATION_ANSWER" Relationship="Abundance_NkModel.FK_COURSE_EVALUATION_ANSWER_STUDENT" FromRole="STUDENT" ToRole="COURSE_EVALUATION_ANSWER" />
+          <NavigationProperty Name="E_ASSIGNMENT_SUBMISSION" Relationship="Abundance_NkModel.FK_E_ASSIGNMENT_SUBMISSION_STUDENT" FromRole="STUDENT" ToRole="E_ASSIGNMENT_SUBMISSION" />
+          <NavigationProperty Name="E_CHAT_RESPONPSE" Relationship="Abundance_NkModel.FK_E_CHAT_RESPONPSE_STUDENT" FromRole="STUDENT" ToRole="E_CHAT_RESPONPSE" />
+          <NavigationProperty Name="GENOTYPE" Relationship="Abundance_NkModel.FK_STUDENT_GENOTYPE" FromRole="STUDENT" ToRole="GENOTYPE" />
+          <NavigationProperty Name="HOSTEL_BLACKLIST" Relationship="Abundance_NkModel.FK_HOSTEL_BLACKLIST_STUDENT" FromRole="STUDENT" ToRole="HOSTEL_BLACKLIST" />
+          <NavigationProperty Name="MARITAL_STATUS" Relationship="Abundance_NkModel.FK_STUDENT_MARITAL_STATUS" FromRole="STUDENT" ToRole="MARITAL_STATUS" />
+          <NavigationProperty Name="PERSON" Relationship="Abundance_NkModel.FK_STUDENT_PERSON" FromRole="STUDENT" ToRole="PERSON" />
+          <NavigationProperty Name="REPORT_CARD" Relationship="Abundance_NkModel.FK_REPORT_CARD_STUDENT" FromRole="STUDENT" ToRole="REPORT_CARD" />
+          <NavigationProperty Name="GST_SCAN" Relationship="Abundance_NkModel.FK_GST_SCAN_STUDENT" FromRole="STUDENT" ToRole="GST_SCAN" />
+          <NavigationProperty Name="STUDENT_ACADEMIC_INFORMATION" Relationship="Abundance_NkModel.FK_STUDENT_ACADEMIC_INFORMATION_STUDENT" FromRole="STUDENT" ToRole="STUDENT_ACADEMIC_INFORMATION" />
+          <NavigationProperty Name="STUDENT_COURSE_REGISTRATION" Relationship="Abundance_NkModel.FK_STUDENT_COURSE_REGISTRATION_STUDENT1" FromRole="STUDENT" ToRole="STUDENT_COURSE_REGISTRATION" />
+          <NavigationProperty Name="STUDENT_EMPLOYMENT_INFORMATION" Relationship="Abundance_NkModel.FK_STUDENT_EMPLOYMENT_INFORMATION_STUDENT" FromRole="STUDENT" ToRole="STUDENT_EMPLOYMENT_INFORMATION" />
+          <NavigationProperty Name="STUDENT_EXAM_RAW_SCORE_SHEET_RESULT" Relationship="Abundance_NkModel.FK_STUDENT_EXAM_RAW_SCORE_SHEET_RESULT_STUDENT" FromRole="STUDENT" ToRole="STUDENT_EXAM_RAW_SCORE_SHEET_RESULT" />
+          <NavigationProperty Name="STUDENT_FINANCE_INFORMATION" Relationship="Abundance_NkModel.FK_STUDENT_FINANCE_INFORMATION_STUDENT" FromRole="STUDENT" ToRole="STUDENT_FINANCE_INFORMATION" />
+          <NavigationProperty Name="STUDENT_LEVEL" Relationship="Abundance_NkModel.FK_STUDENT_LEVEL_STUDENT" FromRole="STUDENT" ToRole="STUDENT_LEVEL" />
+          <NavigationProperty Name="STUDENT_ND_RESULT" Relationship="Abundance_NkModel.FK_STUDENT_ND_RESULT_STUDENT" FromRole="STUDENT" ToRole="STUDENT_ND_RESULT" />
+          <NavigationProperty Name="STUDENT_RESULT_DETAIL" Relationship="Abundance_NkModel.FK_STUDENT_RESULT_DETAIL_PERSON" FromRole="STUDENT" ToRole="STUDENT_RESULT_DETAIL" />
+          <NavigationProperty Name="STUDENT_SCORE" Relationship="Abundance_NkModel.FK_STUDENT_SCORE_STUDENT" FromRole="STUDENT" ToRole="STUDENT_SCORE" />
+          <NavigationProperty Name="STUDENT_SPONSOR" Relationship="Abundance_NkModel.FK_STUDENT_SPONSOR_STUDENT" FromRole="STUDENT" ToRole="STUDENT_SPONSOR" />
+          <NavigationProperty Name="STUDENT_CATEGORY" Relationship="Abundance_NkModel.FK_STUDENT_STUDENT_CATEGORY" FromRole="STUDENT" ToRole="STUDENT_CATEGORY" />
+          <NavigationProperty Name="STUDENT_STATUS" Relationship="Abundance_NkModel.FK_STUDENT_STUDENT_STATUS" FromRole="STUDENT" ToRole="STUDENT_STATUS" />
+          <NavigationProperty Name="STUDENT_TYPE" Relationship="Abundance_NkModel.FK_STUDENT_STUDENT_TYPE" FromRole="STUDENT" ToRole="STUDENT_TYPE" />
+          <NavigationProperty Name="STUDENT_SEMESTER" Relationship="Abundance_NkModel.FK_STUDENT_TERM_STUDENT" FromRole="STUDENT" ToRole="STUDENT_SEMESTER" />
+          <NavigationProperty Name="TITLE" Relationship="Abundance_NkModel.FK_STUDENT_TITLE" FromRole="STUDENT" ToRole="TITLE" />
+          <NavigationProperty Name="STUDENT_UPDATE_AUDIT" Relationship="Abundance_NkModel.FK_STUDENT_UPDATE_AUDIT_STUDENT" FromRole="STUDENT" ToRole="STUDENT_UPDATE_AUDIT" />
+          <NavigationProperty Name="TRANSCRIPT_REQUEST" Relationship="Abundance_NkModel.FK_TRANSCRIPT_REQUEST_STUDENT" FromRole="STUDENT" ToRole="TRANSCRIPT_REQUEST" />
+        </EntityType>
+        <Association Name="FK_STUDENT_APPLICATION_FORM">
+          <End Type="Abundance_NkModel.APPLICATION_FORM" Role="APPLICATION_FORM" Multiplicity="0..1" />
+          <End Type="Abundance_NkModel.STUDENT" Role="STUDENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="APPLICATION_FORM">
+              <PropertyRef Name="Application_Form_Id" />
+            </Principal>
+            <Dependent Role="STUDENT">
+              <PropertyRef Name="Application_Form_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_STUDENT_BLOOD_GROUP">
+          <End Type="Abundance_NkModel.BLOOD_GROUP" Role="BLOOD_GROUP" Multiplicity="0..1" />
+          <End Type="Abundance_NkModel.STUDENT" Role="STUDENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BLOOD_GROUP">
+              <PropertyRef Name="Blood_Group_Id" />
+            </Principal>
+            <Dependent Role="STUDENT">
+              <PropertyRef Name="Blood_Group_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_COURSE_EVALUATION_ANSWER_STUDENT">
+          <End Type="Abundance_NkModel.STUDENT" Role="STUDENT" Multiplicity="1" />
+          <End Type="Abundance_NkModel.COURSE_EVALUATION_ANSWER" Role="COURSE_EVALUATION_ANSWER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="STUDENT">
+              <PropertyRef Name="Person_Id" />
+            </Principal>
+            <Dependent Role="COURSE_EVALUATION_ANSWER">
+              <PropertyRef Name="Person_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_E_ASSIGNMENT_SUBMISSION_STUDENT">
+          <End Type="Abundance_NkModel.STUDENT" Role="STUDENT" Multiplicity="1" />
+          <End Type="Abundance_NkModel.E_ASSIGNMENT_SUBMISSION" Role="E_ASSIGNMENT_SUBMISSION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="STUDENT">
+              <PropertyRef Name="Person_Id" />
+            </Principal>
+            <Dependent Role="E_ASSIGNMENT_SUBMISSION">
+              <PropertyRef Name="Student_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_E_CHAT_RESPONPSE_STUDENT">
+          <End Type="Abundance_NkModel.STUDENT" Role="STUDENT" Multiplicity="0..1" />
+          <End Type="Abundance_NkModel.E_CHAT_RESPONPSE" Role="E_CHAT_RESPONPSE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="STUDENT">
+              <PropertyRef Name="Person_Id" />
+            </Principal>
+            <Dependent Role="E_CHAT_RESPONPSE">
+              <PropertyRef Name="Student_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_STUDENT_GENOTYPE">
+          <End Type="Abundance_NkModel.GENOTYPE" Role="GENOTYPE" Multiplicity="0..1" />
+          <End Type="Abundance_NkModel.STUDENT" Role="STUDENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GENOTYPE">
+              <PropertyRef Name="Genotype_Id" />
+            </Principal>
+            <Dependent Role="STUDENT">
+              <PropertyRef Name="Genotype_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HOSTEL_BLACKLIST_STUDENT">
+          <End Type="Abundance_NkModel.STUDENT" Role="STUDENT" Multiplicity="1" />
+          <End Type="Abundance_NkModel.HOSTEL_BLACKLIST" Role="HOSTEL_BLACKLIST" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="STUDENT">
+              <PropertyRef Name="Person_Id" />
+            </Principal>
+            <Dependent Role="HOSTEL_BLACKLIST">
+              <PropertyRef Name="Person_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_STUDENT_MARITAL_STATUS">
+          <End Type="Abundance_NkModel.MARITAL_STATUS" Role="MARITAL_STATUS" Multiplicity="0..1" />
+          <End Type="Abundance_NkModel.STUDENT" Role="STUDENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MARITAL_STATUS">
+              <PropertyRef Name="Marital_Status_Id" />
+            </Principal>
+            <Dependent Role="STUDENT">
+              <PropertyRef Name="Marital_Status_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_STUDENT_PERSON">
+          <End Type="Abundance_NkModel.PERSON" Role="PERSON" Multiplicity="1" />
+          <End Type="Abundance_NkModel.STUDENT" Role="STUDENT" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="PERSON">
+              <PropertyRef Name="Person_Id" />
+            </Principal>
+            <Dependent Role="STUDENT">
+              <PropertyRef Name="Person_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_REPORT_CARD_STUDENT">
+          <End Type="Abundance_NkModel.STUDENT" Role="STUDENT" Multiplicity="1" />
+          <End Type="Abundance_NkModel.REPORT_CARD" Role="REPORT_CARD" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="STUDENT">
+              <PropertyRef Name="Person_Id" />
+            </Principal>
+            <Dependent Role="REPORT_CARD">
+              <PropertyRef Name="Student_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GST_SCAN_STUDENT">
+          <End Type="Abundance_NkModel.STUDENT" Role="STUDENT" Multiplicity="0..1" />
+          <End Type="Abundance_NkModel.GST_SCAN" Role="GST_SCAN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="STUDENT">
+              <PropertyRef Name="Person_Id" />
+            </Principal>
+            <Dependent Role="GST_SCAN">
+              <PropertyRef Name="Student_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_STUDENT_ACADEMIC_INFORMATION_STUDENT">
+          <End Type="Abundance_NkModel.STUDENT" Role="STUDENT" Multiplicity="1" />
+          <End Type="Abundance_NkModel.STUDENT_ACADEMIC_INFORMATION" Role="STUDENT_ACADEMIC_INFORMATION" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="STUDENT">
+              <PropertyRef Name="Person_Id" />
+            </Principal>
+            <Dependent Role="STUDENT_ACADEMIC_INFORMATION">
+              <PropertyRef Name="Person_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_STUDENT_COURSE_REGISTRATION_STUDENT1">
+          <End Type="Abundance_NkModel.STUDENT" Role="STUDENT" Multiplicity="1" />
+          <End Type="Abundance_NkModel.STUDENT_COURSE_REGISTRATION" Role="STUDENT_COURSE_REGISTRATION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="STUDENT">
+              <PropertyRef Name="Person_Id" />
+            </Principal>
+            <Dependent Role="STUDENT_COURSE_REGISTRATION">
+              <PropertyRef Name="Person_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_STUDENT_EMPLOYMENT_INFORMATION_STUDENT">
+          <End Type="Abundance_NkModel.STUDENT" Role="STUDENT" Multiplicity="1" />
+          <End Type="Abundance_NkModel.STUDENT_EMPLOYMENT_INFORMATION" Role="STUDENT_EMPLOYMENT_INFORMATION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="STUDENT">
+              <PropertyRef Name="Person_Id" />
+            </Principal>
+            <Dependent Role="STUDENT_EMPLOYMENT_INFORMATION">
+              <PropertyRef Name="Person_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_STUDENT_EXAM_RAW_SCORE_SHEET_RESULT_STUDENT">
+          <End Type="Abundance_NkModel.STUDENT" Role="STUDENT" Multiplicity="1" />
+          <End Type="Abundance_NkModel.STUDENT_EXAM_RAW_SCORE_SHEET_RESULT" Role="STUDENT_EXAM_RAW_SCORE_SHEET_RESULT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="STUDENT">
+              <PropertyRef Name="Person_Id" />
+            </Principal>
+            <Dependent Role="STUDENT_EXAM_RAW_SCORE_SHEET_RESULT">
+              <PropertyRef Name="Student_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_STUDENT_FINANCE_INFORMATION_STUDENT">
+          <End Type="Abundance_NkModel.STUDENT" Role="STUDENT" Multiplicity="1" />
+          <End Type="Abundance_NkModel.STUDENT_FINANCE_INFORMATION" Role="STUDENT_FINANCE_INFORMATION" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="STUDENT">
+              <PropertyRef Name="Person_Id" />
+            </Principal>
+            <Dependent Role="STUDENT_FINANCE_INFORMATION">
+              <PropertyRef Name="Person_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_STUDENT_LEVEL_STUDENT">
+          <End Type="Abundance_NkModel.STUDENT" Role="STUDENT" Multiplicity="1" />
+          <End Type="Abundance_NkModel.STUDENT_LEVEL" Role="STUDENT_LEVEL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="STUDENT">
+              <PropertyRef Name="Person_Id" />
+            </Principal>
+            <Dependent Role="STUDENT_LEVEL">
+              <PropertyRef Name="Person_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_STUDENT_ND_RESULT_STUDENT">
+          <End Type="Abundance_NkModel.STUDENT" Role="STUDENT" Multiplicity="1" />
+          <End Type="Abundance_NkModel.STUDENT_ND_RESULT" Role="STUDENT_ND_RESULT" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="STUDENT">
+              <PropertyRef Name="Person_Id" />
+            </Principal>
+            <Dependent Role="STUDENT_ND_RESULT">
+              <PropertyRef Name="Person_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_STUDENT_RESULT_DETAIL_PERSON">
+          <End Type="Abundance_NkModel.STUDENT" Role="STUDENT" Multiplicity="1" />
+          <End Type="Abundance_NkModel.STUDENT_RESULT_DETAIL" Role="STUDENT_RESULT_DETAIL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="STUDENT">
+              <PropertyRef Name="Person_Id" />
+            </Principal>
+            <Dependent Role="STUDENT_RESULT_DETAIL">
+              <PropertyRef Name="Person_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_STUDENT_SCORE_STUDENT">
+          <End Type="Abundance_NkModel.STUDENT" Role="STUDENT" Multiplicity="1" />
+          <End Type="Abundance_NkModel.STUDENT_SCORE" Role="STUDENT_SCORE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="STUDENT">
+              <PropertyRef Name="Person_Id" />
+            </Principal>
+            <Dependent Role="STUDENT_SCORE">
+              <PropertyRef Name="Person_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_STUDENT_SPONSOR_STUDENT">
+          <End Type="Abundance_NkModel.STUDENT" Role="STUDENT" Multiplicity="1" />
+          <End Type="Abundance_NkModel.STUDENT_SPONSOR" Role="STUDENT_SPONSOR" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="STUDENT">
+              <PropertyRef Name="Person_Id" />
+            </Principal>
+            <Dependent Role="STUDENT_SPONSOR">
+              <PropertyRef Name="Person_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_STUDENT_STUDENT_CATEGORY">
+          <End Type="Abundance_NkModel.STUDENT_CATEGORY" Role="STUDENT_CATEGORY" Multiplicity="1" />
+          <End Type="Abundance_NkModel.STUDENT" Role="STUDENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="STUDENT_CATEGORY">
+              <PropertyRef Name="Student_Category_Id" />
+            </Principal>
+            <Dependent Role="STUDENT">
+              <PropertyRef Name="Student_Category_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_STUDENT_STUDENT_STATUS">
+          <End Type="Abundance_NkModel.STUDENT_STATUS" Role="STUDENT_STATUS" Multiplicity="1" />
+          <End Type="Abundance_NkModel.STUDENT" Role="STUDENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="STUDENT_STATUS">
+              <PropertyRef Name="Student_Status_Id" />
+            </Principal>
+            <Dependent Role="STUDENT">
+              <PropertyRef Name="Student_Status_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_STUDENT_STUDENT_TYPE">
+          <End Type="Abundance_NkModel.STUDENT_TYPE" Role="STUDENT_TYPE" Multiplicity="1" />
+          <End Type="Abundance_NkModel.STUDENT" Role="STUDENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="STUDENT_TYPE">
+              <PropertyRef Name="Student_Type_Id" />
+            </Principal>
+            <Dependent Role="STUDENT">
+              <PropertyRef Name="Student_Type_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_STUDENT_TERM_STUDENT">
+          <End Type="Abundance_NkModel.STUDENT" Role="STUDENT" Multiplicity="1" />
+          <End Type="Abundance_NkModel.STUDENT_SEMESTER" Role="STUDENT_SEMESTER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="STUDENT">
+              <PropertyRef Name="Person_Id" />
+            </Principal>
+            <Dependent Role="STUDENT_SEMESTER">
+              <PropertyRef Name="Person_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_STUDENT_TITLE">
+          <End Type="Abundance_NkModel.TITLE" Role="TITLE" Multiplicity="0..1" />
+          <End Type="Abundance_NkModel.STUDENT" Role="STUDENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TITLE">
+              <PropertyRef Name="Title_Id" />
+            </Principal>
+            <Dependent Role="STUDENT">
+              <PropertyRef Name="Title_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_STUDENT_UPDATE_AUDIT_STUDENT">
+          <End Type="Abundance_NkModel.STUDENT" Role="STUDENT" Multiplicity="1" />
+          <End Type="Abundance_NkModel.STUDENT_UPDATE_AUDIT" Role="STUDENT_UPDATE_AUDIT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="STUDENT">
+              <PropertyRef Name="Person_Id" />
+            </Principal>
+            <Dependent Role="STUDENT_UPDATE_AUDIT">
+              <PropertyRef Name="Student_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TRANSCRIPT_REQUEST_STUDENT">
+          <End Type="Abundance_NkModel.STUDENT" Role="STUDENT" Multiplicity="0..1" />
+          <End Type="Abundance_NkModel.TRANSCRIPT_REQUEST" Role="TRANSCRIPT_REQUEST" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="STUDENT">
+              <PropertyRef Name="Person_Id" />
+            </Principal>
+            <Dependent Role="TRANSCRIPT_REQUEST">
+              <PropertyRef Name="Student_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -38100,28 +38104,6 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_VACANT_BEDSPACES' does not have a pr
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="STUDENT">
-            <EntityTypeMapping TypeName="Abundance_NkModel.STUDENT">
-              <MappingFragment StoreEntitySet="STUDENT">
-                <ScalarProperty Name="Password_hash" ColumnName="Password_hash" />
-                <ScalarProperty Name="Reject_Category" ColumnName="Reject_Category" />
-                <ScalarProperty Name="Reason" ColumnName="Reason" />
-                <ScalarProperty Name="Activated" ColumnName="Activated" />
-                <ScalarProperty Name="School_Contact_Address" ColumnName="School_Contact_Address" />
-                <ScalarProperty Name="Genotype_Id" ColumnName="Genotype_Id" />
-                <ScalarProperty Name="Blood_Group_Id" ColumnName="Blood_Group_Id" />
-                <ScalarProperty Name="Marital_Status_Id" ColumnName="Marital_Status_Id" />
-                <ScalarProperty Name="Title_Id" ColumnName="Title_Id" />
-                <ScalarProperty Name="Matric_Number" ColumnName="Matric_Number" />
-                <ScalarProperty Name="Student_Number" ColumnName="Student_Number" />
-                <ScalarProperty Name="Student_Status_Id" ColumnName="Student_Status_Id" />
-                <ScalarProperty Name="Student_Category_Id" ColumnName="Student_Category_Id" />
-                <ScalarProperty Name="Student_Type_Id" ColumnName="Student_Type_Id" />
-                <ScalarProperty Name="Application_Form_Id" ColumnName="Application_Form_Id" />
-                <ScalarProperty Name="Person_Id" ColumnName="Person_Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="STP_GENERATE_POST_GRADUATE_MATRIC_NUMBER" FunctionName="Abundance_NkModel.Store.STP_GENERATE_POST_GRADUATE_MATRIC_NUMBER" />
           <EntitySetMapping Name="VW_ABIASTUDENTINDIGENESREPORT">
             <EntityTypeMapping TypeName="Abundance_NkModel.VW_ABIASTUDENTINDIGENESREPORT">
@@ -38384,6 +38366,30 @@ warning 6002: The table/view 'VS_NAU.dbo.VW_VACANT_BEDSPACES' does not have a pr
                 <ScalarProperty Name="Signature_File_Url" ColumnName="Signature_File_Url" />
                 <ScalarProperty Name="Image_File_Url" ColumnName="Image_File_Url" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Person_Id" ColumnName="Person_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="STUDENT">
+            <EntityTypeMapping TypeName="Abundance_NkModel.STUDENT">
+              <MappingFragment StoreEntitySet="STUDENT">
+                <ScalarProperty Name="IsEmailConfirmed" ColumnName="IsEmailConfirmed" />
+                <ScalarProperty Name="Guid" ColumnName="Guid" />
+                <ScalarProperty Name="Password_hash" ColumnName="Password_hash" />
+                <ScalarProperty Name="Reject_Category" ColumnName="Reject_Category" />
+                <ScalarProperty Name="Reason" ColumnName="Reason" />
+                <ScalarProperty Name="Activated" ColumnName="Activated" />
+                <ScalarProperty Name="School_Contact_Address" ColumnName="School_Contact_Address" />
+                <ScalarProperty Name="Genotype_Id" ColumnName="Genotype_Id" />
+                <ScalarProperty Name="Blood_Group_Id" ColumnName="Blood_Group_Id" />
+                <ScalarProperty Name="Marital_Status_Id" ColumnName="Marital_Status_Id" />
+                <ScalarProperty Name="Title_Id" ColumnName="Title_Id" />
+                <ScalarProperty Name="Matric_Number" ColumnName="Matric_Number" />
+                <ScalarProperty Name="Student_Number" ColumnName="Student_Number" />
+                <ScalarProperty Name="Student_Status_Id" ColumnName="Student_Status_Id" />
+                <ScalarProperty Name="Student_Category_Id" ColumnName="Student_Category_Id" />
+                <ScalarProperty Name="Student_Type_Id" ColumnName="Student_Type_Id" />
+                <ScalarProperty Name="Application_Form_Id" ColumnName="Application_Form_Id" />
                 <ScalarProperty Name="Person_Id" ColumnName="Person_Id" />
               </MappingFragment>
             </EntityTypeMapping>
