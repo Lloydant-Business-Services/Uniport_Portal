@@ -102,4 +102,3 @@ C:\Users\Miracle\NewlyMigrated\Uniport_Portal\Abundance_Nk.Web\obj\Release\Abund
 C:\Users\Miracle\NewlyMigrated\Uniport_Portal\Abundance_Nk.Web\obj\Release\Abundance_Nk.Web.csproj.CoreCompileInputs.cache
 C:\Users\Miracle\NewlyMigrated\Uniport_Portal\Abundance_Nk.Web\obj\Release\Abundance_Nk.Web.dll
 C:\Users\Miracle\NewlyMigrated\Uniport_Portal\Abundance_Nk.Web\obj\Release\Abundance_Nk.Web.pdb
-C:\Users\Miracle\NewlyMigrated\Uniport_Portal\Abundance_Nk.Web\bin\ExcelNumberFormat.dll

@@ -712,16 +712,16 @@ namespace Abundance_Nk.Web.Areas.Admin.Controllers
                             {
                                 resultFormat.CA = 0;
                             }
-                            if(studentSet.Tables[0].Rows[i][4].ToString() != "")
+                            if(studentSet.Tables[0].Rows[i][6].ToString() != "")
                             {
-                                resultFormat.Exam = Convert.ToDecimal(studentSet.Tables[0].Rows[i][5].ToString().Trim());
+                                resultFormat.Exam = Convert.ToDecimal(studentSet.Tables[0].Rows[i][6].ToString().Trim());
                             }
                             else
                             {
                                 resultFormat.Exam = 0;
                             }
 
-                            resultFormat.CourseCode = studentSet.Tables[0].Rows[i][6].ToString().Trim();
+                            resultFormat.CourseCode = studentSet.Tables[0].Rows[i][5].ToString().Trim();
                             if(resultFormat.MatricNo != "")
                             {
                                 resultFormatList.Add(resultFormat);
@@ -1302,9 +1302,13 @@ namespace Abundance_Nk.Web.Areas.Admin.Controllers
             DataSet Result = null;
             try
             {
+                string xConnStr = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + filepath +
+                                  ";Extended Properties='Excel 12.0;IMEX=1;'";
 
-                string xConnStr = "Provider=Microsoft.Jet.OLEDB.4.0;" + "Data Source=" + filepath + ";" +
-                                  "Extended Properties=Excel 8.0;";
+                //string xConnStr = "Provider=Microsoft.Jet.OLEDB.4.0;" + "Data Source=" + filepath + ";" +
+                //                  "Extended Properties=Excel 8.0;";
+                //string xConnStr = "Provider=Microsoft.ACE.OLEDB.12.0;" + "Data Source=" + filePath + ";" +
+                //             "Extended Properties=Excel 12.0;";
 
                 //string xConnStr = $"Provider=Microsoft.Jet.OLEDB.4.0;Data Source={filepath}; Extended Properties='Excel 8.0;HDR=NO;IMEX=1;'";
                 var connection = new OleDbConnection(xConnStr);

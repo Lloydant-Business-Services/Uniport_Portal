@@ -1,0 +1,19 @@
+<div>
+	<table cellspacing="0" rules="all" border="1" style="border-collapse:collapse;">
+		<tr style="color:White;background-color:DarkBlue;">
+			<th scope="col">SN</th><th scope="col">MatricNo</th><th scope="col">Fullname</th><th scope="col">Department</th><th scope="col">CA</th><th scope="col">CourseCode</th><th scope="col">Exam</th>
+		</tr><tr>
+			<td>1</td><td>2019/109401/REGULAR</td><td>EMMANUEL SANDRA C</td><td>Accountancy </td><td>20.00</td><td>GSS101</td><td>45.00</td>
+		</tr><tr>
+			<td>2</td><td>2019/109402/REGULAR</td><td>NNAM CHRIS EMEKA</td><td>Accountancy </td><td>12.00</td><td>GSS101</td><td>34.00</td>
+		</tr><tr>
+			<td>3</td><td>2019/109403/REGULAR</td><td>Emeka Okonkwo Anyi</td><td>Accountancy </td><td>&nbsp;</td><td>GSS101</td><td>&nbsp;</td>
+		</tr><tr>
+			<td>4</td><td>2020/109404/REGULAR</td><td>Emeka Obi John</td><td>Accountancy </td><td>10.00</td><td>GSS101</td><td>70.00</td>
+		</tr><tr>
+			<td>5</td><td>2020/109405/REGULAR</td><td>Billa Diton Ada</td><td>Accountancy </td><td>&nbsp;</td><td>GSS101</td><td>&nbsp;</td>
+		</tr><tr>
+			<td>6</td><td>2020/109406/REGULAR</td><td>Nnamdi Okoro Peter</td><td>Accountancy </td><td>&nbsp;</td><td>GSS101</td><td>&nbsp;</td>
+		</tr>
+	</table>
+</div>
